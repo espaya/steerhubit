@@ -4,7 +4,7 @@
             <div class="footer__wrapper d-flex flex-wrap flex-column flex-sm-row gap-4 gap-md-0 gap-sm-3 justify-content-between pt-60 pb-60">
                 <div class="rts__footer__widget max-320">
                     <a href="{{ url('/') }}" class="footer__logo" aria-label="logo">
-                        <img src="assets/img/logo/logo.png" width="180" height="40" alt="logo">
+                        <img src="{{asset('assets/img/logo/logo.png')}}" width="180" height="40" alt="logo">
                     </a>
                     <p class="mt-4">Transforming healthcare one placement at a time, by providing personalized staffing solutions, promoting diversity and inclusion, and empowering healthcare professionals to deliver exceptional patient care.
                     </p>
