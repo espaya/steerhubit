@@ -503,35 +503,13 @@
                </div>
                <div class="col-lg-7">
                   <div class="rts__content__section ms-lg-4 ms-md-0 wow animated fadeInUp">
-                     <h3 class="fw-bold mb-4">Why We Are Most Popular</h3>
-                     <p>Whether you're an experienced professional or a fresh graduate eager to dive into the workforce, we have something for everyone. From tech wizards to marketing mavens, finance gurus to creative minds, our diverse range of listings caters to a variety of skills and interests.</p>
-                     <div class="mt-40 rts__listing">
-                        <div class="single__listing d-flex align-items-center gap-4">
-                           <span class="icon">
-                           <i class="fa-regular fa-check"></i> 
-                           </span>
-                           <span>Quality Job</span>
-                        </div>
-                        <div class="single__listing d-flex align-items-center gap-4">
-                           <span class="icon">
-                           <i class="fa-regular fa-check"></i> 
-                           </span>
-                           <span>Reach 100s contacts</span>
-                        </div>
-                        <div class="single__listing d-flex align-items-center gap-4">
-                           <span class="icon">
-                           <i class="fa-regular fa-check"></i> 
-                           </span>
-                           <span>No Extra Charge</span>
-                        </div>
-                        <div class="single__listing d-flex align-items-center gap-4">
-                           <span class="icon">
-                           <i class="fa-regular fa-check"></i> 
-                           </span>
-                           <span>Internation job   </span>
-                        </div>
-                     </div>
-                     <a href="job-list-2.html" class="rts__btn common__btn  fill__btn mt-50">Explore More <i class="fa-regular fa-arrow-right"></i></a>
+                     <h3 class="fw-bold mb-4">Our Vision</h3>
+                     <p>Transforming healthcare one placement at a time, by providing personalized staffing solutions, promoting diversity and inclusion, and empowering healthcare professionals to deliver exceptional patient care.</p>
+
+                     <h3 style="margin-top: 20px;" class="fw-bold mb-4">Our Mission</h3>
+                     <p>Transforming healthcare staffing by combining cutting-edge technology, personalized service, and a commitment to quality, safety, and patient satisfaction.</p>
+                     
+                     <a href="{{ route('about') }}" class="rts__btn common__btn  fill__btn mt-50">Explore More <i class="fa-regular fa-arrow-right"></i></a>
                   </div>
                </div>
             </div>
@@ -606,38 +584,7 @@
          </div>
       </div>
       <!-- blog section end -->
-      <div class="rts__section pb-120">
-         <div class="container">
-            <div class="row">
-               <div class="rts__appcenter">
-                  <div class="rts__appcenter__shape">
-                     <img src="assets/img/home-1/app/shape.png" alt="">
-                  </div>
-                  <div class="rts__appcenter__content d-flex flex-wrap flex-xl-nowrap align-items-center justify-content-between justify-content-lg-center">
-                     <div class="content__left align-items-end d-flex position-relative top-15px">
-                        <img src="assets/img/home-1/app/app_screen.png" alt="">
-                     </div>
-                     <div class="content__right text-white text-center text-xl-start max-630">
-                        <h3 class="l--1 mb-4 text-white wow animated fadeInUp" data-wow-delay=".1s ">Download The app Free!</h3>
-                        <p class="wow animated fadeInUp" data-wow-delay=".2s">Looking for a new job can be both exciting and daunting. Navigating the job market involves exploring various avenues.</p>
-                        <div class="d-flex gap-3 justify-content-center justify-content-xl-start flex-wrap mt-40 wow animated fadeInUp" data-wow-delay=".3s">
-                           <div class="link">
-                              <a href="https://appstore.com" target="_blank" title="app store">
-                              <img src="assets/img/home-1/app/app-store.svg" alt="">
-                              </a>
-                           </div>
-                           <div class="link">
-                              <a href="https://google.com" target="_blank" title="play store">
-                              <img src="assets/img/home-1/app/play-store.svg" alt="">
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+
       <div class="modal similar__modal fade " id="loginModal">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

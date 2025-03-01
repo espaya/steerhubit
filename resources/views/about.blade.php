@@ -118,6 +118,82 @@
          </div>
       </div>
       <!-- about image card end -->
+      <section class="rts__section section__padding">
+         <div class="container">
+            <div class="row align-items-center justify-content-center g-30">
+               <div class="col-lg-5 offset-xl-1 col-xl-5">
+                  <div class="rts__workprocess__image">
+                     <img src="assets/img/home-3/about/about-image.webp" alt="">
+                     <div class="rts__applicants  wow  fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;">
+                        <span class="font-20 mb-3 d-block fw-medium">Applicants</span>
+                        <div class="applicant__list">
+                           <div class="single__list">
+                              <img src="assets/img/author/1.svg" alt="">
+                           </div>
+                           <div class="single__list">
+                              <img src="assets/img/author/2.svg" alt="">
+                           </div>
+                           <div class="single__list">
+                              <img src="assets/img/author/3.svg" alt="">
+                           </div>
+                           <div class="single__list">
+                              <img src="assets/img/author/4.svg" alt="">
+                              <div class="icon-plus"><i class="fa-sharp fa-solid fa-plus"></i></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-7 col-xl-6">
+                  <div class="rts__workprocess__content mx-0 mx-lg-5  wow  fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+                     <div class="rts__section__content text-start">
+                        <h3 class="h6 d-block">Our Story</h3>
+                        <p class="rts__section__desc">At SteerHubIT, we are driven by a passion for providing exceptional healthcare staffing solutions that positively impact the lives of patients, professionals, and healthcare organizations.
+                        </p>
+                     </div>
+                     <div style="margin-top: 50px;" class="rts__section__content text-start">
+                        <h3 class="h6 d-block">Our Journey</h3>
+                        <p class="rts__section__desc">Our story began with a simple yet powerful idea: to create a healthcare staffing agency that prioritizes people. Our founders have extensive experience in healthcare staffing and small business startups, which has shaped our approach. We recognize the importance of a more personalized and compassionate approach to healthcare staffing</p>
+                     </div>
+                     <div style="margin-top: 50px;" class="rts__section__content text-start">
+                        <h3 class="h6 d-block">Our Mission Takes Shape                                </h3>
+                        <p class="rts__section__desc">With a clear vision and unwavering commitment, we set out to build a team of dedicated professionals who share our passion for delivering outstanding patient care. Today, we are proud to be a competitive healthcare staffing agency, connecting top talent with innovative healthcare organizations.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <div class="rts__section overflow-hidden" style="padding-top: 20px;">
+   <div class="container">
+      <div class="row justify-content-between align-items-center mb-50">
+         <!-- Left Column -->
+         <div class="col-lg-6">
+            <div class="rts__section__content text-start wow fadeInUp">
+               <h3 class="h6 d-block">Our Values</h3>
+               <p class="rts__section__desc">
+                  <ul>
+                     <li>- <strong>Compassion:</strong> We prioritize empathy and kindness in every interaction.</li>
+                     <li>- <strong>Excellence:</strong> We strive for exceptional quality in our staffing solutions.</li>
+                     <li>- <strong>Inclusivity:</strong> We promote diversity, equity, and inclusion within our workforce.</li>
+                     <li>- <strong>Integrity:</strong> We operate with transparency, honesty, and ethics.</li>
+                  </ul>
+               </p>
+            </div>
+         </div>
+         <!-- Right Column -->
+         <div class="col-lg-6">
+            <div class="rts__section__content text-start wow fadeInUp">
+               <h3 class="h6 d-block">Join Our Story</h3>
+               <p class="rts__section__desc">We are always looking for talented professionals to join our team. If you are passionate about healthcare and committed to delivering exceptional service, we would love to hear from you.</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
       <!-- work process area -->
       <section class="rts__section section__padding">
          <div class="container">
@@ -139,7 +215,7 @@
                      <p>Sign up quickly and gain access to exclusive job opportunities.
                      </p>
                      <div class="work__readmore mt-3">
-                        <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        <!-- <a href="#">Read More <i class="fas fa-arrow-right"></i></a> -->
                      </div>
                   </div>
                </div>
@@ -152,7 +228,7 @@
                      <p>Showcase your skills and experience by uploading your CV to our platform.
                      </p>
                      <div class="work__readmore mt-3">
-                        <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        <!-- <a href="#">Read More <i class="fas fa-arrow-right"></i></a> -->
                      </div>
                   </div>
                </div>
@@ -165,7 +241,7 @@
                      <p>Our system matches you with employers, helping you land a job.
                      </p>
                      <div class="work__readmore mt-3">
-                        <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        <!-- <a href="#">Read More <i class="fas fa-arrow-right"></i></a> -->
                      </div>
                   </div>
                </div>
@@ -173,39 +249,7 @@
          </div>
       </section>
       <!-- work process area end -->
-
-      <div class="rts__section pb-120">
-         <div class="container">
-            <div class="row">
-               <div class="rts__appcenter">
-                  <div class="rts__appcenter__shape">
-                     <img src="assets/img/home-1/app/shape.png" alt="">
-                  </div>
-                  <div class="rts__appcenter__content d-flex flex-wrap flex-xl-nowrap align-items-center justify-content-between justify-content-lg-center">
-                     <div class="content__left align-items-end d-flex position-relative top-15px">
-                        <img src="assets/img/home-1/app/app_screen.png" alt="">
-                     </div>
-                     <div class="content__right text-white text-center text-xl-start max-630">
-                        <h3 class="l--1 mb-4 text-white wow animated fadeInUp" data-wow-delay=".1s ">Download The app Free!</h3>
-                        <p class="wow animated fadeInUp" data-wow-delay=".2s">Looking for a new job can be both exciting and daunting. Navigating the job market involves exploring various avenues.</p>
-                        <div class="d-flex gap-3 justify-content-center justify-content-xl-start flex-wrap mt-40 wow animated fadeInUp" data-wow-delay=".3s">
-                           <div class="link">
-                              <a href="https://appstore.com" target="_blank" title="app store">
-                              <img src="assets/img/home-1/app/app-store.svg" alt="">
-                              </a>
-                           </div>
-                           <div class="link">
-                              <a href="https://google.com" target="_blank" title="play store">
-                              <img src="assets/img/home-1/app/play-store.svg" alt="">
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+       
       <div class="modal similar__modal fade " id="loginModal">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
