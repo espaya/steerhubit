@@ -89,7 +89,7 @@
                   </div>
                   <div class="rts__banner__image position-relative">
                      <figure class="banner__image">
-                        <img src="{{asset('assets/img/home-1/banner/image_2x.webp')}}" alt="banner">
+                        <img src="{{asset('assets/img/home-1/banner/image_2x_1.png')}}" alt="banner">
                      </figure>
                      <div class="banner__image__shape">
                         <div class="facebook">
@@ -221,22 +221,11 @@
                   <div class="swiper-wrapper">
                      <div class="swiper-slide">
                         <div class="single__cat d-flex gap-4">
-                           <div class="single__cat__icon color-1">
-                              <img src="{{asset('assets/img/home-1/cat/1.svg')}}" alt="">
-                           </div>
-                           <div class="single__cat__link d-flex flex-column">
-                              <a href="job-list-1.html" aria-label="cat__label">Development</a>
-                              <span>130+ Jobs</span>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="swiper-slide">
-                        <div class="single__cat d-flex gap-4">
                            <div class="single__cat__icon color-2">
                               <img src="{{asset('assets/img/home-1/cat/2.svg')}}" alt="">
                            </div>
                            <div class="single__cat__link d-flex flex-column">
-                              <a href="job-list-1.html" aria-label="cat__label">Design &amp; arts</a>
+                              <a href="job-list-1.html" aria-label="cat__label">LIcensed Practical Nurse (LPN)</a>
                               <span>130+ Jobs</span>
                            </div>
                         </div>
@@ -247,7 +236,7 @@
                               <img src="{{asset('assets/img/home-1/cat/3.svg')}}" alt="">
                            </div>
                            <div class="single__cat__link d-flex flex-column">
-                              <a href="job-list-1.html" aria-label="cat__label">Accounting</a>
+                              <a href="job-list-1.html" aria-label="cat__label">Home Health Aide (HHA)</a>
                               <span>130+ Jobs</span>
                            </div>
                         </div>
@@ -258,7 +247,7 @@
                               <img src="{{asset('assets/img/home-1/cat/4.svg')}}" alt="">
                            </div>
                            <div class="single__cat__link d-flex flex-column">
-                              <a href="job-list-1.html" aria-label="cat__label">Marketting</a>
+                              <a href="job-list-1.html" aria-label="cat__label">Certified Nursing Assistant (CNA)</a>
                               <span>130+ Jobs</span>
                            </div>
                         </div>
@@ -498,7 +487,7 @@
             <div class="row align-items-center g-5">
                <div class="col-lg-5">
                   <div class="rts__image__section">
-                     <img src="assets/img/home-1/we-are/image.webp" alt="">
+                     <img src="assets/img/home-1/we-are/image.png" alt="">
                   </div>
                </div>
                <div class="col-lg-7">
@@ -517,74 +506,6 @@
       </div>
       <!-- what we are end -->
        
-      <!-- blog section -->
-      <div class="rts__section section__padding">
-         <div class="container">
-            <div class="row justify-content-center">
-               <div class="col-xl-6 col-lg-10">
-                  <div class="rts__section__content text-center wow animated fadeIn mb-60">
-                     <h3 class="rts__section__title section__mb">Read Our Latest News</h3>
-                     <p class="rts__section__desc">Looking for your next career opportunity. Look no further</p>
-                  </div>
-               </div>
-            </div>
-            <div class="row justify-content-center justify-content-lg-start g-30">
-               <div class="col-lg-6 col-xl-4 col-md-10">
-                  <div class="rts__single__blog">
-                     <a href="blog-details.html" class="blog__img">
-                     <img src="assets/img/home-1/blog/1.webp" class="mb-2" alt="blog">
-                     </a>
-                     <div class="blog__meta">
-                        <div class="blog__meta__info d-flex gap-3 my-3">
-                           <span class="d-flex gap-1 align-items-center"> <img class="svg" src="assets/img/icon/calender.svg" alt=""> 20 March, 2022</span>
-                           <a href="#" class="d-flex gap-1 align-items-center"> <img class="svg" src="assets/img/icon/user.svg" alt=""> Jon Adom</a>
-                        </div>
-                        <a href="blog-details.html" class="h6 fw-semibold">
-                        7 Ways Job Post Has Improved Business Today
-                        </a>
-                        <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fa-light fa-arrow-right"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-6 col-xl-4 col-md-10">
-                  <div class="rts__single__blog">
-                     <a href="blog-details.html" class="blog__img">
-                     <img src="assets/img/home-1/blog/2.webp" class="mb-2" alt="blog">
-                     </a>
-                     <div class="blog__meta">
-                        <div class="blog__meta__info d-flex gap-3 my-3">
-                           <span class="d-flex gap-1 align-items-center"> <img class="svg" src="assets/img/icon/calender.svg" alt=""> 20 March, 2022</span>
-                           <a href="#" class="d-flex gap-1 align-items-center"> <img class="svg" src="assets/img/icon/user.svg" alt=""> Jon Adom</a>
-                        </div>
-                        <a href="blog-details.html" class="h6 fw-semibold">
-                        Start an online Job and work from home
-                        </a>
-                        <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fa-light fa-arrow-right"></i></a>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-6 col-xl-4 col-md-10">
-                  <div class="rts__single__blog">
-                     <a href="blog-details.html" class="blog__img">
-                     <img src="assets/img/home-1/blog/3.webp" class="mb-2" alt="blog">
-                     </a>
-                     <div class="blog__meta">
-                        <div class="blog__meta__info d-flex gap-3 my-3">
-                           <span class="d-flex gap-1 align-items-center"> <img class="svg" src="assets/img/icon/calender.svg" alt=""> 20 March, 2022</span>
-                           <a href="#" class="d-flex gap-1 align-items-center"> <img class="svg" src="assets/img/icon/user.svg" alt=""> Jon Adom</a>
-                        </div>
-                        <a href="blog-details.html" class="h6 fw-semibold">
-                        Insider Strategies for Success on Job Websites
-                        </a>
-                        <a href="blog-details.html" class="readmore__btn d-flex mt-3 gap-2 align-items-center">Read More <i class="fa-light fa-arrow-right"></i></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- blog section end -->
-
       <div class="modal similar__modal fade " id="loginModal">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">

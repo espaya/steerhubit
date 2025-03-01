@@ -84,7 +84,7 @@
                   <div class="about__image__section position-relative flex-wrap flex-sm-nowrap d-flex justify-content-between gap-5">
                      <div class="about__image__one align-self-end">
                         <figure>
-                           <img src="assets/img/home-6/about/1.webp" alt="">
+                           <img src="assets/img/home-6/about/1.jpg" alt="">
                         </figure>
                      </div>
                      <div class="about__applicant">
@@ -109,7 +109,7 @@
                      </div>
                      <div class="about__image__two align-self-start">
                         <figure>
-                           <img src="assets/img/home-6/about/2.webp" alt="">
+                           <img src="assets/img/home-6/about/2.jpg" alt="">
                         </figure>
                      </div>
                   </div>
@@ -123,7 +123,7 @@
             <div class="row align-items-center justify-content-center g-30">
                <div class="col-lg-5 offset-xl-1 col-xl-5">
                   <div class="rts__workprocess__image">
-                     <img src="assets/img/home-3/about/about-image.webp" alt="">
+                     <img src="assets/img/home-3/about/about-image.jpg" alt="">
                      <div class="rts__applicants  wow  fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;">
                         <span class="font-20 mb-3 d-block fw-medium">Applicants</span>
                         <div class="applicant__list">
