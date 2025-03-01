@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <title>Jobpath - Job Seeker &amp; Job Holder HTML Template</title>
+    <title>SteerHubIT - Terms & Conditions</title>
     <!-- rt icons -->
     <link rel="stylesheet" href="assets/fonts/icon/css/rt-icons.css">
     <!-- fontawesome -->
@@ -177,39 +177,6 @@
      </div>
     <!-- tos end -->
 
-   
-    <div class="rts__section pb-120">
-        <div class="container">
-            <div class="row">
-                <div class="rts__appcenter">
-                    <div class="rts__appcenter__shape">
-                        <img src="assets/img/home-1/app/shape.png" alt="">
-                    </div>
-                    <div class="rts__appcenter__content d-flex flex-wrap flex-xl-nowrap align-items-center justify-content-between justify-content-lg-center">
-                        <div class="content__left align-items-end d-flex position-relative top-15px">
-                            <img src="assets/img/home-1/app/app_screen.png" alt="">
-                        </div>
-                        <div class="content__right text-white text-center text-xl-start max-630">
-                            <h3 class="l--1 mb-4 text-white wow animated fadeInUp" data-wow-delay=".1s ">Download The app Free!</h3>
-                            <p class="wow animated fadeInUp" data-wow-delay=".2s">Looking for a new job can be both exciting and daunting. Navigating the job market involves exploring various avenues.</p>
-                            <div class="d-flex gap-3 justify-content-center justify-content-xl-start flex-wrap mt-40 wow animated fadeInUp" data-wow-delay=".3s">
-                                <div class="link">
-                                    <a href="https://appstore.com" target="_blank" title="app store">
-                                        <img src="assets/img/home-1/app/app-store.svg" alt="">
-                                    </a>
-                                </div>
-                                <div class="link">
-                                    <a href="https://google.com" target="_blank" title="play store">
-                                        <img src="assets/img/home-1/app/play-store.svg" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
         
 
     @include('templates/footer')
@@ -221,7 +188,7 @@
       <div class="modal-content">
         <div class="max-content similar__form form__padding">
             <div class="d-flex mb-3 align-items-center justify-content-between">
-                <h6 class="mb-0">Login To Jobpath</h6>
+                <h6 class="mb-0">Login To SteerHubIT</h6>
                 <button type="button" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-regular fa-xmark text-primary"></i>
                 </button>

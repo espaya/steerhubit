@@ -129,7 +129,7 @@
                      <p>Sign up quickly and gain access to exclusive job opportunities.
                      </p>
                      <div class="work__readmore mt-3">
-                        <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        <!-- <a href="#">Read More <i class="fas fa-arrow-right"></i></a> -->
                      </div>
                   </div>
                </div>
@@ -142,7 +142,7 @@
                      <p>Showcase your skills and experience by uploading your CV to our platform.
                      </p>
                      <div class="work__readmore mt-3">
-                        <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        <!-- <a href="#">Read More <i class="fas fa-arrow-right"></i></a> -->
                      </div>
                   </div>
                </div>
@@ -155,7 +155,7 @@
                      <p>Our system matches you with employers, helping you land a job.
                      </p>
                      <div class="work__readmore mt-3">
-                        <a href="#">Read More <i class="fas fa-arrow-right"></i></a>
+                        <!-- <a href="#">Read More <i class="fas fa-arrow-right"></i></a> -->
                      </div>
                   </div>
                </div>
@@ -590,7 +590,7 @@
             <div class="modal-content">
                <div class="max-content similar__form form__padding">
                   <div class="d-flex mb-3 align-items-center justify-content-between">
-                     <h6 class="mb-0">Login To Jobpath</h6>
+                     <h6 class="mb-0">Login To SteerHubIT</h6>
                      <button type="button" data-bs-dismiss="modal" aria-label="Close">
                      <i class="fa-regular fa-xmark text-primary"></i>
                      </button>

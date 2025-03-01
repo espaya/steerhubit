@@ -28,7 +28,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <title>Jobpath - Job Seeker &amp; Job Holder HTML Template</title>
+    <title>SteerHubIT - Pricing</title>
     <!-- rt icons -->
     <link rel="stylesheet" href="assets/fonts/icon/css/rt-icons.css">
     <!-- fontawesome -->
@@ -192,7 +192,7 @@
       <div class="modal-content">
         <div class="max-content similar__form form__padding">
             <div class="d-flex mb-3 align-items-center justify-content-between">
-                <h6 class="mb-0">Login To Jobpath</h6>
+                <h6 class="mb-0">Login To SteerHubIT</h6>
                 <button type="button" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-regular fa-xmark text-primary"></i>
                 </button>

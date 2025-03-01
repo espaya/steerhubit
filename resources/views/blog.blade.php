@@ -395,7 +395,7 @@
       <div class="modal-content">
         <div class="max-content similar__form form__padding">
             <div class="d-flex mb-3 align-items-center justify-content-between">
-                <h6 class="mb-0">Login To Jobpath</h6>
+                <h6 class="mb-0">Login To SteerHubIT</h6>
                 <button type="button" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-regular fa-xmark text-primary"></i>
                 </button>

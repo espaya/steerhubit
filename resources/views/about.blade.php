@@ -166,34 +166,33 @@
          </div>
       </section>
 
-      <div class="rts__section overflow-hidden" style="padding-top: 20px;">
-   <div class="container">
-      <div class="row justify-content-between align-items-center mb-50">
-         <!-- Left Column -->
-         <div class="col-lg-6">
-            <div class="rts__section__content text-start wow fadeInUp">
-               <h3 class="h6 d-block">Our Values</h3>
-               <p class="rts__section__desc">
-                  <ul>
-                     <li>- <strong>Compassion:</strong> We prioritize empathy and kindness in every interaction.</li>
-                     <li>- <strong>Excellence:</strong> We strive for exceptional quality in our staffing solutions.</li>
-                     <li>- <strong>Inclusivity:</strong> We promote diversity, equity, and inclusion within our workforce.</li>
-                     <li>- <strong>Integrity:</strong> We operate with transparency, honesty, and ethics.</li>
-                  </ul>
-               </p>
-            </div>
-         </div>
-         <!-- Right Column -->
-         <div class="col-lg-6">
-            <div class="rts__section__content text-start wow fadeInUp">
-               <h3 class="h6 d-block">Join Our Story</h3>
-               <p class="rts__section__desc">We are always looking for talented professionals to join our team. If you are passionate about healthcare and committed to delivering exceptional service, we would love to hear from you.</p>
+      <div class="rts__section overflow-hidden" style="padding-top: 15px;">
+         <div class="container">
+            <div class="row justify-content-between align-items-center mb-50">
+               <!-- Left Column -->
+               <div class="col-lg-6">
+                  <div class="rts__section__content text-start wow fadeInUp">
+                     <h3 class="h6 d-block">Our Values</h3>
+                     <p class="rts__section__desc">
+                     <ul>
+                        <li>- <strong>Compassion:</strong> We prioritize empathy and kindness in every interaction.</li>
+                        <li>- <strong>Excellence:</strong> We strive for exceptional quality in our staffing solutions.</li>
+                        <li>- <strong>Inclusivity:</strong> We promote diversity, equity, and inclusion within our workforce.</li>
+                        <li>- <strong>Integrity:</strong> We operate with transparency, honesty, and ethics.</li>
+                     </ul>
+                     </p>
+                  </div>
+               </div>
+               <!-- Right Column -->
+               <div class="col-lg-6">
+                  <div class="rts__section__content text-start wow fadeInUp">
+                     <h3 style="padding-top: 20px;" class="h6 d-block">Join Our Story</h3>
+                     <p class="rts__section__desc">We are always looking for talented professionals to join our team. If you are passionate about healthcare and committed to delivering exceptional service, we would love to hear from you.</p>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
-   </div>
-</div>
-
       <!-- work process area -->
       <section class="rts__section section__padding">
          <div class="container">
@@ -249,13 +248,12 @@
          </div>
       </section>
       <!-- work process area end -->
-       
       <div class="modal similar__modal fade " id="loginModal">
          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                <div class="max-content similar__form form__padding">
                   <div class="d-flex mb-3 align-items-center justify-content-between">
-                     <h6 class="mb-0">Login To Jobpath</h6>
+                     <h6 class="mb-0">Login To SteerHubIT</h6>
                      <button type="button" data-bs-dismiss="modal" aria-label="Close">
                      <i class="fa-regular fa-xmark text-primary"></i>
                      </button>
