@@ -4,15 +4,15 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="apple-mobile-web-app-capable" content="yes">
-      <meta name="description" content="Your Ultimate Job HTML Template">
+      <meta name="description" content="Transforming healthcare one placement at a time, by providing personalized staffing solutions, promoting diversity and inclusion, and empowering healthcare professionals to deliver exceptional patient care.">
       <meta name="keywords" content="Job, Resume, Employer, Agency">
-      <link rel="canonical" href="https://html.themewant.com/jobpath">
+      <link rel="canonical" href="{{ route('about') }}">
       <meta name="robots" content="index, follow">
       <!-- for open graph social media -->
-      <meta property="og:title" content="Your Ultimate Job HTML Template">
-      <meta property="og:description" content="Your Ultimate Job HTML Template">
+      <meta property="og:title" content="About us">
+      <meta property="og:description" content="Transforming healthcare one placement at a time, by providing personalized staffing solutions, promoting diversity and inclusion, and empowering healthcare professionals to deliver exceptional patient care.">
       <meta property="og:image" content="https://www.example.com/image.jpg">
-      <meta property="og:url" content="https://html.themewant.com/jobpath/">
+      <meta property="og:url" content="{{ route('about') }}">
       <!-- for twitter sharing -->
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:title" content="Your Ultimate Job HTML Template">
@@ -87,31 +87,7 @@
                            <img src="assets/img/home-6/about/1.jpg" alt="">
                         </figure>
                      </div>
-                     <div class="about__applicant">
-                        <div class="rts__applicants">
-                           <span class="font-20 mb-3 d-block fw-medium">Applicants</span>
-                           <div class="applicant__list wow animated fadeInUp">
-                              <div class="single__list">
-                                 <img src="assets/img/author/1.svg" alt="">
-                              </div>
-                              <div class="single__list">
-                                 <img src="assets/img/author/2.svg" alt="">
-                              </div>
-                              <div class="single__list">
-                                 <img src="assets/img/author/3.svg" alt="">
-                              </div>
-                              <div class="single__list">
-                                 <img src="assets/img/author/4.svg" alt="">
-                                 <div class="icon-plus"><i class="fa-sharp fa-solid fa-plus"></i></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="about__image__two align-self-start">
-                        <figure>
-                           <img src="assets/img/home-6/about/2.jpg" alt="">
-                        </figure>
-                     </div>
+                     
                   </div>
                </div>
             </div>
@@ -121,30 +97,7 @@
       <section class="rts__section section__padding">
          <div class="container">
             <div class="row align-items-center justify-content-center g-30">
-               <div class="col-lg-5 offset-xl-1 col-xl-5">
-                  <div class="rts__workprocess__image">
-                     <img src="assets/img/home-3/about/about-image.jpg" alt="">
-                     <div class="rts__applicants  wow  fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;">
-                        <span class="font-20 mb-3 d-block fw-medium">Applicants</span>
-                        <div class="applicant__list">
-                           <div class="single__list">
-                              <img src="assets/img/author/1.svg" alt="">
-                           </div>
-                           <div class="single__list">
-                              <img src="assets/img/author/2.svg" alt="">
-                           </div>
-                           <div class="single__list">
-                              <img src="assets/img/author/3.svg" alt="">
-                           </div>
-                           <div class="single__list">
-                              <img src="assets/img/author/4.svg" alt="">
-                              <div class="icon-plus"><i class="fa-sharp fa-solid fa-plus"></i></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-lg-7 col-xl-6">
+               <div class="col-lg-12 col-xl-12">
                   <div class="rts__workprocess__content mx-0 mx-lg-5  wow  fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
                      <div class="rts__section__content text-start">
                         <h3 class="h6 d-block">Our Story</h3>

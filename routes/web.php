@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MailingListController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'guest'], function(){
@@ -39,6 +40,9 @@ Route::group(['middleware' => 'guest'], function(){
     Route::get('/choose-subscription-plan', function(){
         return view('choose-subscription');
     })->name('choose.subscription');
+
+    Route::post('/subscribe-to-our-mailing-list', [MailingListController::class, 'subscribe'])->name('subscribe.mailing.list');
+
 });
 
 Route::group(['middleware' => ['employer']], function(){

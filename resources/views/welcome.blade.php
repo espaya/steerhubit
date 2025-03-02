@@ -53,39 +53,16 @@
                <div class="rts__banner__wrapper d-flex gap-4 justify-content-between ">
                   <div class="rts__banner__content">
                      <h1 class="rts__banner__title wow animated fadeInUp ">
-                        Find Your 
-                        Dream Job / Employees With 
+                     Explore Job Opportunities.
+                     </h1><br>
+                     <h1 class="rts__banner__title wow animated fadeInUp ">
+                     Match with Potential Applicants @ 
                         <span>SteerHubIT</span>
                      </h1>
                      <p class="rts__banner__desc my-40 wow animated fadeInUp" data-wow-delay=".1s">
                         Looking for a new job or the best employee can be both exciting and daunting. Navigating the job market involves exploring various avenues, including online job boards.
                      </p>
-                     <div class="rts__job__search wow animated fadeInUp" data-wow-delay=".2s">
-                        <form action="#" class="d-flex align-items-center flex-wrap flex-md-nowrap flex-lg-wrap flex-xl-nowrap gap-4 gap-xl-0 justify-content-between">
-                           <div class="input-group flex-wrap d-flex gap-4">
-                              <div class="single__input d-flex flex-column">
-                                 <label for="location">location</label>
-                                 <select name="location" class="select-nice" id="location">
-                                    <option value="1">Select Location</option>
-                                    <option value="2">Dhaka</option>
-                                    <option value="3">Barisal</option>
-                                    <option value="4">Chittagong</option>
-                                 </select>
-                              </div>
-                              <div class="vr d-none d-sm-block"></div>
-                              <div class="single__input d-flex flex-column">
-                                 <label for="job__type">job type</label>
-                                 <select name="job__type" class="select-nice" id="job__type">
-                                    <option value="1">Select Job Type</option>
-                                    <option value="2">Full Time</option>
-                                    <option value="3">Part Time</option>
-                                    <option value="4">Internship</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <button type="submit" class="rts__btn gap-2 fill__btn job__search" aria-label="Search"><i class="fa-light fa-magnifying-glass"></i> Search Job</button>
-                        </form>
-                     </div>
+                     
                   </div>
                   <div class="rts__banner__image position-relative">
                      <figure class="banner__image">
@@ -93,13 +70,13 @@
                      </figure>
                      <div class="banner__image__shape">
                         <div class="facebook">
-                           <i class="fab fa-facebook"></i>
+                           <a target="_blank" href="https://web.facebook.com/SteerHubIT"><i class="fab fa-facebook"></i></a>
                         </div>
                         <div class="twitter">
-                           <i class="fab fa-twitter"></i>
+                           <a href=""><i class="fab fa-twitter"></i></a>
                         </div>
                         <div class="linkedin">
-                           <i class="fab fa-linkedin-in"></i>
+                           <a href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
                      </div>
                   </div>
@@ -259,251 +236,11 @@
       </div>
       <!-- cat slider end -->
       <!-- current open position -->
-      <section class="rts__section section__padding">
-         <div class="container">
-            <div class="row justify-content-center mb-60">
-               <div class="col-xl-6 col-lg-10">
-                  <div class="rts__section__content text-center wow animated fadeInUp">
-                     <h3 class="rts__section__title section__mb">There Are More Then 1000+ Jobs in SteerHubIT</h3>
-                     <p class="rts__section__desc">From entry-level positions to executive roles browse through.</p>
-                  </div>
-               </div>
-            </div>
-            <div class="row g-30 wow animated fadeInUp" data-wow-delay=".0s">
-               <!-- single job -->
-               <div class="col-lg-6 col-xl-4 col-md-6">
-                  <div class="rts__job__card">
-                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="company__icon">
-                           <img src="{{asset('assets/img/home-1/company/apple.svg')}}" alt="">
-                        </div>
-                        <div class="featured__option">
-                           <span>Featured</span>
-                        </div>
-                     </div>
-                     <div class="d-flex gap-3 mt-4 flex-wrap">
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-location-dot"></i> Newyork, USA
-                        </div>
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-briefcase"></i> Full Time
-                        </div>
-                     </div>
-                     <div class="h6 job__title my-3">
-                        <a href="job-details-1.html" aria-label="job">
-                        Senior UI Designer, Apple
-                        </a>
-                     </div>
-                     <p>Consectetur adipisicing elit. Possimus 
-                        aut mollitia eum ipsum fugiat odio officiis odit mollitia eum ipsum.
-                     </p>
-                     <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                        <a href="#">Creative</a>
-                        <a href="#">user interface</a>
-                        <a href="#">web ui</a>
-                     </div>
-                  </div>
-               </div>
-               <!-- single job end -->
-               <!-- single job -->
-               <div class="col-lg-6 col-xl-4 col-md-6">
-                  <div class="rts__job__card">
-                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="company__icon">
-                           <img src="{{asset('assets/img/home-1/company/google.svg')}}" alt="">
-                        </div>
-                        <div class="featured__option">
-                        </div>
-                     </div>
-                     <div class="d-flex gap-3 mt-4 flex-wrap">
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-location-dot"></i> Newyork, USA
-                        </div>
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-briefcase"></i> Full Time
-                        </div>
-                     </div>
-                     <div class="h6 job__title my-3">
-                        <a href="job-details-1.html" aria-label="job">
-                        Senior UX Designer, Google
-                        </a>
-                     </div>
-                     <p>Consectetur adipisicing elit. Possimus 
-                        aut mollitia eum ipsum fugiat odio officiis odit mollitia eum ipsum.
-                     </p>
-                     <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                        <a href="#">Creative</a>
-                        <a href="#">user interface</a>
-                        <a href="#">web ui</a>
-                     </div>
-                  </div>
-               </div>
-               <!-- single job end -->
-               <!-- single job -->
-               <div class="col-lg-6 col-xl-4 col-md-6">
-                  <div class="rts__job__card">
-                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="company__icon">
-                           <img src="{{asset('assets/img/home-1/company/microsoft.svg')}}" alt="">
-                        </div>
-                        <div class="featured__option">
-                        </div>
-                     </div>
-                     <div class="d-flex gap-3 mt-4 flex-wrap">
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-location-dot"></i> Newyork, USA
-                        </div>
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-briefcase"></i> Full Time
-                        </div>
-                     </div>
-                     <div class="h6 job__title my-3">
-                        <a href="job-details-1.html" aria-label="job">
-                        Software Engineer, Apple
-                        </a>
-                     </div>
-                     <p>Consectetur adipisicing elit. Possimus 
-                        aut mollitia eum ipsum fugiat odio officiis odit mollitia eum ipsum.
-                     </p>
-                     <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                        <a href="#">Creative</a>
-                        <a href="#">user interface</a>
-                        <a href="#">web ui</a>
-                     </div>
-                  </div>
-               </div>
-               <!-- single job end -->
-               <!-- single job -->
-               <div class="col-lg-6 col-xl-4 col-md-6">
-                  <div class="rts__job__card">
-                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="company__icon">
-                           <img src="assets/img/home-1/company/upwork.svg" alt="">
-                        </div>
-                        <div class="featured__option">
-                           <span>Upcoming</span>
-                        </div>
-                     </div>
-                     <div class="d-flex gap-3 mt-4 flex-wrap">
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-location-dot"></i> Newyork, USA
-                        </div>
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-briefcase"></i> Full Time
-                        </div>
-                     </div>
-                     <div class="h6 job__title my-3">
-                        <a href="job-details-1.html" aria-label="job">
-                        Web developer, Upwork
-                        </a>
-                     </div>
-                     <p>Consectetur adipisicing elit. Possimus 
-                        aut mollitia eum ipsum fugiat odio officiis odit mollitia eum ipsum.
-                     </p>
-                     <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                        <a href="#">Creative</a>
-                        <a href="#">user interface</a>
-                        <a href="#">web ui</a>
-                     </div>
-                  </div>
-               </div>
-               <!-- single job end -->
-               <!-- single job -->
-               <div class="col-lg-6 col-xl-4 col-md-6">
-                  <div class="rts__job__card">
-                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="company__icon">
-                           <img src="assets/img/home-1/company/facebook.svg" alt="">
-                        </div>
-                        <div class="featured__option">
-                        </div>
-                     </div>
-                     <div class="d-flex gap-3 mt-4 flex-wrap">
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-location-dot"></i> Newyork, USA
-                        </div>
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-briefcase"></i> Full Time
-                        </div>
-                     </div>
-                     <div class="h6 job__title my-3">
-                        <a href="job-details-1.html" aria-label="job">
-                        Digital Marketing, Facebook
-                        </a>
-                     </div>
-                     <p>Consectetur adipisicing elit. Possimus 
-                        aut mollitia eum ipsum fugiat odio officiis odit mollitia eum ipsum.
-                     </p>
-                     <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                        <a href="#">Creative</a>
-                        <a href="#">user interface</a>
-                        <a href="#">web ui</a>
-                     </div>
-                  </div>
-               </div>
-               <!-- single job end -->
-               <!-- single job -->
-               <div class="col-lg-6 col-xl-4 col-md-6">
-                  <div class="rts__job__card">
-                     <div class="d-flex align-items-center justify-content-between">
-                        <div class="company__icon">
-                           <img src="assets/img/home-1/company/in.svg" alt="">
-                        </div>
-                        <div class="featured__option">
-                           <span>Featured</span>
-                        </div>
-                     </div>
-                     <div class="d-flex gap-3 mt-4 flex-wrap">
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-location-dot"></i> Newyork, USA
-                        </div>
-                        <div class="d-flex gap-1 align-items-center">
-                           <i class="fa-light fa-briefcase"></i> Full Time
-                        </div>
-                     </div>
-                     <div class="h6 job__title my-3">
-                        <a href="job-details-1.html" aria-label="job">
-                        Senior UI Designer, Apple
-                        </a>
-                     </div>
-                     <p>Consectetur adipisicing elit. Possimus 
-                        aut mollitia eum ipsum fugiat odio officiis odit mollitia eum ipsum.
-                     </p>
-                     <div class="job__tags d-flex flex-wrap gap-3 mt-4">
-                        <a href="#">Creative</a>
-                        <a href="#">user interface</a>
-                        <a href="#">web ui</a>
-                     </div>
-                  </div>
-               </div>
-               <!-- single job end -->
-            </div>
-         </div>
-      </section>
+      
       <!-- current open position end -->
       <!-- what we are -->
-      <div class="rts__section pb-120">
-         <div class="container">
-            <div class="row align-items-center g-5">
-               <div class="col-lg-5">
-                  <div class="rts__image__section">
-                     <img src="assets/img/home-1/we-are/image.png" alt="">
-                  </div>
-               </div>
-               <div class="col-lg-7">
-                  <div class="rts__content__section ms-lg-4 ms-md-0 wow animated fadeInUp">
-                     <h3 class="fw-bold mb-4">Our Vision</h3>
-                     <p>Transforming healthcare one placement at a time, by providing personalized staffing solutions, promoting diversity and inclusion, and empowering healthcare professionals to deliver exceptional patient care.</p>
+      
 
-                     <h3 style="margin-top: 20px;" class="fw-bold mb-4">Our Mission</h3>
-                     <p>Transforming healthcare staffing by combining cutting-edge technology, personalized service, and a commitment to quality, safety, and patient satisfaction.</p>
-                     
-                     <a href="{{ route('about') }}" class="rts__btn common__btn  fill__btn mt-50">Explore More <i class="fa-regular fa-arrow-right"></i></a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
       <!-- what we are end -->
        
       <div class="modal similar__modal fade " id="loginModal">

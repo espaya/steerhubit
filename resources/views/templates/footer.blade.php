@@ -55,13 +55,14 @@
                   <div class="rts__footer__widget max-320">
                     <div class="font-20 fw-medium mb-3 h6 ">Subscribe Our Newsletter</div>
                     <p class="br-sm-none">Subscribe Our Newsletter get <br> Update our New Course</p>
-                    <form action="#" class="d-flex align-items-center justify-content-between mt-4 newsletter">
-                        <input type="email" name="semail" id="semail" placeholder="Enter your email" autocomplete="off">
+                    <form id="subscribeForm" action="#" method="post" class="d-flex align-items-center justify-content-between mt-4 newsletter">
+                        @csrf
+                        <input class="@error('subscribe_email') is-invalid @enderror" type="text" name="subscribe_email" id="semail" placeholder="Enter your email" autocomplete="off">
                         <button type="submit" class="rts__btn fill__btn">Subscribe</button>
                     </form>
+                    <div id="subscribeMessage" class="mt-2"></div> <!-- Message display -->
                   </div>
                  <!-- newsletter form end -->
-
             </div>
         </div>
     </div>
@@ -73,3 +74,36 @@
         </div>
     </div>
 </footer>
+<!-- jQuery AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#subscribeForm').submit(function(e) {
+            e.preventDefault(); // Prevent page reload
+
+            let email = $('#semail').val();
+            let token = $('input[name="_token"]').val(); // Get CSRF token
+
+            $.ajax({
+                url: "{{ route('subscribe.mailing.list') }}", // Adjust if necessary
+                type: "POST",
+                data: {
+                    _token: token,
+                    subscribe_email: email
+                },
+                success: function(response) {
+                    $('#subscribeMessage').html('<div class="alert alert-success">Subscribed successfully!</div>');
+                    $('#semail').val(""); // Clear input field
+                },
+                error: function(xhr) {
+                    let errors = xhr.responseJSON.errors;
+                    if (errors && errors.subscribe_email) {
+                        $('#subscribeMessage').html('<div class="alert alert-danger">' + errors.subscribe_email[0] + '</div>');
+                    } else {
+                        $('#subscribeMessage').html('<div class="alert alert-danger">Something went wrong. Try again.</div>');
+                    }
+                }
+            });
+        });
+    });
+</script>
