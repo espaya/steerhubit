@@ -52,13 +52,15 @@
             <div class="row">
                <div class="rts__banner__wrapper d-flex gap-4 justify-content-between ">
                   <div class="rts__banner__content">
-                     <h1 class="rts__banner__title wow animated fadeInUp ">
+                     <h3 class="rts__banner__title wow animated fadeInUp ">
                      Explore Job Opportunities.
-                     </h1><br>
-                     <h1 class="rts__banner__title wow animated fadeInUp ">
-                     Match with Potential Applicants @ 
-                        <span>SteerHubIT</span>
-                     </h1>
+                     </h3><br>
+                     <h4 class="rts__banner__title wow animated fadeInUp ">
+                     Match with Potential Applicants.
+                     </h4>
+                     <h3 class="rts__banner__title wow animated fadeInUp "> 
+                        <span>@ SteerHubIT</span>
+                     </h3>
                      <p class="rts__banner__desc my-40 wow animated fadeInUp" data-wow-delay=".1s">
                         Looking for a new job or the best employee can be both exciting and daunting. Navigating the job market involves exploring various avenues, including online job boards.
                      </p>
