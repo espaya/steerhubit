@@ -84,7 +84,7 @@
                   <div class="about__image__section position-relative flex-wrap flex-sm-nowrap d-flex justify-content-between gap-5">
                      <div class="about__image__one align-self-end">
                         <figure>
-                           <img src="assets/img/home-6/about/1.jpg" alt="">
+                           <img src="{{asset('assets/img/home-6/about/1.jpg')}}" alt="">
                         </figure>
                      </div>
                      
@@ -355,8 +355,8 @@
       @include('templates/footer')
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
          <div class="offcanvas-header p-0 mb-5 mt-4">
-            <a href="index.html" class="offcanvas-title" id="offcanvasLabel">
-            <img src="assets/img/logo/header__one.svg" alt="logo">
+         <a href="{{ url('/') }}" class="offcanvas-title" id="offcanvasLabel">
+            <img src="{{asset('assets/img/logo/logo.png')}}" alt="logo">
             </a> 
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
          </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MailingListController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
 
 Route::group(['middleware' => 'guest'], function(){
 
@@ -18,7 +19,7 @@ Route::group(['middleware' => 'guest'], function(){
     })->name('contact');
 
     Route::get('/frequently-asked-questions', function(){
-        return view('faq');
+        return view('faq'); 
     })->name('faq');
 
     Route::get('/pricing', function(){
@@ -45,8 +46,51 @@ Route::group(['middleware' => 'guest'], function(){
 
 });
 
-Route::group(['middleware' => ['employer']], function(){
-    Route::get('/dashboard', function(){
-        return view('employer.dashboard');
-    })->name('employer');
+
+/*
+* Employee Middleware
+*/
+// Route::group(['middleware' => ['guest']], function(){
+
+//     Route::get('/employee', function(){
+//         return view('employee.employee');
+//     })->name('employee');
+
+//     Route::get('/employee/resume', function(){
+//         return view('employee.employee-resume');
+//     })->name('employee.resume');
+
+//     Route::get('/employee/profile', function(){
+//         return view('employee.employee-profile');
+//     })->name('employee.profile');
+
+//     Route::get('/employee/job-shortlisted', function(){
+//         return view('employee.employee-job-shortlisted');
+//     })->name('employee.job.shortlisted');
+
+//     Route::get('/employee/following-employer', function(){
+//         return view('employee.employee-following-employer');
+//     })->name('employee.following-employer');
+
+//     Route::get('/employee/delete-profile', function(){
+//         return view('employee.employee-delete-profile');
+//     })->name('employee.delete-profile');
+
+//     Route::get('/employee/change-password', function(){
+//         return view('employee.employee-change-password');
+//     })->name('employee.change.password');
+
+//     Route::get('/employee/applied-job', function(){
+//         return view('employee.employee-applied-job');
+//     })->name('employee.applied.job');
+
+// });
+
+
+/*
+* Employer Middleware
+*/
+
+Route::group(['middleware' => ['guest']], function(){
+
 });

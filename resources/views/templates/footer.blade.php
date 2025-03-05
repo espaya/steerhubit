@@ -27,8 +27,7 @@
                  <div class="rts__footer__widget max-content">
                     <div class="font-20 fw-medium mb-3 h6 ">Contact Us</div>
                     <ul class="list-unstyled mb-3">
-                        <li><a href="#"><i class="fa-light fa-location-dot"></i>Lorton,VA</a></li>
-                        <li><a href="callto:+880171234578"><i class="fa-light fa-phone"></i>+(61) 545-432-234</a></li>
+                        <li><a href="callto:+1 (848) 330-9298"><i class="fa-light fa-phone"></i>+1 (848) 330-9298</a></li>
                         <li><a href="mailto:info@steerhubit.com"><i class="fa-light fa-envelope"></i> info@steerhubit.com</a></li>
                     </ul>
                     <div class="font-20 fw-medium mb-20 text-dark">Social Link</div>

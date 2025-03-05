@@ -57,13 +57,13 @@
                      </h3><br>
                      <h4 class="rts__banner__title wow animated fadeInUp ">
                      Match with Potential Applicants.
-                     </h4>
+                     </h4><br>
                      <h3 class="rts__banner__title wow animated fadeInUp "> 
                         <span>@ SteerHubIT</span>
                      </h3>
                      <p class="rts__banner__desc my-40 wow animated fadeInUp" data-wow-delay=".1s">
-                        Looking for a new job or the best employee can be both exciting and daunting. Navigating the job market involves exploring various avenues, including online job boards.
-                     </p>
+                     Whether you're a healthcare professional seeking new opportunities or a healthcare organization looking for top talent, we're here to guide you through the process.
+                     Let's navigate the job market together.</p>
                      
                   </div>
                   <div class="rts__banner__image position-relative">
@@ -94,7 +94,10 @@
                <div class="col-xl-6 col-lg-10">
                   <div class="rts__section__content text-center wow animated fadeInUp">
                      <h3 class="rts__section__title section__mb">How SteerHubIT Works</h3>
-                     <p class="rts__section__desc">SteerHubIT connects you to top employers through a seamless process. Simply create an account, upload your CV, and get matched with the best job opportunities. Our platform ensures a smooth journey from application to placement</p>
+                     <p class="rts__section__desc">Seamlessly connect with top healthcare employers and take your career to the next level. Our intuitive platform makes it easy:
+                        </p>
+                        <p class="rts__section__desc">Create an account, Upload your CV and Get matched to personalized job opportunities.
+                        Our platform streamlines the hiring process, ensuring a smooth journey from application to placement. Join SteerHubIT today and discover your ideal role</p>
                   </div>
                </div>
             </div>
@@ -399,8 +402,8 @@
       @include('templates/footer')
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
          <div class="offcanvas-header p-0 mb-5 mt-4">
-            <a href="index.html" class="offcanvas-title" id="offcanvasLabel">
-            <img src="assets/img/logo/header__one.svg" alt="logo">
+         <a href="{{ url('/') }}" class="offcanvas-title" id="offcanvasLabel">
+            <img src="{{asset('assets/img/logo/logo.png')}}" alt="logo">
             </a> 
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
          </div>
