@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailingListController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 
-Route::group(['middleware' => 'guest'], function(){
+// Route::group(['middleware' => 'guest'], function(){
 
     Route::get('/', function () {
         return view('welcome');
@@ -17,6 +20,8 @@ Route::group(['middleware' => 'guest'], function(){
     Route::get('/contact-us', function(){
         return view('contact');
     })->name('contact');
+
+    Route::post('/contact-us/send', [ContactController::class, 'save'])->name('contact.send');
 
     Route::get('/frequently-asked-questions', function(){
         return view('faq'); 
@@ -44,53 +49,104 @@ Route::group(['middleware' => 'guest'], function(){
 
     Route::post('/subscribe-to-our-mailing-list', [MailingListController::class, 'subscribe'])->name('subscribe.mailing.list');
 
+// });
+
+
+Route::group(['employer' => ['auth.redirect', 'auth', 'employer']], function(){
+        /****
+     * 
+     * Employer Middleware
+     * 
+     * ****/
+    Route::get('/employer-dashboard', function(){
+        return view('employer.employer');
+    })->name('dashboard');
+
+    Route::get('/employer-dashboard/company-profile', function(){
+        return view('employer.employer-company-profile');
+    })->name('dashboard.profile');
+
+    Route::get('/employer-dashboard/my-job', function(){
+        return view('employer.employer-my-job');
+    })->name('dashboard.job');
+
+    Route::get('/employer-dashboard/my-job/submit', function(){
+        return view('employer.employer-submit-job');
+    })->name('dashboard.submit.job');
+
+    Route::get('/employer-dashboard/candidate-list', function(){
+        return view('employer.employer-candidate-list');
+    })->name('dashboard.candidate.list');
+
+    // shortlist
+    Route::get('/employer-dashboard/candidate-shortlist', function(){
+        return view('employer.employer-candidate-shortlist');
+    })->name('dashboard.candidate.shortlist');
+
+    Route::get('/employer-dashboard/package', function(){
+        return view('employer.employer-package');
+    })->name('dashboard.package');
+
+    Route::get('/employer-dashboard/change-password', function(){
+        return view('employer.employer-change-password');
+    })->name('dashboard.change.password');
+
+    Route::get('/employer-dashboard/delete-profile', function(){
+        return view('employer.employer-delete-profile');
+    })->name('dashboard.delete.profile');
 });
+
 
 
 /*
 * Employee Middleware
 */
-// Route::group(['middleware' => ['guest']], function(){
+Route::group(['middleware' => ['candidate', 'auth', 'auth.redirect']], function(){
 
-//     Route::get('/employee', function(){
-//         return view('employee.employee');
-//     })->name('employee');
+    Route::get('/candidate-dashboard', function(){
+        return view('employee.employee');
+    })->name('employee');
 
-//     Route::get('/employee/resume', function(){
-//         return view('employee.employee-resume');
-//     })->name('employee.resume');
+    Route::get('/candidate-dashboard/resume', function(){
+        return view('employee.employee-resume');
+    })->name('employee.resume');
 
-//     Route::get('/employee/profile', function(){
-//         return view('employee.employee-profile');
-//     })->name('employee.profile');
+    Route::get('/candidate-dashboard/profile', function(){
+        return view('employee.employee-profile');
+    })->name('employee.profile');
 
-//     Route::get('/employee/job-shortlisted', function(){
-//         return view('employee.employee-job-shortlisted');
-//     })->name('employee.job.shortlisted');
+    Route::get('/candidate-dashboard/job-shortlisted', function(){
+        return view('employee.employee-job-shortlisted');
+    })->name('employee.job.shortlisted');
 
-//     Route::get('/employee/following-employer', function(){
-//         return view('employee.employee-following-employer');
-//     })->name('employee.following-employer');
+    Route::get('/candidate-dashboard/following-employer', function(){
+        return view('employee.employee-following-employer');
+    })->name('employee.following-employer');
 
-//     Route::get('/employee/delete-profile', function(){
-//         return view('employee.employee-delete-profile');
-//     })->name('employee.delete-profile');
+    Route::get('/candidate-dashboard/delete-profile', function(){
+        return view('employee.employee-delete-profile');
+    })->name('employee.delete-profile');
 
-//     Route::get('/employee/change-password', function(){
-//         return view('employee.employee-change-password');
-//     })->name('employee.change.password');
+    Route::get('/candidate-dashboard/change-password', function(){
+        return view('employee.employee-change-password');
+    })->name('employee.change.password');
 
-//     Route::get('/employee/applied-job', function(){
-//         return view('employee.employee-applied-job');
-//     })->name('employee.applied.job');
+    Route::get('/candidate-dashboard/applied-job', function(){
+        return view('employee.employee-applied-job');
+    })->name('employee.applied.job');
 
-// });
+});
 
 
 /*
 * Employer Middleware
 */
 
-Route::group(['middleware' => ['guest']], function(){
+// Route::group(['middleware' => ['guest']], function(){
 
-});
+// });
+Auth::routes(); 
+
+Route::post('/register-new-account', [RegisterController::class, 'register'])->name('register');
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
