@@ -24,8 +24,27 @@
                         </div>
 
                         <div class="header__right__btn d-flex gap-3">
+                            @if(Auth::user() && Auth::user()->id)
+                                @if(Auth::user()->role == 'Candidate')
+                                <a href="{{ route('employee') }}" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs" aria-label="Account Button"> 
+                                    <i class="rt-login"></i>Hi {{ ucfirst(Auth::user()->name) }}
+                                </a>
+                                @elseif(Auth::user()->role == 'EMPLOYER')
+                                <a href="{{ route('employer.dashboard') }}" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs" aria-label="Account Button"> 
+                                    <i class="rt-login"></i>Hi, {{ ucfirst(Auth::user()->name) }}
+                                </a>
+                                @endif
+                            @else
                             <a href="#" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs" aria-label="Login Button" data-bs-toggle="modal" data-bs-target="#loginModal"> <i class="rt-login"></i>Sign In</a>
-                            <a href="#" class="small__btn d-none d-sm-flex d-xl-flex fill__btn border-6 font-xs" aria-label="Job Posting Button">Add Job</a>
+                            @endif
+
+                            @if(Auth::user() && Auth::user()->role == 'EMPLOYER')
+                            <a href="{{ route('employer.job.submit') }}" class="small__btn d-none d-sm-flex d-xl-flex fill__btn border-6 font-xs" aria-label="Job Posting Button">Add Job</a>
+                            @elseif(Auth::user() && Auth::user()->role == 'Candidate')
+                                <!-- display nothing for Candidate -->
+                            @else
+                                <a href="{{ route('employer.job.submit') }}" class="small__btn d-none d-sm-flex d-xl-flex fill__btn border-6 font-xs" aria-label="Job Posting Button">Add Job</a> 
+                            @endif
                             <button class="d-md-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas"><i class="fa-sharp fa-regular fa-bars"></i></button>
                         </div>
                     </div>

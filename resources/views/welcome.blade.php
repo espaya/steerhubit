@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="mobile-web-app-capable" content="yes">
       <meta name="description" content="Your Ultimate Job HTML Template">
       <meta name="keywords" content="Job, Resume, Employer, Agency">
       <link rel="canonical" href="https://steerhubit.com/">
@@ -13,6 +13,9 @@
       <meta property="og:description" content="Your Ultimate Job HTML Template">
       <meta property="og:image" content="https://www.example.com/image.jpg">
       <meta property="og:url" content="https://steerhubit.com/">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+      <meta name="login-route" content="{{ route('login') }}">
+
       <!-- for twitter sharing -->
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:title" content="Your Ultimate Job HTML Template">
@@ -31,6 +34,48 @@
       <!-- all plugin css -->
       <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}">
       <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+
+      <style>
+         .rts__banner__title {
+         font-size: clamp(1.5rem, 4vw, 3rem); /* Adjusts dynamically */
+         font-weight: bold;
+         /* text-align: center; */
+         line-height: 1.3;
+      }
+
+      .rts__banner__desc {
+         font-size: clamp(1rem, 2vw, 1.5rem);
+         /* text-align: center; */
+         max-width: 80%;
+         /* margin: 0 auto; */
+         line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+         .rts__banner__title {
+            font-size: 2rem;
+         }
+
+         .rts__banner__desc {
+            font-size: 1.2rem;
+            max-width: 90%;
+         }
+      }
+
+      @media (max-width: 480px) {
+         .rts__banner__title {
+            font-size: 1.5rem;
+         }
+
+         .rts__banner__desc {
+            font-size: 1rem;
+         }
+      }
+
+
+      </style>
+
    </head>
    <body>
       <!-- header area -->
@@ -52,13 +97,13 @@
             <div class="row">
                <div class="rts__banner__wrapper d-flex gap-4 justify-content-between ">
                   <div class="rts__banner__content">
-                     <h3 class="rts__banner__title wow animated fadeInUp ">
+                     <h3 style="font-size: 43px;" class="rts__banner__title wow animated fadeInUp ">
                      Explore Job Opportunities.
                      </h3><br>
-                     <h4 class="rts__banner__title wow animated fadeInUp ">
+                     <h4 style="font-size: 43px;" class="rts__banner__title wow animated fadeInUp ">
                      Match with Potential Applicants.
                      </h4><br>
-                     <h3 class="rts__banner__title wow animated fadeInUp "> 
+                     <h3 style="font-size: 43px;" class="rts__banner__title wow animated fadeInUp "> 
                         <span>@ SteerHubIT</span>
                      </h3>
                      <p class="rts__banner__desc my-40 wow animated fadeInUp" data-wow-delay=".1s">
@@ -248,157 +293,8 @@
 
       <!-- what we are end -->
        
-      <div class="modal similar__modal fade " id="loginModal">
-         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-               <div class="max-content similar__form form__padding">
-                  <div class="d-flex mb-3 align-items-center justify-content-between">
-                     <h6 class="mb-0">Login To SteerHubIT</h6>
-                     <button type="button" data-bs-dismiss="modal" aria-label="Close">
-                     <i class="fa-regular fa-xmark text-primary"></i>
-                     </button>
-                  </div>
-                  <div class="d-block has__line text-center">
-                     <p>Choose your Account Type</p>
-                  </div>
-                  <div class="tab__switch flex-wrap flex-sm-nowrap nav-tab mt-30 mb-30">
-                     <button class="rts__btn nav-link  active"><i class="fa-light fa-user"></i>Candidate</button>
-                     <button class="rts__btn nav-link"><i class="rt-briefcase"></i> Employer</button>
-                  </div>
-                  <div class="tab-content" id="">
-                  </div>
-                  <form action="candidate-dashboard.html" method="post" class="d-flex flex-column gap-3">
-                     <div class="form-group">
-                        <label for="email" class="fw-medium text-dark mb-3">Your Email</label>
-                        <div class="position-relative">
-                           <input type="email" name="email" id="email" value="user@test.com" placeholder="Enter your email" required="">
-                           <i class="fa-light fa-user icon"></i>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label for="password" class="fw-medium text-dark mb-3">Password</label>
-                        <div class="position-relative">
-                           <input type="password" name="password" value="1234" id="password" placeholder="Enter your password" required="">
-                           <i class="fa-light fa-lock icon"></i>
-                        </div>
-                     </div>
-                     <div class="d-flex flex-wrap justify-content-between align-items-center fw-medium">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                           <label class="form-check-label" for="flexCheckDefault">
-                           Remember me
-                           </label>
-                        </div>
-                        <a href="#" class="forgot__password text-para" data-bs-toggle="modal" data-bs-target="#forgotModal">Forgot Password?</a>
-                     </div>
-                     <div class="form-group my-3">
-                        <button class="rts__btn w-100 fill__btn">Login</button>
-                     </div>
-                  </form>
-                  <div class="d-block has__line text-center">
-                     <p>Or</p>
-                  </div>
-                  <div class="d-flex gap-4 flex-wrap justify-content-center mt-20 mb-20">
-                     <div class="is__social google">
-                        <button><img src="assets/img/icon/google-small.svg" alt="">Continue with Google</button>
-                     </div>
-                     <div class="is__social facebook">
-                        <button><img src="assets/img/icon/facebook-small.svg" alt="">Continue with Facebook</button>
-                     </div>
-                  </div>
-                  <span class="d-block text-center fw-medium">Don`t have an account? <a href="#" data-bs-target="#signupModal" data-bs-toggle="modal" class="text-primary">Sign Up</a> </span>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- signup form -->
-      <div class="modal similar__modal fade " id="signupModal">
-         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-               <div class="max-content similar__form form__padding">
-                  <div class="d-flex mb-3 align-items-center justify-content-between">
-                     <h6 class="mb-0">Create A Free Account</h6>
-                     <button type="button" data-bs-dismiss="modal" aria-label="Close">
-                     <i class="fa-regular fa-xmark text-primary"></i>
-                     </button>
-                  </div>
-                  <div class="d-block has__line text-center">
-                     <p>Choose your Account Type</p>
-                  </div>
-                  <div class="tab__switch flex-wrap flex-sm-nowrap nav-tab mt-30 mb-30">
-                     <button class="rts__btn nav-link  active"><i class="fa-light fa-user"></i>Candidate</button>
-                     <button class="rts__btn nav-link"><i class="rt-briefcase"></i> Employer</button>
-                  </div>
-                  <form action="#" class="d-flex flex-column gap-3">
-                     <div class="form-group">
-                        <label for="sname" class="fw-medium text-dark mb-3">Your Name</label>
-                        <div class="position-relative">
-                           <input type="text" name="sname" id="sname" placeholder="Candidate" required="">
-                           <i class="fa-light fa-user icon"></i>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label for="signemail" class="fw-medium text-dark mb-3">Your Email</label>
-                        <div class="position-relative">
-                           <input type="email" name="signemail" id="signemail" placeholder="Enter your email" required="">
-                           <i class="fa-sharp fa-light fa-envelope icon"></i>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label for="spassword" class="fw-medium text-dark mb-3">Password</label>
-                        <div class="position-relative">
-                           <input type="password" name="spassword" id="spassword" placeholder="Enter your password" required="">
-                           <i class="fa-light fa-lock icon"></i>
-                        </div>
-                     </div>
-                     <div class="form-group my-3">
-                        <button class="rts__btn w-100 fill__btn">Login</button>
-                     </div>
-                  </form>
-                  <div class="d-block has__line text-center">
-                     <p>Or</p>
-                  </div>
-                  <div class="d-flex flex-wrap justify-content-center gap-4 mt-20 mb-20">
-                     <div class="is__social google">
-                        <button><img src="assets/img/icon/google-small.svg" alt="">Continue with Google</button>
-                     </div>
-                     <div class="is__social facebook">
-                        <button><img src="assets/img/icon/facebook-small.svg" alt="">Continue with Facebook</button>
-                     </div>
-                  </div>
-                  <span class="d-block text-center fw-medium">Have an account? <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal" class="text-primary">Login</a> </span>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- forgot password form -->
-      <div class="modal similar__modal fade " id="forgotModal">
-         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-               <div class="max-content similar__form form__padding">
-                  <div class="d-flex mb-3 align-items-center justify-content-between">
-                     <h6 class="mb-0">Forgot Password</h6>
-                     <button type="button" data-bs-dismiss="modal" aria-label="Close">
-                     <i class="fa-regular fa-xmark text-primary"></i>
-                     </button>
-                  </div>
-                  <form action="#" class="d-flex flex-column gap-3">
-                     <div class="form-group">
-                        <label for="fmail" class="fw-medium text-dark mb-3">Your Email</label>
-                        <div class="position-relative">
-                           <input type="email" name="email" id="fmail" placeholder="Enter your email" required="">
-                           <i class="fa-sharp fa-light fa-envelope icon"></i>
-                        </div>
-                     </div>
-                     <div class="form-group my-3">
-                        <button class="rts__btn w-100 fill__btn">Reset Password</button>
-                     </div>
-                  </form>
-                  <span class="d-block text-center fw-medium">Remember Your Password? <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal" class="text-primary">Login</a> </span>
-               </div>
-            </div>
-         </div>
-      </div>
+      @include('templates/login_temp')
+
       @include('templates/footer')
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
          <div class="offcanvas-header p-0 mb-5 mt-4">
@@ -407,6 +303,7 @@
             </a> 
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
          </div>
+
          <!-- login offcanvas -->
          <div class="mb-4 d-block d-sm-none">
             <div class="header__right__btn d-flex justify-content-center gap-3">
@@ -414,6 +311,7 @@
                <a href="#" class="small__btn d-xl-flex fill__btn border-6 font-xs" aria-label="Job Posting Button">Add Job</a>
             </div>
          </div>
+
          <div class="offcanvas-body p-0">
             <div class="rts__offcanvas__menu overflow-hidden">
                <div class="offcanvas__menu"></div>
@@ -452,5 +350,10 @@
       <!-- all plugin js -->
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <!-- jQuery AJAX -->
+      <script src="{{ asset('assets/js/signup.js') }}"></script>
+      <script src="{{ asset('assets/js/subscribe.js') }}"></script>
+      <script src="{{ asset('assets/js/signin.js') }}"></script>
    </body>
 </html>

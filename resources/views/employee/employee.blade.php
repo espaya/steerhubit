@@ -18,19 +18,19 @@
       <meta name="twitter:title" content="Your Ultimate Job HTML Template">
       <meta name="twitter:description" content="Your Ultimate Job HTML Template">
       <!-- fabicon -->
-      <link rel="shortcut-icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
+      <link rel="shortcut-icon" href="{{asset('assets/img/favicon-16x16.png')}}" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
       <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
-      <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}" type="image/x-icon">
       <title>SteerHubIT - Employee Dashboard</title>
       <!-- rt icons -->
-      <link rel="stylesheet" href="assets/fonts/icon/css/rt-icons.css">
+      <link rel="stylesheet" href="{{asset('assets/fonts/icon/css/rt-icons.css')}}">
       <!-- fontawesome -->
-      <link rel="stylesheet" href="assets/fonts/fontawesome/fontawesome.min.css">
+      <link rel="stylesheet" href="{{asset('assets/fonts/fontawesome/fontawesome.min.css')}}">
       <!-- all plugin css -->
-      <link rel="stylesheet" href="assets/css/plugins.min.css">
-      <link rel="stylesheet" href="assets/css/style.css">
+      <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}">
+      <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
    </head>
    <body class="template-dashboard">
       <!-- header area -->
@@ -128,7 +128,7 @@
                      <div class="notification__list">
                         <div class="notification__item">
                            <div class="icon">
-                              <img src="assets/img/icon/google-small.svg" alt="">
+                              <img src="{{asset('assets/img/icon/google-small.svg')}}" alt="">
                            </div>
                            <div class="content">
                               <p>Great news! Your application has been approved for the <a href="#">Software Engineer  position by Google.</a></p>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="notification__item">
                            <div class="icon">
-                              <img src="assets/img/icon/apple.svg" alt="">
+                              <img src="{{asset('assets/img/icon/apple.svg')}}" alt="">
                            </div>
                            <div class="content">
                               <p>Great news! Your application has been approved for the <a href="#">Software Engineer  position by Google.</a></p>
@@ -146,7 +146,7 @@
                         </div>
                         <div class="notification__item">
                            <div class="icon">
-                              <img src="assets/img/icon/upwork.svg" alt="">
+                              <img src="{{asset('assets/img/icon/upwork.svg')}}" alt="">
                            </div>
                            <div class="content">
                               <p>Great news! Your application has been approved for the <a href="#">Software Engineer  position by Google.</a></p>
@@ -164,7 +164,7 @@
                      <!-- single job item -->
                      <div class="rts__job__card__big d-flex flex-wrap flex-md-nowrap gap-4 align-items-center">
                         <div class="company__icon">
-                           <img src="assets/img/home-1/company/apple.svg" alt="">
+                           <img src="{{asset('assets/img/home-1/company/apple.svg')}}" alt="">
                         </div>
                         <div class="d-flex justify-content-between flex-wrap w-100 gap-3 gap-lg-3">
                            <div class="job__meta">
@@ -203,7 +203,7 @@
                      <!-- single job item -->
                      <div class="rts__job__card__big d-flex flex-wrap flex-md-nowrap gap-4 align-items-center">
                         <div class="company__icon">
-                           <img src="assets/img/home-1/company/facebook.svg" alt="">
+                           <img src="{{asset('assets/img/home-1/company/facebook.svg')}}" alt="">
                         </div>
                         <div class="d-flex justify-content-between flex-wrap w-100 gap-3 gap-lg-3">
                            <div class="job__meta">
@@ -241,7 +241,7 @@
                      <!-- single job item -->
                      <div class="rts__job__card__big d-flex flex-wrap flex-md-nowrap gap-4 align-items-center">
                         <div class="company__icon">
-                           <img src="assets/img/home-1/company/udemy.svg" alt="">
+                           <img src="{{asset('assets/img/home-1/company/udemy.svg')}}" alt="">
                         </div>
                         <div class="d-flex justify-content-between flex-wrap w-100 gap-3 gap-lg-3">
                            <div class="job__meta">
@@ -291,7 +291,7 @@
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
          <div class="offcanvas-header p-0 mb-5 mt-4">
             <a href="index.html" class="offcanvas-title" id="offcanvasLabel">
-            <img src="assets/img/logo/header__one.svg" alt="logo">
+            <img src="{{asset('assets/img/logo/logo.png')}}" alt="logo">
             </a> 
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
          </div>

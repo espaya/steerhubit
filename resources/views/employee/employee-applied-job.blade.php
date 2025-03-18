@@ -20,14 +20,14 @@
     <meta name="twitter:title" content="Your Ultimate Job HTML Template">
     <meta name="twitter:description" content="Your Ultimate Job HTML Template">
     <!-- fabicon -->
-    <link rel="shortcut-icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
+    <link rel="shortcut-icon" href="{{asset('assets/img/favicon-16x16.png')}}" type="image/x-icon">
 
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}" type="image/x-icon">
     <title>SteerHubIT - Applied Jobs</title>
     <!-- rt icons -->
     <link rel="stylesheet" href="{{asset('assets/fonts/icon/css/rt-icons.css')}}">
@@ -84,7 +84,7 @@
                         <div class="single__applied__job">
                             <div class="single__applied__job__content">   
                                 <div class="icon">
-                                    <img src="assets/img/icon/apple.svg" alt="">
+                                    <img src="{{asset('assets/img/icon/apple.svg')}}" alt="">
                                 </div>
                                 <div class="content__flex">
                                     <div class="content">
@@ -131,7 +131,7 @@
                         <div class="single__applied__job">
                             <div class="single__applied__job__content">   
                                 <div class="icon">
-                                    <img src="assets/img/icon/microsoft.svg" alt="">
+                                    <img src="{{asset('assets/img/icon/microsoft.svg')}}" alt="">
                                 </div>
                                 <div class="content__flex">
                                     <div class="content">
@@ -178,7 +178,7 @@
                         <div class="single__applied__job">
                             <div class="single__applied__job__content">   
                                 <div class="icon">
-                                    <img src="assets/img/icon/facebook.svg" alt="">
+                                    <img src="{{asset('assets/img/icon/facebook.svg')}}" alt="">
                                 </div>
                                 <div class="content__flex">
                                     <div class="content">
@@ -225,7 +225,7 @@
                         <div class="single__applied__job">
                             <div class="single__applied__job__content">   
                                 <div class="icon">
-                                    <img src="assets/img/icon/upwork.svg" alt="">
+                                    <img src="{{asset('assets/img/icon/upwork.svg')}}" alt="">
                                 </div>
                                 <div class="content__flex">
                                     <div class="content">
@@ -272,7 +272,7 @@
                         <div class="single__applied__job">
                             <div class="single__applied__job__content">   
                                 <div class="icon">
-                                    <img src="assets/img/icon/udemy.svg" alt="">
+                                    <img src="{{asset('assets/img/icon/udemy.svg')}}" alt="">
                                 </div>
                                 <div class="content__flex">
                                     <div class="content">
@@ -319,7 +319,7 @@
                         <div class="single__applied__job">
                             <div class="single__applied__job__content">   
                                 <div class="icon">
-                                    <img src="assets/img/icon/linkedin.svg" alt="">
+                                    <img src="{{asset('assets/img/icon/linkedin.svg')}}" alt="">
                                 </div>
                                 <div class="content__flex">
                                     <div class="content">
@@ -386,7 +386,7 @@
   <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
     <div class="offcanvas-header p-0 mb-5 mt-4">
       <a href="index.html" class="offcanvas-title" id="offcanvasLabel">
-        <img src="assets/img/logo/header__one.svg" alt="logo">
+        <img src="{{asset('assets/img/logo/logo.png')}}" alt="logo">
       </a> 
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>

@@ -131,8 +131,12 @@
                                     <img class="rounded-5" width="48" height="48" src="{{asset('assets/img/author/1.svg')}}" alt="">
                                  </div>
                                  <div class="user__name d-none d-xl-block">
-                                    <h6 class="font-20 mb-0 fw-medium lh-sm">John Smith</h6>
-                                    <span>Candidate</span>
+                                    <h6 class="font-20 mb-0 fw-medium lh-sm"> 
+                                       {{ Auth::user() && Auth::user()->name ? Auth::user()->name : 'N/A' }} 
+                                    </h6>
+                                    @if(Auth::user() && Auth::user()->role == 'Candidate')
+                                    <span>{{ ucfirst(Auth::user()->role) }}</span>
+                                    @endif
                                  </div>
                                  <div class="dropdown__option d-none d-xl-block">
                                     <div class="dropdown__icon "><i class="fa-light fa-chevron-down"></i></div>
@@ -145,7 +149,13 @@
                                  <li><a class="dropdown-item" href="candidate-shortlist.html">Shortlist Job</a></li>
                                  <li><a class="dropdown-item" href="candidate-message.html">Message</a></li>
                                  <li><a class="dropdown-item" href="candidate-passwordchange.html">Change Password</a></li>
-                                 <li><a class="dropdown-item" href="#">Log Out</a></li>
+                                 <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
+                                 </li>
+
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                 </form>
+
                                  <li><a class="dropdown-item" href="candidate-deleteprofile.html">Delete Account</a></li>
                               </ul>
                            </div>

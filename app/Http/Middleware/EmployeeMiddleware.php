@@ -11,15 +11,15 @@ class EmployeeMiddleware
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role !== 'EMPLOYEE') {
-            abort(403, 'Unauthorized');
+        if (Auth::check() && Auth::user()->role === 'Candidate') {
+            return $next($request)->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
         }
 
-        return $next($request);
+        return redirect()->route('welcome');
     }
 }
+
+

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255', 'regex:/^\S+$/', 'unique:users,name'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
             'password' => [
-                'required', 
+                'required',  
                 'string',
                 'confirmed', 
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'
@@ -74,7 +75,11 @@ class RegisterController extends Controller
     {
         // Validate request data
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', Rule::notIn([
+                'admin', 'admins', 'administrator', 'contributor', 'motherfucker', 
+                'author', 'editor', 'subscriber', 'moderator', 'fuck', 'bitch', 
+                'CEO', 'manager', 'CTO', 'director', 'secretary', 'writer', 'nigga',
+            ])],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => [
                 'required', 
@@ -91,7 +96,8 @@ class RegisterController extends Controller
             'password.required' => 'This is required',
             'password.confirmed' => 'Fields do not match',
             'password.regex' => 'This field must include uppercase, lowercase, number, and special character',
-            'role.required' => 'Choose an account type'
+            'role.required' => 'Choose an account type',
+            'name.not_in' => 'You cannot use this username'
         ]);
 
         // Create the user
@@ -106,7 +112,7 @@ class RegisterController extends Controller
 
         // Ensure role is properly retrieved
         $redirectUrl = ($role == 'Candidate') ? '/candidate-dashboard' :
-                    (($role == 'EMPLOYER') ? '/employer-dashboard' : null);
+                    (($role == 'EMPLOYER') ? '/employer-dashboard' : '/');
 
         return response()->json([
             'success' => true,

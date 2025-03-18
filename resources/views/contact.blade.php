@@ -102,24 +102,24 @@
                   Get in touch!
                   </span>
                   <div class="job__contact is__contact mt-30">
-                     <form action="#" class="d-flex flex-column gap-4">
+                     <form id="contact-form" method="post" enctype="multipart/form-data" action="#" class="d-flex flex-column gap-4">
                         <div class="search__item">
                            <label for="name" class="mb-4 font-20 fw-medium text-dark text-capitalize">Name</label>
                            <div class="position-relative">
-                              <input type="text" id="name" placeholder="Your Name" required="">
+                              <input name="contact_name" type="text" id="name" placeholder="Your Name" value="{{ old('contact_name') }}" autocomplete="off">
                               <i class="fa-light fa-user"></i>
                            </div>
                         </div>
                         <div class="search__item">
                            <label for="cemail" class="mb-4 font-20 fw-medium text-dark text-capitalize">Your Email</label>
                            <div class="position-relative">
-                              <input type="email" id="cemail" placeholder="Enter your email" required="">
+                              <input name="contact_email" value="{{ old('contact_email') }}" autocomplete="off" type="text" id="cemail" placeholder="Enter your email">
                               <i class="rt-mailbox"></i>
                            </div>
                         </div>
                         <div class="search__item">
                            <label class="mb-4 font-20 fw-medium text-dark text-capitalize" for="message">Your Comment</label>
-                           <textarea name="message" id="message" placeholder="Message"></textarea>
+                           <textarea autocomplete="off" name="contact_message" id="message" placeholder="Message"> {{ old('contact_message') }} </textarea>
                            <i class="fa-thin fa-comment-lines"></i>
                         </div>
                         <button type="submit" class="rts__btn fill__btn be-1 w-100 rounded-1 apply__btn">

@@ -89,11 +89,19 @@
                   </ul>
                </div>
                <div class="dash__logout">
-                  <figure class="logout__image">
-                     <img src="assets/img/dashboard/logout.png" alt="">
-                  </figure>
-                  <a class="logout__btn" href="#"><i class="rt-login"></i> Logout</a>
-               </div>
+               <figure class="logout__image">
+                  <img src="assets/img/dashboard/logout.png" alt="">
+               </figure>
+               <a class="logout__btn" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  <i class="rt-login"></i> Logout
+               </a>
+
+               <!-- Logout Form (Hidden) -->
+               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+               </form>
+            </div>
+
             </div>
             <!-- sidebar menu end -->
          </div>
