@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\RegisterEmail;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -102,6 +104,9 @@ class RegisterController extends Controller
 
         // Create the user
         $user = $this->create($data);
+
+        // Send email to user
+        Mail::to($user->email)->send(new RegisterEmail($user));
 
         // Authenticate the user       
         Auth::login($user, true);

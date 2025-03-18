@@ -4,7 +4,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>SteerHubIT - Login Notification</title>
+    <title>SteerHubIT - Welcome</title>
     <style media="all" type="text/css">
 @media all {
   .btn-primary table td:hover {
@@ -103,26 +103,24 @@
                 <td class="wrapper" style="font-family: Helvetica, sans-serif; font-size: 16px; vertical-align: top; box-sizing: border-box; padding: 24px;" valign="top">
                   <p style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">Hi {{ $user && $user->name ? ucfirst($user->name) : '' }},</p>
                   <p style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                    We noticed a recent sign-in to your account. Here are the details:
+                  Welcome to Steerhubit! We’re excited to have you on board.
                     </p>
+                    <p style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">Your account has been successfully created. Here’s what you can do next:</p>
+
                     <p style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                      <b>Date & Time:</b> <i>{{ $loginDateTime }}</i><br>
-                      <b>Browser:</b> <i>{{ $browser }}</i><br>
-                      <b>Platform:</b> <i>{{ $platform }}</i><br>
-                      <b>Device:</b> <i>{{ $device }}</i>
+                      <b>✅ Complete Your Profile</b><br>
+                      <b>✅ Explore Features</b><br>
+                      <b>✅ Get Started with Our Job opportunities </b><br>
                     </p>
 
                     <p style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                    If this sign-in was made by you, no further action is needed, and you can safely disregard this email.
+                    If you didn’t sign up for this account, please ignore this email or contact our support team at info@steerhubit.com </p>
+                    
+                    <p style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
+                    We’re here to help if you need anything. Enjoy your experience with Steerhubit!
                     </p>
                     <p style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                    If you did not sign in, please secure your account immediately by Resetting Your Password or contacting our support team at info@steerhubit.com 
-                    </p>
-                    <p style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                    Thank you for helping to keep your account secure!
-                    </p>
-                    <p style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 16px;">
-                    Best regards,<br>SteerHubIT
+                    Best,<br>SteerHubIT
                     </p>
                 </td>
               </tr>
