@@ -88,14 +88,6 @@
                   <div class="d-block has__line text-center">
                      <p>Or</p>
                   </div>
-                  <div class="d-flex flex-wrap justify-content-center gap-4 mt-20 mb-20">
-                     <div class="is__social google">
-                        <button><img src="assets/img/icon/google-small.svg" alt="">Continue with Google</button>
-                     </div>
-                     <div class="is__social facebook">
-                        <button><img src="assets/img/icon/facebook-small.svg" alt="">Continue with Facebook</button>
-                     </div>
-                  </div>
                   <span class="d-block text-center fw-medium">Have an account? <a href="#" data-bs-target="#loginModal" data-bs-toggle="modal" class="text-primary">Login</a> </span>
                </div>
             </div>

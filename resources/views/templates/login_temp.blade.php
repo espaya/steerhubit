@@ -51,14 +51,6 @@
                   <div class="d-block has__line text-center">
                      <p>Or</p>
                   </div>
-                  <div class="d-flex gap-4 flex-wrap justify-content-center mt-20 mb-20">
-                     <div class="is__social google">
-                        <button><img src="{{asset('assets/img/icon/google-small.svg')}}" alt="">Continue with Google</button>
-                     </div>
-                     <div class="is__social facebook">
-                        <button><img src="{{asset('assets/img/icon/facebook-small.svg')}}" alt="">Continue with Facebook</button>
-                     </div>
-                  </div>
                   <span class="d-block text-center fw-medium">Don`t have an account? <a href="#" data-bs-target="#signupModal" data-bs-toggle="modal" class="text-primary">Sign Up</a> </span>
                </div>
             </div>
