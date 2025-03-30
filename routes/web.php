@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailingListController;
+use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,8 +55,14 @@ use Illuminate\Support\Facades\View;
 
 // });
 
+Route::middleware('otp.verify')->group(function () {
+    // Route::get('/verify-otp', [OtpController::class, 'showOtpVerificationForm'])->name('verify-otp');
+    Route::post('/verify-otp/submit', [OtpController::class, 'verifyOtp'])->name('verify-otp.submit');
+});
+Route::post('/send-new-otp', [OtpController::class, 'newOtpCode'])->name('send.new.otp');
 
-Route::group(['middleware' => ['auth', 'auth.redirect', 'employer']], function () {
+
+Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-back-history', 'otp.verified']], function () {
     /****
      * 
      * Employer Middleware Protected Routes
@@ -104,7 +111,7 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer']], function (
 /*
 * Employee Middleware
 */
-Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate','prevent-back-history']], function () {
+Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-back-history', 'otp.verified']], function () {
     Route::get('/candidate-dashboard', function () {
         return view('employee.employee');
     })->name('employee');
@@ -140,18 +147,10 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate','prevent-bac
 
 
 
-/*
-* Employer Middleware
-*/
-
-// Route::group(['middleware' => ['guest']], function(){
-
-// });
-Auth::routes(); 
+// Auth::routes(); 
 
 Route::post('/register-new-account', [RegisterController::class, 'register'])->name('register');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

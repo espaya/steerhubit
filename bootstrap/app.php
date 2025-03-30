@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Middleware\AuthRedirect;
+use App\Http\Middleware\CheckOtpVerified;
 use App\Http\Middleware\EmployeeMiddleware;
 use App\Http\Middleware\EmployerMiddleware;
+use App\Http\Middleware\EnsureOtpVerification;
 use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
@@ -26,6 +28,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'prevent-back-history' => PreventBackHistory::class,
             StartSession::class,
             'auth' => Authenticate::class,
+            'otp.verify' => EnsureOtpVerification::class,
+            'otp.verified' => CheckOtpVerified::class 
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

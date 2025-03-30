@@ -28,9 +28,40 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.success) {
-                    window.location.href = response.redirect;
+                    console.log("Showing OTP Modal");
+                    
+                    // Set flag in localStorage
+                    localStorage.setItem("showOtpModal", "true");
+                    
+                    // Initialize modal with jQuery
+                    $("#otpModal").modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    
+                    $("#loginModal").modal("hide");
+                    $("#otpModal").modal("show");
+                    
+                    // Prefill email field
+                    $("#login-email").val($("#login-email").val());
+                    
+                    // Disable right-click
+                    $(document).on("contextmenu", function(e) {
+                        e.preventDefault();
+                    });
+                    
+                    // Disable back/forward navigation
+                    (function() {
+                        history.pushState(null, null, location.href);
+                        window.onpopstate = function() {
+                            history.pushState(null, null, location.href);
+                        };
+                        setInterval(function() {
+                            history.pushState(null, null, location.href);
+                        }, 500);
+                    })();
                 }
-            },
+            },            
             error: function(xhr) {
                 $("#login-button").prop("disabled", false).text("Login");
                 if (xhr.status === 422) {
@@ -51,5 +82,39 @@ $(document).ready(function() {
             }
         });
     });
+
+    if (localStorage.getItem("showOtpModal") === "true") {
+        console.log("Reopening OTP Modal after refresh");
+
+        // Disable right-click
+        $(document).on("contextmenu", function(e) {
+            e.preventDefault();
+        });
+
+        // Disable browser back and forward navigation
+        (function () {
+            // Disable back button navigation
+            history.pushState(null, null, location.href);
+            
+            window.onpopstate = function () {
+                history.pushState(null, null, location.href);
+            };
+        
+            // Keep preventing navigation even if the user keeps pressing back
+            setInterval(function () {
+                history.pushState(null, null, location.href);
+            }, 500);
+        })();
+
+
+        // Show OTP modal
+        $("#otpModal").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+
+        $("#otpModal").modal("show");
+    }
+
 });
 

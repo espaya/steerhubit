@@ -34,6 +34,8 @@
       <!-- all plugin css -->
       <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}">
       <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+     
+
 
 
       <style>
@@ -336,6 +338,37 @@
             </div>
          </div>
       </div>
+            <!-- OTP Modal -->
+      <div class="modal similar__modal fade " id="otpModal">
+         <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+               <div class="max-content similar__form form__padding">
+                  <div id="otp-error-message"></div>
+                  <div class="text-center" id="otp-message" style="font-size: 14px;"></div>                  
+                  <div class="tab-content" id="">
+                  </div>
+                  <form id="otp-form-ajax" action="{{ route('verify-otp.submit') }}" method="post" class="d-flex flex-column gap-3">
+                     @csrf
+                     <div class="form-group">
+                     <label for="otp" class="fw-medium text-dark mb-3 text-center d-block">Please enter the OTP code sent to your email</label>
+                        <div class="position-relative">
+                              <input type="text" name="otp" id="login-otp" autocomplete="off">
+                        </div>
+                        <span class="text-danger" id="login-error-otp"></span>
+                     </div>
+
+                     <input type="hidden" id="timezone" name="timezone">
+
+                     <div class="form-group my-3">
+                        <button id="otp-button" type="submit" class="rts__btn w-100 fill__btn">Submit</button>
+                     </div>
+                  </form>
+                  <span class="d-block text-center fw-medium"><a href="#" id="sendNewOtp" class="text-primary">Request new code</a>
+               </div>
+            </div>
+         </div>
+      </div>
+
       <!-- THEME PRELOADER START -->
       <div class="loader-wrapper">
          <div class="loader">
@@ -348,12 +381,15 @@
       <i class="fas fa-arrow-up"></i>
       </button>
       <!-- all plugin js -->
+
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <!-- jQuery AJAX -->
+      <script src="{{ asset('assets/js/new-otp.js') }}"></script>
       <script src="{{ asset('assets/js/signup.js') }}"></script>
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
       <script src="{{ asset('assets/js/signin.js') }}"></script>
+      <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
    </body>
 </html>

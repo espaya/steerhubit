@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\LoginEmail;
+use App\Mail\OtpMail;
+use Exception;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Jenssegers\Agent\Agent;
+use PragmaRX\Google2FA\Google2FA;
 use Stevebauman\Location\Facades\Location;
 
 class LoginController extends Controller
@@ -52,9 +55,15 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
+        // set otp verification to false
+        $user = Auth::user();
+        $user->is_otp_verified = false;
+        $user->save();
+
         Auth::logout();
 
-        if ($request->hasSession()) {
+        if ($request->hasSession()) 
+        {
             $request->session()->invalidate();
             $request->session()->regenerateToken();
         }
@@ -76,45 +85,52 @@ class LoginController extends Controller
             'password.min' => 'Input is too short'
         ]);
 
-        $credentials = $request->only('email', 'password');
-        $remember = $request->remember == 1; // Convert to boolean
+        try 
+        {
+            $credentials = $request->only('email', 'password');
+            $remember = $request->remember == 1; // Convert to boolean
 
-        if (Auth::attempt($credentials, $remember)) {
-            $user = Auth::user();
+            if (Auth::attempt($credentials, $remember)) 
+            {
+                $user = Auth::user();
 
-            // Get the current date and time
-            $timeZone = $request->timezone;
-            $loginDateTime = now()->setTimezone($timeZone)->format('F j, Y | g:iA (T)');
+                // Generate an OTP
+                $google2fa = new Google2FA();
+                $secretKey = $google2fa->generateSecretKey();
+                $otp = $google2fa->getCurrentOtp($secretKey);
 
-            // Get user agent details
-            $agent = new Agent();
-            $browser = $agent->browser();
-            $platform = $agent->platform();
-            $device = $agent->isMobile() ? 'Mobile' : 'Desktop';
+                // Store OTP in session
+                session(['otp' => $otp]);
+                session()->save();
 
-            // Get user location using ip
+                // Store OTP in the database
+                $user->otp = $otp;
 
-            // send welcome email whenever user sign in
-            Mail::to($user->email)->send(new LoginEmail($user, $loginDateTime, $browser, $platform, $device));
+                $user->save();
 
-            // Handle redirection based on role
-            $redirectUrl = match (strtolower(Auth::user()->role)) {
-                'employer' => '/employer-dashboard',
-                'candidate' => '/candidate-dashboard',
-                'admin' => '/admin-dashboard',
-                default => '/',
-            };            
+                // Send OTP to user's email
+                Mail::to($user->email)->send(new OtpMail($user, $otp));
+
+                // Redirect to OTP verification page
+                return response()->json([
+                    'success' => true,
+                    // 'redirect' => route('verify-otp') // Redirect to OTP verification page
+                ], 200);
+            }
 
             return response()->json([
-                'success' => true,
-                'redirect' => $redirectUrl
-            ], 200);
+                'success' => false,
+                'message' => 'Your account was not found!'
+            ], 401);
         }
-
-        return response()->json([
-            'success' => false,
-            'message' => 'Your account was not found!'
-        ], 401);
+        catch(Exception $ex)
+        {
+            Log::error('Authentication Error: ' . $ex);
+            return response()->json([
+                'success' => false,
+                'message' => 'Authentication Error'
+            ], 500);
+        }
     }
 
 }
