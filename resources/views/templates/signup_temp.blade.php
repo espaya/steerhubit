@@ -34,9 +34,9 @@
                      <div class="row">
                         <div class="col-md-6">
                         <div class="form-group">
-                        <label for="sname" class="fw-medium text-dark mb-3">Your Name</label>
+                        <label for="sname" class="fw-medium text-dark mb-3">Your Username</label>
                         <div class="position-relative">
-                              <input type="text" name="name" id="sname" placeholder="Enter your name" autocomplete="off">
+                              <input type="text" name="name" id="sname" placeholder="Enter your username" autocomplete="off">
                               <i class="fa-light fa-user icon"></i>
                         </div>
                         <small class="text-danger error-message" id="name-error"></small> <!-- Error Message -->

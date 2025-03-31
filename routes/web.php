@@ -2,8 +2,14 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailingListController;
+use App\Http\Controllers\Management\ManagementBlockedUsers;
+use App\Http\Controllers\Management\ManagementController;
+use App\Http\Controllers\Management\ManagementEmployeesController;
+use App\Http\Controllers\Management\ManagementEmployersController;
+use App\Http\Controllers\Management\ManagementJobsController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
@@ -51,7 +57,9 @@ use Illuminate\Support\Facades\View;
         return view('choose-subscription');
     })->name('choose.subscription');
 
-    Route::post('/subscribe-to-our-mailing-list', [MailingListController::class, 'subscribe'])->name('subscribe.mailing.list');
+    
+Route::post('/register-new-account', [RegisterController::class, 'register'])->name('register');
+Route::post('/subscribe-to-our-mailing-list', [MailingListController::class, 'subscribe'])->name('subscribe.mailing.list');
 
 // });
 
@@ -124,6 +132,10 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
         return view('employee.employee-profile');
     })->name('employee.profile');
 
+    Route::post('/candidate/dashboard/profile/update', [CandidateProfileController::class, 'updateAvatar'])->name('candidate.update.avatar');
+    Route::post('/candidate/dashboard/profile/delete-avatar', [CandidateProfileController::class, 'deleteAvatar']);
+
+
     Route::get('/candidate-dashboard/job-shortlisted', function () {
         return view('employee.employee-job-shortlisted');
     })->name('employee.job.shortlisted');
@@ -143,14 +155,25 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
     Route::get('/candidate-dashboard/applied-job', function () {
         return view('employee.employee-applied-job');
     })->name('employee.applied.job');
+
 });
 
 
+// Management route
+Route::get('/0246520325/management', [ManagementController::class, 'index'])->name('management');
+Route::get('0246520325/management/employers', [ManagementEmployersController::class, 'index'])->name('management.employers');
+Route::get('0246520325/management/employees', [ManagementEmployeesController::class, 'index'])->name('management.employees');
+Route::get('0246520325/management/blocked-users', [ManagementBlockedUsers::class, 'index'])->name('management.blocked.users');
+Route::get('0246520325/management/jobs', [ManagementJobsController::class, 'index'])->name('management.jobs');
+Route::get('0246520325/management/jobs/applied-jobs', [ManagementJobsController::class, 'appliedJobs'])->name('management.applied.jobs');
+Route::get('0246520325/management/jobs/pending-approval', [ManagementJobsController::class, 'pendingApproval'])->name('management.pending.jobs');
+Route::get('0246520325/management/jobs/trashed-jobs', [ManagementJobsController::class, 'trashedJobs'])->name('management.trash.jobs');
+
 
 // Auth::routes(); 
-
-Route::post('/register-new-account', [RegisterController::class, 'register'])->name('register');
+Route::get('/login', function(){ return view('welcome'); })->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

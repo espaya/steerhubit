@@ -15,6 +15,7 @@
       <meta property="og:url" content="https://steerhubit.com/">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <meta name="login-route" content="{{ route('login') }}">
+      <meta name="register-url" content="{{ route('register') }}">
 
       <!-- for twitter sharing -->
       <meta name="twitter:card" content="summary_large_image">

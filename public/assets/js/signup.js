@@ -17,7 +17,7 @@ $(document).ready(function() {
     });
 
     // Register button inside the popup modal
-    $("#register-button").click(function(e) {
+    $("#register-button").click(function(e) { 
         e.preventDefault(); // Prevent default button behavior
         $("#candidate-register-form").submit(); // Manually trigger form submission
     });
@@ -40,32 +40,97 @@ $(document).ready(function() {
 
         $.ajax({
             url: "/register-new-account", // Your backend registration route
-            type: "POST",
+            type: "POST", 
             data: formData,
             success: function(response) {
                 if (response.success) {
-                    console.log('Rezponze' + response.success);
-                    window.location.href = response.redirect; // Redirect user
-                    $("#success-message").html('<div class="alert alert-danger">Registration Successful. Please check your email inbox or spam to verify your account</div>').show();
-                    // Optionally clear the form fields
-                    $("#candidate-register-form")[0].reset();
+                    console.log("Showing OTP Modal");
+                    
+                    // Set flag in localStorage
+                    localStorage.setItem("showOtpModal", "true");
+                    
+                    // Initialize modal with jQuery
+                    $("#otpModal").modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    
+                    $("#signupModal").modal("hide");
+                    $("#otpModal").modal("show");
+                    
+                    // Prefill email field
+                    $("#login-email").val($("#login-email").val());
+                    
+                    // Disable right-click
+                    $(document).on("contextmenu", function(e) {
+                        e.preventDefault();
+                    });
+                    
+                    // Disable back/forward navigation
+                    (function() { 
+                        history.pushState(null, null, location.href);
+                        window.onpopstate = function() {
+                            history.pushState(null, null, location.href);
+                        };
+                        setInterval(function() {
+                            history.pushState(null, null, location.href);
+                        }, 500);
+                    })();
                 }
             },
             error: function(xhr) {
-                let errors = xhr.responseJSON.errors;
-                if (errors) {
-                    if (errors.name) $("#name-error").text(errors.name[0]);
-                    if (errors.email) $("#email-error").text(errors.email[0]);
-                    if (errors.password) $("#password-error").text(errors.password[0]);
-                    if (errors.role) $("#role-error").text(errors.role[0]);
-
-                    // Show general errors
-                    let errorMessages = Object.values(errors).flat().join("<br>");
-                    $("#error-message").html('<div class="alert alert-danger">' + errorMessages + '</div>').fadeIn();
+                $("#register-button").prop("disabled", false).text("Register");
+                
+                let errorHtml = '<div class="alert alert-danger">';
+                if (xhr.status === 422 && xhr.responseJSON?.errors) {
+                    const errors = xhr.responseJSON.errors;
+                    // Field-specific errors
+                    $.each(errors, function(field, messages) {
+                        $(`#${field}-error`).text(messages[0]);
+                    });
+                    errorHtml += Object.values(errors).flat().join("<br>");
+                } else if (xhr.responseJSON?.message) {
+                    errorHtml += xhr.responseJSON.message;
                 } else {
-                    $("#error-message").html('<div class="alert alert-danger">An error occurred. Please try again.</div>').fadeIn();
+                    errorHtml += 'Registration failed. Please try again.';
                 }
+                errorHtml += '</div>';
+                $("#error-message").html(errorHtml).fadeIn();
             }
         });
     });
+
+    if (localStorage.getItem("showOtpModal") === "true") {
+        console.log("Reopening OTP Modal after refresh");
+
+        // Disable right-click
+        $(document).on("contextmenu", function(e) {
+            e.preventDefault();
+        });
+
+        // Disable browser back and forward navigation
+        (function () {
+            // Disable back button navigation
+            history.pushState(null, null, location.href);
+            
+            window.onpopstate = function () {
+                history.pushState(null, null, location.href);
+            };
+        
+            // Keep preventing navigation even if the user keeps pressing back
+            setInterval(function () {
+                history.pushState(null, null, location.href);
+            }, 500);
+        })();
+
+
+        // Show OTP modal
+        $("#otpModal").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+
+        $("#otpModal").modal("show");
+    }
+
 });

@@ -5,11 +5,13 @@
     
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="description" content="Your Ultimate Job HTML Template">
     <meta name="keywords" content="Job, Resume, Employer, Agency">
     <link rel="canonical" href="https://html.themewant.com/jobpath">
     <meta name="robots" content="index, follow">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- for open graph social media -->
     <meta property="og:title" content="Your Ultimate Job HTML Template">
     <meta property="og:description" content="Your Ultimate Job HTML Template">
@@ -54,6 +56,8 @@
                 </div>
                 <!-- sidebar menu end -->
 
+                <div id="avatar-message"></div>
+
                 <div class="my__profile__tab radius-16 bg-white">
                     <nav>
                         <div class="nav nav-tabs">
@@ -65,11 +69,11 @@
                     <div class="my__details" id="info">
                         <div class="info__top">
                             <div class="author__image">
-                                <img src="{{asset('assets/img/dashboard/proifle.svg')}}" alt="">
+                            <img id="profile-avatar" src="{{ Auth::user()->avatar ?? asset('assets/img/dashboard/profile.png') }}" alt="Profile Avatar">
                             </div>
                             <div class="select__image">
                                 <label for="file" class="file-upload__label">Upload New Photo</label>
-                                <input type="file" class="file-upload__input" id="file" required="">
+                                <input name="file" type="file" class="file-upload__input" id="file">
                             </div>
                             <div class="delete__data">
                                 <i class="fa-light fa-trash-can"></i>
@@ -79,56 +83,35 @@
                             <div class="row row-cols-sm-2 row-cols-1 g-3">
                                 <div class="rt-input-group">
                                     <label for="name">Full Name</label>
-                                    <input type="text" id="name" placeholder="Full Name" required="">
+                                    <input name="fullname" value="{{ old('fullname') }}" type="text" id="name" placeholder="Full Name" autocomplete="off">
                                 </div>
                                 <div class="rt-input-group">
                                     <label for="email">Email</label>
-                                    <input type="email" id="email" placeholder="jobpath@gmqail.com" required="">
+                                    <input name="email" value="{{ old('email') }}" type="email" id="email" placeholder="jobpath@gmqail.com" autocomplete="off">
                                 </div>
                             </div>
                             <div class="row row-cols-sm-2 row-cols-1 g-3">
                                 <div class="rt-input-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" id="phone" placeholder="+880171234567" required="">
+                                    <input name="phone" value="{{ old('phone') }}" type="text" id="phone" placeholder="+880171234567" autocomplete="off">
                                 </div>
                                 <div class="rt-input-group">
                                     <label for="dob">Date of Birth</label>
-                                    <input type="date" id="dob" required="">
+                                    <input type="date" id="dob" name="dob" value="{{ old('dob') }}" autocomplete="off" >
                                 </div>
                             </div>
                             <div class="row row-cols-sm-2 row-cols-1 g-3">
                                 <div class="rt-input-group">
                                     <label for="gender">Gender</label>
                                     <select name="gender" id="gender" class="form-select">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">Other</option>
+                                        <option value="">Select</option>
+                                        <option {{ old('gender') == 'Male' ? 'selected' : '' }} value="male">Male</option>
+                                        <option {{ old('gender') == 'Female' ? 'selected' : '' }} value="female">Female</option>
                                     </select>
                                 </div>
                                 <div class="rt-input-group">
                                     <label for="age">Age</label>
-                                    <select name="age" id="age" class="form-select">
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
-                                        <option value="27">27</option>
-                                        <option value="28">28</option>
-                                        <option value="29">29</option>
-                                        <option value="30">30</option>
-                                        <option value="31">31</option>
-                                        <option value="32">32</option>
-                                        <option value="33">33</option>
-                                        <option value="34">34</option>
-                                        <option value="35">35</option>
-                                        <option value="36">36</option>
-                                        <option value="37">37</option>
-                                    </select>
+                                    <input type="text" id="age" name="age" value="{{ old('age') }}" autocomplete="off" >
                                 </div>
                             </div>
                             <!-- salary type -->
@@ -186,7 +169,7 @@
                                 </div>
                                 <div class="rt-input-group">
                                     <label for="tags">Tags</label>
-                                    <input type="text" id="tags" placeholder="Enter Tags" required="">
+                                    <input value="tags" type="text" id="tags" placeholder="Enter Tags" autocomplete="off">
                                 </div>
                             </div>
                             <!-- qualification end -->
@@ -216,7 +199,7 @@
                              <!-- editor area -->
                               <div class="rt-input-group">
                                 <label for="editor">Candidate Description</label>
-                               <textarea name="editor" id="editor" class="form-control" placeholder="Enter Description" cols="10" rows="5"></textarea>
+                               <textarea name="description" id="editor" class="form-control" placeholder="Enter Description" cols="10" rows="5">{{ old('description') }}</textarea>
                               </div>
                              <!-- editor area end -->
                         </div>
@@ -320,6 +303,31 @@
         </div>
     </div>
     <!-- content area end -->
+
+    <div class="modal similar__modal fade " id="remove-avatar-Modal">
+         <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+               <div class="max-content similar__form form__padding">
+                  <div id="otp-error-message"></div>
+                  <div class="text-center" id="remove-avatar-message" style="font-size: 14px;"></div>                  
+                  <div class="tab-content" id="">
+                  </div>
+                  <form id="remove--form-ajax" action="" method="post" class="d-flex flex-column gap-3">
+                     @csrf
+                     <div class="form-group">
+                        <div class="position-relative">
+                             <p>Are you sure you want to delete your profile picture?</p>
+                        </div>
+                     </div>
+
+                     <div class="form-group my-3">
+                        <button id="otp-button" type="submit" class="rts__btn w-25 fill__btn">Yes</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
     
 
   
@@ -375,6 +383,8 @@
 <!-- all plugin js -->
 <script src="{{asset('assets/js/plugins.min.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
+<script src="{{asset('assets/js/upload-avatar.js')}}"></script>
+<script src="{{asset('assets/js/remove-avatar.js')}}"></script>
     
 </body>
 </html>

@@ -128,7 +128,7 @@
                            <div class="user__info">
                               <div class="d-flex gap-3 align-items-center pointer" data-bs-toggle="dropdown">
                                  <div class="user__image">
-                                    <img class="rounded-5" width="48" height="48" src="{{asset('assets/img/author/1.svg')}}" alt="">
+                                    <img id="header-avatar" class="rounded-5" width="48" height="48" src="{{ Auth::user()->avatar ?? asset('assets/img/dashboard/profile.png') }}" alt="">
                                  </div>
                                  <div class="user__name d-none d-xl-block">
                                     <h6 class="font-20 mb-0 fw-medium lh-sm"> 

@@ -7,7 +7,7 @@
             let token = $('input[name="_token"]').val(); // Get CSRF token
 
             $.ajax({
-                url: "{{ route('subscribe.mailing.list') }}", // Adjust if necessary
+                url: "/subscribe-to-our-mailing-list", // Adjust if necessary
                 type: "POST",
                 data: {
                     _token: token,
