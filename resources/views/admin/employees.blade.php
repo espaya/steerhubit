@@ -43,12 +43,13 @@
                             <div class=" d-flex flex-wrap justify-content-center breadcrumb-main__wrapper">
                                 <div class="d-flex align-items-center user-member__title justify-content-center mr-sm-25">
                                     <h4 class="text-capitalize fw-500 breadcrumb-title">Employees</h4>
-                                    <span class="sub-title ml-sm-25 pl-sm-25">274 Users</span>
+                                    <span class="sub-title ml-sm-25 pl-sm-25">{{ $totalEmployees }}</span>
                                 </div>
 
-                                <form action="/" class="d-flex align-items-center user-member__form my-sm-0 my-2">
+                                <form method="GET" enctype="multipart/form-data" action="{{ route('management.employees') }}" class="d-flex align-items-center user-member__form my-sm-0 my-2">
+                                    @csrf
                                     <span data-feather="search"></span>
-                                    <input class="form-control mr-sm-2 border-0 box-shadow-none" type="search" placeholder="Search by Name" aria-label="Search">
+                                    <input name="search" autocomplete="off" class="form-control mr-sm-2 border-0 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
                                 </form>
 
                             </div>
@@ -186,7 +187,6 @@
                                 </div>
                                 <!-- Modal -->
 
-
                             </div>
                         </div>
 
@@ -213,10 +213,10 @@
                                                 <span class="userDatatable-title">emaill</span>
                                             </th>
                                             <th>
-                                                <span class="userDatatable-title">company</span>
+                                                <span class="userDatatable-title">password</span>
                                             </th>
                                             <th>
-                                                <span class="userDatatable-title">position</span>
+                                                <span class="userDatatable-title">account type</span>
                                             </th>
                                             <th>
                                                 <span class="userDatatable-title">join date</span>
@@ -231,6 +231,8 @@
                                     </thead>
                                     <tbody>
 
+                                    @forelse($employees as $employee)
+
                                         <tr>
                                             <td>
                                                 <div class="d-flex">
@@ -243,43 +245,47 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <a href="#" class="profile-image rounded-circle d-block m-0 wh-38" style="background-image:url('img/tm6.png'); background-size: cover;"></a>
+                                                        <a href="#" class="profile-image rounded-circle d-block m-0 wh-38" style="background-image:url('{{ Auth::user()->avatar ?? asset('assets/img/dashboard/profile.png') }}'); background-size: cover;"></a>
                                                     </div>
                                                     <div class="userDatatable-inline-title">
                                                         <a href="#" class="text-dark fw-500">
-                                                            <h6>Kellie Marquot</h6>
+                                                            <h6>{{ $employee->name}}</h6>
                                                         </a>
                                                         <p class="d-block mb-0">
-                                                            San Francisco, CA
+                                                            {{ strtolower($employee->role) }}
                                                         </p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    john-keller@gmail.com
+                                                    {{ strtolower($employee->email) }}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    Business Development
+                                                    ***********************
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    Web Developer
+                                                    {{ $employee->role }}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    January 20, 2020
+                                                    {{ \Carbon\Carbon::parse($employee->created_at)->format('F d, Y') }}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content d-inline-block">
                                                     <div class="row">
                                                         <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">active</span>
+                                                        @if($employee && $employee->is_otp_verified)
                                                         <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">online</span>
+                                                        @else 
+                                                        <span class="bg-opacity-info  color-info rounded-pill userDatatable-content-status active">offline</span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </td>
@@ -300,173 +306,73 @@
                                                 </ul>
                                             </td>
                                         </tr>
-
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <div class="userDatatable__imgWrapper d-flex align-items-center">
-                                                        <div class="checkbox-group-wrapper">
-                                                            <div class="checkbox-group d-flex">
-                                                                <div class="checkbox-theme-default custom-checkbox checkbox-group__single d-flex">
-                                                                    <input class="checkbox" type="checkbox" id="check-grp-13">
-                                                                    <label for="check-grp-13"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <a href="#" class="profile-image rounded-circle d-block m-0 wh-38" style="background-image:url('img/tm1.png'); background-size: cover;"></a>
-                                                    </div>
-                                                    <div class="userDatatable-inline-title">
-                                                        <a href="#" class="text-dark fw-500">
-                                                            <h6>Kellie Marquot</h6>
-                                                        </a>
-                                                        <p class="d-block mb-0">
-                                                            San Francisco, CA
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content">
-                                                    john-keller@gmail.com
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content">
-                                                    Business Development
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content">
-                                                    Web Developer
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content">
-                                                    January 20, 2020
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content d-inline-block">
-                                                    <span class="bg-opacity-warning  color-warning rounded-pill userDatatable-content-status active">deactivete</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
-                                                    <li>
-                                                        <a href="#" class="view">
-                                                            <span data-feather="eye"></span></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="edit">
-                                                            <span data-feather="edit"></span></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="remove">
-                                                            <span data-feather="trash-2"></span></a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <div class="userDatatable__imgWrapper d-flex align-items-center">
-                                                        <div class="checkbox-group-wrapper">
-                                                            <div class="checkbox-group d-flex">
-                                                                <div class="checkbox-theme-default custom-checkbox checkbox-group__single d-flex">
-                                                                    <input class="checkbox" type="checkbox" id="check-grp-14">
-                                                                    <label for="check-grp-14"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <a href="#" class="profile-image rounded-circle d-block m-0 wh-38" style="background-image:url('img/tm2.png'); background-size: cover;"></a>
-                                                    </div>
-                                                    <div class="userDatatable-inline-title">
-                                                        <a href="#" class="text-dark fw-500">
-                                                            <h6>Kellie Marquot</h6>
-                                                        </a>
-                                                        <p class="d-block mb-0">
-                                                            San Francisco, CA
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content">
-                                                    john-keller@gmail.com
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content">
-                                                    Business Development
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content">
-                                                    Web Developer
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content">
-                                                    January 20, 2020
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="userDatatable-content d-inline-block">
-                                                    <span class="bg-opacity-danger  color-danger rounded-pill userDatatable-content-status active">blocked</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
-                                                    <li>
-                                                        <a href="#" class="view">
-                                                            <span data-feather="eye"></span></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="edit">
-                                                            <span data-feather="edit"></span></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="remove">
-                                                            <span data-feather="trash-2"></span></a>
-                                                    </li>
-                                                </ul>
-                                            </td>
-                                        </tr>
+                                    @empty
+                                        <div class="alert alert-info">No Employees Found</div>
+                                    @endforelse
 
                                     </tbody>
                                 </table>
                             </div>
                             <div class="d-flex justify-content-end pt-30">
 
-                                <nav class="atbd-page ">
-                                    <ul class="atbd-pagination d-flex">
+                            <nav class="atbd-page">
+                                <ul class="atbd-pagination d-flex">
+                                    {{-- Previous Page Link --}}
+                                    @if ($employees->onFirstPage())
+                                        <li class="atbd-pagination__item disabled">
+                                            <span class="atbd-pagination__link pagination-control"><span class="la la-angle-left"></span></span>
+                                        </li>
+                                    @else
                                         <li class="atbd-pagination__item">
-                                            <a href="#" class="atbd-pagination__link pagination-control"><span class="la la-angle-left"></span></a>
-                                            <a href="#" class="atbd-pagination__link"><span class="page-number">1</span></a>
-                                            <a href="#" class="atbd-pagination__link active"><span class="page-number">2</span></a>
-                                            <a href="#" class="atbd-pagination__link"><span class="page-number">3</span></a>
-                                            <a href="#" class="atbd-pagination__link pagination-control"><span class="page-number">...</span></a>
-                                            <a href="#" class="atbd-pagination__link"><span class="page-number">12</span></a>
-                                            <a href="#" class="atbd-pagination__link pagination-control"><span class="la la-angle-right"></span></a>
-                                            <a href="#" class="atbd-pagination__option">
+                                            <a href="{{ $employees->previousPageUrl() }}" class="atbd-pagination__link pagination-control">
+                                                <span class="la la-angle-left"></span>
                                             </a>
                                         </li>
-                                        <li class="atbd-pagination__item">
-                                            <div class="paging-option">
-                                                <select name="page-number" class="page-selection">
-                                                    <option value="20">20/page</option>
-                                                    <option value="40">40/page</option>
-                                                    <option value="60">60/page</option>
-                                                </select>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                    @endif
 
+                                    {{-- Pagination Elements --}}
+                                    @foreach ($employees->getUrlRange(1, $employees->lastPage()) as $page => $url)
+                                        @if ($page == $employees->currentPage())
+                                            <li class="atbd-pagination__item">
+                                                <a href="{{ $url }}" class="atbd-pagination__link active"><span class="page-number">{{ $page }}</span></a>
+                                            </li>
+                                        @else
+                                            <li class="atbd-pagination__item">
+                                                <a href="{{ $url }}" class="atbd-pagination__link"><span class="page-number">{{ $page }}</span></a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+
+                                    {{-- Next Page Link --}}
+                                    @if ($employees->hasMorePages())
+                                        <li class="atbd-pagination__item">
+                                            <a href="{{ $employees->nextPageUrl() }}" class="atbd-pagination__link pagination-control">
+                                                <span class="la la-angle-right"></span>
+                                            </a>
+                                        </li>
+                                    @else
+                                        <li class="atbd-pagination__item disabled">
+                                            <span class="atbd-pagination__link pagination-control"><span class="la la-angle-right"></span></span>
+                                        </li>
+                                    @endif
+
+                                {{-- Pagination Page Selection --}}
+                                    <li class="atbd-pagination__item">
+                                        <div class="paging-option">
+                                            <select name="per_page" class="page-selection" onchange="window.location.href=this.value">
+                                                @foreach($limits as $limit)
+                                                    <option value="{{ request()->fullUrlWithQuery(['per_page' => $limit]) }}" 
+                                                        {{ request('per_page', 10) == $limit ? 'selected' : '' }}>
+                                                        {{ $limit }}/page
+                                                    </option>
+                                                @endforeach
+                                            </select>
+
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </nav>
 
                             </div>
                         </div>
@@ -496,6 +402,11 @@
     <script src="{{asset('assets/mgt/js/plugins.min.js')}}"></script>
     <script src="{{asset('assets/mgt/js/script.min.js')}}"></script>
     <!-- endinject-->
+    <script>
+        function updatePerPage(select) {
+            window.location.href = select.value;
+        }
+    </script>
 </body>
 
 </html>
