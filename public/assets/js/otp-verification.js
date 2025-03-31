@@ -23,6 +23,8 @@ $(document).ready(function () {
         let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
         let token = $('meta[name="csrf-token"]').attr("content");
 
+        console.log("CSRF Token:", token);
+
         $("#otp-button").prop("disabled", true).text("Verifying...");
 
         $.ajax({
