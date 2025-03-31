@@ -27,4 +27,14 @@ class ManagementJobsController extends Controller
         return view('admin.jobs.pending');
     }
 
+    public function add()
+    {
+        return view('admin.jobs.admin-add-new-job');
+    }
+
+    public function store(Request $request)
+    {
+
+    }
+
 }

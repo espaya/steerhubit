@@ -165,6 +165,8 @@ Route::get('0246520325/management/employers', [ManagementEmployersController::cl
 Route::get('0246520325/management/employees', [ManagementEmployeesController::class, 'index'])->name('management.employees');
 Route::get('0246520325/management/blocked-users', [ManagementBlockedUsers::class, 'index'])->name('management.blocked.users');
 Route::get('0246520325/management/jobs', [ManagementJobsController::class, 'index'])->name('management.jobs');
+Route::get('0246520325/management/jobs/add-new', [ManagementJobsController::class, 'add'])->name('management.add.new');
+Route::post('0246520325/management/jobs/add-new/store', [ManagementJobsController::class, 'store'])->name('management.add.store');
 Route::get('0246520325/management/jobs/applied-jobs', [ManagementJobsController::class, 'appliedJobs'])->name('management.applied.jobs');
 Route::get('0246520325/management/jobs/pending-approval', [ManagementJobsController::class, 'pendingApproval'])->name('management.pending.jobs');
 Route::get('0246520325/management/jobs/trashed-jobs', [ManagementJobsController::class, 'trashedJobs'])->name('management.trash.jobs');

@@ -33,12 +33,17 @@
                         </li>
 
                         <li class="has-child">
-                            <a href="#" class="{{ (request()->routeIs('management.jobs') || request()->routeIs('management.applied.jobs') || request()->routeIs('management.trash.jobs') || request()->routeIS('management.pending.jobs')) ? 'active' : '' }}">
+                            <a href="#" class="{{ (request()->routeIs('management.jobs') || request()->routeIs('management.applied.jobs') || request()->routeIs('management.trash.jobs') || request()->routeIS('management.pending.jobs') || request()->routeIS('management.add.new')) ? 'active' : '' }}">
                                 <span data-feather="briefcase" class="nav-icon"></span>
                                 <span class="menu-text">Jobs</span>
                                 <span class="toggle-icon"></span>
                             </a>
                             <ul>
+                                <li>
+                                    <a href="{{ route('management.add.new') }}" class="{{ request()->routeIs('management.add.new') ? 'active' : '' }}">
+                                    Add New
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="{{ route('management.pending.jobs') }}" class="{{ request()->routeIs('management.pending.jobs') ? 'active' : '' }}">
                                         <span class="menu-text">Pending</span>
