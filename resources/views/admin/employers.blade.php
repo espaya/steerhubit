@@ -46,7 +46,7 @@
                                     <span class="sub-title ml-sm-25 pl-sm-25">{{ $totalEmployees }}</span>
                                 </div>
 
-                                <form method="GET" enctype="multipart/form-data" action="{{ route('management.employees') }}" class="d-flex align-items-center user-member__form my-sm-0 my-2">
+                                <form method="GET" enctype="multipart/form-data" action="{{ route('management.employers') }}" class="d-flex align-items-center user-member__form my-sm-0 my-2">
                                     @csrf
                                     <span data-feather="search"></span>
                                     <input name="search" autocomplete="off" class="form-control mr-sm-2 border-0 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
