@@ -126,80 +126,43 @@
                                                     <div class="row justify-content-center">
                                                         <div class="col-xxl-6 col-lg-8 col-sm-10">
                                                             <div class="edit-profile__body mx-lg-20">
-                                                                <form>
+                                                                <form id="company-profile-form" action="" method="POST" enctype="multipart/form-data">
                                                                     <div class="form-group mb-20">
-                                                                        <label for="names">name</label>
-                                                                        <input type="text" class="form-control" id="names" placeholder="Duran Clayton">
+                                                                        <label for="names">company name</label>
+                                                                        <input name="company_name" value="" autocomplete="" type="text" class="form-control" id="names" placeholder="Company name">
                                                                     </div>
                                                                     <div class="form-group mb-20">
-                                                                        <label for="phoneNumber1">phone number</label>
-                                                                        <input type="tel" class="form-control" id="phoneNumber1" placeholder="+440 2546 5236">
+                                                                        <label for="phoneNumber1">Company phone number</label>
+                                                                        <input name="company_phone" value="" autocomplete="off" type="tel" class="form-control" id="company-phone" placeholder="Company phone">
                                                                     </div>
                                                                     <div class="form-group mb-20">
-                                                                        <div class="countryOption">
-                                                                            <label for="countryOption">
-                                                                                country
-                                                                            </label>
-                                                                            <select class="js-example-basic-single js-states form-control" id="countryOption">
-                                                                                <option value="JAN">event</option>
-                                                                                <option value="FBR">Venues</option>
-                                                                            </select>
-                                                                        </div>
+                                                                        <label for="address">Company Address</label>
+                                                                        <input name="company_address" autocomplete="off" type="text" class="form-control" id="company-address" placeholder="Company Address">
                                                                     </div>
                                                                     <div class="form-group mb-20">
-                                                                        <div class="cityOption">
-                                                                            <label for="cityOption">
-                                                                                city
-                                                                            </label>
-                                                                            <select class="js-example-basic-single js-states form-control" id="cityOption">
-                                                                                <option value="JAN">event</option>
-                                                                                <option value="FBR">Venues</option>
-                                                                            </select>
-                                                                        </div>
+                                                                        <label for="city">Company City</label>
+                                                                        <input name="company_city" value="" autocomplete="off" type="text" class="form-control" id="company-city" placeholder="Company city">
                                                                     </div>
                                                                     <div class="form-group mb-20">
-                                                                        <label for="company1">company name</label>
-                                                                        <input type="text" class="form-control" id="company1" placeholder="Example">
+                                                                        <label for="state">Company state</label>
+                                                                        <input name="company_state" autocomplete="off" value="" type="text" class="form-control" id="company-state" placeholder="Company State">
                                                                     </div>
                                                                     <div class="form-group mb-20">
-                                                                        <label for="website">website</label>
-                                                                        <input type="email" class="form-control" id="website" placeholder="www.example.com">
+                                                                        <label for="state">Company Zip</label>
+                                                                        <input value="" autocomplete="off" name="company_zip" type="text" class="form-control" id="company-zip" placeholder="Company Zip">
                                                                     </div>
                                                                     <div class="form-group mb-20">
-                                                                        <label for="userBio">user bio</label>
-                                                                        <textarea class="form-control" id="userBio" rows="5"></textarea>
+                                                                        <label for="state">Company Country</label>
+                                                                        <input name="company_country" autocomplete="off" type="text" class="form-control" id="company-country" placeholder="Company Country">
                                                                     </div>
-                                                                    <div class="form-group mb-20">
-                                                                        <div class="skillsOption">
-                                                                            <label for="skillsOption">
-                                                                                skils
-                                                                            </label>
-                                                                            <select class="js-example-basic-single js-states form-control" id="skillsOption" multiple="multiple">
-                                                                                <option value="JAN">event</option>
-                                                                                <option value="FBR">Venues</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
+
                                                                     <div class="button-group d-flex flex-wrap pt-30 mb-15">
 
-
-
-                                                                        <button class="btn btn-primary btn-default btn-squared mr-15 text-capitalize">update profile
+                                                                        <button id="company-profile-button" class="btn btn-primary btn-default btn-squared mr-15 text-capitalize">update profile
                                                                         </button>
-
-
-
-
-
-
-
 
                                                                         <button class="btn btn-light btn-default btn-squared fw-400 text-capitalize">cancel
                                                                         </button>
-
-
-
-
 
                                                                     </div>
                                                                 </form>
@@ -341,96 +304,65 @@
                                                     <div class="row justify-content-center">
                                                         <div class="col-xxl-6 col-lg-8 col-sm-10">
                                                             <div class="edit-profile__body mx-lg-20">
-                                                                <form>
-                                                                    <div class=" mb-30">
-                                                                        <label for="socialUrl">facebook</label>
-                                                                        <div class="input-group flex-nowrap">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text border-facebook bg-facebook text-white wh-44 radius-xs justify-content-center" id="addon-wrapping1">
-                                                                                    <i class="lab la-facebook-f fs-18"></i>
-                                                                                </span>
-                                                                            </div>
-                                                                            <input type="text" class="form-control form-control--social" placeholder="Url" aria-label="Username" aria-describedby="addon-wrapping1" id="socialUrl">
+                                                            <!-- Error and success message div -->
+                                                            <div id="form-error" class="alert alert-danger d-none"></div>
+                                                            <div id="form-success" class="alert alert-success d-none"></div>
+
+                                                            <form id="socials-form" method="POST" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div class="mb-30">
+                                                                    <label for="socialUrl">Facebook</label>
+                                                                    <div class="input-group flex-nowrap">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text border-facebook bg-facebook text-white wh-44 radius-xs justify-content-center" id="addon-wrapping1">
+                                                                                <i class="lab la-facebook-f fs-18"></i>
+                                                                            </span>
                                                                         </div>
+                                                                        <input value="{{ $socials && $socials->facebook ? $socials->facebook : ''  }}" name="facebook" type="text" class="form-control form-control--social" autocomplete="off" placeholder="Url" aria-label="Username" aria-describedby="addon-wrapping1" id="facebook">
+                                                                        <div id="facebook-error" class="error-message text-danger"></div>
                                                                     </div>
-                                                                    <div class=" mb-30">
-                                                                        <label for="twitterUrl">twitter</label>
-                                                                        <div class="input-group flex-nowrap">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text border-twitter bg-twitter text-white wh-44 radius-xs justify-content-center" id="addon-wrapping2">
-                                                                                    <i class="lab la-twitter fs-18"></i>
-                                                                                </span>
-                                                                            </div>
-                                                                            <input type="text" class="form-control form-control--social" placeholder="@Username" aria-label="Username" aria-describedby="addon-wrapping2" id="twitterUrl">
+                                                                </div>
+                                                                <div class="mb-30">
+                                                                    <label for="twitterUrl">Twitter</label>
+                                                                    <div class="input-group flex-nowrap">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text border-twitter bg-twitter text-white wh-44 radius-xs justify-content-center" id="addon-wrapping2">
+                                                                                <i class="lab la-twitter fs-18"></i>
+                                                                            </span>
                                                                         </div>
+                                                                        <input value="{{ $socials && $socials->twitter ? $socials->twitter : ''  }}" name="twitter" type="text" class="form-control form-control--social" autocomplete="off" placeholder="Url" aria-label="Username" aria-describedby="addon-wrapping2" id="twitter">
+                                                                        <div id="twitter-error" class="error-message text-danger"></div>
                                                                     </div>
-                                                                    <div class=" mb-30">
-                                                                        <label for="webUrl">Website</label>
-                                                                        <div class="input-group flex-nowrap">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text border-ruby  bg-ruby text-white wh-44 radius-xs justify-content-center" id="addon-wrapping3">
-                                                                                    <i class="las la-basketball-ball fs-18"></i>
-                                                                                </span>
-                                                                            </div>
-                                                                            <input type="text" class="form-control form-control--social" placeholder="Url" aria-label="Username" aria-describedby="addon-wrapping3" id="webUrl">
+                                                                </div>
+                                                                <div class="mb-30">
+                                                                    <label for="instagramUrl">Instagram</label>
+                                                                    <div class="input-group flex-nowrap">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text border-instagram bg-instagram text-white wh-44 radius-xs justify-content-center" id="addon-wrapping4">
+                                                                                <i class="lab la-instagram fs-18"></i>
+                                                                            </span>
                                                                         </div>
+                                                                        <input value="{{ $socials && $socials->instagram ? $socials->instagram : ''  }}" name="instagram" type="text" class="form-control form-control--social" autocomplete="off" placeholder="Url" aria-describedby="addon-wrapping4" id="instagram">
+                                                                        <div id="instagram-error" class="error-message text-danger"></div>
                                                                     </div>
-                                                                    <div class=" mb-30">
-                                                                        <label for="instagramUrl">instagram</label>
-                                                                        <div class="input-group flex-nowrap">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text border-instagram  bg-instagram text-white wh-44 radius-xs justify-content-center" id="addon-wrapping4">
-                                                                                    <i class="lab la-instagram fs-18"></i>
-                                                                                </span>
-                                                                            </div>
-                                                                            <input type="text" class="form-control form-control--social" aria-describedby="addon-wrapping4" placeholder="Url" id="instagramUrl">
+                                                                </div>
+                                                                <div class="mb-30">
+                                                                    <label for="githubUrl">YouTube</label>
+                                                                    <div class="input-group flex-nowrap">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text border-youtube bg-youtube text-white wh-44 radius-xs justify-content-center" id="addon-wrapping5">
+                                                                                <i class="lab la-youtube fs-18"></i>
+                                                                            </span>
                                                                         </div>
+                                                                        <input value="{{ $socials && $socials->youtube ? $socials->youtube : ''  }}" name="youtube" type="text" class="form-control form-control--social" autocomplete="off" placeholder="Url" aria-label="Username" aria-describedby="addon-wrapping5" id="youtube">
+                                                                        <div id="youtube-error" class="error-message text-danger"></div>
                                                                     </div>
-                                                                    <div class=" mb-30">
-                                                                        <label for="githubUrl">github</label>
-                                                                        <div class="input-group flex-nowrap">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text border-dark  bg-dark  text-white wh-44 radius-xs justify-content-center" id="addon-wrapping5">
-                                                                                    <i class="lab la-github fs-18"></i>
-                                                                                </span>
-                                                                            </div>
-                                                                            <input type="text" class="form-control form-control--social" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping5" id="githubUrl">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class=" mb-0">
-                                                                        <label for="mediumUrl">medium</label>
-                                                                        <div class="input-group flex-nowrap">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text border-dark bg-dark text-white wh-44 radius-xs justify-content-center" id="addon-wrapping6">
-                                                                                    <i class="lab la-medium fs-18"></i>
-                                                                                </span>
-                                                                            </div>
-                                                                            <input type="text" class="form-control form-control--social" placeholder="Username" aria-label="medium" aria-describedby="addon-wrapping6" id="mediumUrl">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="button-group d-flex flex-wrap pt-50 mb-15">
-
-
-
-                                                                        <button class="btn btn-primary btn-default btn-squared mr-15 text-capitalize">Update Social Profiles
-                                                                        </button>
-
-
-
-
-
-
-
-
-                                                                        <button class="btn btn-light btn-default btn-squared fw-400 text-capitalize">cancel
-                                                                        </button>
-
-
-
-
-
-                                                                    </div>
-                                                                </form>
+                                                                </div>
+                                                                <div class="button-group d-flex flex-wrap pt-50 mb-15">
+                                                                    <button type="button" id="socials-button" class="btn btn-primary btn-default btn-squared mr-15 text-capitalize">Update Social Profiles</button>
+                                                                    <button type="button" class="btn btn-light btn-default btn-squared fw-400 text-capitalize">Cancel</button>
+                                                                </div>
+                                                            </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -656,6 +588,7 @@
     <script src="{{ asset('assets/js/update-mgt-password.js') }}"></script>
     <script src="{{ asset('assets/js/update-mgt-avatar.js') }}"></script>
     <script src="{{ asset('assets/js/update-mgt-banner.js') }}"></script>
+    <script src="{{ asset('assets/js/update-mgt-socials.js') }}"></script>
     <!-- endinject-->
 </body>
 

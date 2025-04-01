@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Management;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\SocialProfiles;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -17,7 +18,11 @@ class ManagementSettingsController extends Controller
 {
     public function index()
     {
-        return view('admin.admin-settings');
+        $socialsData = SocialProfiles::get();
+
+        $socials = $socialsData->isEmpty() ? null : $socialsData->first();
+
+        return view('admin.admin-settings', ['socials' => $socials]);
     }
 
     public function updatePassword(Request $request)
@@ -346,6 +351,98 @@ class ManagementSettingsController extends Controller
                 'message' => 'Unknown error occurred whilst saving banner image'
             ], 500);
         }
+    }
+
+    public function socialProfiles(Request $request)
+    {
+        $request->validate([
+            'facebook' => ['nullable', 'string', 'regex:/^https:\/\/(www\.)?facebook\.com\//'],
+            'twitter' => ['nullable', 'string', 'regex:/^https:\/\/(www\.)?(twitter|x)\.com\//'], // Twitter/X
+            'instagram' => ['nullable', 'string', 'regex:/^https:\/\/(www\.)?instagram\.com\//'],
+            'linkedin' => ['nullable', 'string', 'regex:/^https:\/\/(www\.)?linkedin\.com\//'],
+            'youtube' => ['nullable', 'string', 'regex:/^https:\/\/(www\.)?youtube\.com\//'], 
+        ], [
+            'facebook.regex' => 'The Facebook link must start with https://facebook.com/',
+            'facebook.string' => 'Invalid input',
+            'twitter.regex' => 'The Twitter/X link must start with https://twitter.com/ or https://x.com/',
+            'twitter.string' => 'Invalid input',
+            'instagram.regex' => 'The Instagram link must start with https://instagram.com/',
+            'instagram.string' => 'Invalid input',
+            'linkedin.regex' => 'The LinkedIn link must start with https://linkedin.com/',
+            'linkedin.string' => 'Invalid input',
+            'youtube.regex' => 'The YouTube link must start with https://youtube.com/',
+            'youtube.string' => 'Invalid input',
+        ]);
+
+        try 
+        {
+            DB::beginTransaction();
+        
+            // Assuming the super admin is the only one updating the social profiles
+            $social = SocialProfiles::first(); // Get the first record, assuming there is only one record for the super admin
+        
+            if (!$social) 
+            {
+                // If no record exists, create a new one
+                $social = new SocialProfiles();
+            }
+        
+            // Update only the fields that are filled in the request
+            if ($request->filled('facebook')) 
+            {
+                $social->facebook = $request->input('facebook');
+            }
+        
+            if ($request->filled('twitter')) 
+            {
+                $social->twitter = $request->input('twitter');
+            }
+        
+            if ($request->filled('instagram')) 
+            {
+                $social->instagram = $request->input('instagram');
+            }
+        
+            if ($request->filled('linkedin')) 
+            {
+                $social->linkedin = $request->input('linkedin');
+            }
+        
+            if ($request->filled('youtube')) 
+            {
+                $social->youtube = $request->input('youtube');
+            }
+        
+            // Check if any of the fields were updated
+            if ($social->isDirty(['facebook', 'twitter', 'instagram', 'linkedin', 'youtube'])) 
+            {
+                $social->save();
+                DB::commit();
+        
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Social profiles saved successfully'
+                ], 200);
+            }
+        
+            // No changes were detected, roll back
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'No changes were detected'
+            ], 200);
+        
+        } 
+        catch (Exception $ex) 
+        {
+            DB::rollBack();
+        
+            Log::error('An error occurred saving changes to social links: ' . $ex->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred saving changes'
+            ], 500);
+        }        
     }
 
 }
