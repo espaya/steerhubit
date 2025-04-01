@@ -134,17 +134,6 @@
                                 </div>
                             </div>
 
-                            <div class="row row-cols-md-2 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="pu">Profile Url</label>
-                                    <span class="url">https://jobpath.com/wp-demo/jobpath/employer/employer/  <a href="#">Edit</a> </span>
-                                    <div class="position-relative ">
-                                        <input type="url" id="pu" placeholder="Employer" required="">
-                                        <button type="submit" class="rts__btn">Save</button>
-                                    </div>
-                                </div>
-                               <div></div>
-                            </div>
 
                              <!-- editor area -->
                               <div class="rt-input-group">
@@ -185,137 +174,6 @@
                     </div>
                 </div>
                 <!-- social links end -->
-
-                <!-- Member area -->
-                <h6 class="fw-medium mt-4 mb-4">Member</h6>
-                <div class="social__links p-30 radius-16 bg-white" id="member">
-                    <div class="accordion" id="rts-accordion">
-                        
-                        <div class="accordion-item">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                Nabil Mahmud
-                            </button>
-                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#rts-accordion" style="">
-                                <div class="accordion-body mt-20 mb-20">
-                                    <div class="info__field">
-                                        <div class="row row-cols-md-3 row-cols-1 g-3">
-                                            <div class="rt-input-group">
-                                                <label for="Title-2">Member Title</label>
-                                                <input type="text" id="Title-2" placeholder="Member Title" required="">
-                                            </div>
-                                            <div class="rt-input-group">
-                                                <label for="dsg-2">Designation</label>
-                                                <input type="text" id="dsg-2" placeholder="Designation" required="">
-                                            </div>
-                                            <div class="rt-input-group">
-                                                <label for="ex-2">Experience</label>
-                                                <select name="ex" id="ex-2" class="form-select">
-                                                    <option value="1">1 Year</option>
-                                                    <option value="2">2 Years</option>
-                                                    <option value="3">3 Years</option>
-                                                    <option value="4">4 Years</option>
-                                                    <option value="5">5 Years</option>
-                                                    
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                            <div class="rt-input-group">
-                                                <label for="fb-2">Facebook</label>
-                                                <input type="url" id="fb-2" placeholder="WWW.facebook.com/jobpath" required="">
-                                            </div>
-                                            <div class="rt-input-group">
-                                                <label for="lnkdn-2">Linkedin</label>
-                                                <input type="url" id="lnkdn-2" placeholder="WWW.Linkedin.com/jobpath" required="">
-                                            </div>
-                                        </div>
-                                        <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                            <div class="rt-input-group">
-                                                <label for="bh-2">Behance</label>
-                                                <input type="url" id="bh-2" placeholder="WWW.behance.com/jobpath" required="">
-                                            </div>
-                                            <div class="rt-input-group">
-                                                <label for="dr-2">Dribbble</label>
-                                                <input type="url" id="dr-2" placeholder="WWW.dribbble.com/jobpath" required="">
-                                            </div>
-                                        </div>
-                                        <div class="rt-input-group">
-                                            <label for="desc-2">Description</label>
-                                            <textarea name="desc" id="desc-2" cols="30" rows="5" placeholder="Description"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-end mt-30">
-                                        <a href="#" class="added__social__link">Remove Member</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Al Amin Bali
-                            </button>
-                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#rts-accordion" style="">
-                                <div class="accordion-body mt-20 mb-20">
-                                    <div class="info__field">
-                                        <div class="row row-cols-md-3 row-cols-1 g-3">
-                                            <div class="rt-input-group">
-                                                <label for="Title">Member Title</label>
-                                                <input type="text" id="Title" placeholder="Member Title" required="">
-                                            </div>
-                                            <div class="rt-input-group">
-                                                <label for="dsg">Designation</label>
-                                                <input type="text" id="dsg" placeholder="Designation" required="">
-                                            </div>
-                                            <div class="rt-input-group">
-                                                <label for="ex">Experience</label>
-                                                <select name="ex" id="ex" class="form-select">
-                                                    <option value="1">1 Year</option>
-                                                    <option value="2">2 Years</option>
-                                                    <option value="3">3 Years</option>
-                                                    <option value="4">4 Years</option>
-                                                    <option value="5">5 Years</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                            <div class="rt-input-group">
-                                                <label for="fb">Facebook</label>
-                                                <input type="url" id="fb" placeholder="WWW.facebook.com/jobpath" required="">
-                                            </div>
-                                            <div class="rt-input-group">
-                                                <label for="lnkdn">Linkedin</label>
-                                                <input type="url" id="lnkdn" placeholder="WWW.Linkedin.com/jobpath" required="">
-                                            </div>
-                                        </div>
-                                        <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                            <div class="rt-input-group">
-                                                <label for="bh">Behance</label>
-                                                <input type="url" id="bh" placeholder="WWW.behance.com/jobpath" required="">
-                                            </div>
-                                            <div class="rt-input-group">
-                                                <label for="dr">Dribbble</label>
-                                                <input type="url" id="dr" placeholder="WWW.dribbble.com/jobpath" required="">
-                                            </div>
-                                        </div>
-                                        <div class="rt-input-group">
-                                            <label for="desc">Description</label>
-                                            <textarea name="desc" id="desc" cols="30" rows="5" placeholder="Description"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-end mt-30">
-                                        <a href="#" class="added__social__link">Remove Member</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-start">
-                            <a href="#" class="added__social__link">Add another Member</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Member area end -->
 
                 <!-- address area -->
                 <h6 class="fw-medium mt-4 mb-4">Address / Location</h6>
@@ -358,8 +216,8 @@
                                     <input type="text" id="ps" placeholder="8340" required="">
                                 </div>
                                 <div class="rt-input-group">
-                                    <label for="lt">latitude</label>
-                                    <input type="text" id="lt" placeholder="0.000000" required="">
+                                    <label for="lt">Latitude</label>
+                                    <input type="text" id="lt" placeholder="0.000000" required>
                                 </div>
                             </div>
                             <div>
@@ -367,13 +225,15 @@
                                     <h6 class="font-20 fw-medium mb-2 mt-4 mt-md-0">My location</h6>
                                     <div class="gmap">
                                      <div class="user__location">
-                                         <iframe src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=reacthemes+(reacthemes)&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                                     <iframe id="map-frame" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+                                        
+                                     </iframe>
                                      </div>
                                     </div>
-                                     <div class="rt-input-group">
-                                         <label for="longitude">longitude</label>
-                                         <input type="text" id="longitude" placeholder="0.00.000.0000" required="">
-                                     </div>
+                                    <div class="rt-input-group">
+                                        <label for="longitude">Longitude</label>
+                                        <input type="text" id="longitude" placeholder="0.000000" required>
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" class="rts__btn fill__btn">Save Profile</button>
@@ -440,6 +300,23 @@
 </button>
 <!-- all plugin js -->
 <script src="{{asset('assets/js/plugins.min.js')}}"></script>
-<script src="{{asset('assets/js/main.js')}}"></script>    
+<script src="{{asset('assets/js/main.js')}}"></script>  
+<script>
+$(document).ready(function() {
+    function updateMap() {
+        let lat = $("#lt").val().trim();
+        let lng = $("#longitude").val().trim();
+
+        // Check if values are valid numbers
+        if ($.isNumeric(lat) && $.isNumeric(lng)) {
+            let mapSrc = `https://www.google.com/maps?q=${lat},${lng}&hl=en&z=14&output=embed`;
+            $("#map-frame").attr("src", mapSrc);
+        }
+    }
+
+    // Trigger update on input change
+    $("#lt, #longitude").on("input", updateMap);
+});
+</script>  
 </body>
 </html>

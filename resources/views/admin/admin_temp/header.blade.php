@@ -197,15 +197,15 @@
                     
                     <li class="nav-author">
                         <div class="dropdown-custom">
-                            <a href="javascript:;" class="nav-item-toggle"><img src="{{asset('assets/img/dashboard/profile.png')}}" alt="" class="rounded-circle"></a>
+                            <a href="javascript:;" class="nav-item-toggle"><img id="mgt-img2" src="{{ Auth::check() && Auth::user()->avatar ? asset('uploads/avatars/' . Auth::user()->avatar) : asset('assets/img/dashboard/profile.png') }}" alt="" class="rounded-circle"></a>
                             <div class="dropdown-wrapper">
                                 <div class="nav-author__info">
                                     <div class="author-img">
-                                        <img src="{{asset('assets/img/dashboard/profile.png')}}" alt="" class="rounded-circle">
+                                    <img id="mgt-img" src="{{ Auth::check() && Auth::user()->avatar ? asset('uploads/avatars/' . Auth::user()->avatar) : asset('assets/img/dashboard/profile.png') }}" alt="" class="rounded-circle">
                                     </div>
                                     <div>
-                                        <h6>Abdullah Bin Talha</h6>
-                                        <span>UI Designer</span>
+                                        <h6>{{ Auth::check() ? Auth::user()->name : '' }}</h6>
+                                        <span>{{ Auth::check() ? Auth::user()->role : '' }}</span>
                                     </div>
                                 </div>
                                 <div class="nav-author__options">
@@ -215,7 +215,7 @@
                                                 <span data-feather="user"></span> Profile</a>
                                         </li>
                                         <li>
-                                            <a href="">
+                                            <a href="{{ route('management.settings') }}">
                                                 <span data-feather="settings"></span> Settings</a>
                                         </li>
                                         <li>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AuthRedirect;
 use App\Http\Middleware\CheckOtpVerified;
 use App\Http\Middleware\EmployeeMiddleware;
@@ -29,7 +30,8 @@ return Application::configure(basePath: dirname(__DIR__))
             StartSession::class,
             'auth' => Authenticate::class,
             'otp.verify' => EnsureOtpVerification::class,
-            'otp.verified' => CheckOtpVerified::class 
+            'otp.verified' => CheckOtpVerified::class,
+            'admin' => AdminMiddleware::class 
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

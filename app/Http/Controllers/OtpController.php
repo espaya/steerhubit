@@ -102,7 +102,7 @@ class OtpController extends Controller
                 $redirectUrl = match (strtolower($user->role)) {
                     'employer' => '/employer-dashboard',
                     'candidate' => '/candidate-dashboard',
-                    'admin' => '/admin-dashboard',
+                    'admin' => '/0246520325/management',
                     default => '/',
                 };
 
