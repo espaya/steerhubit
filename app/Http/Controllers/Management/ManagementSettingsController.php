@@ -265,4 +265,87 @@ class ManagementSettingsController extends Controller
         }
     }
 
+    public function bannerImage(Request $request)
+    {
+        $request->validate([
+            'bannerImg' => 
+                [
+                    'required', 
+                    'image', 
+                    'mimes:jpeg,png,jpg,gif,webp', 
+                    'max:2048'
+                    ] // Validate image format
+        ], [
+            'bannerImg.required' => 'Please an image to upload',
+            'bannerImg.image' => 'Please upload an image',
+            'bannerImg.mimes' => 'Unknown file type',
+            'bannerImg.max' => 'Please reduce file size'
+        ]);
+
+        $id = Auth::user()->id;
+         
+        try 
+        {
+            DB::beginTransaction();
+
+            $user = User::find($id);
+
+            if(!$user)
+            {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not found'
+                ], 404);
+            }
+    
+            if ($request->hasFile('bannerImg')) 
+            {
+                $file = $request->file('bannerImg');
+
+                $filename = time() . '_' . $file->getClientOriginalName();
+
+                $uploadPath = public_path('uploads');
+    
+                // Create the directory if it does not exist
+                if (!file_exists($uploadPath)) 
+                {
+                    mkdir($uploadPath, 0777, true); // Create directory with full permissions
+                }
+    
+                // Delete existing avatar if it exists and is not the default
+                $oldbannerImgPath = public_path('uploads/' . $user->bannerImg);
+
+                if ($user->bannerImg && file_exists($oldbannerImgPath)) 
+                {
+                    unlink($oldbannerImgPath);
+                }
+
+    
+                // Move new file to public/uploads/avatars
+                $file->move("$uploadPath/", $filename);
+    
+                // Update user's avatar path
+                $user->bannerImg = $filename;
+                $user->save();
+            }
+    
+            DB::commit();
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Profile image updated successfully',
+                'bannerImg' => asset('uploads/' . $filename) // Send updated URL
+            ], 200);
+        }
+        catch(Exception $ex)
+        {
+            DB::rollBack();
+            Log::error('Unknown error occurred saving banner image: '. $ex);
+            return response()->json([
+                'success' => false,
+                'message' => 'Unknown error occurred whilst saving banner image'
+            ], 500);
+        }
+    }
+
 }

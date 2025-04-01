@@ -98,9 +98,9 @@
                         <div class="col-xxl-9 col-lg-8 col-sm-7">
                             <div class="as-cover">
                                 <div class="as-cover__imgWrapper">
-                                    <input id="file-upload1" type="file" name="fileUpload" class="d-none">
+                                    <input id="file-upload1" type="file" name="bannerImg" class="d-none">
                                     <label for="file-upload1">
-                                        <img src="{{asset('assets/mgt/img/ap-header.png')}}" alt="image" class="w-100">
+                                        <img style="height: 300px; object-fit:cover" id="mgt-banner" src="{{ Auth::check() && Auth::user()->bannerImg ? asset('uploads/' . Auth::user()->bannerImg) : asset('assets/mgt/img/ap-header.png')}}" alt="image" class="w-100">
                                         <span class="ap-cover__changeImgBtn">
                                             <span class="btn btn-outline-primary cover-btn">
                                                 <span data-feather="camera"></span>Change
@@ -655,6 +655,7 @@
     <script src="{{ asset('assets/js/update-mgt-username-email.js') }}"></script>
     <script src="{{ asset('assets/js/update-mgt-password.js') }}"></script>
     <script src="{{ asset('assets/js/update-mgt-avatar.js') }}"></script>
+    <script src="{{ asset('assets/js/update-mgt-banner.js') }}"></script>
     <!-- endinject-->
 </body>
 

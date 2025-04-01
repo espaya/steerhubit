@@ -27,7 +27,8 @@ class User extends Authenticatable
         'role',
         'otp',
         'is_otp_verified',
-        'avatar'
+        'avatar',
+        'bannerImg'
     ];
 
     /**
