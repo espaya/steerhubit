@@ -231,8 +231,11 @@
                                                 <span data-feather="bell"></span> Help</a>
                                         </li>
                                     </ul>
-                                    <a href="" class="nav-author__signout">
-                                        <span data-feather="log-out"></span> Sign Out</a>
+                                    <a href="#"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="nav-author__signout">
+                                        <span data-feather="log-out"></span> Sign Out</a> 
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
                             </div>
                             <!-- ends: .dropdown-wrapper -->
