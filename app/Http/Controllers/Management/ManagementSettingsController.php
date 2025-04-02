@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Management;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\CompanyProfile;
 use App\Models\SocialProfiles;
 use App\Models\User;
 use Exception;
@@ -22,7 +23,10 @@ class ManagementSettingsController extends Controller
 
         $socials = $socialsData->isEmpty() ? null : $socialsData->first();
 
-        return view('admin.admin-settings', ['socials' => $socials]);
+        $companyData = CompanyProfile::get();
+        $company = $companyData->isEmpty() ? null : $companyData->first();
+
+        return view('admin.admin-settings', ['socials' => $socials, 'company' => $company]);
     }
 
     public function updatePassword(Request $request)
@@ -443,6 +447,111 @@ class ManagementSettingsController extends Controller
                 'message' => 'An error occurred saving changes'
             ], 500);
         }        
+    }
+
+    public function updateCompanyProfile(Request $request)
+    {
+        $request->validate([
+            'company_name' => ['required', 'string'],
+            'company_tagline' => ['required', 'string'],
+            'company_phone' => ['required', 'string', 'regex:/^\+?1?[-.\s]?(\()?(\d{3})(?(1)\))[-.\s]?(\d{3})[-.\s]?(\d{4})$/'],
+            'company_address' => ['nullable', 'string'],
+            'company_zip' => ['nullable', 'string', 'regex:/^\d{5}(-\d{4})?$/'],
+            'company_email' => ['required', 'string', 'email']
+        ], [
+            'company_name.required' => 'This field is required',
+            'company_name.string' => 'Invalid input',
+            'company_tagline.required' => 'This field is required',
+            'company_tagline.string' => 'Invalid input',
+            'company_phone.required' => 'This is required',
+            'company_phone.string' => 'Invalid input',
+            'company_phone.regex' => 'Invalid phone number',
+            'company_address.string' => 'Invalid input',
+            'company_zip.string' => 'Invalid input',
+            'company_zip.regex' => 'Invalid zip/postal code',
+            'company_email.required' => 'This field is required',
+            'company_email.string' => 'Invalid input',
+            'company_email.regex' => 'Invalid email format'
+        ]);
+
+        try 
+        {
+            DB::beginTransaction();
+
+            $company = CompanyProfile::first();
+
+            if(!$company)
+            {
+                // if no company profile, create new
+                $company = new CompanyProfile();
+            }
+
+            if($request->filled('company_name'))
+            {
+                $company->company_name = $request->input('company_name');
+            }
+
+            if($request->filled('company_tagline'))
+            {
+                $company->company_tagline = $request->input('company_tagline');
+            }
+
+            if($request->filled('company_email'))
+            {
+                $company->company_email = $request->input('company_email');
+            }
+
+            if($request->filled('company_phone'))
+            {
+                $company->company_phone = $request->input('company_phone');
+            }
+
+            if($request->filled('company_address'))
+            {
+                $company->company_address = $request->input('company_address');
+            }
+
+            if($request->filled('company_zip'))
+            {
+                $company->company_zip = $request->input('company_zip');
+            }
+
+            if($company->isDirty(
+                [
+                'company_name', 
+                'company_tagline', 
+                'company_email', 
+                'company_phone', 
+                'company_address', 
+                'company_zip', 
+                ]
+            ))
+            {
+                $company->save();
+                DB::commit();
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Company profile updated successfull'
+                ], 200);
+            }
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'No changes detected'
+            ], 200);
+
+        }
+        catch(Exception $ex)
+        {
+            DB::rollBack();
+            Log::error('Unknown error occurred whilst saving changes: ' . $ex);
+            return response()->json([
+                'success' => false,
+                'message' => 'Unknown error occurred whilst saving changes'
+            ], 500);
+        }
+
     }
 
 }

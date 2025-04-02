@@ -178,6 +178,7 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
     Route::post('0246520325/management/settings/update-admin-profile-picture', [ManagementSettingsController::class, 'updateAvatar'])->name('update.mgt.avatar'); 
     Route::post('0246520325/management/settings/update-admin-banner-picture', [ManagementSettingsController::class, 'bannerImage'])->name('update.mgt.bannerImg'); 
     Route::post('0246520325/management/settings/update-admin-social-profiles', [ManagementSettingsController::class, 'socialProfiles']); 
+    Route::post('0246520325/management/settings/update-admin-update-company-profile', [ManagementSettingsController::class, 'updateCompanyProfile']); 
     
 });
 

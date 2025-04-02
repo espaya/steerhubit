@@ -126,46 +126,53 @@
                                                     <div class="row justify-content-center">
                                                         <div class="col-xxl-6 col-lg-8 col-sm-10">
                                                             <div class="edit-profile__body mx-lg-20">
-                                                                <form id="company-profile-form" action="" method="POST" enctype="multipart/form-data">
+                                                                <form action="#" id="company-profile-form" method="POST" enctype="multipart/form-data">
                                                                     <div class="form-group mb-20">
-                                                                        <label for="names">company name</label>
-                                                                        <input name="company_name" value="" autocomplete="" type="text" class="form-control" id="names" placeholder="Company name">
+                                                                        <label>Company Name</label>
+                                                                        <input value="{{ $company && $company->company_name ? $company->company_name : '' }}" name="company_name" type="text" class="form-control" id="company-name">
+                                                                        <span class="text-danger error-message" id="company_name-error"></span>
                                                                     </div>
+
                                                                     <div class="form-group mb-20">
-                                                                        <label for="phoneNumber1">Company phone number</label>
-                                                                        <input name="company_phone" value="" autocomplete="off" type="tel" class="form-control" id="company-phone" placeholder="Company phone">
+                                                                        <label>Company Tagline</label>
+                                                                        <input value="{{ $company && $company->company_tagline ? $company->company_tagline : '' }}" name="company_tagline" type="text" class="form-control" id="company-tagline">
+                                                                        <span class="text-danger error-message" id="company_tagline-error"></span>
                                                                     </div>
+
                                                                     <div class="form-group mb-20">
-                                                                        <label for="address">Company Address</label>
-                                                                        <input name="company_address" autocomplete="off" type="text" class="form-control" id="company-address" placeholder="Company Address">
+                                                                        <label>Company Email</label>
+                                                                        <input value="{{ $company && $company->company_email ? $company->company_email : '' }}" name="company_email" type="text" class="form-control" id="company-email">
+                                                                        <span class="text-danger error-message" id="company_email-error"></span>
                                                                     </div>
+
                                                                     <div class="form-group mb-20">
-                                                                        <label for="city">Company City</label>
-                                                                        <input name="company_city" value="" autocomplete="off" type="text" class="form-control" id="company-city" placeholder="Company city">
+                                                                        <label>Company Phone</label>
+                                                                        <input value="{{ $company && $company->company_phone ? $company->company_phone : '' }}" name="company_phone" type="text" class="form-control" id="company-phone">
+                                                                        <span class="text-danger error-message" id="company_phone-error"></span>
                                                                     </div>
+
                                                                     <div class="form-group mb-20">
-                                                                        <label for="state">Company state</label>
-                                                                        <input name="company_state" autocomplete="off" value="" type="text" class="form-control" id="company-state" placeholder="Company State">
+                                                                        <label>Company Address</label>
+                                                                        <input value="{{ $company && $company->company_address ? $company->company_address : '' }}" name="company_address" type="text" class="form-control" id="company-address">
+                                                                        <span class="text-danger error-message" id="company_address-error"></span>
                                                                     </div>
+
                                                                     <div class="form-group mb-20">
-                                                                        <label for="state">Company Zip</label>
-                                                                        <input value="" autocomplete="off" name="company_zip" type="text" class="form-control" id="company-zip" placeholder="Company Zip">
-                                                                    </div>
-                                                                    <div class="form-group mb-20">
-                                                                        <label for="state">Company Country</label>
-                                                                        <input name="company_country" autocomplete="off" type="text" class="form-control" id="company-country" placeholder="Company Country">
+                                                                        <label>Company Zip</label>
+                                                                        <input value="{{ $company && $company->company_zip ? $company->company_zip : '' }}" name="company_zip" type="text" class="form-control" id="company-zip">
+                                                                        <span class="text-danger error-message" id="company_zip-error"></span>
                                                                     </div>
 
                                                                     <div class="button-group d-flex flex-wrap pt-30 mb-15">
-
-                                                                        <button id="company-profile-button" class="btn btn-primary btn-default btn-squared mr-15 text-capitalize">update profile
+                                                                        <button id="company-profile-button" class="btn btn-primary btn-default btn-squared mr-15 text-capitalize">
+                                                                            Update Profile
                                                                         </button>
-
-                                                                        <button class="btn btn-light btn-default btn-squared fw-400 text-capitalize">cancel
-                                                                        </button>
-
                                                                     </div>
                                                                 </form>
+
+                                                                <!-- Server response message -->
+                                                                <div id="response-message" class="mt-3"></div>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -589,6 +596,7 @@
     <script src="{{ asset('assets/js/update-mgt-avatar.js') }}"></script>
     <script src="{{ asset('assets/js/update-mgt-banner.js') }}"></script>
     <script src="{{ asset('assets/js/update-mgt-socials.js') }}"></script>
+    <script src="{{ asset('assets/js/update-mgt-company-profile.js') }}"></script>
     <!-- endinject-->
 </body>
 
