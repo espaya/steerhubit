@@ -98,7 +98,7 @@
                             <div class="user__info ">
                                 <div class="d-flex gap-3 align-items-center pointer" data-bs-toggle="dropdown">
                                     <div class="user__image if__employer">
-                                        <img class="rounded-5" width="48" height="48" src="{{ Auth::user()->avatar ?? asset('assets/img/dashboard/profile.png') }}" alt="">
+                                        <img id="company-header-avatar" class="rounded-5" width="48" height="48" src="{{ Auth::check() && Auth::user()->avatar ? asset('uploads/avatars/' . Auth::user()->avatar) : asset('assets/img/dashboard/profile.png') }}" alt="">
                                     </div>
                                     <div class="user__name d-none d-xl-block">
                                         <h6 class="font-20 mb-1 text-capitalize fw-medium lh-sm"> {{ Auth::user() ? Auth::user()->name : 'N/A' }} </h6>

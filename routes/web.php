@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Employer\EmployerProfileController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\Management\ManagementBlockedUsers;
 use App\Http\Controllers\Management\ManagementController;
@@ -81,9 +82,13 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
         return view('employer.employer');
     })->name('employer.dashboard');
 
-    Route::get('/employer-dashboard/company-profile', function () {
-        return view('employer.employer-company-profile');
-    })->name('employer.profile');
+    Route::get('/employer-dashboard/company-profile', [EmployerProfileController::class, 'index'])->name('employer.profile');
+
+    Route::post('/employer-dashboard/company-profile/update', [EmployerProfileController::class, 'updateEmployerProfile'])->name('update.employer.profile');
+
+    Route::post('/employer-dashboard/company-profile/update-company-avatar', [EmployerProfileController::class, 'employerAvatarUpdate'])->name('update.employer.profile');
+
+    Route::post('/employer-dashboard/company-profile/remove-company-avatar', [EmployerProfileController::class, 'removeAvatar'])->name('remove.employer.profile');
 
     Route::get('/employer-dashboard/my-job', function () {
         return view('employer.employer-my-job');
