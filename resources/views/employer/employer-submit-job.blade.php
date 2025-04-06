@@ -10,6 +10,7 @@
     <meta name="keywords" content="Job, Resume, Employer, Agency">
     <link rel="canonical" href="https://html.themewant.com/jobpath">
     <meta name="robots" content="index, follow">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- for open graph social media -->
     <meta property="og:title" content="Your Ultimate Job HTML Template">
     <meta property="og:description" content="Your Ultimate Job HTML Template">
@@ -21,8 +22,6 @@
     <meta name="twitter:description" content="Your Ultimate Job HTML Template">
     <!-- fabicon -->
     <link rel="shortcut-icon" href="{{asset('assets/img/favicon-16x16.png')}}" type="image/x-icon">
-
-
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -36,6 +35,12 @@
     <!-- all plugin css -->
     <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+    <style>
+        .ck-label{
+            display: none !important;
+        }
+    </style>
 
 </head>
 <body class="template-dashboard">
@@ -56,186 +61,145 @@
                 </div>
                 <!-- sidebar menu end -->
 
-                <div class="my__profile__tab radius-16 bg-white">
-                    <nav>
-                        <div class="nav nav-tabs">
-                            <a class="nav-link active" href="#info">Company Details</a>
-                            <a class="nav-link" href="#address">Contact Information</a>                         
-                        </div>
-                    </nav>
-                    <div class="my__details" id="info">
-                        <div class="info__top">
-                            <div class="author__image">
-                                <img class="p-4" src="{{asset('assets/img/icon/google.svg')}}" alt="">
-                            </div>
-                            <div class="select__image">
-                                <label for="file" class="file-upload__label">Upload New Photo</label>
-                                <input type="file" class="file-upload__input" id="file" required="">
-                            </div>
-                            <div class="delete__data">
-                                <i class="fa-light fa-trash-can"></i>
-                            </div>
-                        </div>
-                        <div class="info__field">
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="cname">Company Name</label>
-                                    <input type="text" id="cname" placeholder="Company Name" required="">
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="jt">Job Title</label>
-                                    <input type="text" id="jt" placeholder="Software Engineer" required="">
-                                </div>
-                            </div>
-                            <div class="row row-cols-1">
-                                <div class="rt-input-group">
-                                    <label for="jd">Job Description</label>
-                                    <textarea id="jd" placeholder="Enter Job Description" required=""></textarea>
-                                </div>
-                            </div>
-
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="ws">Working Schedule</label>
-                                    <select name="ws" id="ws" class="form-select">
-                                        <option value="18">Day Shift</option>
-                                        <option value="19">Night Shift</option>
-                                    </select>
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="wd">Working Day</label>
-                                    <select name="wd" id="wd" class="form-select">
-                                        <option value="18">Sat - Thus</option>
-                                        <option value="19">Mon - Fri</option>
-                                        <option value="20">Mon - Sun</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="salary">Salary</label>
-                                    <select name="salary" id="salary" class="form-select">
-                                       <option value="1">Hourly</option>
-                                       <option value="1">Monthly</option>
-                                       <option value="1">Custom</option>
-                                    </select>
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="hp">How You Want To Pay?</label>
-                                    <select name="hp" id="hp" class="form-select">
-                                        <option value="1">Monthly</option>
-                                        <option value="2">Yearly</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="salarymin">Salary Min</label>
-                                    <select name="salary" id="salarymin" class="form-select">
-                                       <option value="1">1000 - 1500</option>
-                                       <option value="1">2000 - 2500</option>
-                                       <option value="1">3000 - 3500</option>
-                                    </select>
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="sm">Salary Max</label>
-                                    <select name="sm" id="sm" class="form-select">
-                                        <option value="1">1000 - 1500</option>
-                                        <option value="1">2000 - 2500</option>
-                                        <option value="1">3000 - 3500</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="experience">Experience</label>
-                                   <input type="text" id="experience" placeholder="Enter Experience" required="">
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="qf">Qualification</label>
-                                    <input type="text" id="qf" placeholder="Enter Qualification" required="">
-                                </div>
-                            </div>
-
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="ad">Application Deadline Date</label>
-                                   <input type="text" id="ad" placeholder="DD/MM/YY" required="">
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="vurl">Introduction Video URL</label>
-                                    <input type="text" id="vurl" placeholder="Link Here" required="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- address area -->
-                <h6 class="fw-medium mt-30 mb-20">Address / Location</h6>
-                <div class="social__links radius-16 p-30 bg-white" id="address">
-                    <div class="info__field">
-                        <div class="row row-cols-sm-2 row-cols-1 g-3">
+                <form id="add-job-form" action="#" method="post">
+                    @csrf
+                    <div class="my__profile__tab radius-16 bg-white">
+                        <div class="my__details" id="info">
                             <div class="info__field">
-                                <div class="rt-input-group">
-                                    <label for="Country">Country</label>
-                                    <select name="Country" id="Country" class="form-select">
-                                        <option value="1">Select Country</option>
-                                        <option value="2">Bangladesh</option>
-                                        <option value="3">India</option>
-                                        <option value="4">Pakistan</option>
-                                        <option value="5">Nepal</option>
-                                        <option value="6">Srilanka</option>
-                                        <option value="7">China</option>
-                                        <option value="8">USA</option>
-                                    </select>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <div class="rt-input-group">
+                                            <label for="jt">Job Title</label>
+                                            <input name="title" type="text" id="title" placeholder="Enter Job Title" autocomplete="off">
+                                            <small style="color:red" id="error-title"></small>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="rt-input-group">
-                                    <label for="State">State</label>
-                                    <select name="State" id="State" class="form-select">
-                                        <option value="1">Select State</option>
-                                        <option value="2">Dhaka</option>
-                                        <option value="3">Chittagong</option>
-                                        <option value="4">Sylhet</option>
-                                        <option value="5">Rajshahi</option>
-                                        <option value="6">Khulna</option>
-                                        <option value="7">Barishal</option>
-                                        <option value="8">Mymensingh</option>
-                                    </select>
+
+                                <div class="row row-cols-1">
+                                    <div class="rt-input-group">
+                                        <label for="jd">Job Description</label>
+                                        <textarea id="description" name="description" placeholder="Enter Job Description" autocomplete="off"></textarea>
+                                        <small style="color:red" id="error-description"></small>
+                                    </div>
                                 </div>
-                                <div class="rt-input-group">
-                                    <label for="pr">Present Address</label>
-                                    <input type="text" id="pr" placeholder="2715 Ash Dr. San Jose,USA" required="">
+
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <div class="rt-input-group">
+                                            <label for="ws">Working Schedule</label>
+                                            <select name="working_schedule" id="working-schedule" class="form-select">
+                                                <option value="">Select</option>
+                                                <option value="Day Shift">Day Shift</option>
+                                                <option value="Night Shift">Night Shift</option>
+                                            </select>
+                                            <small style="color:red" id="error-working_schedule"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="rt-input-group">
+                                            <label for="wd">Working Day</label>
+                                            <select name="working_day" id="wd" class="form-select">
+                                            <option value="">Select</option>
+                                                <option value="18">Sat - Thus</option>
+                                                <option value="19">Mon - Fri</option>
+                                                <option value="20">Mon - Sun</option>
+                                            </select>
+                                            <small style="color:red" id="error-working_day"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="rt-input-group">
+                                            <label for="pay">Pay</label>
+                                            <input type="text" id="pay" name="pay" class="form-control" placeholder="Enter Pay" autocomplete="off">
+                                            <small style="color:red" id="error-pay"></small>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="rt-input-group">
-                                    <label for="ps">Postal Code</label>
-                                    <input type="text" id="ps" placeholder="8340" required="">
+
+                                <div class="row row-cols-sm-2 row-cols-1 g-3">
+                                    <div class="rt-input-group">
+                                        <label for="experience">Experience</label>
+                                        <input name="experience" type="text" id="experience" placeholder="Enter Experience" autocomplete="off">
+                                        <small style="color:red" id="error-experience"></small>
+                                    </div>
+                                    <div class="rt-input-group">
+                                        <label for="ad">Application Deadline Date</label>
+                                        <input name="deadline" type="date" id="deadline" autocomplete="off">
+                                        <small style="color:red" id="error-deadline"></small>
+                                    </div>
                                 </div>
-                                <div class="rt-input-group">
-                                    <label for="lt">latitude</label>
-                                    <input type="text" id="lt" placeholder="0.000000" required="">
+
+
+                                <div class="row row-cols-sm-2 row-cols-1 g-3">
+                                    <div class="rt-input-group">
+                                        <label for="qf">Qualification</label>
+                                        <input name="qualification" type="text" id="qualification" placeholder="Enter Qualification" autocomplete="off">
+                                        <small style="color:red" id="error-qualification"></small>
+                                    </div>
+                                    <div class="rt-input-group">
+                                        <label for="vurl">Introduction Video(YouTube) URL (Optional)</label>
+                                        <input name="video" type="text" id="video" placeholder="Link Here" autocomplete="off">
+                                        <small style="color:red" id="error-video"></small>
+                                    </div>
                                 </div>
+
                             </div>
-                            <div>
-                               <h6 class="font-20 fw-medium mb-20">My location</h6>
-                               <div class="gmap">
-                                <div class="user__location">
-                                    <iframe src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=reacthemes+(reacthemes)&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
-                                </div>
-                               </div>
-                                <div class="rt-input-group mt-30">
-                                    <label for="longitude">longitude</label>
-                                    <input type="text" id="longitude" placeholder="0.00.000.0000" required="">
-                                </div>
-                            </div>
-                            <button type="submit" class="rts__btn fill__btn">Post Job</button>
                         </div>
                     </div>
-                </div>
-                <!-- address area end -->
+
+                    <!-- address area -->
+                    <h6 class="fw-medium mt-30 mb-20">Address / Location</h6>
+                    <div class="social__links radius-16 p-30 bg-white" id="address">
+                        <div class="info__field">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="rt-input-group">
+                                        <label for="Country">Country</label>
+                                        <select name="country" id="country" class="form-select">
+                                            <option value="">Select Country</option>
+                                            @foreach($countries as $country)
+                                                <option value="{{ $country }}">{{ $country }}</option>
+                                            @endforeach
+                                        </select>
+                                        <small style="color:red" id="error-country"></small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="rt-input-group">
+                                        <label for="State">State</label>
+                                        <input name="state" type="text" id="state" class="form-control" placeholder="Enter state" autocomplete="off">
+                                        <small style="color:red" id="error-state"></small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="rt-input-group">
+                                        <label for="pr">Present Address</label>
+                                        <input name="address" type="text" id="address" class="form-control" placeholder="2715 Ash Dr. San Jose, USA" autocomplete="off">
+                                        <small style="color:red" id="error-address"></small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="rt-input-group">
+                                        <label for="ps">Postal Code</label>
+                                        <input name="postal_code" type="text" id="postal-code" class="form-control" placeholder="8340" autocomplete="off">
+                                        <small style="color:red" id="error-postal_code"></small>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="rt-input-group">
+                                        <button type="submit" class="rts__btn fill__btn">Post Job</button>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div id="job-error-message"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- address area end -->
+                </form>
             </div>
             @include('employer/employer_temp/footer')
         </div>
@@ -295,6 +259,21 @@
 </button>
 <!-- all plugin js -->
 <script src="{{asset('assets/js/plugins.min.js')}}"></script>
-<script src="{{asset('assets/js/main.js')}}"></script>    
+<script src="{{asset('assets/js/main.js')}}"></script>  
+<script src="{{asset('assets/js/empr-submit-job.js')}}"></script> 
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#description'))
+        .then(editor => {
+            editor.editing.view.change(writer => {
+                writer.setStyle('min-height', '300px', editor.editing.view.document.getRoot());
+            });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
 </body>
 </html>

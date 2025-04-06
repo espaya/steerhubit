@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Employer\EmployerJobController;
 use App\Http\Controllers\Employer\EmployerProfileController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\Management\ManagementBlockedUsers;
@@ -83,20 +84,15 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
     })->name('employer.dashboard');
 
     Route::get('/employer-dashboard/company-profile', [EmployerProfileController::class, 'index'])->name('employer.profile');
-
     Route::post('/employer-dashboard/company-profile/update', [EmployerProfileController::class, 'updateEmployerProfile'])->name('update.employer.profile');
-
     Route::post('/employer-dashboard/company-profile/update-company-avatar', [EmployerProfileController::class, 'employerAvatarUpdate'])->name('update.employer.profile');
-
     Route::post('/employer-dashboard/company-profile/remove-company-avatar', [EmployerProfileController::class, 'removeAvatar'])->name('remove.employer.profile');
 
-    Route::get('/employer-dashboard/my-job', function () {
-        return view('employer.employer-my-job');
-    })->name('employer.job');
+    Route::get('/employer-dashboard/my-job', [EmployerJobController::class, 'index'])->name('employer.job');
 
-    Route::get('/employer-dashboard/my-job/submit', function () {
-        return view('employer.employer-submit-job');
-    })->name('employer.job.submit');
+
+    Route::get('/employer-dashboard/my-job/submit', [EmployerJobController::class, 'add'])->name('employer.job.submit');
+    Route::post('/employer-dashboard/my-job/submit-new', [EmployerJobController::class, 'store'])->name('employer.job.submit.new');
 
     Route::get('/employer-dashboard/candidate-list', function () {
         return view('employer.employer-candidate-list');
