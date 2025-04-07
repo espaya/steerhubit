@@ -90,7 +90,7 @@ class RegisterController extends Controller
                 'required', 
                 'string',
                 'confirmed', 
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
             ],
             'role' => ['required', 'string']
         ], [
@@ -100,7 +100,8 @@ class RegisterController extends Controller
             'email.unique' => 'A user with this email already exists',
             'password.required' => 'This is required',
             'password.confirmed' => 'Fields do not match',
-            'password.regex' => 'This field must include uppercase, lowercase, number, and special character and not less that 8 characters',
+            // 'password.min' => 'Minimum lenght should be',
+            'password.regex' => 'This field must include uppercase, lowercase, number, and special character and not less that 6 characters',
             'role.required' => 'Choose an account type',
             'name.not_in' => 'You cannot use this username'
         ]);
