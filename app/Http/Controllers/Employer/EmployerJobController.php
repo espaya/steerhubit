@@ -12,12 +12,26 @@ use Illuminate\Support\Facades\Log;
 
 class EmployerJobController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $jobs = Job::orderBy('id', 'DESC')->paginate(10);
+        $param = htmlspecialchars(trim($request->search), ENT_QUOTES, 'utf-8');
 
-        return view('employer.employer-my-job', ['jobs' => $jobs]);
+        if ($param) {
+            $jobs = Job::where('userID', Auth::user()->id)->where('title', 'LIKE', "%{$param}%")
+                ->orWhere('pay', 'LIKE', "%{$param}%")
+                ->orWhere('deadline', 'LIKE', "%{$param}%")
+                ->orderBy('id', 'DESC')
+                ->paginate(10);
+        } else {
+            $jobs = Job::where('userID', Auth::user()->id)->orderBy('id', 'DESC')->paginate(10);
+        }
+
+        return view('employer.employer-my-job', [
+            'jobs' => $jobs,
+            'search' => $param
+        ]);
     }
+
 
     public function add()
     {

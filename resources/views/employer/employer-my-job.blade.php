@@ -61,9 +61,9 @@
                     <div class="job__filter">
                         <div class="search__job">
                             <div class="position-relative">
-                                <form action="" method="post">
+                                <form action="{{ route('employer.job') }}" method="get">
                                     @csrf 
-                                    <input name="search" type="text" id="search" placeholder="Find Your Jobs">
+                                    <input name="search" type="text" id="search" value="{{ old('search', $search ?? '') }}" placeholder="Find Your Jobs" autocomplete="off">
                                     <i class="fa-light fa-magnifying-glass"></i>
                                 </form>
                             </div>
@@ -99,7 +99,7 @@
                                     </a>
                                     <div class="content__info">
                                         <span><i class="fa-light fa-location-dot"></i>{{ $job->state . ', ' . $job->country }}</span>
-                                        <span><i class="fa-light fa-briefcase"></i>Full Time</span>
+                                        <span><i class="fa-light fa-briefcase"></i>{{ $job->working_day }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +140,7 @@
                         </div>
                         <!--single job end  -->
                         @empty
-                        <div class="alert alert-info">You have no jobs posted</div>
+                        <div class="alert alert-info">No Jobs Found!</div>
                         @endforelse
 
                     </div>

@@ -101,9 +101,9 @@
                                             <label for="wd">Working Day</label>
                                             <select name="working_day" id="wd" class="form-select">
                                             <option value="">Select</option>
-                                                <option value="18">Sat - Thus</option>
-                                                <option value="19">Mon - Fri</option>
-                                                <option value="20">Mon - Sun</option>
+                                                <option value="Sat - Thus">Sat - Thus</option>
+                                                <option value="Mon - Fri">Mon - Fri</option>
+                                                <option value="Mon - Sun">Mon - Sun</option>
                                             </select>
                                             <small style="color:red" id="error-working_day"></small>
                                         </div>
