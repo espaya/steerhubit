@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Candidate\CandidateJobController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Employer\EmployerJobController;
@@ -164,9 +165,8 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
         return view('employee.employee-change-password');
     })->name('employee.change.password');
 
-    Route::get('/candidate-dashboard/applied-job', function () {
-        return view('employee.employee-applied-job');
-    })->name('employee.applied.job');
+    Route::get('/candidate-dashboard/applied-job', [CandidateJobController::class, 'index'])->name('employee.applied.job');
+    Route::get('/candidate-dashboard/applied-job/search', [CandidateJobController::class, 'index'])->name('employee.applied.job.search');
 
 });
 
