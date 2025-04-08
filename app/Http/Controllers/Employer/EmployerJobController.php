@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class EmployerJobController extends Controller
 {
@@ -30,6 +31,28 @@ class EmployerJobController extends Controller
             'jobs' => $jobs,
             'search' => $param
         ]);
+    }
+
+    public function destroy($id)
+    {
+        try 
+        {
+            $job = Job::find($id);
+
+            if(!$job)
+            {
+                return redirect()->back()->with(['error' => 'Job Not Found']);
+            }
+
+            $job->delete();
+
+            return redirect()->back()->with(['success' => 'Job Deleted Successfully']);
+        }
+        catch(Exception $ex)
+        {
+            Log::error('Unknown error occurred whilst deleting this job: ' . $ex);
+            return redirect()->back()->with(['error' => 'Unknown error occurred whilst deleting this job']);
+        }
     }
 
 
@@ -70,6 +93,25 @@ class EmployerJobController extends Controller
         ];
                 
         return view('employer.employer-submit-job', ['countries' => $countries]);
+    }
+
+    function generateUniqueSlug($title, $id = null)
+    {
+        // Start by creating a slug from the title
+        $slug = Str::slug($title);
+
+        // If an ID is provided (for updates), exclude that job from the check
+        $originalSlug = $slug;
+        $i = 1;
+
+        // Check if the slug already exists in the database
+        while (Job::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+            // Append a number to the slug and increment it
+            $slug = $originalSlug . '-' . $i;
+            $i++;
+        }
+
+        return $slug;
     }
 
     public function store(Request $request)
@@ -132,6 +174,8 @@ class EmployerJobController extends Controller
         {
             DB::beginTransaction();
 
+            $job = new Job();
+
             $title = htmlspecialchars(trim($request->title), ENT_QUOTES, 'utf-8');
             $description = htmlspecialchars(trim($request->description), ENT_QUOTES, 'utf-8');
             $working_schedule = htmlspecialchars(trim($request->working_schedule), ENT_QUOTES, 'utf-8');
@@ -146,23 +190,23 @@ class EmployerJobController extends Controller
             $address = htmlspecialchars(trim($request->address), ENT_QUOTES, 'utf-8');
             $postal_code = htmlspecialchars(trim($request->postal_code), ENT_QUOTES, 'utf-8');
             $userID = $user->id;
+            $slug = $this->generateUniqueSlug($title);
 
-            $job = new Job([
-                'title' => $title,
-                'description' => $description,
-                'working_schedule' => $working_schedule,
-                'working_day' => $working_day,
-                'pay' => $pay,
-                'experience' => $experience,
-                'deadline' => $deadline,
-                'qualification' => $qualification,
-                'video' => $video,
-                'country' => $country,
-                'state' => $state,
-                'address' => $address,
-                'postal_code' => $postal_code,
-                'userID' => $userID
-            ]);
+            $job->title = $title;
+            $job->description = $description;
+            $job->working_schedule = $working_schedule;
+            $job->working_day = $working_day;
+            $job->pay = $pay;
+            $job->experience = $experience;
+            $job->deadline = $deadline;
+            $job->qualification = $qualification;
+            $job->video = $video;
+            $job->country = $country;
+            $job->state = $state;
+            $job->address = $address;
+            $job->postal_code = $postal_code;
+            $job->userID = $userID;
+            $job->slug = $slug;
 
             $job->save();
 

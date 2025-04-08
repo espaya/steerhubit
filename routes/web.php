@@ -6,6 +6,7 @@ use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Employer\EmployerJobController;
 use App\Http\Controllers\Employer\EmployerProfileController;
+use App\Http\Controllers\JobDetailsController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\Management\ManagementBlockedUsers;
 use App\Http\Controllers\Management\ManagementController;
@@ -70,7 +71,15 @@ Route::middleware('otp.verify')->group(function () {
     // Route::get('/verify-otp', [OtpController::class, 'showOtpVerificationForm'])->name('verify-otp');
     Route::post('/verify-otp/submit', [OtpController::class, 'verifyOtp'])->name('verify-otp.submit');
 });
+
 Route::post('/send-new-otp', [OtpController::class, 'newOtpCode'])->name('send.new.otp');
+
+
+Route::group(['middleware' =>['auth', 'auth.redirect', 'prevent-back-history', 'otp.verified']], function(){
+    Route::get('/jobs', [JobDetailsController::class, 'index'])->name('jobs');
+    Route::get('/jobs/{slug}', [JobDetailsController::class, 'show'])->name('job.view');
+    Route::post('/candidate-dashboard/applied-job/apply/{id}', [JobDetailsController::class, 'apply']);
+});
 
 
 Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-back-history', 'otp.verified']], function () {
@@ -93,6 +102,7 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
 
     Route::get('/employer-dashboard/my-job/submit', [EmployerJobController::class, 'add'])->name('employer.job.submit');
     Route::post('/employer-dashboard/my-job/submit-new', [EmployerJobController::class, 'store'])->name('employer.job.submit.new');
+    Route::delete('/employer-dashboard/my-jobs/delete/{id}', [EmployerJobController::class, 'destroy'])->name('employer.job.delete');
 
     Route::get('/employer-dashboard/candidate-list', function () {
         return view('employer.employer-candidate-list');

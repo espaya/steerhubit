@@ -18,7 +18,7 @@
                                  <a href="#" class="navigation__menu--item__link">About</a>
                               </li>
                               <li class="navigation__menu--item">
-                                 <a href="#" class="navigation__menu--item__link">Browse Jobs</a>
+                                 <a href="{{ route('jobs') }}" class="navigation__menu--item__link">Browse Jobs</a>
                               </li>
                               <li class="navigation__menu--item">
                                  <a href="#" class="navigation__menu--item__link">Browse Employers</a>
