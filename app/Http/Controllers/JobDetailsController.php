@@ -18,9 +18,12 @@ class JobDetailsController extends Controller
     public function index()
     {
         // Fetch all jobs, ordered by ID in descending order, with pagination
-        $jobs = Job::orderBy('id', 'DESC')->paginate(10);
+        $jobs = Job::withoutTrashed()
+            ->where('status', 'APPROVED')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
 
-        // Fetch all job IDs for the currently authenticated user
+        // Fetch all job applied by the currently authenticated user
         $appliedJobs = ApplyForJob::where('applicant_id', Auth::user()->id)
             ->whereIn('job_id', $jobs->pluck('id')->toArray()) 
             ->get()
