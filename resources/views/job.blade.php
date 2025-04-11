@@ -271,8 +271,6 @@
                                         @forelse($employer_avatar as $e_avatar)
                                             @if($e_avatar->id == $job->userID)
                                                 <img src="{{ $e_avatar->avatar ? asset('uploads/avatars/' . $e_avatar->avatar) : asset('assets/img/dashboard/profile.png') }}" alt="">
-                                            @else 
-                                                <img src="{{ asset('assets/img/dashboard/profile.png') }}" alt="">
                                             @endif
                                        @empty 
                                         <img src="{{ asset('assets/img/dashboard/profile.png') }}" alt="">
@@ -322,15 +320,39 @@
                      </div>
                      
                   </div>
-                  <div class="rts__pagination mx-auto pt-60 max-content">
-                     <ul class="d-flex gap-2">
-                        <li><a href="#" class="inactive"><i class="rt-chevron-left"></i></a></li>
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#"><i class="rt-chevron-right"></i></a></li>
-                     </ul>
-                  </div>
+                  @if ($jobs->lastPage() > 1)
+                     <div class="rts__pagination mx-auto pt-60 max-content">
+                        <ul class="d-flex gap-2">
+
+                           {{-- Previous Page Link --}}
+                           <li>
+                                 @if ($jobs->onFirstPage())
+                                    <a href="#" class="inactive"><i class="rt-chevron-left"></i></a>
+                                 @else
+                                    <a href="{{ $jobs->previousPageUrl() }}"><i class="rt-chevron-left"></i></a>
+                                 @endif
+                           </li>
+
+                           {{-- Pagination Elements --}}
+                           @for ($i = 1; $i <= $jobs->lastPage(); $i++)
+                                 <li>
+                                    <a href="{{ $jobs->url($i) }}" class="{{ ($jobs->currentPage() == $i) ? 'active' : '' }}">{{ $i }}</a>
+                                 </li>
+                           @endfor
+
+                           {{-- Next Page Link --}}
+                           <li>
+                                 @if ($jobs->hasMorePages())
+                                    <a href="{{ $jobs->nextPageUrl() }}"><i class="rt-chevron-right"></i></a>
+                                 @else
+                                    <a href="#" class="inactive"><i class="rt-chevron-right"></i></a>
+                                 @endif
+                           </li>
+
+                        </ul>
+                     </div>
+                     @endif
+
                </div>
             </div>
          </div>

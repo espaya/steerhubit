@@ -20,7 +20,7 @@ class CandidateJobController extends Controller
 
         if ($search) {
             $jobQuery->where(function ($query) use ($search) {
-                $query->where('title', 'LIKE', "%{$search}%")
+                $query->where('status', 'APPROVED')->where('title', 'LIKE', "%{$search}%")
                     ->orWhere('pay', 'LIKE', "%{$search}%")
                     ->orWhere('country', 'LIKE', "%{$search}%")
                     ->orWhere('address', 'LIKE', "%{$search}%")
@@ -30,7 +30,7 @@ class CandidateJobController extends Controller
             });
         }
 
-        $jobs = $jobQuery->paginate(10)->withQueryString(); // keep search query on pagination
+        $jobs = $jobQuery->where('status', 'APPROVED')->paginate(10)->withQueryString(); // keep search query on pagination
 
         return view('employee.employee-applied-job', ['jobs' => $jobs]);
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Candidate\CandidateJobController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\ContactController;
@@ -15,11 +16,9 @@ use App\Http\Controllers\Management\ManagementEmployeesController;
 use App\Http\Controllers\Management\ManagementEmployersController;
 use App\Http\Controllers\Management\ManagementJobsController;
 use App\Http\Controllers\Management\ManagementSettingsController;
+use App\Http\Controllers\Management\ManagementBlogController;
 use App\Http\Controllers\OtpController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
 
 
 // Route::group(['middleware' => 'guest'], function(){
@@ -54,9 +53,7 @@ use Illuminate\Support\Facades\View;
         return view('terms-conditions');
     })->name('terms.conditions');
 
-    Route::get('/blog', function(){
-        return view('blog');
-    })->name('blog');
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
     Route::get('/choose-subscription-plan', function(){
         return view('choose-subscription');
@@ -178,11 +175,32 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
     Route::get('0246520325/management/employees', [ManagementEmployeesController::class, 'index'])->name('management.employees');
     Route::get('0246520325/management/blocked-users', [ManagementBlockedUsers::class, 'index'])->name('management.blocked.users');
     Route::get('0246520325/management/jobs', [ManagementJobsController::class, 'index'])->name('management.jobs');
+    Route::get('0246520325/management/jobs/search', [ManagementJobsController::class, 'index'])->name('management.jobs.search');
     Route::get('0246520325/management/jobs/add-new', [ManagementJobsController::class, 'add'])->name('management.add.new');
+    Route::get('0246520325/management/jobs/add-new/store', [ManagementJobsController::class, 'store'])->name('management.add.new.store');
+
     Route::post('0246520325/management/jobs/add-new/store', [ManagementJobsController::class, 'store'])->name('management.add.store');
+
     Route::get('0246520325/management/jobs/applied-jobs', [ManagementJobsController::class, 'appliedJobs'])->name('management.applied.jobs');
     Route::get('0246520325/management/jobs/pending-approval', [ManagementJobsController::class, 'pendingApproval'])->name('management.pending.jobs');
     Route::get('0246520325/management/jobs/trashed-jobs', [ManagementJobsController::class, 'trashedJobs'])->name('management.trash.jobs');
+
+    Route::get('0246520325/management/jobs/soft-delete-job/{id}', [
+        ManagementJobsController::class, 
+        'destroy'
+    ])->name('management.job.soft.delete');
+
+    Route::delete('0246520325/management/jobs/{id}', [
+        ManagementJobsController::class, 
+        'forceDelete'
+    ])->name('management.job.delete');
+
+    Route::get('0246520325/management/jobs/approve-job/{id}', [
+        ManagementJobsController::class, 
+        'approveJob'
+    ])->name('management.job.approve');
+    
+
     Route::get('0246520325/management/settings', [ManagementSettingsController::class, 'index'])->name('management.settings');
     Route::post('0246520325/management/settings/update-email-username', [ManagementSettingsController::class, 'updateUsernameEmail']);
     Route::post('0246520325/management/settings/update-password', [ManagementSettingsController::class, 'updatePassword']); 
@@ -190,6 +208,10 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
     Route::post('0246520325/management/settings/update-admin-banner-picture', [ManagementSettingsController::class, 'bannerImage'])->name('update.mgt.bannerImg'); 
     Route::post('0246520325/management/settings/update-admin-social-profiles', [ManagementSettingsController::class, 'socialProfiles']); 
     Route::post('0246520325/management/settings/update-admin-update-company-profile', [ManagementSettingsController::class, 'updateCompanyProfile']); 
+
+    Route::get('0246520325/management/blog', [ManagementBlogController::class, 'index'])->name('management.blog');
+    Route::get('0246520325/management/blog/new', [ManagementBlogController::class, 'create'])->name('management.blog.create');
+
     
 });
 

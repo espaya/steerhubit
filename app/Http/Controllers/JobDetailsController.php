@@ -6,6 +6,7 @@ use App\Models\ApplyForJob;
 use App\Models\EmployerProfile;
 use App\Models\Job;
 use App\Models\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +22,9 @@ class JobDetailsController extends Controller
 
         // Fetch all job IDs for the currently authenticated user
         $appliedJobs = ApplyForJob::where('applicant_id', Auth::user()->id)
-        ->whereIn('job_id', $jobs->pluck('id')->toArray()) 
-        ->get()
-        ->pluck('job_id'); 
+            ->whereIn('job_id', $jobs->pluck('id')->toArray()) 
+            ->get()
+            ->pluck('job_id'); 
 
         // Get employer avatars along with their user IDs
         $employer_avatar = User::whereIn('id', $jobs->pluck('userID')->toArray())->get(['id', 'avatar']); 
@@ -41,6 +42,11 @@ class JobDetailsController extends Controller
     {
         $job = Job::where('slug', $slug)->first();
 
+        if(!$job)
+        {
+            return view('errors.404');
+        }
+
         $relatedJob = Job::where('userID', $job->userID)
             ->inRandomOrder()
             ->limit(4)
@@ -50,7 +56,6 @@ class JobDetailsController extends Controller
 
         // Get the employer avatar for a single job
         $employer_avatar = User::where('id', $job->userID)->first('avatar');
-
 
         return view('job-details', [
             'job' => $job, 
@@ -62,23 +67,25 @@ class JobDetailsController extends Controller
 
     public function apply($id)
     {
+        $user = Auth::user(); 
+
         try 
         {
             DB::beginTransaction();
 
             // Check if applicant is same as employer
-            $isEmployer = User::where('id', Auth::user()->id)->where('role', 'EMPLOYER')->value('id');
+            $isEmployer = User::where('id', $user->id)->where('role', 'EMPLOYER')->value('id');
 
             if($isEmployer)
             {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Employers cannot apply to jobs',
+                    'message' => 'You cannot apply to this job',
                 ], 403); // Forbidden
             }
 
             // Check if employee has already applied
-            $isApplied = ApplyForJob::where('applicant_id', Auth::user()->id)
+            $isApplied = ApplyForJob::where('applicant_id', $user->id)
                 ->where('job_id', $id)
                 ->first();
             
@@ -89,6 +96,27 @@ class JobDetailsController extends Controller
                     'message' => 'You have already applied to this job'
                 ], 409); // Conflict
             }
+
+            // Check if applicant is steerhubit management
+            if($user->role == 'admin')
+            {
+                return response()->json([
+                    'success' => false, 
+                    'message' => 'You cannot apply to this job'
+                ], 403);
+            }
+
+            // Check deadline
+            $job_dealine = Job::where('id', $id)->value('deadline');
+
+            if(Carbon::parse($job_dealine)->isPast())
+            {
+                return response()->json([
+                    'success' => false,
+                    'Application deadline has past'
+                ], 403);
+            }
+
 
             $apply = new ApplyForJob();
 
@@ -113,7 +141,7 @@ class JobDetailsController extends Controller
         catch(Exception $ex)
         {
             DB::rollBack();
-            Log::error('Error applying for job: ' . $ex->getMessage());
+            Log::error('Error applying for job: ' . $ex);
             return response()->json([
                 'success' => false,
                 'message' => 'Unknown error occurred while applying for this job. Please try again later.'

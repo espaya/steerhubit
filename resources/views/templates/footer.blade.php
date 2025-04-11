@@ -16,7 +16,7 @@
                     <ul class="list-unstyled">
                         <li><a href="#" aria-label="footer__menu__link">Browse Employees</a></li>
                         <li><a href="{{ route('pricing') }}" aria-label="footer__menu__link">Pricing</a></li>
-                        <li><a href="#" aria-label="footer__menu__link">Blog & News</a></li>
+                        <li><a href="{{ route('blog') }}" aria-label="footer__menu__link">Blog & News</a></li>
                         <li><a href="{{ route('faq') }}" aria-label="footer__menu__link">FAQ</a></li>
                         <li><a href="{{ route('privacy.policy') }}" aria-label="footer__menu__link">Privacy Policy</a></li>
                         <li><a href="{{ route('terms.conditions') }}" aria-label="footer__menu__link">Terms & Conditions</a></li>

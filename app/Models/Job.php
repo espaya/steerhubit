@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Job extends Model
 {
+    use SoftDeletes;
+    
     protected $table = 'my_jobs';
 
     protected $fillable = [
@@ -24,6 +27,7 @@ class Job extends Model
         'postal_code',
         'status',
         'applicants',
-        'userID'
+        'userID',
+        'website'
     ];
 }

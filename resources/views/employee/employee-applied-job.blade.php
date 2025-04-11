@@ -59,7 +59,7 @@
                         <div class="search__job">
                             <div class="position-relative">
                                 <form action="{{ route('employee.applied.job.search') }}" method="get">
-                                    <input name="search" type="text" id="search" placeholder="Search For Applied Jobs" autocomplete="off">
+                                    <input name="search" type="text" id="search" placeholder="Search..." autocomplete="off">
                                     <i class="fa-light fa-magnifying-glass"></i>
                                 </form>
                             </div>
