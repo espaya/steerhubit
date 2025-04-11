@@ -190,9 +190,24 @@
                                                             <span data-feather="eye"></span></a>
                                                     </li>
                                                     <li>
-                                                        <a onclick="return confirm('Are you sure you want to approve this job?');" title="Approve this job" href="{{ route('management.job.approve', ['id' => $job->id]) }}" class="edit">
-                                                            <span data-feather="check"></span></a>
+                                                        <a href="#" 
+                                                        onclick="event.preventDefault(); 
+                                                                    if(confirm('Are you sure you want to approve this job?')) {
+                                                                        document.getElementById('approve-form-{{ $job->id }}').submit();
+                                                                    }" 
+                                                        title="Approve this job" 
+                                                        class="edit">
+                                                            <span data-feather="check"></span>
+                                                        </a>
+
+                                                        <form id="approve-form-{{ $job->id }}" 
+                                                            action="{{ route('management.job.approve', ['id' => $job->id]) }}" 
+                                                            method="POST" 
+                                                            style="display: none;">
+                                                            @csrf
+                                                        </form>
                                                     </li>
+
 
 
                                                     <form id="delete-job-form-{{ $job->id }}" action="{{ route('management.job.delete', ['id' => $job->id]) }}" method="POST" style="display: none;">

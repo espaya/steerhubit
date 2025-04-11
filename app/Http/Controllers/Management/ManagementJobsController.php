@@ -103,7 +103,7 @@ class ManagementJobsController extends Controller
             DB::beginTransaction();
 
             // Find the job by ID
-            $job = Job::onlyTrashed()->find($id); // Fetch even soft deleted jobs
+            $job = Job::withTrashed()->find($id); // Fetch even soft deleted jobs
 
             if (!$job) 
             {
