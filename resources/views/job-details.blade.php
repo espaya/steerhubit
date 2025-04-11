@@ -46,7 +46,7 @@
                      <div class="rts__job__card__big bg-transparent p-0 position-relative z-1 flex-wrap justify-content-between d-flex gap-4 align-items-center">
                         <div class="d-flex gap-4 align-items-center flex-md-row flex-column mx-auto mx-md-0">
                            <div class="company__icon rounded-2 bg-white">
-                              <img class="" src="{{ $employer_avatar ? asset('uploads/avatars/' . $employer_avatar->avatar) : asset('assets/img/dashboard/profile.png')}}" alt="">
+                              <img class="" src="{{ $employer_avatar && $employer_avatar->avatar ? asset('uploads/avatars/' . $employer_avatar->avatar) : asset('assets/img/dashboard/profile.png')}}" alt="">
                            </div>
                            <div class="job__meta w-100 d-flex text-center text-md-start flex-column gap-2">
                               <div class="">
@@ -96,7 +96,7 @@
                         {!! html_entity_decode($job->description) !!}
                      </div>
                      <div class="d-flex flex-wrap gap-4 mt-40 mb-60">
-                        <a data-id="{{ $job->id }}" id="apply-job-1" href="#" class="rts__btn apply__btn fw-bold apply-job">Apply This Possition</a>
+                        <a data-id="{{ $job->id }}" id="apply-job-1" href="#" class="rts__btn apply__btn fw-bold apply-job">Apply This Position</a>
                      </div>
                   </div>
                   @if($job && $job->video)
@@ -114,11 +114,21 @@
                <div class="col-lg-4 d-flex flex-column gap-40">
                   <div class="company__card">
                      <div class="icon">
-                        <img src="{{ $employer_avatar ? asset('uploads/avatars/' . $employer_avatar->avatar) : asset('assets/img/dashboard/profile.png')}}" alt="">
+                        <img src="{{ $employer_avatar && $employer_avatar->avatar ? asset('uploads/avatars/' . $employer_avatar->avatar) : asset('assets/img/dashboard/profile.png')}}" alt="">
                      </div>
                      <h5 class="company__name mt-20">{{ $employer_website ? $employer_website : ''  }}</h5>
-                     <a href="{{ $employer_website ? $employer_website : ''  }}" class="company__link d-block mt-20" aria-label="Visit Website" target="_blank">Visit Website</a>
-                     <a data-id="{{ $job->id }}" id="apply-job-2" href="#" class="rts__btn apply__btn mt-40 apply-job">Apply This Possition</a>
+                     @php
+                        $website = $employer_website;
+                        if ($website && !preg_match('/^(https?:\/\/|www\.)/i', $website)) {
+                           $website = 'https://' . $website;
+                        }
+                     @endphp
+                     @if($employer_website)
+                     <a href="{{ $employer_website ? $website : ''  }}" class="company__link d-block mt-20" aria-label="Visit Website" target="_blank">Visit Website</a>
+                     @elseif($job->website)
+                     <a href="{{ $job->website ? $job->website : ''  }}" class="company__link d-block mt-20" aria-label="Visit Website" target="_blank">Visit Website</a>
+                     @endif
+                     <a data-id="{{ $job->id }}" id="apply-job-2" href="#" class="rts__btn apply__btn mt-40 apply-job">Apply This Position</a>
                   </div>
                   <div class="job__overview">
                      <h6 class="fw-semibold mb-20">Job Overview</h6>
@@ -208,7 +218,7 @@
                      <div class="rts__job__card style__five">
                         <div class="d-flex align-items-center justify-content-between">
                            <div class="company__icon">
-                              <img width="100%" height="100%" src="{{ Auth::check() && Auth::user()->avatar ? asset('uploads/avatars/' . Auth::user()->avatar) : asset('assets/img/home-1/company/microsoft.svg')}}" alt="">
+                              <img width="100%" height="100%" src="{{ $employer_avatar && $employer_avatar->avatar ? asset('uploads/avatars/' . $employer_avatar->avatar) : asset('assets/img/dashboard/profile.png')}}" alt="">
                            </div>
                            <div class="featured__option">
                               <span>Featured</span>
