@@ -63,8 +63,16 @@ class ManagementBlogController extends Controller
                 // Check if category exists before attempting to decrement count
                 if ($category) 
                 {
-                    $category->count--;
+                    $category->category_count--;
                     $category->save();
+                }
+
+                // delete featured image from dir
+                $featuredImage = public_path('uploads/posts/' . $post->featured_image);
+                
+                if(file_exists($featuredImage))
+                {
+                    unlink($featuredImage);
                 }
     
                 // Delete the post
