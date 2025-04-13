@@ -63,7 +63,7 @@
                         </li>
 
                         <li class="has-child">
-                            <a href="#" class="{{ (request()->routeIs('management.blog') || request()->routeIs('management.blog.create')) ? 'active' : '' }}">
+                            <a href="#" class="{{ (request()->routeIs('management.blog') || request()->routeIs('management.blog.create') || request()->routeIs('management.blog.category')) ? 'active' : '' }}">
                                 <span data-feather="briefcase" class="nav-icon"></span>
                                 <span class="menu-text">Blog</span>
                                 <span class="toggle-icon"></span>
@@ -76,16 +76,16 @@
                                     <a href="{{ route('management.blog.create') }}" class="{{ request()->routeIs('management.blog.create') ? 'active' : '' }}">Add New</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('management.jobs') }}" class="">Categories</a>
+                                    <a href="{{ route('management.blog.category') }}" class="{{ request()->routeIs('management.blog.category') ? 'active' : '' }}">Categories</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('management.applied.jobs') }}" class="">Comments</a>
+                                    <a href="#" class="">Comments</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('management.trash.jobs') }}" class="">Trash (Blog)</a>
+                                    <a href="#" class="">Trash (Blog)</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('management.trash.jobs') }}" class="">Trash (Comment)</a>
+                                    <a href="#" class="">Trash (Comment)</a>
                                 </li>
                             </ul>
                         </li>
