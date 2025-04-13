@@ -67,7 +67,7 @@ class BlogController extends Controller
             return view('errors.404');
         }
 
-        $latest = Post::orderBy('id', 'DESC')->paginate(3);
+        $latest = Post::where('status', 'Publish')->orderBy('id', 'DESC')->paginate(3);
 
         // Fetch tags from all posts and merge them into a single array
         $tags = Post::orderBy('id', 'DESC')->pluck('tags');
