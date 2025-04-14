@@ -9,6 +9,7 @@
       <meta name="keywords" content="Job, Resume, Employer, Agency">
       <link rel="canonical" href="https://html.themewant.com/jobpath">
       <meta name="robots" content="index, follow">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <!-- for open graph social media -->
       <meta property="og:title" content="Your Ultimate Job HTML Template">
       <meta property="og:description" content="Your Ultimate Job HTML Template">
@@ -83,6 +84,9 @@
                         {!! html_entity_decode($post->description) !!}
                         </div>
 
+                        <p hidden id="post-slug">{{ $post->slug }}</p>
+                        <p hidden id="post-id">{{ $post->id }}</p>
+
                         <h6 class="mt-30 mb-20 font-20 fw-medium">Tags</h6>
                         <div class="job__tags is__blog__details mb-30 d-flex flex-wrap gap-3">
                             @if($post && $post->tags)
@@ -120,67 +124,7 @@
                          </div>
                          <!-- share end -->
 
-                         <!-- comment list -->
-                          <h6 class="fw-semibold mb-30">Comment</h6>
-                          <ul class="comment__list">
-                            <li>
-                                <div class="is__content">
-                                    <div class="d-flex gap-3">
-                                        <img height="60" width="60" src="{{ asset('assets/img/author/1.svg')}}" alt="" class="rounded-2 mb-3">
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="font-20 text-dark fw-medium">Jonathon Doe</a>
-                                            <span>a week ago</span>
-                                        </div>
-                                    </div>
-                                    <p>I still have a lot of studying to do using this course and the other practice exams, but so far it's been great! I have not taken my Security+ exam as well, so I'll update this at a later time.</p>
-                                    <a href="#" class="rts__btn reply__btn mt-3">Reply</a>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="is__content">
-                                    <div class="d-flex gap-3">
-                                        <img height="60" width="60" src="{{asset('assets/img/author/1.svg')}}" alt="" class="rounded-2 mb-3">
-                                        <div class="d-flex flex-column">
-                                            <a href="#" class="font-20 text-dark fw-medium">Jonathon Doe</a>
-                                            <span>a week ago</span>
-                                        </div>
-                                    </div>
-                                    <p>I still have a lot of studying to do using this course and the other practice exams, but so far it's been great! I have not taken my Security+ exam as well, so I'll update this at a later time.</p>
-                                    <a href="#" class="rts__btn reply__btn mt-3">Reply</a>
-                                </div>
-                            </li>
-                          </ul>
-                         <!-- comment list end -->
-
-                         <!-- comment form -->
-                         <div class="review__form job__contact mt-40">
-                            <h6 class="fw-semibold mb-30">Leave a Comment</h6>
-                            <form action="#" class="d-flex flex-column gap-4">
-                                <div class="row row-cols-lg-2 row-cols-1 gap-3 gap-lg-0">
-                                    <div class="search__item">
-                                        <label for="name" class="mb-3 font-20 fw-medium text-dark text-capitalize">Name</label>
-                                        <div class="position-relative">
-                                            <input type="text" id="name" placeholder="Your Name" autocomplete="off">
-                                            <i class="fa-light fa-user"></i>
-                                        </div>
-                                    </div>
-                                    <div class="search__item">
-                                        <label for="bemail" class="mb-3 font-20 fw-medium text-dark text-capitalize">Your Email</label>
-                                        <div class="position-relative">
-                                            <input type="email" id="bemail" placeholder="Enter your email" autocomplete="off">
-                                            <i class="rt-mailbox"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="search__item">
-                                    <label class="mb-3 font-20 fw-medium text-dark text-capitalize" for="message">Your Comment</label>
-                                    <textarea name="message" id="message" placeholder="Message"></textarea>
-                                    <i class="fa-thin fa-comment-lines"></i>
-                                </div>
-                                <button type="submit" class="rts__btn fill__btn be-1 max-content apply__btn">Submit Comment</button>
-                            </form>
-                        </div>
-                         <!-- comment form end -->
+                         @include('templates/comments')
 
                     </div>
                      
@@ -395,5 +339,12 @@
       <!-- all plugin js -->
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
+      <script src="{{asset('assets/js/add-comment.js')}}"></script>
+      
+      <script src="{{ asset('assets/js/new-otp.js') }}"></script>
+      <script src="{{ asset('assets/js/signup.js') }}"></script>
+      <script src="{{ asset('assets/js/subscribe.js') }}"></script>
+      <script src="{{ asset('assets/js/signin.js') }}"></script>
+      <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
    </body>
 </html>

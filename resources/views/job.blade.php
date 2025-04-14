@@ -563,7 +563,12 @@
       <!-- all plugin js -->
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
-      
       <script src="{{asset('assets/js/apply-job.js')}}"></script>
+
+      <script src="{{ asset('assets/js/new-otp.js') }}"></script>
+      <script src="{{ asset('assets/js/signup.js') }}"></script>
+      <script src="{{ asset('assets/js/subscribe.js') }}"></script>
+      <script src="{{ asset('assets/js/signin.js') }}"></script>
+      <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
    </body>
 </html>

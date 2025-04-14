@@ -437,8 +437,8 @@
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script src="{{ asset('assets/js/new-otp.js') }}"></script>
       <!-- jQuery AJAX -->
+      <script src="{{ asset('assets/js/new-otp.js') }}"></script>
       <script src="{{ asset('assets/js/signup.js') }}"></script>
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
       <script src="{{ asset('assets/js/signin.js') }}"></script>
