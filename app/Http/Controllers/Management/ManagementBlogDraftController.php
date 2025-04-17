@@ -11,7 +11,7 @@ class ManagementBlogDraftController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $perPage = $request->input('per_page', 10);
+        $perPage = $request->input('per_page', 11);
 
         $query = Post::where('status', 'Draft')->orWhere('status', 'Schedule'); 
 
