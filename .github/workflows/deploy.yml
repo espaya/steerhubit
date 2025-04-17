@@ -6,7 +6,7 @@ on:
       - main  # or master, depending on your branch
 
 jobs:
-  ftp-deploy:
+  ftp-deploy: 
     name: Upload via FTP
     runs-on: ubuntu-latest
 
