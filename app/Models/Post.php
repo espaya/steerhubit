@@ -18,4 +18,9 @@ class Post extends Model
         'featured_image',
         'slug'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(PostCategory::class, 'userID');
+    }
 }

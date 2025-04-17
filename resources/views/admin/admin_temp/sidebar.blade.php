@@ -64,7 +64,7 @@
 
                         <li class="has-child">
                             <a href="#" class="{{ (request()->routeIs('management.blog') || request()->routeIs('management.blog.create') || request()->routeIs('management.blog.category')) ? 'active' : '' }}">
-                                <span data-feather="briefcase" class="nav-icon"></span>
+                                <span data-feather="book-open" class="nav-icon"></span>
                                 <span class="menu-text">Blog</span>
                                 <span class="toggle-icon"></span>
                             </a>
@@ -79,7 +79,10 @@
                                     <a href="{{ route('management.blog.category') }}" class="{{ request()->routeIs('management.blog.category') ? 'active' : '' }}">Categories</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="">Comments</a>
+                                    <a href="{{ route('management.blog.draft') }}" class="{{ request()->routeIs('management.blog.draft') ? 'active' : '' }}">Draft</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.comments') }}" class="{{ request()->routeIs('admin.comments') ? 'active' : '' }}">Comments</a>
                                 </li>
                                 <li>
                                     <a href="#" class="">Trash (Blog)</a>
@@ -88,6 +91,13 @@
                                     <a href="#" class="">Trash (Comment)</a>
                                 </li>
                             </ul>
+                            <li>
+                                <a href="{{ route('management.subscribers') }}" class="{{ request()->routeIs('management.subscribers') ? 'active' : '' }}">
+                                    <span data-feather="user-plus" class="nav-icon"></span>
+                                    <span class="menu-text">Subscribers</span>
+                                    <span class="toggle-icon"></span>
+                                </a>
+                            </li>
                         </li>
 
                         

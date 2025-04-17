@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Candidate\CandidateJobController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Employer\EmployerJobController;
 use App\Http\Controllers\Employer\EmployerProfileController;
@@ -18,6 +19,9 @@ use App\Http\Controllers\Management\ManagementEmployersController;
 use App\Http\Controllers\Management\ManagementJobsController;
 use App\Http\Controllers\Management\ManagementSettingsController;
 use App\Http\Controllers\Management\ManagementBlogController;
+use App\Http\Controllers\Management\ManagementBlogDraftController;
+use App\Http\Controllers\Management\ManagementCommentController;
+use App\Http\Controllers\Management\ManagementSubscribersController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,6 +59,7 @@ Route::get('/', function () {
     Route::get('/blog', [BlogController::class, 'index'])->name('blog');
     Route::get('/blog/search', [BlogController::class, 'index'])->name('blog.search');
     Route::get('/blog/{slug}', [BlogController::class, 'view'])->name('blog.view.single');
+    Route::post('/blog/{slug}/comment/{id}', [CommentsController::class, 'store'])->name('comments.store');
 
     Route::get('/choose-subscription-plan', function(){
         return view('choose-subscription');
@@ -263,6 +268,11 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
         'store'
     ])->name('management.blog.store');
 
+    Route::get('0246520325/management/comments', [ManagementCommentController::class, 'index'])->name('admin.comments');
+
+    Route::post('0246520325/management/comments/approve/{id}', [ManagementCommentController::class, 'approveComment'])->name('admin.comments.approve');
+
+
     Route::delete('0246520325/management/blog/delete/{id}', [
         ManagementBlogController::class, 
         'destroy'
@@ -278,15 +288,29 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
         'index'
     ])->name('management.blog.category.search');
 
+
     Route::post('0246520325/management/blog/category/store', [
-        ManagementBlogCategoryController::class, 
+        ManagementBlogCategoryController::class,
         'store'
     ]);
+    
 
     Route::post('0246520325/management/blog/category/update/{id}', [
         ManagementBlogCategoryController::class, 
         'update'
     ]);
+
+    Route::get('0246520325/management/subscribers', [
+        ManagementSubscribersController::class, 
+        'index'
+    ])->name('management.subscribers');
+
+    Route::delete('0246520325/management/subscribers/delete/{id}', [
+        ManagementSubscribersController::class, 
+        'destroy'
+    ])->name('management.subscribers.delete');
+
+    Route::get('0246520325/management/blog/draft', [ManagementBlogDraftController::class, 'index'])->name('management.blog.draft');
 
 
 });

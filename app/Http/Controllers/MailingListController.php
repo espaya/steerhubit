@@ -24,8 +24,10 @@ class MailingListController extends Controller
         {
             DB::beginTransaction();
 
+            $subscribe_email = htmlspecialchars(trim($request->subscribe_email), ENT_QUOTES, 'utf-8');
+
             MailingList::create([
-                'subscribe_email' => Crypt::encryptString($request->subscribe_email) // encrypt data
+                'subscribe_email' => $subscribe_email // encrypt data
             ]);
 
             DB::commit();

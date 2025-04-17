@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\PostComments;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -65,6 +66,14 @@ class ManagementBlogController extends Controller
                 {
                     $category->category_count--;
                     $category->save();
+                }
+
+                // delete it's comments 
+                $comment = PostComments::where('post_id', $id)->get();
+                
+                if($comment)
+                {
+                    $comment->delete();
                 }
 
                 // delete featured image from dir

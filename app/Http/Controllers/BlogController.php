@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\PostComments;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -33,7 +34,7 @@ class BlogController extends Controller
             : [10]; // fallback
 
         
-        $latest = Post::orderBy('id', 'DESC')->paginate(3);
+        $latest = Post::where('status', 'Publish')->orderBy('id', 'DESC')->paginate(3);
 
          // Fetch tags from all posts and merge them into a single array
          $tags = Post::orderBy('id', 'DESC')->pluck('tags');
@@ -49,12 +50,14 @@ class BlogController extends Controller
          // Get all categories
          $categories = PostCategory::all();
 
+        
+
         return view('blog', [
             'posts' => $posts, 
             'perPageOptions' => $perPageOptions, 
             'latest' => $latest, 
             'tags' => $tagsArray,
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 
@@ -83,8 +86,15 @@ class BlogController extends Controller
          // Get all categories
          $categories = PostCategory::all();
 
+         $comments = PostComments::where('status', 'APPROVED')->where('post_id', $post->id)->get();
 
-        return view('blog-single', ['post' => $post, 'latest' => $latest, 'tags' => $tagsArray, 'categories' => $categories]);
+        return view('blog-single', [
+            'post' => $post, 
+            'latest' => $latest, 
+            'tags' => $tagsArray, 
+            'categories' => $categories,
+            'comments' => $comments
+        ]);
     }
 
 }

@@ -92,7 +92,7 @@
                                 <div class="blog__meta">
                                     <div class="blog__meta__info d-flex gap-3 mt-3 mb-2 flex-wrap">
                                         <span class="d-flex gap-2 align-items-center fw-medium"> <img class="svg" src="{{asset('assets/img/icon/calender.svg')}}" alt="" height="16" width="16"> {{ \Carbon\Carbon::parse($post->created_at)->format('F j, Y') }}</span>
-                                        <a href="#" class="d-flex gap-2 align-items-center fw-medium"> <img class="svg" src="{{asset('assets/img/icon/user.svg')}}" alt="" width="12" height="12"> Jon Adom</a>
+                                        <a href="#" class="d-flex gap-2 align-items-center fw-medium"> <img class="svg" src="{{asset('assets/img/icon/user.svg')}}" alt="" width="12" height="12"> Admin </a>
                                     </div>
                                     <a href="{{ route('blog.view.single', ['slug' => $post->slug]) }}" class="h6 fw-semibold">
                                         {{ $post->title }}
