@@ -24,5 +24,5 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
         local-dir: C:\Users\the13thGod\Documents\Projects\steerhubit\steerhubit # Root directory of your repo
-        server-dir: ${{ secrets.FTP_TARGET }}
+        server-dir: server-dir: domains/steerhubit.com/public_html/
         
