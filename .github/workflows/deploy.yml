@@ -1,5 +1,7 @@
 name: Deploy to Hostinger via FTP
 
+run: ls -la
+
 on:
   push:
     branches:
