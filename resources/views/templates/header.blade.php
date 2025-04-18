@@ -18,7 +18,7 @@
                                     <li class="navigation__menu--item"><a class="navigation__menu--item__link" href="{{ route('about') }}">About</a></li>
                                     
                                     <li class="navigation__menu--item"><a class="navigation__menu--item__link" href="{{ route('pricing') }}">Pricing</a></li>
-                                    <li class="navigation__menu--item"><a class="navigation__menu--item__link" href="#">Browse Employees</a></li>
+                                    <li class="navigation__menu--item"><a class="navigation__menu--item__link" href="#">Browse Candidates</a></li>
                                 </ul>
                             </nav>
                         </div>
