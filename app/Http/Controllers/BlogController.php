@@ -86,7 +86,12 @@ class BlogController extends Controller
          // Get all categories
          $categories = PostCategory::all();
 
-         $comments = PostComments::where('status', 'APPROVED')->where('post_id', $post->id)->get();
+         $comments = PostComments::where('status', 'APPROVED')
+            ->whereNull('parent_id')
+            ->with('replies')
+            ->where('post_id', $post->id)
+            ->latest()
+            ->get();
 
         return view('blog-single', [
             'post' => $post, 

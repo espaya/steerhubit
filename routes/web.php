@@ -60,6 +60,7 @@ Route::get('/', function () {
     Route::get('/blog/search', [BlogController::class, 'index'])->name('blog.search');
     Route::get('/blog/{slug}', [BlogController::class, 'view'])->name('blog.view.single');
     Route::post('/blog/{slug}/comment/{id}', [CommentsController::class, 'store'])->name('comments.store');
+    Route::post('/blog/{slug}/comment/reply/{id}', [CommentsController::class, 'store'])->name('comments.store.reply');
 
     Route::get('/choose-subscription-plan', function(){
         return view('choose-subscription');

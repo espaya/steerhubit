@@ -191,11 +191,48 @@
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
       <script src="{{asset('assets/js/add-comment.js')}}"></script>
+      <script src="{{asset('assets/js/reply-comment.js')}}"></script>
       
       <script src="{{ asset('assets/js/new-otp.js') }}"></script>
       <script src="{{ asset('assets/js/signup.js') }}"></script>
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
       <script src="{{ asset('assets/js/signin.js') }}"></script>
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
+      <script>
+         $(document).on('click', '.comment-reply-link', function(e) {
+            e.preventDefault();
+            
+            // Get the comment details
+            const commentId = $(this).data('comment-id');
+            const commentName = $(this).closest('.is__content').find('#comment-name').text();
+            
+            // Hide/show elements
+            $('#comment-form').hide();
+            $('#reply-comment').show();
+            $('#cancel-reply').show();
+            
+            // Set parent_id and show comment name
+            $('#reply-post-comment-form input[name="parent_id"]').val(commentId);
+            $('#show-comment-name').html(`Replying to: <b>${commentName}</b>`);
+            
+            // Smooth scroll to reply form
+            $('html, body').animate({
+               scrollTop: $('#reply-comment').offset().top - 100
+            }, 100);
+            
+            // Focus on the comment textarea
+            $('#reply-comment textarea').focus();
+         });
+
+         $(document).on('click', '#cancel-reply', function() {
+            $('#reply-comment').hide();
+            $('#comment-form').show();
+            $('#cancel-reply').hide();
+            
+            // Clear the parent_id and comment name
+            $('#reply-post-comment-form input[name="parent_id"]').val('');
+            $('#show-comment-name').html('');
+         });
+      </script>
    </body>
 </html>
