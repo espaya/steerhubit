@@ -17,8 +17,6 @@ $(document).ready(function () {
 
         const commentID = $('#parent_id').val();
 
-        alert(commentID);
-
         // Prepare form data
         const formData = {
             comment_name: $('#comment-name').val(),
@@ -44,7 +42,7 @@ $(document).ready(function () {
                         .addClass('alert alert-success')
                         .text(response.message);
 
-                    $('#post-comment-form')[0].reset(); // Reset form
+                    $('#reply-post-comment-form')[0].reset(); // Reset form
                 } else {
                     $('#comment-response')
                         .removeClass('d-none alert-success')
@@ -57,7 +55,7 @@ $(document).ready(function () {
                     $('#comment-response').fadeOut(500, function () {
                         $(this).addClass('d-none').removeClass('alert alert-success alert-danger').text('').show();
                     });
-                }, 5000);
+                }, 2000);
             },
             error: function (xhr) {
                 if (xhr.status === 422) {
