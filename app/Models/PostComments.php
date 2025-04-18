@@ -24,7 +24,9 @@ class PostComments extends Model
 
     public function replies()
     {
-        return $this->hasMany(PostComments::class, 'parent_id')->latest();
+        return $this->hasMany(PostComments::class, 'parent_id')
+        ->where('status', 'APPROVED') // Only approved replies
+        ->with('replies'); // Eager load replies of replies recursively
     }
 
     public function parent()

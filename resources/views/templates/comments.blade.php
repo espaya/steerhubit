@@ -1,5 +1,5 @@
 <!-- comment list -->
-<h6 class="fw-semibold mb-30">Comment</h6>
+<h6 class="fw-semibold mb-30">Comment ({{ $count_comments }})</h6>
                         <ul class="comment__list">
                             @forelse($comments as $comment)
                                 @include('components.comment-item', ['comment' => $comment])

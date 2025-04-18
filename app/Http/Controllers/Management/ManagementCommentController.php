@@ -14,7 +14,7 @@ class ManagementCommentController extends Controller
 {
     public function index()
     {
-        $comments = PostComments::with('post')->where('status', 'APPROVED')->orderBy('id', 'DESC')->get();
+        $comments = PostComments::with('post')->orderBy('id', 'DESC')->get();
         return view('admin.blog.admin-comments', ['comments' => $comments]);
     }
 

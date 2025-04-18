@@ -93,12 +93,18 @@ class BlogController extends Controller
             ->latest()
             ->get();
 
+        $count_comments = PostComments::where('status', 'APPROVED')
+            ->with('replies')
+            ->where('post_id', $post->id)
+            ->count();
+
         return view('blog-single', [
             'post' => $post, 
             'latest' => $latest, 
             'tags' => $tagsArray, 
             'categories' => $categories,
-            'comments' => $comments
+            'comments' => $comments,
+            'count_comments'=> $count_comments
         ]);
     }
 
