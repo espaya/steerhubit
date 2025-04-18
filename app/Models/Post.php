@@ -19,8 +19,9 @@ class Post extends Model
         'slug'
     ];
 
-    public function category()
+    public function categoryName()
     {
-        return $this->belongsTo(PostCategory::class, 'userID');
+        return $this->belongsTo(PostCategory::class, 'category', 'id'); // 'category' is the foreign key in 'post' table
     }
+
 }

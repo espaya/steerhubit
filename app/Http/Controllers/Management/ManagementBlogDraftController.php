@@ -13,7 +13,7 @@ class ManagementBlogDraftController extends Controller
         $search = $request->input('search');
         $perPage = $request->input('per_page', 11);
 
-        $query = Post::where('status', 'Draft')->orWhere('status', 'Schedule'); 
+        $query = Post::with('categoryName')->whereIn('status', ['Draft', 'Schedule']); 
 
         if ($search) 
         {

@@ -16,7 +16,7 @@
                                             <span> {{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }} </span>
                                         </div>
                                     </div>
-                                    <p> {{!! html_entity_decode($comment->comment) !!}} </p>
+                                    <p> {{ html_entity_decode($comment->comment) }} </p>
                                     <a href="#" class="rts__btn reply__btn mt-3">Reply</a>
                                 </div>
                             </li>

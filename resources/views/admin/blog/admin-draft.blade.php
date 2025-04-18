@@ -104,7 +104,7 @@
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    {{ $post->category }}
+                                                    {{ $post->categoryName->category_name }}
                                                 </div>
                                             </td>
                                             <td>
@@ -134,9 +134,6 @@
                                             </td>
                                             <td>
                                                 <div class="d-inline-block">
-                                                    @if($post->status == 'Publish')
-                                                    <span class="media-badge color-white bg-success">published</span>
-                                                    @endif
                                                     @if($post->status == 'Draft')
                                                     <span class="media-badge color-white bg-info">draft</span>
                                                     @endif
