@@ -20,7 +20,7 @@ class ManagementBlogController extends Controller
         $search = $request->input('search');
         $perPage = $request->input('per_page', 10);
 
-        $query = Post::where('status', 'Publish');
+        $query = Post::with('categoryName')->where('status', 'Publish');
 
         if ($search) 
         {

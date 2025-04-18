@@ -154,7 +154,7 @@
                                                     </td>
                                                     <td>
                                                         <div class="userDatatable-content">
-                                                            {{ $post->category }}
+                                                            {{ $post->categoryName->category_name }}
                                                         </div>
                                                     </td>
                                                     <td>
