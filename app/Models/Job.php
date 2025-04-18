@@ -30,4 +30,9 @@ class Job extends Model
         'userID',
         'website'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userID');
+    }
 }
