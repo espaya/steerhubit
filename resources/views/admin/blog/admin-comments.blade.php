@@ -96,7 +96,7 @@
                                                 </div>
                                             </th>
                                             <th>
-                                                <span class="userDatatable-title">emaill</span>
+                                                <span class="userDatatable-title">comment</span>
                                             </th>
                                             <th>
                                                 <span class="userDatatable-title">Post</span>
@@ -117,25 +117,29 @@
                                     @forelse($comments as $comment)
 
                                         <tr>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <div class="userDatatable__imgWrapper d-flex align-items-center">
-                                                        <div class="checkbox-group-wrapper">
-                                                            <div class="checkbox-group d-flex">
-                                                                <div class="checkbox-theme-default custom-checkbox checkbox-group__single d-flex">
-                                                                    <input class="checkbox" type="checkbox" id="check-grp-12">
-                                                                    <label for="check-grp-12"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="userDatatable-inline-title">
-                                                        <a href="#" class="text-dark fw-500">
-                                                            <h6>{{ $comment->comment_name }}</h6>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                        <td>
+    <div class="d-flex flex-column" style="width: 500px; height: auto;">
+        <div class="userDatatable__imgWrapper d-flex align-items-center mb-2">
+            <div class="checkbox-group-wrapper">
+                <div class="checkbox-group d-flex">
+                    <div class="checkbox-theme-default custom-checkbox checkbox-group__single d-flex">
+                        <input class="checkbox" type="checkbox" id="check-grp-12">
+                        <label for="check-grp-12"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="userDatatable-inline-title">
+            <a href="#" class="text-dark fw-500" style="display: block;">
+                <h6 style="margin-bottom: 0; word-wrap: break-word; white-space: normal;">
+                    {{ html_entity_decode($comment->comment) }}
+                </h6>
+            </a>
+        </div>
+    </div>
+</td>
+
+
                                             <td>
                                                 <div class="userDatatable-content">
                                                 {{ $comment->comment_email }}
