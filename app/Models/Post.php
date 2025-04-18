@@ -17,7 +17,7 @@ class Post extends Model
         'schedule',
         'featured_image',
         'slug'
-    ];
+    ]; 
 
     public function categoryName()
     {
