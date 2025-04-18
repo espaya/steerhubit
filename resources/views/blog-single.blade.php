@@ -204,7 +204,7 @@
             
             // Get the comment details
             const commentId = $(this).data('comment-id');
-            const commentName = $(this).closest('.is__content').find('#comment-name').text();
+            const commentName = $(this).closest('.is__content').find('#get-comment-name').text();
             
             // Hide/show elements
             $('#comment-form').hide();
