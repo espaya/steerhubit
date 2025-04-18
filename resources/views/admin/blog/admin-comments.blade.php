@@ -45,9 +45,10 @@
                                     <h4 class="text-capitalize fw-500 breadcrumb-title">Post Comments</h4>
                                 </div>
 
-                                <form action="/" class="d-flex align-items-center user-member__form my-sm-0 my-2">
+                                <form action="{{ route('comments.search') }}" class="d-flex align-items-center user-member__form my-sm-0 my-2">
+                                    @csrf
                                     <span data-feather="search"></span>
-                                    <input class="form-control mr-sm-2 border-0 box-shadow-none" type="search" placeholder="Search by Name" aria-label="Search">
+                                    <input name="search" autocomplete="off" class="form-control mr-sm-2 border-0 box-shadow-none" type="search" placeholder="Search by Name" aria-label="Search">
                                 </form>
 
                             </div>
@@ -99,7 +100,7 @@
                                                 <span class="userDatatable-title">comment</span>
                                             </th>
                                             <th>
-                                                <span class="userDatatable-title">Post</span>
+                                                <span class="userDatatable-title">Post Title</span>
                                             </th>
                                             <th>
                                                 <span class="userDatatable-title">date</span>
@@ -117,27 +118,27 @@
                                     @forelse($comments as $comment)
 
                                         <tr>
-                                        <td>
-    <div class="d-flex flex-column" style="width: 500px; height: auto;">
-        <div class="userDatatable__imgWrapper d-flex align-items-center mb-2">
-            <div class="checkbox-group-wrapper">
-                <div class="checkbox-group d-flex">
-                    <div class="checkbox-theme-default custom-checkbox checkbox-group__single d-flex">
-                        <input class="checkbox" type="checkbox" id="check-grp-12">
-                        <label for="check-grp-12"></label>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="userDatatable-inline-title">
-            <a href="#" class="text-dark fw-500" style="display: block;">
-                <h6 style="margin-bottom: 0; word-wrap: break-word; white-space: normal;">
-                    {{ html_entity_decode($comment->comment) }}
-                </h6>
-            </a>
-        </div>
-    </div>
-</td>
+                                            <td>
+                                                <div class="d-flex flex-column" style="width: 500px; height: auto;">
+                                                    <div class="userDatatable__imgWrapper d-flex align-items-center mb-2">
+                                                        <div class="checkbox-group-wrapper">
+                                                            <div class="checkbox-group d-flex">
+                                                                <div class="checkbox-theme-default custom-checkbox checkbox-group__single d-flex">
+                                                                    <input class="checkbox" type="checkbox" id="check-grp-12">
+                                                                    <label for="check-grp-12"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="userDatatable-inline-title">
+                                                        <a href="#" class="text-dark fw-500" style="display: block;">
+                                                            <h6 style="margin-bottom: 0; word-wrap: break-word; white-space: normal;">
+                                                                {{ html_entity_decode($comment->comment) }}
+                                                            </h6>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
 
 
                                             <td>
@@ -147,7 +148,7 @@
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    <a target="_blank" href="{{ route('blog.view.single', ['slug' => $comment->post->slug]) }}" >{{ $comment->post->title }}</a>
+                                                    <a target="_blank" href="{{ route('blog.view.single', ['slug' => $comment->post->slug]) }}" >{{ html_entity_decode($comment->post->slug) }}</a>
                                                 </div>
                                             </td>
                                             <td>
@@ -168,7 +169,7 @@
                                             <td>
                                                 <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
                                                     <li>
-                                                        <a href="#" class="view">
+                                                        <a target="_blank" href="{{ route('blog.view.single', ['slug' => $comment->post->slug]) }}" class="view">
                                                             <span data-feather="eye"></span></a>
                                                     </li>
                                                     <li>
@@ -202,32 +203,56 @@
                                 </table>
                             </div>
                             <div class="d-flex justify-content-end pt-30">
-
-                                <nav class="atbd-page ">
+                                <nav class="atbd-page">
                                     <ul class="atbd-pagination d-flex">
+
+                                        {{-- Previous Page --}}
                                         <li class="atbd-pagination__item">
-                                            <a href="#" class="atbd-pagination__link pagination-control"><span class="la la-angle-left"></span></a>
-                                            <a href="#" class="atbd-pagination__link"><span class="page-number">1</span></a>
-                                            <a href="#" class="atbd-pagination__link active"><span class="page-number">2</span></a>
-                                            <a href="#" class="atbd-pagination__link"><span class="page-number">3</span></a>
-                                            <a href="#" class="atbd-pagination__link pagination-control"><span class="page-number">...</span></a>
-                                            <a href="#" class="atbd-pagination__link"><span class="page-number">12</span></a>
-                                            <a href="#" class="atbd-pagination__link pagination-control"><span class="la la-angle-right"></span></a>
-                                            <a href="#" class="atbd-pagination__option">
-                                            </a>
+                                            @if ($comments->onFirstPage())
+                                                <span class="atbd-pagination__link pagination-control disabled"><span class="la la-angle-left"></span></span>
+                                            @else
+                                                <a href="{{ $comments->previousPageUrl() }}" class="atbd-pagination__link pagination-control"><span class="la la-angle-left"></span></a>
+                                            @endif
                                         </li>
+
+                                        {{-- Page Numbers --}}
+                                        @for ($i = 1; $i <= $comments->lastPage(); $i++)
+                                            <li class="atbd-pagination__item">
+                                                <a href="{{ $comments->url($i) }}" class="atbd-pagination__link {{ $comments->currentPage() == $i ? 'active' : '' }}">
+                                                    <span class="page-number">{{ $i }}</span>
+                                                </a>
+                                            </li>
+                                        @endfor
+
+                                        {{-- Next Page --}}
                                         <li class="atbd-pagination__item">
-                                            <div class="paging-option">
-                                                <select name="page-number" class="page-selection">
-                                                    <option value="20">20/page</option>
-                                                    <option value="40">40/page</option>
-                                                    <option value="60">60/page</option>
-                                                </select>
-                                            </div>
+                                            @if ($comments->hasMorePages())
+                                                <a href="{{ $comments->nextPageUrl() }}" class="atbd-pagination__link pagination-control"><span class="la la-angle-right"></span></a>
+                                            @else
+                                                <span class="atbd-pagination__link pagination-control disabled"><span class="la la-angle-right"></span></span>
+                                            @endif
+                                        </li>
+
+                                        {{-- Per Page Dropdown --}}
+                                        <li class="atbd-pagination__item">
+                                            <form method="GET" id="perPageForm">
+                                                @foreach(request()->except('per_page') as $key => $value)
+                                                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                                                @endforeach
+
+                                                <div class="paging-option">
+                                                    <select name="per_page" class="page-selection" onchange="document.getElementById('perPageForm').submit();">
+                                                        @foreach ($perPageOptions as $option)
+                                                            <option value="{{ $option }}" {{ $perPage == $option ? 'selected' : '' }}>
+                                                                {{ $option }}/page
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </form>
                                         </li>
                                     </ul>
                                 </nav>
-
 
                             </div>
                         </div>

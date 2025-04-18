@@ -62,6 +62,7 @@ Route::get('/', function () {
     Route::post('/blog/{slug}/comment/{id}', [CommentsController::class, 'store'])->name('comments.store');
     Route::post('/blog/{slug}/comment/reply/{id}', [CommentsController::class, 'store'])->name('comments.store.reply');
 
+
     Route::get('/choose-subscription-plan', function(){
         return view('choose-subscription');
     })->name('choose.subscription');
@@ -272,6 +273,7 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
     Route::get('0246520325/management/comments', [ManagementCommentController::class, 'index'])->name('admin.comments');
 
     Route::post('0246520325/management/comments/approve/{id}', [ManagementCommentController::class, 'approveComment'])->name('admin.comments.approve');
+    Route::get('0246520325/management/comments/search', [ManagementCommentController::class, 'index'])->name('comments.search');
 
 
     Route::delete('0246520325/management/blog/delete/{id}', [
