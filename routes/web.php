@@ -7,6 +7,7 @@ use App\Http\Controllers\Candidate\CandidateJobController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Employer\EmployerBrowseCandidateController;
 use App\Http\Controllers\Employer\EmployerJobController;
 use App\Http\Controllers\Employer\EmployerProfileController;
 use App\Http\Controllers\JobDetailsController;
@@ -109,14 +110,13 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
     Route::post('/employer-dashboard/my-job/submit-new', [EmployerJobController::class, 'store'])->name('employer.job.submit.new');
     Route::delete('/employer-dashboard/my-jobs/delete/{id}', [EmployerJobController::class, 'destroy'])->name('employer.job.delete');
 
-    Route::get('/employer-dashboard/candidate-list', function () {
-        return view('employer.employer-candidate-list');
-    })->name('employer.candidate.list');
 
     // Shortlist candidates
     Route::get('/employer-dashboard/candidate-shortlist', function () {
         return view('employer.employer-candidate-shortlist');
     })->name('employer.candidate.shortlist');
+
+    Route::get('/employer-dashboard/candidate-list', [EmployerBrowseCandidateController::class, 'candidateList'])->name('employer.candidate.list');
 
     Route::get('/employer-dashboard/package', function () {
         return view('employer.employer-package');
@@ -129,6 +129,11 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
     Route::get('/employer-dashboard/delete-profile', function () {
         return view('employer.employer-delete-profile');
     })->name('employer.delete.profile');
+
+    // browse employees
+    Route::get('/employer-dashboard/browse-candidates', [EmployerBrowseCandidateController::class, 'index'])->name('employer.browse.candidate');
+    Route::get('/employer-dashboard/browse-candidates/view', [EmployerBrowseCandidateController::class, 'view'])->name('employer.view.candidate');
+
 });
 
 
@@ -145,9 +150,8 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
         return view('employee.employee-resume');
     })->name('employee.resume');
 
-    Route::get('/candidate-dashboard/profile', function () {
-        return view('employee.employee-profile');
-    })->name('employee.profile');
+    Route::get('/candidate-dashboard/profile', [CandidateProfileController::class, 'index'])->name('employee.profile');
+    Route::post('/candidate-dashboard/profile/save', [CandidateProfileController::class, 'store'])->name('employee.profile.store');
 
     Route::post('/candidate/dashboard/profile/update', [CandidateProfileController::class, 'updateAvatar'])->name('candidate.update.avatar');
     Route::post('/candidate/dashboard/profile/delete-avatar', [CandidateProfileController::class, 'deleteAvatar']);
@@ -179,7 +183,7 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
     // Management route
     Route::get('/0246520325/management', [ManagementController::class, 'index'])->name('management');
     Route::get('0246520325/management/employers', [ManagementEmployersController::class, 'index'])->name('management.employers');
-    Route::get('0246520325/management/employees', [ManagementEmployeesController::class, 'index'])->name('management.employees');
+    Route::get('0246520325/management/candidates', [ManagementEmployeesController::class, 'index'])->name('management.employees');
     Route::get('0246520325/management/blocked-users', [ManagementBlockedUsers::class, 'index'])->name('management.blocked.users');
     Route::get('0246520325/management/jobs', [ManagementJobsController::class, 'index'])->name('management.jobs');
     Route::get('0246520325/management/jobs/search', [ManagementJobsController::class, 'index'])->name('management.jobs.search');

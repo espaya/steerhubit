@@ -58,14 +58,17 @@
 
                 <div id="avatar-message"></div>
 
-                <div class="my__profile__tab radius-16 bg-white">
-                    <nav>
-                        <div class="nav nav-tabs">
-                            <a class="nav-link active" href="#info">My Details</a>
-                            <a class="nav-link " href="#social">Social Links</a>
-                            <a class="nav-link" href="#address">Contact Information</a>                         
-                        </div>
-                    </nav>
+                @if(session('error'))
+                <div id="error-messages" class="alert alert-danger">{{ session('error') }}</div>
+                @endif 
+
+                @if(session('success'))
+                <div id="error-messages" class="alert alert-success"> {{ session('success') }} </div>
+                @endif
+
+                <form action="{{ route('employee.profile.store') }}" enctype="multipart/form-data" method="post">
+                    @csrf 
+                    <div class="my__profile__tab radius-16 bg-white">
                     <div class="my__details" id="info">
                         <div class="info__top">
                             <div class="author__image">
@@ -80,126 +83,58 @@
                             </div>
                         </div>
                         <div class="info__field">
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="name">Full Name</label>
-                                    <input name="fullname" value="{{ old('fullname') }}" type="text" id="name" placeholder="Full Name" autocomplete="off">
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="email">Email</label>
-                                    <input name="email" value="{{ old('email') }}" type="email" id="email" placeholder="jobpath@gmqail.com" autocomplete="off">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div class="rt-input-group">
+                                        <label for="name">Full Name</label>
+                                        <input name="fullname" value="{{ $profile ? $profile->fullname : old('fullname') }}" type="text" id="name" placeholder="Full Name" autocomplete="off">
+                                        @error('fullname')
+                                        <small style="color: red;"> {{ $message }} </small>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
+
+                            <div class="row row-cols-sm-3 row-cols-1 g-3">
                                 <div class="rt-input-group">
                                     <label for="phone">Phone</label>
-                                    <input name="phone" value="{{ old('phone') }}" type="text" id="phone" placeholder="+880171234567" autocomplete="off">
+                                    <input name="phone" value="{{ $profile ? $profile->phone : old('phone') }}" type="text" id="phone" placeholder="+880171234567" autocomplete="off">
+                                    @error('phone')
+                                        <small style="color: red;"> {{ $message }} </small>
+                                    @enderror
                                 </div>
+
                                 <div class="rt-input-group">
                                     <label for="dob">Date of Birth</label>
-                                    <input type="date" id="dob" name="dob" value="{{ old('dob') }}" autocomplete="off" >
+                                    <input type="date" id="dob" name="dob" value="{{ $profile ? $profile->dob : old('dob') }}" autocomplete="off">
+                                    @error('dob')
+                                        <small style="color: red;"> {{ $message }} </small>
+                                    @enderror
                                 </div>
-                            </div>
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
+
                                 <div class="rt-input-group">
                                     <label for="gender">Gender</label>
                                     <select name="gender" id="gender" class="form-select">
                                         <option value="">Select</option>
-                                        <option {{ old('gender') == 'Male' ? 'selected' : '' }} value="male">Male</option>
-                                        <option {{ old('gender') == 'Female' ? 'selected' : '' }} value="female">Female</option>
+                                        <option value="male" {{ (old('gender') ?? ($profile->gender ?? '')) == 'male' ? 'selected' : '' }}>Male</option>
+                                        <option value="female" {{ (old('gender') ?? ($profile->gender ?? '')) == 'female' ? 'selected' : '' }}>Female</option>
                                     </select>
+                                    @error('gender')
+                                        <small style="color: red;">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                                <div class="rt-input-group">
-                                    <label for="age">Age</label>
-                                    <input type="text" id="age" name="age" value="{{ old('age') }}" autocomplete="off" >
-                                </div>
-                            </div>
-                            <!-- salary type -->
-                            <div class="row row-cols-sm-3 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="salary">Salary Type</label>
-                                    <select name="salary" id="salary" class="form-select">
-                                        <option value="hourly">Hourly</option>
-                                        <option value="monthly">Monthly</option>
-                                        <option value="yearly">Yearly</option>
-                                    </select>
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="jobcat">Job Category</label>
-                                    <select name="jobcat" id="jobcat" class="form-select">
-                                        <option value="1">Select Job Category</option>
-                                        <option value="2">it consultancy</option>
-                                        <option value="3">Job Category 2</option>
-                                        <option value="4">Job Category 3</option>
-                                        <option value="5">Job Category 4</option>
-                                        <option value="6">Job Category 5</option>
-                                        <option value="7">Job Category 6</option>
-                                    </select>
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="jobtitle">Job Title</label>
-                                    <input type="text" id="jobtitle" placeholder="Enter Job Title" required="">
-                                </div>
-                            </div>
-                            <!-- salary type end -->
-                             
-                            <!-- qualification -->
-                            <div class="row row-cols-sm-3 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="qualification">qualification</label>
-                                    <select name="qualification" id="qualification" class="form-select">
-                                       <option value="1">Select Qualification</option>
-                                        <option value="2">SSC</option>
-                                        <option value="3">HSC</option>
-                                        <option value="4">Diploma</option>
-                                        <option value="5">Graduation</option>
-                                        <option value="6">Post Graduation</option>
-                                    </select>
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="lang">Language</label>
-                                    <select name="lang" id="lang" class="form-select">
-                                        <option value="1">Select Language</option>
-                                        <option value="2">English</option>
-                                        <option value="3">Hindi</option>
-                                        <option value="4">French</option>
-                                        <option value="5">Spanish</option>
-                                        <option value="6">Chinese</option>
-                                    </select>
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="tags">Tags</label>
-                                    <input value="tags" type="text" id="tags" placeholder="Enter Tags" autocomplete="off">
-                                </div>
-                            </div>
-                            <!-- qualification end -->
 
-                            <!-- experience -->
-                            <div class="row row-cols-sm-2 row-cols-1 g-3">
-                                <div class="rt-input-group">
-                                    <label for="experience">experience</label>
-                                    <select name="experience" id="experience" class="form-select">
-                                       <option value="1">Experience</option>
-                                        <option value="2">1 Year</option>
-                                        <option value="3">2 Year</option>
-                                        <option value="4">3 Year</option>
-                                        <option value="5">4 Year</option>
-                                    </select>
-                                </div>
-                                <div class="rt-input-group">
-                                    <label for="show">Show my profile</label>
-                                    <select name="show" id="show" class="form-select">
-                                        <option value="1">Yes</option>
-                                        <option value="2">No</option>
-                                    </select>
-                                </div>
-                               
                             </div>
+
+                        
                             <!-- experience end -->
                              <!-- editor area -->
                               <div class="rt-input-group">
                                 <label for="editor">Candidate Description</label>
-                               <textarea name="description" id="editor" class="form-control" placeholder="Enter Description" cols="10" rows="5">{{ old('description') }}</textarea>
+                               <textarea name="description" id="editor" class="form-control" placeholder="Enter Description" cols="10" rows="5">{{ $profile ? $profile->description : old('description') }}</textarea>
+                               @error('description')
+                                    <small style="color: red;"> {{ $message }} </small>
+                                @enderror
                               </div>
                              <!-- editor area end -->
                         </div>
@@ -207,96 +142,113 @@
                 </div>
                 <h6 class="fw-medium mt-4 mb-4">Social Links</h6>
                 <div class="social__links p-30 radius-16 bg-white" id="social">
-                    <div class="info__field">
-                        <div class="row row-cols-sm-2 row-cols-1 g-3">
-                            <div class="rt-input-group">
-                                <label for="Facebook">Facebook</label>
-                                <input type="url" id="Facebook" placeholder="WWW.facebook.com/jobpath" required="">
-                            </div>
-                            <div class="rt-input-group">
-                                <label for="Linkedin">Linkedin</label>
-                                <input type="url" id="Linkedin" placeholder="WWW.Linkedin.com/jobpath" required="">
-                            </div>
-                        </div>
-                        <div class="row row-cols-sm-2 row-cols-1 g-3">
-                            <div class="rt-input-group">
-                                <label for="Behance">Behance</label>
-                                <input type="url" id="Behance" placeholder="WWW.behance.com/jobpath" required="">
-                            </div>
-                            <div class="rt-input-group">
-                                <label for="Dribbble">Dribbble</label>
-                                <input type="url" id="Dribbble" placeholder="WWW.dribbble.com/jobpath" required="">
-                            </div>
-                            <div class="d-block mt-30">
-                                <a href="#" class="added__social__link">Add Another Network</a>
+                        <div class="info__field">
+                            <div class="row row-cols-sm-3 row-cols-1 g-3">
+                                <div class="rt-input-group">
+                                    <label for="Facebook">Facebook</label>
+                                    <input value="{{ $profile ? $profile->facebook : old('facebook') }}" name="facebook" type="text" id="Facebook" placeholder="www.facebook.com/username" autocapitalize="off">
+                                    @error('facebook')
+                                        <small style="color: red;"> {{ $message }} </small>
+                                        @enderror
+                                </div>
+                                <div class="rt-input-group">
+                                    <label for="Facebook">Instagram</label>
+                                    <input value="{{ $profile ? $profile->instagram : old('instagram') }}" name="instagram" type="text" id="Instagram" placeholder="www.instagram.com/username" autocapitalize="off">
+                                    @error('instagram')
+                                        <small style="color: red;"> {{ $message }} </small>
+                                        @enderror
+                                </div>
+                                <div class="rt-input-group">
+                                    <label for="Linkedin">Linkedin</label>
+                                    <input value="{{ $profile ? $profile->linkedin : old('linkedin') }}" name="linkedin" type="text" id="Linkedin" placeholder="www.Linkedin.com/username" autocapitalize="off">
+                                    @error('linkedin')
+                                        <small style="color: red;"> {{ $message }} </small>
+                                        @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <!-- address area -->
                 <h6 class="fw-medium mt-4 mb-4">Address / Location</h6>
                 <div class="social__links radius-16 p-30 bg-white" id="address">
-                    <div class="row row-cols-md-2 row-cols-lg-2 row-cols-1 g-30">
                         <div class="info__field">
-                            <div class="rt-input-group">
-                                <label for="Country">Country</label>
-                                <select name="Country" id="Country" class="form-select">
-                                    <option value="1">Select Country</option>
-                                    <option value="2">Bangladesh</option>
-                                    <option value="3">India</option>
-                                    <option value="4">Pakistan</option>
-                                    <option value="5">Nepal</option>
-                                    <option value="6">Srilanka</option>
-                                    <option value="7">China</option>
-                                    <option value="8">USA</option>
-                                </select>
-                            </div>
-                            <div class="rt-input-group">
-                                <label for="State">State</label>
-                                <select name="State" id="State" class="form-select">
-                                    <option value="1">Select State</option>
-                                    <option value="2">Dhaka</option>
-                                    <option value="3">Chittagong</option>
-                                    <option value="4">Sylhet</option>
-                                    <option value="5">Rajshahi</option>
-                                    <option value="6">Khulna</option>
-                                    <option value="7">Barishal</option>
-                                    <option value="8">Mymensingh</option>
-                                </select>
-                            </div>
-                            <div class="rt-input-group">
-                                <label for="pr">Present Address</label>
-                                <input type="text" id="pr" placeholder="2715 Ash Dr. San Jose,USA" required="">
-                            </div>
-                            <div class="rt-input-group">
-                                <label for="ps">Postal Code</label>
-                                <input type="text" id="ps" placeholder="8340" required="">
-                            </div>
-                            <div class="rt-input-group">
-                                <label for="lt">latitude</label>
-                                <input type="text" id="lt" placeholder="0.000000" required="">
-                            </div>
-                        </div>
-                        <div>
-                            <div class="info__field">
-                                <h6 class="font-20 fw-medium mb-2 mt-4 mt-md-0">My location</h6>
-                                <div class="gmap">
-                                <div class="user__location">
-                                    <iframe src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=reacthemes+(reacthemes)&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                            <div class="row row-cols-sm-2 row-cols-1 g-3">
+                                <div class="col">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="rt-input-group">
+                                                <label for="Country">Country *</label>
+                                                <select name="country" id="Country" class="form-select">
+                                                    <option value="">Select Country</option>
+                                                    @php
+                                                        $countries = [
+                                                            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+                                                            "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos",
+                                                            "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia",
+                                                            "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain",
+                                                            "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+                                                        ];
+                                                    @endphp
+
+                                                    @foreach($countries as $country)
+                                                        <option value="{{ $country }}" 
+                                                            {{ (old('country') ?? ($profile->country ?? '')) == $country ? 'selected' : '' }}>
+                                                            {{ $country }}
+                                                        </option>
+                                                    @endforeach
+
+                                                </select>
+                                                @error('country')
+                                                    <small style="color: red;">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="rt-input-group">
+                                                <label for="State">State/Region/Province</label>
+                                                <input value="{{ $profile ? $profile->state : old('state') }}" name="state" type="text" id="state"  autocapitalize="off">
+                                                @error('state')
+                                                <small style="color: red;"> {{ $message }} </small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                
+                                <div class="col">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="rt-input-group">
+                                                <label for="pr">Present Address</label>
+                                                <input value="{{ $profile ? $profile->present_address : old('present_address') }}" name="present_address" type="text" id="address" placeholder="2715 Ash Dr. San Jose,USA" autocapitalize="off">
+                                                @error('present_address')
+                                        <small style="color: red;"> {{ $message }} </small>
+                                        @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="rt-input-group">
+                                                <label for="ps">Postal Code</label>
+                                                <input value="{{ $profile ? $profile->postal_code : old('postal_code') }}" name="postal_code" type="text" id="postal-code" placeholder="8340" autocapitalize="off">
+                                                @error('postal_code')
+                                        <small style="color: red;"> {{ $message }} </small>
+                                        @enderror
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="rt-input-group">
-                                    <label for="longitude">longitude</label>
-                                    <input type="text" id="longitude" placeholder="0.00.000.0000" required="">
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <button id="job-seeker-profile-buttom" type="submit" class="rts__btn fill__btn">Save Profile</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="info__field">
-                        <button type="submit" class="rts__btn fill__btn mx-0">Save Profile</button>
-                    </div>
-                </div>
                 <!-- address area end -->
+                </form>
+                
             </div>
             
            @include('employee/employee_temp/emp-footer')
@@ -331,7 +283,8 @@
     
 
   
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+  
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
     <div class="offcanvas-header p-0 mb-5 mt-4">
       <a href="index.html" class="offcanvas-title" id="offcanvasLabel">
         <img src="{{asset('assets/img/logo/logo.png')}}" alt="logo">
