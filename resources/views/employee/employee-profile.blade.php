@@ -146,21 +146,21 @@
                             <div class="row row-cols-sm-3 row-cols-1 g-3">
                                 <div class="rt-input-group">
                                     <label for="Facebook">Facebook</label>
-                                    <input value="{{ $profile ? $profile->facebook : old('facebook') }}" name="facebook" type="text" id="Facebook" placeholder="www.facebook.com/username" autocapitalize="off">
+                                    <input value="{{ $profile ? $profile->facebook : old('facebook') }}" name="facebook" type="text" id="Facebook" placeholder="https://www.facebook.com/username" autocapitalize="off">
                                     @error('facebook')
                                         <small style="color: red;"> {{ $message }} </small>
                                         @enderror
                                 </div>
                                 <div class="rt-input-group">
                                     <label for="Facebook">Instagram</label>
-                                    <input value="{{ $profile ? $profile->instagram : old('instagram') }}" name="instagram" type="text" id="Instagram" placeholder="www.instagram.com/username" autocapitalize="off">
+                                    <input value="{{ $profile ? $profile->instagram : old('instagram') }}" name="instagram" type="text" id="Instagram" placeholder="https://www.instagram.com/username" autocapitalize="off">
                                     @error('instagram')
                                         <small style="color: red;"> {{ $message }} </small>
                                         @enderror
                                 </div>
                                 <div class="rt-input-group">
                                     <label for="Linkedin">Linkedin</label>
-                                    <input value="{{ $profile ? $profile->linkedin : old('linkedin') }}" name="linkedin" type="text" id="Linkedin" placeholder="www.Linkedin.com/username" autocapitalize="off">
+                                    <input value="{{ $profile ? $profile->linkedin : old('linkedin') }}" name="linkedin" type="text" id="Linkedin" placeholder="https://www.Linkedin.com/username" autocapitalize="off">
                                     @error('linkedin')
                                         <small style="color: red;"> {{ $message }} </small>
                                         @enderror
