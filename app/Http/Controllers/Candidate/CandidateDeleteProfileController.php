@@ -24,7 +24,7 @@ class CandidateDeleteProfileController extends Controller
 
     public function destroy(Request $request)
     {
-        $userId = Auth::id();
+        $userId = Auth::user()->id;
 
         $request->validate([
             'password' => ['required']
@@ -51,13 +51,13 @@ class CandidateDeleteProfileController extends Controller
             }
 
             // Delete related data
-            $applyForJob = ApplyForJob::where('userID', $userId)->first();
-            if($applyForJob) $applyForJob->delete();
+            $applyForJob = ApplyForJob::where('applicant_id', $userId)->first();
+            if($applyForJob) $applyForJob->forceDelete();
             $candidateProfile = CandidateProfile::where('userID', $userId)->first();
             if($candidateProfile) $candidateProfile->delete();
 
-            // Delete user
-            $user->delete();
+            // Permanently delete user
+            $user->forceDelete();
 
             DB::commit();
             Auth::logout(); // Log out the user after deletion
