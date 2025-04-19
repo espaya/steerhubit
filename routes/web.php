@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Candidate\CandidateDeleteProfileController;
 use App\Http\Controllers\Candidate\CandidateJobController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\CommentsController;
@@ -165,9 +166,9 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
         return view('employee.employee-following-employer');
     })->name('employee.following-employer');
 
-    Route::get('/candidate-dashboard/delete-profile', function () {
-        return view('employee.employee-delete-profile');
-    })->name('employee.delete-profile');
+    Route::get('/candidate-dashboard/delete-profile', [CandidateDeleteProfileController::class, 'index'])->name('employee.delete-profile');
+
+    Route::delete('/candidate-dashboard/delete-profile/delete', [CandidateDeleteProfileController::class, 'destroy'])->name('employee.delete-profile.delete');
 
     Route::get('/candidate-dashboard/change-password', function () {
         return view('employee.employee-change-password');
