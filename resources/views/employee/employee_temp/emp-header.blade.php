@@ -7,7 +7,7 @@
                         <a href="{{ url('/') }}">
                         <img class="logo__image" src="{{asset('assets/img/logo/logo.png')}}" width="160" height="40" alt="logo">
                         </a>
-                     </div>
+                     </div> 
                      <div class="navigation d-none d-lg-block">
                         <nav class="navigation__menu" id="offcanvas__menu">
                            <ul class="list-unstyled">
@@ -19,9 +19,6 @@
                               </li>
                               <li class="navigation__menu--item">
                                  <a href="{{ route('jobs') }}" class="navigation__menu--item__link">Browse Jobs</a>
-                              </li>
-                              <li class="navigation__menu--item">
-                                 <a href="#" class="navigation__menu--item__link">Browse Employers</a>
                               </li>
                            </ul>
                         </nav>
@@ -143,12 +140,13 @@
                                  </div>
                               </div>
                               <ul class="rts__dropdown dropdown-menu top-25">
-                                 <li><a class="dropdown-item" href="candidate-dashboard.html">Dashboard</a></li>
-                                 <li><a class="dropdown-item" href="candidate-profile.html">Profile</a></li>
-                                 <li><a class="dropdown-item" href="candidate-resume.html">Resume</a></li>
-                                 <li><a class="dropdown-item" href="candidate-shortlist.html">Shortlist Job</a></li>
-                                 <li><a class="dropdown-item" href="candidate-message.html">Message</a></li>
-                                 <li><a class="dropdown-item" href="candidate-passwordchange.html">Change Password</a></li>
+                                 <li><a class="dropdown-item" href="{{ route('employee') }}">Dashboard</a></li>
+                                 <li><a class="dropdown-item" href="{{ route('employee.profile') }}">Profile</a></li>
+                                 <li><a class="dropdown-item" href="{{ route('employee.resume') }}">Resume</a></li>
+                                 <li><a class="dropdown-item" href="{{ route('employee.applied.job') }}">Applied Job</a></li>
+                                 <li><a class="dropdown-item" href="{{ route('employee.job.shortlisted') }}">Jobs Shortlist</a></li>
+                                 <li><a class="dropdown-item" href="{{ route('employee.change.password') }}">Change Password</a></li>
+                                 <li><a class="dropdown-item" href="{{ route('employee.delete-profile.delete') }}">Delete Account</a></li>
                                  <li><a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log Out</a>
                                  </li>
 

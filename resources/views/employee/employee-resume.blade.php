@@ -117,6 +117,9 @@
                                     <input name="degree_year_completed" type="date" id="grade">
                                  </div>
                               </div>
+                              <div class="d-flex justify-content-start">
+                                    <a href="javascript::void();" class="added__social__link">Save Changes</a>
+                                </div>
                            </div>
                         </div>
                      </div>
@@ -148,6 +151,9 @@
                                     <input name="cert_year_completed" type="date" id="grade">
                                  </div>
                               </div>
+                              <div class="d-flex justify-content-start">
+                                    <a href="javascript::void();" class="added__social__link">Save Changes</a>
+                                </div>
                            </div>
                         </div>
                      </div>
@@ -179,12 +185,12 @@
                                     <input type="date" id="grade" name="high_school_year_completed">
                                  </div>
                               </div>
+                              <div class="d-flex justify-content-start">
+                                    <a href="javascript::void();" class="added__social__link">Save Changes</a>
+                                </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <div class="d-flex justify-content-start">
-                     <a href="javascript::void();" class="added__social__link">Save Education</a>
                   </div>
                </div>
             </div>
@@ -200,7 +206,7 @@
                      <div class="info__field">
                         <div class="row row-cols-sm-1  row-cols-1">
                            <div class="rt-input-group">
-                              <input type="text" id="skillInput" name="skills"  placeholder="Type a skill and press Enter" autocomplete="off">
+                              <input type="text" id="skillInput" name="skills[]"  placeholder="Type a skill and press Enter" autocomplete="off">
                            </div>
                         </div>
                      </div>
