@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Candidate\CandidateDeleteProfileController;
 use App\Http\Controllers\Candidate\CandidateJobController;
+use App\Http\Controllers\Candidate\CandidatePasswordController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
 use App\Http\Controllers\Candidate\CandidateResumeController;
 use App\Http\Controllers\CommentsController;
@@ -71,7 +72,7 @@ Route::get('/', function () {
     })->name('choose.subscription');
 
     
-Route::post('/register-new-account', [RegisterController::class, 'register'])->name('register');
+Route::post('/register-new-account', [RegisterController::class, 'register'])->name('register')->middleware('throttle:3,10');
 Route::post('/subscribe-to-our-mailing-list', [MailingListController::class, 'subscribe'])->name('subscribe.mailing.list');
 
 
@@ -150,6 +151,12 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
 
     Route::get('/candidate-dashboard/resume', [CandidateResumeController::class, 'index'])->name('employee.resume');
 
+    Route::post('/candidate-dashboard/resume/file', [CandidateResumeController::class, 'storeFile']);
+    Route::post('/candidate-dashboard/resume/degree', [CandidateResumeController::class, 'storeDegree']);
+    Route::post('/candidate-dashboard/resume/certification', [CandidateResumeController::class, 'storeCertification']);
+    Route::post('/candidate-dashboard/resume/highschool', [CandidateResumeController::class, 'storeHighSchool']);
+    Route::post('/candidate-dashboard/resume/skills', [CandidateResumeController::class, 'storeSkills']);
+
     Route::get('/candidate-dashboard/profile', [CandidateProfileController::class, 'index'])->name('employee.profile');
     Route::post('/candidate-dashboard/profile/save', [CandidateProfileController::class, 'store'])->name('employee.profile.store');
 
@@ -169,9 +176,9 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
 
     Route::delete('/candidate-dashboard/delete-profile/delete', [CandidateDeleteProfileController::class, 'destroy'])->name('employee.delete-profile.delete');
 
-    Route::get('/candidate-dashboard/change-password', function () {
-        return view('employee.employee-change-password');
-    })->name('employee.change.password');
+    Route::get('/candidate-dashboard/change-password', [CandidatePasswordController::class, 'index'])->name('employee.change.password');
+    Route::post('/candidate-dashboard/change-password/update', [CandidatePasswordController::class, 'store'])->name('employee.update.password')->middleware('throttle:3,10');
+
 
     Route::get('/candidate-dashboard/applied-job', [CandidateJobController::class, 'index'])->name('employee.applied.job');
     Route::get('/candidate-dashboard/applied-job/search', [CandidateJobController::class, 'index'])->name('employee.applied.job.search');
@@ -324,6 +331,6 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
 
 // Auth::routes(); 
 Route::get('/login', function(){ return view('welcome'); })->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('throttle:3,10');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
