@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\Candidate\CandidateDashboardController;
 use App\Http\Controllers\Candidate\CandidateDeleteProfileController;
 use App\Http\Controllers\Candidate\CandidateJobController;
 use App\Http\Controllers\Candidate\CandidatePasswordController;
@@ -145,9 +146,8 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
 * Employee Middleware
 */
 Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-back-history', 'otp.verified']], function () {
-    Route::get('/candidate-dashboard', function () {
-        return view('employee.employee');
-    })->name('employee');
+    
+    Route::get('/candidate-dashboard', [CandidateDashboardController::class, 'index'])->name('employee');
 
     Route::get('/candidate-dashboard/resume', [CandidateResumeController::class, 'index'])->name('employee.resume');
 
