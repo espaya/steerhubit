@@ -18,7 +18,12 @@
                                     <li class="navigation__menu--item"><a class="navigation__menu--item__link" href="{{ route('about') }}">About</a></li>
                                     
                                     <li class="navigation__menu--item"><a class="navigation__menu--item__link" href="{{ route('pricing') }}">Pricing</a></li>
-                                    <li class="navigation__menu--item"><a class="navigation__menu--item__link" href="#">Browse Candidates</a></li>
+                                    @if(Auth::check() && Auth::user()->role == 'EMPLOYER')
+                                    <li class="navigation__menu--item"><a class="navigation__menu--item__link" href="{{ route('employer.browse.candidate') }}">Browse Candidates</a></li>
+                                    @endif
+                                    @if(Auth::check() && Auth::user()->role == 'Candidate')
+                                    <li class="navigation__menu--item"><a class="navigation__menu--item__link" href="{{ route('jobs') }}">Browse Jobs</a></li>
+                                    @endif
                                 </ul>
                             </nav>
                         </div>
