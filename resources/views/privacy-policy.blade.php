@@ -223,7 +223,7 @@
                         <button id="otp-button" type="submit" class="rts__btn w-100 fill__btn">Submit</button>
                      </div>
                   </form>
-                  <span class="d-block text-center fw-medium"><a href="#" id="sendNewOtp" class="text-primary">Request new code</a></span><small>or <a id="loginAgain" href="#">Login Again</a></small>
+                  <span class="d-block text-center fw-medium"><a href="#" id="sendNewOtp" class="text-primary">Request new code</a><small>or <a id="loginAgain" href="#">Login Again</a></small></span>
                </div>
             </div>
          </div>
