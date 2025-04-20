@@ -262,7 +262,7 @@
                   <div class="tab-content" id="myTabContent">
                      <div class="tab-pane grid__style fade show active" role="tabpanel" id="grid">
                         <div class="row g-30">
-
+                        <div id="apply-message" class="mt-3"></div>
                         @forelse($jobs as $job)
                            <div class="col-xl-6 col-md-6 col-lg-12">
                               <div class="rts__job__card">
@@ -310,7 +310,6 @@
                                     @endforelse
 
                                  </div>
-                                 <div id="apply-message" class="mt-3"></div>
                               </div>
                            </div>
                         @empty 
@@ -421,5 +420,11 @@
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
       <script src="{{ asset('assets/js/signin.js') }}"></script>
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
+      <script>
+         $('#loginAgain').on('click', function () {
+            $('#otpModal').modal('hide');
+            $('#loginModal').modal('show');
+         });
+      </script>
    </body>
 </html>

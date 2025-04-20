@@ -256,7 +256,7 @@
       @include('templates/footer')
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
          <div class="offcanvas-header p-0 mb-5 mt-4">
-            <a href="index.html" class="offcanvas-title" id="offcanvasLabel">
+            <a href="{{ url('/') }}" class="offcanvas-title" id="offcanvasLabel">
             <img src="{{('assets/img/logo/header__one.svg')}}" alt="logo">
             </a> 
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -313,5 +313,11 @@
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
       <script src="{{ asset('assets/js/signin.js') }}"></script>
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
+      <script>
+         $('#loginAgain').on('click', function () {
+            $('#otpModal').modal('hide');
+            $('#loginModal').modal('show');
+         });
+      </script>
    </body>
 </html>

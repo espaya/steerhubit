@@ -199,6 +199,12 @@
       <script src="{{ asset('assets/js/signin.js') }}"></script>
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
       <script>
+         $('#loginAgain').on('click', function () {
+            $('#otpModal').modal('hide');
+            $('#loginModal').modal('show');
+         });
+      </script>
+      <script>
          $(document).on('click', '.comment-reply-link', function(e) {
             e.preventDefault();
             

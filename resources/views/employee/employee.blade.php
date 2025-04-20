@@ -58,7 +58,7 @@
                            </svg>
                         </div>
                         <div class="content">
-                           <h5 class="lh-sm">10+</h5>
+                           <h5 class="lh-sm">{{ $total_applied_jobs == 10 ? $total_applied_jobs . '+' : $total_applied_jobs  }}</h5>
                            <p class="font-20">Applied Job</p>
                         </div>
                      </div>

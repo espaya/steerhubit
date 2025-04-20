@@ -364,7 +364,7 @@
                         <button id="otp-button" type="submit" class="rts__btn w-100 fill__btn">Submit</button>
                      </div>
                   </form>
-                  <span class="d-block text-center fw-medium"><a href="#" id="sendNewOtp" class="text-primary">Request new code</a>
+                  <span class="d-block text-center fw-medium"><a href="#" id="sendNewOtp" class="text-primary">Request new code</a></span> <small>or <a id="loginAgain" href="#">Login Again</a></small>
                </div>
             </div>
          </div>
@@ -392,5 +392,11 @@
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
       <script src="{{ asset('assets/js/signin.js') }}"></script>
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
+      <script>
+         $('#loginAgain').on('click', function () {
+            $('#otpModal').modal('hide');
+            $('#loginModal').modal('show');
+         });
+      </script>
    </body>
 </html>
