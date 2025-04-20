@@ -120,7 +120,8 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
         return view('employer.employer-candidate-shortlist');
     })->name('employer.candidate.shortlist');
 
-    Route::get('/employer-dashboard/candidate-list', [EmployerBrowseCandidateController::class, 'candidateList'])->name('employer.candidate.list');
+    Route::get('/employer-dashboard/candidate-list', [EmployerBrowseCandidateController::class, 'index'])->name('employer.candidate.list');
+    Route::get('/employer-dashboard/candidate-list/search', [EmployerBrowseCandidateController::class, 'index'])->name('employer.candidate.list.search');
 
     Route::get('/employer-dashboard/package', function () {
         return view('employer.employer-package');
@@ -146,7 +147,7 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
 * Employee Middleware
 */
 Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-back-history', 'otp.verified']], function () {
-    
+
     Route::get('/candidate-dashboard', [CandidateDashboardController::class, 'index'])->name('employee');
 
     Route::get('/candidate-dashboard/resume', [CandidateResumeController::class, 'index'])->name('employee.resume');
