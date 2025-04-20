@@ -14,8 +14,8 @@ class CandidateProfileController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $profile = CandidateProfile::where('userID', $user->id)->first();
+        $id = Auth::id();
+        $profile = CandidateProfile::where('userID', $id)->first();
 
         return view('employee.employee-profile', ['profile' => $profile]);
     } 
@@ -190,7 +190,7 @@ class CandidateProfileController extends Controller
                 $file->move($uploadPath, $filename);
     
                 // Update user's avatar path
-                $user->avatar = "/uploads/avatars/" . $filename;
+                $user->avatar = $filename;
                 $user->save();
             }
     
