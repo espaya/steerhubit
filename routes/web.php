@@ -6,6 +6,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Candidate\CandidateDeleteProfileController;
 use App\Http\Controllers\Candidate\CandidateJobController;
 use App\Http\Controllers\Candidate\CandidateProfileController;
+use App\Http\Controllers\Candidate\CandidateResumeController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Employer\EmployerBrowseCandidateController;
@@ -147,9 +148,7 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
         return view('employee.employee');
     })->name('employee');
 
-    Route::get('/candidate-dashboard/resume', function () {
-        return view('employee.employee-resume');
-    })->name('employee.resume');
+    Route::get('/candidate-dashboard/resume', [CandidateResumeController::class, 'index'])->name('employee.resume');
 
     Route::get('/candidate-dashboard/profile', [CandidateProfileController::class, 'index'])->name('employee.profile');
     Route::post('/candidate-dashboard/profile/save', [CandidateProfileController::class, 'store'])->name('employee.profile.store');
