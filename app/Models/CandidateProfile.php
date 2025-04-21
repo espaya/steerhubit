@@ -23,4 +23,9 @@ class CandidateProfile extends Model
         'postal_code',
         'userID'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userID');
+    }
 }

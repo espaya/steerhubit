@@ -62,7 +62,7 @@
                     <div class="candidate__filter">
                         <ul class="candidate__filter__shorting" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Total: 10</button>
+                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Total: {{ $totalApplicants }}</button>
                             </li>
                             <li class="nav-item" role="presentation">
                             <div class="search__item">
@@ -87,7 +87,7 @@
                                 <div class="author__info">
                                     <div class="author__meta">
                                         <div class="author__image">
-                                            <img src="{{asset('assets/img/author/1.svg')}}" alt="">
+                                            <img src="{{ optional($candidate->user)->avatar ? asset('uploads/avatars/' . $candidate->user->avatar) : asset('assets/img/dashboard/profile.png') }}" alt="">
                                         </div>
                                         <div class="author__name">
                                             <h6 class="fw-semibold mb-1"> {{ $candidate->fullname }} </h6>

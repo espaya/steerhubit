@@ -7,6 +7,7 @@ use App\Models\ApplyForJob;
 use App\Models\CandidateProfile;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployerBrowseCandidateController extends Controller
 {
@@ -18,7 +19,7 @@ class EmployerBrowseCandidateController extends Controller
         $candidates_ids = ApplyForJob::distinct('applicant_id')->pluck('applicant_id');
 
         // Build query
-        $query = CandidateProfile::whereIn('userID', $candidates_ids);
+        $query = CandidateProfile::with('user')->whereIn('userID', $candidates_ids);
 
         if ($search) {
             $query->where(function ($q) use ($search) {
@@ -33,7 +34,9 @@ class EmployerBrowseCandidateController extends Controller
 
         $candidates = $query->paginate(10)->appends(['search' => $search]);
 
-        return view('employer.employer-candidate-list', compact('candidates'));
+        $totalApplicants = ApplyForJob::where('userID', Auth::id())->count(); 
+
+        return view('employer.employer-candidate-list', compact('candidates', 'totalApplicants'));
     }
    
 
