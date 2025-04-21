@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplyForJob;
 use App\Models\Job;
 use Exception;
 use Illuminate\Http\Request;
@@ -229,4 +230,27 @@ class EmployerJobController extends Controller
         }
 
     }
+
+    public function appliedJobs()
+    {
+        // Get all job IDs that have been applied for
+        $appliedJobIds = ApplyForJob::pluck('job_id');
+
+        // Fetch the corresponding jobs
+        $jobs = Job::whereIn('id', $appliedJobIds)
+                    ->orderByDesc('id')
+                    ->paginate(10);
+
+        // Pass them to the view
+        return view('employer.employer-applied-jobs', ['jobs' => $jobs]);
+    }
+
+    public function viewAppliedJob($slug)
+    {
+        $job = Job::where('slug', $slug)->first();
+
+        return view('employer.employer-single-applied-job', ['job' => $job]);
+    }
+
+
 }

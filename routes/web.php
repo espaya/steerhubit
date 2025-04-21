@@ -103,16 +103,26 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
     })->name('employer.dashboard');
 
     Route::get('/employer-dashboard/company-profile', [EmployerProfileController::class, 'index'])->name('employer.profile');
-    Route::post('/employer-dashboard/company-profile/update', [EmployerProfileController::class, 'updateEmployerProfile'])->name('update.employer.profile');
-    Route::post('/employer-dashboard/company-profile/update-company-avatar', [EmployerProfileController::class, 'employerAvatarUpdate'])->name('update.employer.profile');
-    Route::post('/employer-dashboard/company-profile/remove-company-avatar', [EmployerProfileController::class, 'removeAvatar'])->name('remove.employer.profile');
+
+    Route::post('/employer-dashboard/company-profile/update', [EmployerProfileController::class, 'updateEmployerProfile'])
+        ->name('update.employer.profile');
+
+    Route::post('/employer-dashboard/company-profile/update-company-avatar', [EmployerProfileController::class, 'employerAvatarUpdate'])
+        ->name('update.employer.profile');
+
+    Route::post('/employer-dashboard/company-profile/remove-company-avatar', [EmployerProfileController::class, 'removeAvatar'])
+        ->name('remove.employer.profile');
 
     Route::get('/employer-dashboard/my-job', [EmployerJobController::class, 'index'])->name('employer.job');
 
-
     Route::get('/employer-dashboard/my-job/submit', [EmployerJobController::class, 'add'])->name('employer.job.submit');
+
     Route::post('/employer-dashboard/my-job/submit-new', [EmployerJobController::class, 'store'])->name('employer.job.submit.new');
+
     Route::delete('/employer-dashboard/my-jobs/delete/{id}', [EmployerJobController::class, 'destroy'])->name('employer.job.delete');
+
+    Route::get('/candidate-dashboard/applied-jobs', [EmployerJobController::class, 'appliedJobs'])->name('employee.applied.jobs');
+    Route::get('/candidate-dashboard/applied-jobs/{slug}', [EmployerJobController::class, 'viewAppliedJob'])->name('employee.view.applied.jobs');
 
 
     // Shortlist candidates
@@ -121,7 +131,12 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
     })->name('employer.candidate.shortlist');
 
     Route::get('/employer-dashboard/candidate-list', [EmployerBrowseCandidateController::class, 'index'])->name('employer.candidate.list');
-    Route::get('/employer-dashboard/candidate-list/search', [EmployerBrowseCandidateController::class, 'index'])->name('employer.candidate.list.search');
+
+    Route::get('/employer-dashboard/candidate-list/search', [EmployerBrowseCandidateController::class, 'index'])
+        ->name('employer.candidate.list.search');
+
+    Route::get('/employer-dashboard/candidate-list/{id}', [EmployerBrowseCandidateController::class, 'view'])
+        ->name('employer.candidate.view');
 
     Route::get('/employer-dashboard/package', function () {
         return view('employer.employer-package');
