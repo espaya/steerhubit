@@ -344,7 +344,8 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
 
     Route::get('0246520325/management/contacts', [ManagementContactController::class, 'index'])->name('management.contact');
     Route::get('0246520325/management/contacts/search', [ManagementContactController::class, 'index'])->name('management.contact.search');
-
+        
+    Route::delete('0246520325/management/contacts/delete/{id}', [ManagementContactController::class, 'destroy'])->name('management.contact.delete');
 
 });
 

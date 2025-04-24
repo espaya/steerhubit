@@ -193,6 +193,26 @@
 
                     </div>
                 </div>
+
+                @php
+                    $alertType = session('success') ? 'success' : (session('error') ? 'danger' : null);
+                    $alertMessage = session('success') ?? session('error');
+                @endphp
+
+                @if($alertType && $alertMessage)
+                    <div class="alert alert-{{ $alertType }} alert-dismissible fade show" role="alert">
+                        <div class="alert-content">
+                            <p>{{ $alertMessage }}</p>
+                            <button type="button" class="close text-capitalize" data-dismiss="alert" aria-label="Close">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x" aria-hidden="true">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="userDatatable global-shadow border p-30 bg-white radius-xl w-100 mb-30">
@@ -276,8 +296,15 @@
                                                             <span data-feather="edit"></span></a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" class="remove">
-                                                            <span data-feather="trash-2"></span></a>
+                                                        <a href="#" class="remove"
+                                                        onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this message?')) document.getElementById('delete-contact-{{ $contact->id }}').submit();">
+                                                            <span data-feather="trash-2"></span>
+                                                        </a>
+
+                                                        <form id="delete-contact-{{ $contact->id }}" action="{{ route('management.contact.delete', ['id' => $contact->id]) }}" method="POST" style="display: none;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
                                                     </li>
                                                 </ul>
                                             </td>
