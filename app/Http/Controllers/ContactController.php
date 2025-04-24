@@ -32,10 +32,14 @@ class ContactController extends Controller
         {
             DB::beginTransaction();
 
+            $contact_name = htmlspecialchars(trim($request->contact_name), ENT_QUOTES, 'utf-8');
+            $contact_email = htmlspecialchars(trim($request->contact_email), ENT_QUOTES, 'utf-8');
+            $contact_message = htmlspecialchars(trim($request->contact_message), ENT_QUOTES, 'utf-8');
+
             Contact::create([
-                'contact_name' => Crypt::encryptString($request->contact_name),
-                'contact_email' => Crypt::encryptString($request->contact_email),
-                'contact_message' => Crypt::encryptString($request->contact_message),
+                'contact_name' => $contact_name,
+                'contact_email' => $contact_email,
+                'contact_message' => $contact_message,
             ]);
 
             DB::commit();

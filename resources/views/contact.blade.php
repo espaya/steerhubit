@@ -102,28 +102,33 @@
                   <br>
                   Get in touch!
                   </span>
+                  <div id="contact-message"></div>
                   <div class="job__contact is__contact mt-30">
                      <form id="contact-form" method="post" enctype="multipart/form-data" action="#" class="d-flex flex-column gap-4">
+                        @csrf
                         <div class="search__item">
                            <label for="name" class="mb-4 font-20 fw-medium text-dark text-capitalize">Name</label>
                            <div class="position-relative">
                               <input name="contact_name" type="text" id="name" placeholder="Your Name" value="{{ old('contact_name') }}" autocomplete="off">
                               <i class="fa-light fa-user"></i>
                            </div>
+                           <small id="contact_name-error" style="color: red;"></small>
                         </div>
                         <div class="search__item">
                            <label for="cemail" class="mb-4 font-20 fw-medium text-dark text-capitalize">Your Email</label>
                            <div class="position-relative">
-                              <input name="contact_email" value="{{ old('contact_email') }}" autocomplete="off" type="text" id="cemail" placeholder="Enter your email">
+                              <input name="contact_email" value="" autocomplete="off" type="text" id="contact_email" placeholder="Enter your email">
                               <i class="rt-mailbox"></i>
                            </div>
+                           <small id="contact_email-error" style="color: red;"></small>
                         </div>
                         <div class="search__item">
                            <label class="mb-4 font-20 fw-medium text-dark text-capitalize" for="message">Your Comment</label>
-                           <textarea autocomplete="off" name="contact_message" id="message" placeholder="Message"> {{ old('contact_message') }} </textarea>
+                           <textarea autocomplete="off" name="contact_message" id="contact_message" placeholder="Message"></textarea>
                            <i class="fa-thin fa-comment-lines"></i>
                         </div>
-                        <button type="submit" class="rts__btn fill__btn be-1 w-100 rounded-1 apply__btn">
+                        <small id="contact_message-error" style="color: red;"></small>
+                        <button id="contact-form-button" type="submit" class="rts__btn fill__btn be-1 w-100 rounded-1 apply__btn">
                         Send Message
                         </button>
                      </form>
@@ -132,7 +137,7 @@
                <div class="col-lg-6 ps-5">
                   <div class="contact__image">
                      <figure>
-                        <img src="assets/img/pages/contact.webp" alt="">
+                        <img src="{{asset('assets/img/pages/contact.webp')}}" alt="">
                      </figure>
                   </div>
                </div>
@@ -233,6 +238,7 @@
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
       <script src="{{ asset('assets/js/signin.js') }}"></script>
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
+      <script src="{{ asset('assets/js/contact.js')}}"></script>
       <script>
          $('#loginAgain').on('click', function () {
             $('#otpModal').modal('hide');

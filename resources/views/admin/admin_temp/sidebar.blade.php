@@ -24,7 +24,7 @@
                                     <a class="{{ request()->routeIs('management.employers') ? 'active' : '' }}" href="{{ route('management.employers') }}">Employers</a>
                                 </li>
                                 <li>
-                                    <a class="{{ request()->routeIs('management.employees') ? 'active' : '' }}" href="{{ route('management.employees') }}">Employees</a>
+                                    <a class="{{ request()->routeIs('management.employees') ? 'active' : '' }}" href="{{ route('management.employees') }}">Candidates</a>
                                 </li>
                                 <li>
                                     <a class="{{ request()->routeIs('management.blocked.users') ? 'active' : '' }}" href="{{route('management.blocked.users')}}">Blocked</a>
@@ -98,6 +98,14 @@
                                     <span class="toggle-icon"></span>
                                 </a>
                             </li>
+                        </li>
+
+                        <li>
+                            <a class="{{ request()->routeIs('management.contact') ? 'active' : '' }}" href="{{route('management.contact')}}">
+                                <span data-feather="phone" class="nav-icon"></span>
+                                <span class="menu-text">Contact</span>
+                                <span class="toggle-icon"></span>
+                            </a>
                         </li>
 
                         

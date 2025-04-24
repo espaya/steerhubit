@@ -26,6 +26,7 @@ use App\Http\Controllers\Management\ManagementSettingsController;
 use App\Http\Controllers\Management\ManagementBlogController;
 use App\Http\Controllers\Management\ManagementBlogDraftController;
 use App\Http\Controllers\Management\ManagementCommentController;
+use App\Http\Controllers\Management\ManagementContactController;
 use App\Http\Controllers\Management\ManagementSubscribersController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Route;
@@ -178,7 +179,6 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
 
     Route::post('/candidate/dashboard/profile/update', [CandidateProfileController::class, 'updateAvatar'])->name('candidate.update.avatar');
     Route::post('/candidate/dashboard/profile/delete-avatar', [CandidateProfileController::class, 'deleteAvatar']);
-
 
     Route::get('/candidate-dashboard/job-shortlisted', function () {
         return view('employee.employee-job-shortlisted');
@@ -341,6 +341,9 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
     ])->name('management.subscribers.delete');
 
     Route::get('0246520325/management/blog/draft', [ManagementBlogDraftController::class, 'index'])->name('management.blog.draft');
+
+    Route::get('0246520325/management/contacts', [ManagementContactController::class, 'index'])->name('management.contact');
+    Route::get('0246520325/management/contacts/search', [ManagementContactController::class, 'index'])->name('management.contact.search');
 
 
 });
