@@ -136,6 +136,7 @@
                                         </svg>
                                     </button>
                                 </a>
+                                
                                 <form onclick="return confirm('Are you sure you want to delete this job?')" action="{{ route('employer.job.delete', ['id' => $job->id]) }}" method="post">
                                     @csrf
                                     @method('DELETE')
