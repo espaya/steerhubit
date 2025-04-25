@@ -118,6 +118,9 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
 
     Route::get('/employer-dashboard/my-job/submit', [EmployerJobController::class, 'add'])->name('employer.job.submit');
 
+    Route::get('/employer-dashboard/my-job/edit/{slug}', [EmployerJobController::class, 'edit'])->name('employer.job.edit');
+    Route::post('/employer-dashboard/my-job/update/{slug}', [EmployerJobController::class, 'update'])->name('employer.job.update');
+
     Route::post('/employer-dashboard/my-job/submit-new', [EmployerJobController::class, 'store'])->name('employer.job.submit.new');
 
     Route::delete('/employer-dashboard/my-jobs/delete/{id}', [EmployerJobController::class, 'destroy'])->name('employer.job.delete');
