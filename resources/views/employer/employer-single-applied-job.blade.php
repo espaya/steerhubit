@@ -76,16 +76,18 @@
                                                             Software Engineer
                                                         </div>
                                                         <div class="d-flex gap-2 align-items-center">
-                                                            <i class="fa-light fa-location-dot"></i> State, Country
+                                                            <i class="fa-light fa-location-dot"></i> {{ $job->state . ', ' . $job->country }}
                                                         </div>
                                                         <div class="d-flex gap-2 align-items-center">
                                                             <i class="fa-light rt-briefcase"></i> Full Time
                                                         </div>
                                                     </div>
                                                     <div class="job__tags d-flex justify-content-center justify-content-md-start flex-wrap gap-3">
-                                                        <a href="#">React</a>
-                                                        <a href="#">Nest Js</a>
-                                                        <a href="#">C++</a>
+                                                    @if(\Carbon\Carbon::parse($job->deadline)->isPast())
+                                                        <a href="#">Expired</a>
+                                                    @endif
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,34 +120,29 @@
                         <div class="container">
                             <div class="row g-30">
                             <div class="col-lg-7 col-xl-8">
-                                
                                     <div class="rts__job__details">
-
                                         <!-- top employer -->
                                         <div class="rts__section pb-120 overflow-hidden">
                                             <div class="container">
                                                 <div class="row g-30">
 
+                                                @forelse($applicants as $applicant)
                                                 <!-- single employer -->
                                                 <div class="col-lg-12">
                                                     <div class="rts__author__card__big py-3 flex-wrap flex-xl-nowrap style__gradient__two d-flex justify-content-between align-items-center gap-3">
                                                         <div class="d-flex gap-4 flex-column flex-md-row 
                                                             justify-content-start align-items-md-center align-items-start">
                                                             <div class="author__icon small__thumb">
-                                                            <img src="{{ asset('assets/img/author/8.svg') }}" alt="">
+                                                            <img src="{{ $applicant->user->avatar ? asset('uploads/avatars/' . $applicant->user->avatar) : asset('assets/img/dashboard/profile.png') }}" alt="">
                                                             </div>
                                                             <div class="job__meta">
                                                             <div class="d-flex flex-wrap flex-column flex-md-row gap-2 gap-lg-3 gap-xxl-5">
                                                                 <div>
-                                                                    <a href="#" class="job__title mb-0 h6 fw-semibold">Anastacia Alice</a>
-                                                                    <span class="d-block fw-medium">Digital Marketer</span>
+                                                                    <a href="#" class="job__title mb-0 h6 fw-semibold">{{ $applicant->profile->fullname }}</a>
                                                                 </div>
                                                                 <div class="d-flex gap-3 flex-wrap gap-lg-4 fw-medium">
                                                                     <div class="d-flex gap-2 align-items-center">
-                                                                        <i class="fa-light fa-location-dot"></i> Newyork, USA
-                                                                    </div>
-                                                                    <div class="d-flex gap-2 align-items-center">
-                                                                        <i class="fa-light rt-briefcase"></i> Full Time
+                                                                        <i class="fa-light fa-location-dot"></i> {{ $applicant->profile->state . ', ' . $applicant->profile->country }}
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -157,16 +154,14 @@
                                                     </div>
                                                 </div>
                                                 <!-- single employer end -->
+                                                 @empty 
+                                                    <p class=""></p>
+                                                @endforelse
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- top employer end -->
-
-                                        
                                     </div>
-
-
-
                             </div>
                             
                             <div class="col-lg-5 col-xl-4 d-flex flex-column gap-40">

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
 use App\Models\ApplyForJob;
+use App\Models\CandidateProfile;
 use App\Models\Job;
 use App\Models\Post;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -248,10 +250,17 @@ class EmployerJobController extends Controller
 
     public function viewAppliedJob($slug)
     {
-        $job = Job::where('slug', $slug)->first();
+        $job = Job::where('slug', $slug)->firstOrFail();
 
-        return view('employer.employer-single-applied-job', ['job' => $job]);
+        // Get all applicant_ids who applied for this job
+        $applicants = ApplyForJob::where('job_id', $job->id)->get();
+
+        return view('employer.employer-single-applied-job', [
+            'job' => $job,
+            'applicants' => $applicants
+        ]);
     }
+
 
     public function edit($slug)
     {
