@@ -261,7 +261,15 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <a href="#" class="profile-image rounded-circle d-block m-0 wh-38" style="background-image:url('img/tm6.png'); background-size: cover;"></a>
+                                                        @php
+                                                            $email = strtolower(trim($contact->contact_email));
+                                                            $gravatarHash = md5($email);
+                                                            $gravatarUrl = "https://www.gravatar.com/avatar/$gravatarHash?s=80&d=mp"; // 'mp' shows a mystery person if not found
+                                                        @endphp
+
+                                                        <a href="#" class="profile-image rounded-circle d-block m-0 wh-38"
+                                                        style="background-image:url('{{ $gravatarUrl }}'); background-size: cover;"></a>
+
                                                     </div>
                                                     <div class="userDatatable-inline-title">
                                                         <a href="#" class="text-dark fw-500">
@@ -271,12 +279,12 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="userDatatable-content">
+                                                <div class="">
                                                 {{ $contact->contact_email }}
                                                 </div>
                                             </td>
                                             <td>
-                                                <div class="userDatatable-content">
+                                                <div class="">
                                                 {{ $contact->contact_message }}
                                                 </div>
                                             </td>
