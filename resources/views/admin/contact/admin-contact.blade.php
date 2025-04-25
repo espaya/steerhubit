@@ -295,14 +295,7 @@
                                             </td>
                                             <td>
                                                 <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
-                                                    <li>
-                                                        <a href="#" class="view">
-                                                            <span data-feather="eye"></span></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="edit">
-                                                            <span data-feather="edit"></span></a>
-                                                    </li>
+                                                    
                                                     <li>
                                                         <a href="#" class="remove"
                                                         onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this message?')) document.getElementById('delete-contact-{{ $contact->id }}').submit();">
