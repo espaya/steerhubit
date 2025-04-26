@@ -17,7 +17,8 @@ class CommentsController extends Controller
             'comment_email' => ['required', 'email'],
             'comment_name' => ['required', 'string'],
             'comment' => ['required', 'string'],
-            'parent_id' => ['nullable', 'exists:post_comment,id']
+            'parent_id' => ['nullable', 'exists:post_comment,id'],
+            'g-recaptcha-response' => ['required', 'captcha'],
         ], [
             'comment_email.required' => 'This field is required',
             'comment_email.email' => 'Invalid email',
@@ -25,7 +26,9 @@ class CommentsController extends Controller
             'comment_name.string' => 'Invalid input',
             'comment.required' => 'This field is required',
             'comment.string' => 'Invalid input',
-            'parent_id.exists' => 'An error occurred. You cannot reply to this comment'
+            'parent_id.exists' => 'An error occurred. You cannot reply to this comment',
+            'g-recaptcha-response.required' => 'This field is required',
+            'g-recaptcha-response.captcha' => 'Invalid input'
         ]);   
 
         try 

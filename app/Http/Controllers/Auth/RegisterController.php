@@ -40,7 +40,8 @@ class RegisterController extends Controller
                 'confirmed', 
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'
             ],
-            'role' => ['required', 'string']
+            'role' => ['required', 'string'],
+            'g-recaptcha-response' => ['required', 'captcha'],
         ], [
             'name.required' => 'This field is required',
             'name.string' => 'Invalid input',
@@ -55,7 +56,9 @@ class RegisterController extends Controller
             'password.required' => 'Password is required',
             'password.confirmed' => 'Passwords do not match',
             'password.regex' => 'Password must include uppercase, lowercase, number, and special character',
-            'role.required' => 'Role is required'
+            'role.required' => 'Role is required',
+            'g-recaptcha-response.required' => 'This field is required',
+            'g-recaptcha-response.captcha' => 'Invalid input'
         ]);
     }
 

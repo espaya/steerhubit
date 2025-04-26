@@ -44,6 +44,12 @@
                      </div>
 
                      <div class="form-group my-3">
+                        {!! NoCaptcha::renderJs() !!}
+                        {!! NoCaptcha::display() !!}
+                     </div>
+                     <small id="login-error-g-recaptcha-response" style="color: red !important;"></small>
+
+                     <div class="form-group my-3">
                         <button id="login-button" type="submit" class="rts__btn w-100 fill__btn">Login</button>
                      </div>
                   </form>

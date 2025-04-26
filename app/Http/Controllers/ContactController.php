@@ -16,7 +16,8 @@ class ContactController extends Controller
         $request->validate([
             'contact_name' => ['required', 'string'],
             'contact_email' => ['required', 'email'],
-            'contact_message' => ['required', 'string']
+            'contact_message' => ['required', 'string'],
+            'g-recaptcha-response' => ['required', 'captcha']
         ], [
             'contact_name.required' => 'This field is required',
             'contact_name.string' => 'Invalid input',
@@ -25,7 +26,10 @@ class ContactController extends Controller
             'contact_email.email' => 'Invalid input',
 
             'contact_message.required' => 'This field is required',
-            'contact_message.email' => 'Invalid input'
+            'contact_message.email' => 'Invalid input',
+
+            'g-recaptcha-response.required' => 'This field is required',
+            'g-recaptcha-response.captcha' => 'Invalid input'
         ]);
 
         try 

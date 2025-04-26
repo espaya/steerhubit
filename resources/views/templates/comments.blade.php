@@ -40,6 +40,13 @@
                                     <i class="fa-thin fa-comment-lines"></i>
                                     <small style="color: red;" id="error-comment"></small>
                                 </div>
+
+                                <div class="search__item">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+                                </div>
+                                <small style="color: red;" id="error-g-recaptcha-response"></small>
+
                                 <button type="submit" class="rts__btn fill__btn be-1 max-content apply__btn">Reply</button>
                                 <div id="comment-response" class="alert d-none"></div>
                             </form>

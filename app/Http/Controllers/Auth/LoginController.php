@@ -76,13 +76,16 @@ class LoginController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:4',
+            'g-recaptcha-response' => 'required|captcha',
         ], [
             'email.required' => 'This field is required',
             'email.email' => 'Invalid input',
 
             'password.required' => 'This field is required',
             'password.string' => 'Invalid input',
-            'password.min' => 'Input is too short'
+            'password.min' => 'Input is too short',
+            'g-recaptcha-response.required' => 'This field is required',
+            'g-recaptcha-response.captcha' => 'Invalid input'
         ]);
 
         try 

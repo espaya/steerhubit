@@ -128,6 +128,13 @@
                            <i class="fa-thin fa-comment-lines"></i>
                         </div>
                         <small id="contact_message-error" style="color: red;"></small>
+
+                        <div class="search__item">
+                           {!! NoCaptcha::renderJs() !!}
+                           {!! NoCaptcha::display() !!}
+                        </div>
+                        <small id="g-recaptcha-response-error" style="color: red !important;"></small>
+
                         <button id="contact-form-button" type="submit" class="rts__btn fill__btn be-1 w-100 rounded-1 apply__btn">
                         Send Message
                         </button>
