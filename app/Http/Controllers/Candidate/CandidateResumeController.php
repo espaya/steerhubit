@@ -18,7 +18,7 @@ class CandidateResumeController extends Controller
         $user = Auth::user();
 
         $resume_file = Resume::where('userID', $user->id)->get();
-
+        
         return view('employee.employee-resume', ['resume_file' => $resume_file]);
     }
 
@@ -357,65 +357,109 @@ class CandidateResumeController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'skills' => ['required', 'array']
+            'skill' => ['required', 'string', 'max:255']
         ], [
-            'skills.required' => 'This field is required',
-            'skills.array' => 'Invalid input'
+            'skill.required' => 'This field is required',
+            'skill.string' => 'Invalid input'
         ]);
 
-        try 
-        {
-            $skills = implode(', ', $request->skills);
+        try {
+            DB::beginTransaction();
 
             $candidate = Resume::where('userID', $user->id)->first();
 
-            if($candidate)
-            {
-                // update resume
-                $candidate->skills = $skills;
-
-                if($candidate->isDirty())
-                {
+            if ($candidate) {
+                // Append new skill to existing ones
+                $existingSkills = $candidate->skills ? explode(', ', $candidate->skills) : [];
+                
+                // Check if skill already exists
+                if (!in_array($request->skill, $existingSkills)) {
+                    $existingSkills[] = $request->skill;
+                    $candidate->skills = implode(', ', $existingSkills);
                     $candidate->save();
-
-                    DB::commit();
-
-                    return response()->json([
-                        'success' => true, 
-                        'message' => 'Your resume updated successfully'
-                    ], 200);
                 }
+
+                DB::commit();
 
                 return response()->json([
                     'success' => true, 
-                    'message' => 'No changes detected'
+                    'message' => 'Skill added successfully'
                 ], 200);
             }
 
-            // Create resume 
+            // Create resume if it doesn't exist
             $newCandidate = new Resume();
-            $newCandidate->skills = $skills;
+            $newCandidate->skills = $request->skill;
             $newCandidate->userID = $user->id;
-
             $newCandidate->save();
 
             DB::commit();
 
             return response()->json([
                 'success' => true,
-                'message' => 'Your resume updated successfully'
+                'message' => 'Skill added successfully',
+                'skills' => $candidate->skill
             ], 200);
 
-        }
-        catch(Exception $ex)
-        {
+        } catch(Exception $ex) {
             DB::rollBack();
-            Log::error('Unknown error occurred whilst updating your resume: ' . $ex->getMessage());
+            Log::error('Error adding skill: ' . $ex->getMessage());
             return response()->json([
                 'success' => false,
-                'message' => 'Unknown error occurred whilst updating your resume'
+                'message' => 'Error adding skill'
             ], 500);
         }
     }
+
+    public function getSkills(Request $request)
+    {
+        $user = Auth::user();
+        $candidate = Resume::where('userID', $user->id)->first();
+        
+        return response()->json([
+            'skills' => $candidate ? $candidate->skills : ''
+        ]);
+    }
+
+    public function deleteSkill(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'skill' => ['required', 'string', 'max:255']
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            $candidate = Resume::where('userID', $user->id)->first();
+
+            if ($candidate && $candidate->skills) 
+            {
+                $existingSkills = explode(', ', $candidate->skills);
+                $updatedSkills = array_filter($existingSkills, function($s) use ($request) {
+                    return trim($s) !== trim($request->skill);
+                });
+                
+                $candidate->skills = implode(', ', $updatedSkills);
+                $candidate->save();
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true, 
+                'message' => 'Skill removed successfully'
+            ], 200);
+
+        } catch(Exception $ex) {
+            DB::rollBack();
+            Log::error('Error removing skill: ' . $ex->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Error removing skill'
+            ], 500);
+        }
+    }    
 
 }

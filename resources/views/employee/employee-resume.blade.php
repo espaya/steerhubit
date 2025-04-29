@@ -95,25 +95,30 @@
                               <div class="row row-cols-sm-2  row-cols-1">
                                  <div class="rt-input-group">
                                     <label for="title">Institution Name</label>
-                                    <input type="text" id="institution" name="degree_institution_name"  placeholder="Massachusetts Institute of Technology" autocomplete="off">
+                                    <input value="{{ $resume_file ? $resume_file[0]->degree_institution_name : '' }}" type="text" id="degree_institution_name" name="degree_institution_name"  placeholder="Massachusetts Institute of Technology" autocomplete="off">
+                                    <small style="color: red !important;" id="error-degree_institution_name"></small>
                                  </div>
                                  <div class="rt-input-group">
                                     <label for="std">Location</label>
-                                    <input type="text" id="location" name="degree_institution_location" placeholder="Massachusetts" autocomplete="off">
+                                    <input value="{{ $resume_file ? $resume_file[0]->degree_institution_location : '' }}" type="text" id="location" name="degree_institution_location" placeholder="Massachusetts" autocomplete="off">
+                                    <small style="color: red !important;" id="error-degree_institution_location"></small>
                                  </div>
                               </div>
                               <div class="row row-cols-sm-2 row-cols-1">
                                  <div class="rt-input-group">
                                     <label for="un">Year Started</label>
-                                    <input name="degree_year_started" type="date" id="un">
+                                    <input value="{{ $resume_file ? $resume_file[0]->degree_year_started : '' }}" name="degree_year_started" type="date" id="un">
+                                    <small style="color: red !important;" id="error-degree_year_started"></small>
                                  </div>
                                  <div class="rt-input-group">
                                     <label for="grade">Year Completed (or Present)</label>
-                                    <input name="degree_year_completed" type="date" id="grade">
+                                    <input value="{{ $resume_file ? $resume_file[0]->degree_year_completed : '' }}" name="degree_year_completed" type="date" id="grade">
+                                    <small style="color: red !important;" id="error-degree_year_completed"></small>
                                  </div>
                               </div>
+                              <div id="message"></div>
                               <div class="d-flex justify-content-start">
-                                    <a href="javascript::void();" class="added__social__link">Save Changes</a>
+                                    <a id="save-degree-info" href="javascript::void();" class="added__social__link">Save Changes</a>
                                 </div>
                            </div>
                         </div>
@@ -129,25 +134,30 @@
                               <div class="row row-cols-sm-2  row-cols-1">
                                  <div class="rt-input-group">
                                     <label for="title">Institution Name</label>
-                                    <input type="text" id="institution" name="cert_institution_name"  placeholder="Massachusetts Institute of Technology" autocomplete="off">
+                                    <input value="{{ $resume_file ? $resume_file[0]->cert_institution_name : '' }}" type="text" id="institution" name="cert_institution_name"  placeholder="Massachusetts Institute of Technology" autocomplete="off">
+                                    <small id="error-cert_institution_name" style="color: red !important;"></small>
                                  </div>
                                  <div class="rt-input-group">
                                     <label for="std">Location</label>
-                                    <input type="text" id="location" name="cert_institution_location" placeholder="Massachusetts" autocomplete="off">
+                                    <input value="{{ $resume_file ? $resume_file[0]->cert_institution_location : '' }}" type="text" id="location" name="cert_institution_location" placeholder="Massachusetts" autocomplete="off">
+                                    <small id="error-cert_institution_location" style="color: red !important;"></small>
                                  </div>
                               </div>
                               <div class="row row-cols-sm-2 row-cols-1">
                                  <div class="rt-input-group">
                                     <label for="un">Year Started</label>
-                                    <input name="cert_year_started" type="date" id="un">
+                                    <input autocomplete="off" value="{{ $resume_file ? $resume_file[0]->cert_year_started : '' }}" name="cert_year_started" type="date" id="un">
+                                    <small id="error-cert_year_started" style="color: red !important;"></small>
                                  </div>
                                  <div class="rt-input-group">
                                     <label for="grade">Year Completed (or Present)</label>
-                                    <input name="cert_year_completed" type="date" id="grade">
+                                    <input autocomplete="off" value="{{ $resume_file ? $resume_file[0]->cert_year_completed : '' }}" name="cert_year_completed" type="date" id="grade">
+                                    <small id="error-cert_year_completed" style="color: red !important;"></small>
                                  </div>
                               </div>
+                              <div id="cet-messages"></div>
                               <div class="d-flex justify-content-start">
-                                    <a href="javascript::void();" class="added__social__link">Save Changes</a>
+                                    <a id="save-cert-form" href="javascript::void();" class="added__social__link">Save Changes</a>
                                 </div>
                            </div>
                         </div>
@@ -163,25 +173,30 @@
                               <div class="row row-cols-sm-2  row-cols-1">
                                  <div class="rt-input-group">
                                     <label for="title">Institution Name</label>
-                                    <input type="text" id="institution" name="high_school_name"  placeholder="Massachusetts High School" autocomplete="off">
+                                    <input value="{{ $resume_file ? $resume_file[0]->high_school_name : '' }}" type="text" id="high_school_name" name="high_school_name"  placeholder="Massachusetts High School" autocomplete="off">
+                                    <small id="error-high_school_name" style="color: red !important;"></small>
                                  </div>
                                  <div class="rt-input-group">
                                     <label for="std">Location</label>
-                                    <input type="text" id="location" name="high_school_location" placeholder="Massachusetts" autocomplete="off">
+                                    <input value="{{ $resume_file ? $resume_file[0]->high_school_location : '' }}" type="text" id="high_school_location" name="high_school_location" placeholder="Massachusetts" autocomplete="off">
+                                    <small id="error-high_school_location" style="color: red !important;"></small>
                                  </div>
                               </div>
                               <div class="row row-cols-sm-2 row-cols-1">
                                  <div class="rt-input-group">
                                     <label for="un">Year Started</label>
-                                    <input name="high_school_year_started" type="date" id="un">
+                                    <input name="high_school_year_started" type="date" id="high_school_year_started" value="{{ $resume_file ? $resume_file[0]->high_school_year_started : '' }}">
+                                    <small id="error-high_school_year_started" style="color: red !important;"></small>
                                  </div>
                                  <div class="rt-input-group">
                                     <label for="grade">Year Completed (or Present)</label>
-                                    <input type="date" id="grade" name="high_school_year_completed">
+                                    <input type="date" id="high_school_year_completed" name="high_school_year_completed" value="{{ $resume_file ? $resume_file[0]->high_school_year_completed : '' }}">
+                                    <small id="error-high_school_year_completed" style="color: red !important;"></small>
                                  </div>
                               </div>
+                              <div id="high-school-message"></div>
                               <div class="d-flex justify-content-start">
-                                    <a href="javascript::void();" class="added__social__link">Save Changes</a>
+                                    <a id="save-high-school-resume" href="javascript::void();" class="added__social__link">Save Changes</a>
                                 </div>
                            </div>
                         </div>
@@ -206,11 +221,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class="accordion" style="margin-top: 20px" id="rts-accordion-2">
-                     <div class="d-flex justify-content-start">
-                        <a href="#" class="added__social__link">Add Skill</a>
-                     </div>
-                  </div>
+                  <div id="skill-messge"></div>
                </div>
                <!-- education end -->
             </div>
@@ -271,6 +282,10 @@
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
       <script src="{{ asset('assets/js/upload-resume-file.js') }}" ></script>
+      <script src="{{ asset('assets/js/add-degree.js') }}" ></script>
+      <script src="{{ asset('assets/js/add-cert.js') }}" ></script>
+      <script src="{{ asset('assets/js/add-high-school.js') }}" ></script>
+      <script src="{{ asset('assets/js/add-resume-skills.js') }}" ></script>
       <script>
          document.addEventListener('DOMContentLoaded', function() {
              const skillInput = document.getElementById('skillInput');

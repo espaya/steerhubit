@@ -181,6 +181,8 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
     Route::post('/candidate-dashboard/resume/certification', [CandidateResumeController::class, 'storeCertification']);
     Route::post('/candidate-dashboard/resume/highschool', [CandidateResumeController::class, 'storeHighSchool']);
     Route::post('/candidate-dashboard/resume/skills', [CandidateResumeController::class, 'storeSkills']);
+    Route::post('/candidate-dashboard/resume/skills/delete', [CandidateResumeController::class, 'deleteSkill']);
+    Route::get('/candidate-dashboard/resume/skills/get', [CandidateResumeController::class, 'getSkills']);
 
     Route::get('/candidate-dashboard/profile', [CandidateProfileController::class, 'index'])->name('employee.profile');
     Route::post('/candidate-dashboard/profile/save', [CandidateProfileController::class, 'store'])->name('employee.profile.store');
