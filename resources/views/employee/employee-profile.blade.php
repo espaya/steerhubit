@@ -72,7 +72,7 @@
                     <div class="my__details" id="info">
                         <div class="info__top">
                             <div class="author__image">
-                            <img id="profile-avatar" src="{{ Auth::user()->avatar ?? asset('assets/img/dashboard/profile.png') }}" alt="Profile Avatar">
+                            <img id="profile-avatar" src="{{ Auth::check() && Auth::user()->avatar ? asset('uploads/avatars/' . Auth::user()->avatar) : asset('assets/img/dashboard/profile.png') }}" alt="Profile Avatar"> 
                             </div>
                             <div class="select__image">
                                 <label for="file" class="file-upload__label">Upload New Photo</label>
