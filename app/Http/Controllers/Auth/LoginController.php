@@ -76,7 +76,7 @@ class LoginController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:4',
-            'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'nullable|captcha',
         ], [
             'email.required' => 'This field is required',
             'email.email' => 'Invalid input',
@@ -84,7 +84,7 @@ class LoginController extends Controller
             'password.required' => 'This field is required',
             'password.string' => 'Invalid input',
             'password.min' => 'Input is too short',
-            'g-recaptcha-response.required' => 'This field is required',
+            // 'g-recaptcha-response.required' => 'This field is required',
             'g-recaptcha-response.captcha' => 'Invalid input'
         ]);
 
