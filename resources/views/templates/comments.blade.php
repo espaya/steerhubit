@@ -20,7 +20,7 @@
                                     <div class="search__item">
                                         <label for="name" class="mb-3 font-20 fw-medium text-dark text-capitalize">Name</label>
                                         <div class="position-relative">
-                                            <input type="text" name="comment_name" id="comment-name" placeholder="Your Name" autocomplete="off">
+                                            <input type="text" name="comment_name" id="reply-comment-name" placeholder="Your Name" autocomplete="off">
                                             <i class="fa-light fa-user"></i>
                                         </div>
                                         <small style="color: red;" id="error-comment_name"></small>
@@ -28,7 +28,7 @@
                                     <div class="search__item">
                                         <label for="bemail" class="mb-3 font-20 fw-medium text-dark text-capitalize">Your Email</label>
                                         <div class="position-relative">
-                                            <input type="text" id="comment-email" name="comment_email" placeholder="Enter your email" autocomplete="off">
+                                            <input type="text" id="reply-comment-email" name="comment_email" placeholder="Enter your email" autocomplete="off">
                                             <i class="rt-mailbox"></i>
                                         </div>
                                         <small style="color: red;" id="error-comment_email"></small>
@@ -36,18 +36,13 @@
                                 </div>
                                 <div class="search__item">
                                     <label class="mb-3 font-20 fw-medium text-dark text-capitalize" for="message">Your Comment</label>
-                                    <textarea name="comment" id="comment" placeholder="Message"></textarea>
+                                    <textarea name="comment" id="reply-comment" placeholder="Message"></textarea>
                                     <i class="fa-thin fa-comment-lines"></i>
                                     <small style="color: red;" id="error-comment"></small>
                                 </div>
 
-                                <div class="search__item">
-                                    {!! NoCaptcha::renderJs() !!}
-                                    {!! NoCaptcha::display() !!}
-                                </div>
-                                <small style="color: red;" id="error-g-recaptcha-response"></small>
 
-                                <button type="submit" class="rts__btn fill__btn be-1 max-content apply__btn">Reply</button>
+                                <button type="submit" class="rts__btn fill__btn be-1 max-content apply__btn">Reply </button>
                                 <div id="comment-response" class="alert d-none"></div>
                             </form>
                         </div>
@@ -82,6 +77,13 @@
                                     <i class="fa-thin fa-comment-lines"></i>
                                     <small style="color: red;" id="error-comment"></small>
                                 </div>
+                                
+                                <div class="search__item">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+                                </div>
+                                <small style="color: red;" id="error-g-recaptcha-response"></small> 
+
                                 <button type="submit" class="rts__btn fill__btn be-1 max-content apply__btn">Submit Comment</button>
                                 <div id="comment-response" class="alert d-none"></div>
                             </form>

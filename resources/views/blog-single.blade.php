@@ -4,7 +4,7 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="mobile-web-app-capable" content="yes">
       <meta name="description" content="Your Ultimate Job HTML Template">
       <meta name="keywords" content="Job, Resume, Employer, Agency">
       <link rel="canonical" href="https://html.themewant.com/jobpath">
@@ -190,14 +190,15 @@
       <!-- all plugin js -->
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
-      <script src="{{asset('assets/js/add-comment.js')}}"></script>
-      <script src="{{asset('assets/js/reply-comment.js')}}"></script>
+      
       
       <script src="{{ asset('assets/js/new-otp.js') }}"></script>
       <script src="{{ asset('assets/js/signup.js') }}"></script>
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
       <script src="{{ asset('assets/js/signin.js') }}"></script>
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
+      <script src="{{asset('assets/js/add-comment.js')}}"></script>
+      <script src="{{asset('assets/js/reply-comment.js')}}"></script>
       <script>
          $('#loginAgain').on('click', function () {
             $('#otpModal').modal('hide');

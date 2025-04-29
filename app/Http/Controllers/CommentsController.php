@@ -8,17 +8,18 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class CommentsController extends Controller
 {
     public function store(Request $request, $slug, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'comment_email' => ['required', 'email'],
             'comment_name' => ['required', 'string'],
             'comment' => ['required', 'string'],
             'parent_id' => ['nullable', 'exists:post_comment,id'],
-            'g-recaptcha-response' => ['required', 'captcha'],
+            // 'g-recaptcha-response' => ['required', 'captcha'],
         ], [
             'comment_email.required' => 'This field is required',
             'comment_email.email' => 'Invalid email',
@@ -27,9 +28,20 @@ class CommentsController extends Controller
             'comment.required' => 'This field is required',
             'comment.string' => 'Invalid input',
             'parent_id.exists' => 'An error occurred. You cannot reply to this comment',
-            'g-recaptcha-response.required' => 'This field is required',
-            'g-recaptcha-response.captcha' => 'Invalid input'
-        ]);   
+            // 'g-recaptcha-response.required' => 'This field is required',
+            // 'g-recaptcha-response.captcha' => 'Invalid input'
+        ]);  
+
+
+        if ($validator->fails()) 
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
 
         try 
         {
@@ -56,7 +68,7 @@ class CommentsController extends Controller
                 'comment' => $comment,
                 'post_id' => $id,
                 'status' => 'PENDING',
-                'parent_id' => $parent_id ?? null
+                'parent_id' => $parent_id ? (int)$parent_id : null
             ]); 
 
             DB::commit();
