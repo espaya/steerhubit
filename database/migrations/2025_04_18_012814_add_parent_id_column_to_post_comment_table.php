@@ -9,22 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::table('post_comment', function (Blueprint $table) {
-            $table->unsignedBigInteger('parent_id')->nullable()->after('id');
-            // $table->foreign('parent_id')->references('id')->on('post_comment')->onDelete('cascade');
-        });
-    }
+    // public function up(): void
+    // {
+    //     Schema::table('post_comment', function (Blueprint $table) {
+    //         $table->unsignedBigInteger('parent_id')->nullable()->after('id');
+    //         // $table->foreign('parent_id')->references('id')->on('post_comment')->onDelete('cascade');
+    //     });
+    // }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('post_comment', function (Blueprint $table) {
-            $table->unsignedBigInteger('parent_id')->nullable()->after('id');
-            // $table->foreign('parent_id')->references('id')->on('post_comment')->onDelete('cascade');
-        });
-    }
+    // /**
+    //  * Reverse the migrations.
+    //  */
+    // public function down(): void
+    // {
+    //     Schema::table('post_comment', function (Blueprint $table) {
+    //         $table->unsignedBigInteger('parent_id')->nullable()->after('id');
+    //         // $table->foreign('parent_id')->references('id')->on('post_comment')->onDelete('cascade');
+    //     });
+    // }
 };

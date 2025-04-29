@@ -3,11 +3,12 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="mobile-web-app-capable" content="yes">
       <meta name="description" content="Your Ultimate Job HTML Template">
       <meta name="keywords" content="Job, Resume, Employer, Agency">
       <link rel="canonical" href="https://html.themewant.com/jobpath">
       <meta name="robots" content="index, follow">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <!-- for open graph social media -->
       <meta property="og:title" content="Your Ultimate Job HTML Template">
       <meta property="og:description" content="Your Ultimate Job HTML Template">
@@ -21,9 +22,8 @@
       <link rel="shortcut-icon" href="{{asset('assets/img/favicon-16x16.png')}}" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-      <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
       <link rel="shortcut icon" href="{{asset('assets/img/favicon.ico')}}" type="image/x-icon">
-      <title>SteerHubIT - Resume</title>
+      <title>Resume - SteerHubIT</title>
       <!-- rt icons -->
       <link rel="stylesheet" href="{{asset('assets/fonts/icon/css/rt-icons.css')}}">
       <!-- fontawesome -->
@@ -59,8 +59,11 @@
                         </span>
                         </label>
                         <input type="file" name="file" class="file-upload__input__two" id="file">
+                        <small id="error-file" style="color: red !important;"></small>
+                        <div id="success-div"></div>
                      </div>
                      <div class="cv__included d-flex gap-30">
+                        @forelse($resume_file as $file)
                         <div class="single__item">
                            <div class="d-flex justify-content-between">
                               <span>Resume</span>
@@ -70,18 +73,10 @@
                               PDF
                            </div>
                         </div>
-                        <div class="single__item">
-                           <div class="d-flex justify-content-between">
-                              <span>Cover Letter</span>
-                              <span><i class="fa-regular fa-xmark"></i></span>
-                           </div>
-                           <div class="file__type font-20 mt-2 fw-semibold">
-                              PDF
-                           </div>
-                        </div>
-                     </div>
-                     <div class="d-flex justify-content-start">
-                        <a href="javascript::void();" class="added__social__link">Save File</a>
+                        @empty  
+                        <p></p>
+                        @endforelse
+                        
                      </div>
                   </div>
                </div>
@@ -275,6 +270,7 @@
       <!-- all plugin js -->
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
+      <script src="{{ asset('assets/js/upload-resume-file.js') }}" ></script>
       <script>
          document.addEventListener('DOMContentLoaded', function() {
              const skillInput = document.getElementById('skillInput');

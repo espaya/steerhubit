@@ -176,7 +176,7 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-ba
 
     Route::get('/candidate-dashboard/resume', [CandidateResumeController::class, 'index'])->name('employee.resume');
 
-    Route::post('/candidate-dashboard/resume/file', [CandidateResumeController::class, 'storeFile']);
+    Route::post('/candidate-dashboard/resume/file', [CandidateResumeController::class, 'storeFile']); 
     Route::post('/candidate-dashboard/resume/degree', [CandidateResumeController::class, 'storeDegree']);
     Route::post('/candidate-dashboard/resume/certification', [CandidateResumeController::class, 'storeCertification']);
     Route::post('/candidate-dashboard/resume/highschool', [CandidateResumeController::class, 'storeHighSchool']);
