@@ -55,7 +55,7 @@
                     <p class="br-sm-none">Subscribe Our Newsletter get <br> Update our New Course</p>
                     <form id="subscribeForm" action="#" method="post" class="d-flex align-items-center justify-content-between mt-4 newsletter">
                         @csrf
-                        <input class="@error('subscribe_email') is-invalid @enderror" type="text" name="subscribe_email" id="semail" placeholder="Enter your email" autocomplete="off">
+                        <input type="text" name="subscribe_email" id="semail" placeholder="Enter your email" autocomplete="off">
                         <button id="subscribe-button" type="submit" class="rts__btn fill__btn">Subscribe</button>
                     </form>
                     <div id="subscribeMessage" class="mt-2"></div> <!-- Message display -->
