@@ -84,7 +84,7 @@ class LoginController extends Controller
             'password.required' => 'This field is required',
             'password.string' => 'Invalid input',
             'password.min' => 'Input is too short',
-            // 'g-recaptcha-response.required' => 'This field is required',
+            'g-recaptcha-response.required' => 'This field is required',
             'g-recaptcha-response.captcha' => 'Invalid input'
         ]);
 

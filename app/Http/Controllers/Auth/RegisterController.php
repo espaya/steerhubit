@@ -95,7 +95,8 @@ class RegisterController extends Controller
                 'confirmed', 
                 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/'
             ],
-            'role' => ['required', 'string']
+            'role' => ['required', 'string'],
+            'g-recaptcha-response' => ['required', 'captcha'],
         ], [
             'name.required' => 'This field is required',
             'email.required' => 'This field is required',
@@ -106,7 +107,9 @@ class RegisterController extends Controller
             // 'password.min' => 'Minimum lenght should be',
             'password.regex' => 'This field must include uppercase, lowercase, number, and special character and not less that 6 characters',
             'role.required' => 'Choose an account type',
-            'name.not_in' => 'You cannot use this username'
+            'name.not_in' => 'You cannot use this username',
+             'g-recaptcha-response.required' => 'This field is required',
+            'g-recaptcha-response.captcha' => 'Invalid input'
         ]);
 
         try 
