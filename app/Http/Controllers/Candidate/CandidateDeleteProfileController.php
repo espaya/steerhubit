@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Controller;
 use App\Models\ApplyForJob;
 use App\Models\CandidateProfile;
+use App\Models\Resume;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -27,17 +28,17 @@ class CandidateDeleteProfileController extends Controller
         $userId = Auth::user()->id;
 
         $request->validate([
-            'password' => ['required']
+            'password' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (!Hash::check($value, Auth::user()->password)) {
+                        $fail('Your password is incorrect.');
+                    }
+                }
+            ],
         ], [
-            'password.required' => 'This field is required'
+            'password.required' => 'This field is required',
         ]);
-
-        $password = $request->password;
-
-        if (!Hash::check($password, Auth::user()->password)) 
-        {
-            return redirect()->back()->with(['error' => 'Your password is incorrect']);
-        }
 
         DB::beginTransaction();
 
@@ -52,9 +53,23 @@ class CandidateDeleteProfileController extends Controller
 
             // Delete related data
             $applyForJob = ApplyForJob::where('applicant_id', $userId)->first();
-            if($applyForJob) $applyForJob->forceDelete();
             $candidateProfile = CandidateProfile::where('userID', $userId)->first();
-            if($candidateProfile) $candidateProfile->delete();
+            $resume = Resume::where('userID', $userId)->first();
+
+            if($applyForJob)
+            {
+                $applyForJob->forceDelete();
+            }
+
+            if($candidateProfile)
+            {
+                $candidateProfile->delete();
+            }
+
+            if($resume)
+            {
+                $resume->delete();
+            }
 
             // Permanently delete user
             $user->forceDelete();
