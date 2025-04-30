@@ -64,15 +64,18 @@
                      </div>
                      <div class="cv__included d-flex gap-30">
                         @forelse($resume_file as $file)
-                        <div class="single__item">
-                           <div class="d-flex justify-content-between">
-                              <span>Resume</span>
-                              <span><i class="fa-regular fa-xmark"></i></span>
-                           </div>
-                           <div class="file__type font-20 mt-2 fw-semibold">
-                              PDF
-                           </div>
-                        </div>
+                           @if(!empty($file->file))
+                              <div class="single__item">
+                                 <div class="d-flex justify-content-between">
+                                    <span>Resume</span>
+                                    <span><i class="fa-regular fa-xmark"></i></span>
+                                    <span hidden data-id="{{ $file->id }}"></span>
+                                 </div>
+                                 <div class="file__type font-20 mt-2 fw-semibold">
+                                    PDF
+                                 </div>
+                              </div>
+                           @endif
                         @empty  
                         <p></p>
                         @endforelse
@@ -222,6 +225,7 @@
                      </div>
                   </div>
                   <div id="skill-messge"></div>
+                  <button hidden id="save-resume-skills">Add Skill</button>
                </div>
                <!-- education end -->
             </div>
@@ -286,45 +290,46 @@
       <script src="{{ asset('assets/js/add-cert.js') }}" ></script>
       <script src="{{ asset('assets/js/add-high-school.js') }}" ></script>
       <script src="{{ asset('assets/js/add-resume-skills.js') }}" ></script>
+      <script src="{{ asset('assets/js/delete-resume-file.js') }}" ></script>
       <script>
-         document.addEventListener('DOMContentLoaded', function() {
-             const skillInput = document.getElementById('skillInput');
-             const skillTags = document.getElementById('skillTags');
+         // document.addEventListener('DOMContentLoaded', function() {
+         //     const skillInput = document.getElementById('skillInput');
+         //     const skillTags = document.getElementById('skillTags');
              
-             // Add delete functionality to existing skills
-             document.querySelectorAll('.skill__tags .fa-xmark').forEach(btn => {
-                 btn.addEventListener('click', function() {
-                 this.closest('li').remove();
-                 });
-             });
+         //     // Add delete functionality to existing skills
+         //     document.querySelectorAll('.skill__tags .fa-xmark').forEach(btn => {
+         //         btn.addEventListener('click', function() {
+         //         this.closest('li').remove();
+         //         });
+         //     });
              
-             skillInput.addEventListener('keydown', function(e) {
-                 if (e.key === 'Enter' && this.value.trim() !== '') {
-                 addSkill(this.value.trim());
-                 this.value = '';
-                 }
-             });
+         //     skillInput.addEventListener('keydown', function(e) {
+         //         if (e.key === 'Enter' && this.value.trim() !== '') {
+         //         addSkill(this.value.trim());
+         //         this.value = '';
+         //         }
+         //     });
              
-             function addSkill(skillName) {
-                 const skillItem = document.createElement('li');
-                 skillItem.innerHTML = `
-                 <span class="skill__item">${skillName}</span>
-                 <span><i class="fa-regular fa-xmark"></i></span>
-                 `;
+         //     function addSkill(skillName) {
+         //         const skillItem = document.createElement('li');
+         //         skillItem.innerHTML = `
+         //         <span class="skill__item">${skillName}</span>
+         //         <span><i class="fa-regular fa-xmark"></i></span>
+         //         `;
                  
-                 skillItem.querySelector('.fa-xmark').addEventListener('click', function() {
-                 skillItem.remove();
-                 });
+         //         skillItem.querySelector('.fa-xmark').addEventListener('click', function() {
+         //         skillItem.remove();
+         //         });
                  
-                 // Insert before the "add" button if it exists
-                 const addButton = document.querySelector('.skill__item__add');
-                 if (addButton) {
-                 addButton.closest('li').before(skillItem);
-                 } else {
-                 skillTags.appendChild(skillItem);
-                 }
-             }
-             });
+         //         // Insert before the "add" button if it exists
+         //         const addButton = document.querySelector('.skill__item__add');
+         //         if (addButton) {
+         //         addButton.closest('li').before(skillItem);
+         //         } else {
+         //         skillTags.appendChild(skillItem);
+         //         }
+         //     }
+         //     });
       </script>
    </body>
 </html>

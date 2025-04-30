@@ -1,20 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Get elements with null checks
     const skillInput = document.getElementById('skillInput');
     const skillTags = document.getElementById('skillTags');
     const skillMessage = $('#skill-messge');
-    
+    const saveButton = document.getElementById('save-resume-skills');
+
+    // Only proceed if required elements exist
+    if (!skillInput || !skillTags || !saveButton) {
+        console.error('Required elements not found in DOM');
+        return;
+    }
+
     // Load existing skills from server on page load
     loadExistingSkills();
     
-    // Add delete functionality to existing skills
-    document.querySelectorAll('.skill__tags .fa-xmark').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const skill = this.closest('li').querySelector('.skill__item').textContent;
-            deleteSkill(skill);
-            this.closest('li').remove();
+    // Add delete functionality to existing skills (only if they exist)
+    const existingDeleteButtons = document.querySelectorAll('.skill__tags .fa-xmark');
+    if (existingDeleteButtons.length > 0) {
+        existingDeleteButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const skill = this.closest('li').querySelector('.skill__item').textContent;
+                deleteSkill(skill);
+                this.closest('li').remove();
+            });
         });
-    });
+    }
     
+    // Add event listeners only if elements exist
     skillInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && this.value.trim() !== '') {
             const skill = this.value.trim();
@@ -23,12 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Add click handler for the "Add Skill" button
-    document.getElementById('save-resume-skills').addEventListener('click', function(e) {
+    saveButton.addEventListener('click', function(e) {
         e.preventDefault();
         const skill = skillInput.value.trim();
         if (skill) {
-            saveSkill(skill);  // Fixed typo from 'skkill' to 'skill'
+            saveSkill(skill);
             skillInput.value = '';
         }
     });
@@ -40,16 +51,19 @@ document.addEventListener('DOMContentLoaded', function() {
             <span><i class="fa-regular fa-xmark"></i></span>
         `;
         
-        skillItem.querySelector('.fa-xmark').addEventListener('click', function() {
-            deleteSkill(skillName);
-            skillItem.remove();
-        });
+        const deleteButton = skillItem.querySelector('.fa-xmark');
+        if (deleteButton) {
+            deleteButton.addEventListener('click', function() {
+                deleteSkill(skillName);
+                skillItem.remove();
+            });
+        }
         
         // Insert before the "add" button if it exists
         const addButton = document.querySelector('.skill__item__add');
-        if (addButton) {
+        if (addButton && addButton.closest('li')) {
             addButton.closest('li').before(skillItem);
-        } else {
+        } else if (skillTags) {
             skillTags.appendChild(skillItem);
         }
     }
@@ -62,7 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(response) {
-                if (response.skills) {
+                if (response.skills && skillTags) {
+                    skillTags.innerHTML = ''; // Clear existing skills
                     const skills = response.skills.split(', ');
                     skills.forEach(skill => {
                         if (skill.trim()) {
@@ -78,10 +93,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function showMessage(message, isError = false) {
+        if (!skillMessage.length) return;
+        
         const color = isError ? 'red' : 'green';
         skillMessage.html(`<div style="color: ${color};">${message}</div>`);
         
-        // Hide message after 3 seconds
         setTimeout(() => {
             skillMessage.html('');
         }, 3000);
@@ -96,10 +112,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(response) {
-                // Clear existing skills and reload all from server
-                skillTags.innerHTML = '';
-                loadExistingSkills();
-                
+                if (skillTags) {
+                    skillTags.innerHTML = '';
+                    loadExistingSkills();
+                }
                 showMessage(response.message);
             },
             error: function(xhr) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Candidate;
 use App\Http\Controllers\Controller;
 use App\Models\Resume;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -460,6 +461,59 @@ class CandidateResumeController extends Controller
                 'message' => 'Error removing skill'
             ], 500);
         }
-    }    
+    }  
+    
+    public function deleteResumeFile(Request $request)
+    {
+        $user = Auth::user(); 
+
+        $request->validate([
+            'id' => ['required', 'integer', 'exists:resume,id']
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            $file = Resume::where('id', $request->id)->firstOrFail();
+
+            // Delete file from storage
+            $filePath = public_path('uploads/resumes/' . $file->file);
+            if (File::exists($filePath)) {
+                File::delete($filePath);
+            }
+
+            // Delete the entire record or just clear the file field?
+            // Option 1: Delete the entire record
+            // $file->delete();
+
+            // Option 2: If you want to keep the record but remove the file reference
+            $file->file = '';
+            $file->save();
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Resume deleted successfully'
+            ]);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error deleting resume file: ' . $e->getMessage());
+            
+            // More specific error message
+            $message = 'Failed to delete resume';
+            if ($e instanceof ModelNotFoundException) 
+            {
+                $message = 'Resume not found or not owned by user';
+            }
+
+            return response()->json([
+                'success' => false,
+                'message' => $message,
+                'error' => config('app.debug') ? $e->getMessage() : null
+            ], 500);
+        }
+    }
 
 }
