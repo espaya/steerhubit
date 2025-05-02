@@ -16,7 +16,7 @@
                     <td width="50%" align="left" valign="middle">
                         <a target="_blank" href="https://steerhubit.com/">
                             <img src="{{ $message->embed(public_path('assets/img/logo/logo.png')) }}" 
-                                alt="Company Logo" 
+                                alt="SteerHubIT" 
                                 style="max-width: 200px; height: auto; display: block;">
                         </a>
                     </td>
