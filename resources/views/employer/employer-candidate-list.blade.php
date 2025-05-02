@@ -123,12 +123,12 @@
                                             </svg>
                                         Download Cv                                    
                                     </button>
-                                    <button class="action__item">
-                                        <span class="notification__item">10</span>
-                                        <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5.44444 5.70588H12.5556M5.44444 9.47059H10.7778M6.33333 14.1765H3.66667C2.95942 14.1765 2.28115 13.879 1.78105 13.3495C1.28095 12.82 1 12.1018 1 11.3529V3.82353C1 3.07468 1.28095 2.35651 1.78105 1.82699C2.28115 1.29748 2.95942 1 3.66667 1H14.3333C15.0406 1 15.7189 1.29748 16.219 1.82699C16.7191 2.35651 17 3.07468 17 3.82353V11.3529C17 12.1018 16.7191 12.82 16.219 13.3495C15.7189 13.879 15.0406 14.1765 14.3333 14.1765H11.6667L9 17L6.33333 14.1765Z" stroke="#939393" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <a href="{{ route('employer.candidate.view', ['id' => $candidate->userID ]) }}" class="action__item">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 12C1 12 5 5 12 5C19 5 23 12 23 12C23 12 19 19 12 19C5 19 1 12 1 12Z" stroke="#939393" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <circle cx="12" cy="12" r="3" stroke="#939393" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                         </svg>
-                                    </button>
+                                    </a>
                                     <button class="action__item">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewbox="0 0 24 24">
                                             <path d="M 20.292969 5.2929688 L 9 16.585938 L 4.7070312 12.292969 L 3.2929688 13.707031 L 9 19.414062 L 21.707031 6.7070312 L 20.292969 5.2929688 z" fill="#939393">

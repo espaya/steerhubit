@@ -112,7 +112,9 @@
                                     <li><a class="dropdown-item" href="{{ route('employer.dashboard') }}">Dashboard</a></li>
                                     <li><a class="dropdown-item" href="{{ route('employer.profile') }}">Profile</a></li>
                                     <li><a class="dropdown-item" href="{{ route('employer.job') }}">My Job</a></li>
+                                    
                                     <li><a class="dropdown-item" href="{{ route('employer.candidate.list') }}">Candidate List</a></li>
+
                                     <li><a class="dropdown-item" href="{{ route('employer.candidate.shortlist') }}">Candidate Shortlist</a></li>
                                     <li><a class="dropdown-item" href="{{ route('employer.package') }}">Subscription</a></li>
                                     <li><a class="dropdown-item" href="{{ route('employer.change.password') }}">Change Password</a></li>

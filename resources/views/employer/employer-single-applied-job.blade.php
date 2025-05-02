@@ -149,7 +149,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="d-flex gap-4 flex-wrap align-items-center">
-                                                            <button class="apply__btn" aria-label="View Profile">View </button>
+                                                            <a href="{{ route('employer.view.candidate', ['id' => $applicant->profile->userID, 'slug' => $job->slug]) }}" class="apply__btn" aria-label="View Profile">View </a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,23 +171,23 @@
                                             <ul>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                                     <span class="left-text"> <i class="rt-qualification"></i> Qualification</span>
-                                                    <span class="text">:  Bachelor Degree</span>
+                                                    <span class="text">:  {{ $job->qualification }}</span>
                                                 </li>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                                     <span class="left-text"> <i class="rt-experience"></i> Experience</span>
-                                                    <span class="text">:  2 Year</span>
+                                                    <span class="text">:  {{ $job->experience }}</span>
                                                 </li>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
-                                                    <span class="left-text"> <i class="rt-price-tag"></i> Offered Salary</span>
-                                                    <span class="text">: $2000-$3000</span>
+                                                    <span class="left-text"> <i class="rt-price-tag"></i> Pay</span>
+                                                    <span class="text">: ${{ $job->pay }}</span>
                                                 </li>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                                     <span class="left-text"> <i class="rt-loading"></i> Job Deadline</span>
-                                                    <span class="text">: 01 July 2024</span>
+                                                    <span class="text">: {{ $job->deadline }}</span>
                                                 </li>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                                     <span class="left-text"> <i class="fa-sharp fa-thin fa-location-dot"></i> Location</span>
-                                                    <span class="text">: New York, USA</span>
+                                                    <span class="text">: {{ $job->state . ', ' . $job->country }}</span>
                                                 </li>
                                             </ul>
                                         </div>

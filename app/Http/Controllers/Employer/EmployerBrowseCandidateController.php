@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Employer;
 use App\Http\Controllers\Controller;
 use App\Models\ApplyForJob;
 use App\Models\CandidateProfile;
+use App\Models\EmployerProfile;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class EmployerBrowseCandidateController extends Controller
 {
@@ -40,9 +44,31 @@ class EmployerBrowseCandidateController extends Controller
     }
    
 
-    public function view()
+    public function view($slug, $id)
     {
-        return view('employer.employer-candidate-details');
+        $profile = CandidateProfile::where('userID', $id)->first();
+
+        return view('employer.employer-candidate-details', ['profile' => $profile]);
+    }
+
+    public function shortlistCandidate()
+    {
+        try 
+        {
+            DB::beginTransaction();
+
+            
+
+        }
+        catch(Exception $ex)
+        {
+            DB::rollBack();
+            Log::error('Unknown error occurred whilst shortlisting this candidate: ' . $ex->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Unknown error occurred whilst shortlisting this candidate'
+            ], 500);
+        }
     }
 
 }

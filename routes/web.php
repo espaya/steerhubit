@@ -126,10 +126,11 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
 
     Route::delete('/employer-dashboard/my-jobs/delete/{id}', [EmployerJobController::class, 'destroy'])->name('employer.job.delete');
 
+
     Route::get('/candidate-dashboard/applied-jobs', [EmployerJobController::class, 'appliedJobs'])->name('employee.applied.jobs');
 
     Route::get('/candidate-dashboard/applied-jobs/{slug}', [EmployerJobController::class, 'viewAppliedJob'])
-        ->name('employee.view.applied.jobs');
+        ->name('employer.view.applied.jobs');
 
     Route::get('/employer-dashboard/applied-jobs/{slug}/{id}', [EmployerBrowseCandidateController::class, 'view'])
         ->name('employer.view.candidate');
