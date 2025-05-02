@@ -53,7 +53,7 @@
                             </div>
                             <div class="action-btn">
                                 <a href="{{ route('management.invoice.create') }}" class="btn px-15 btn-primary">
-                                    <i class="las la-plus fs-16"></i>Generate</a>
+                                    <i class="las la-plus fs-16"></i>Generate New Invoice</a>
                             </div>
                         </div>
 

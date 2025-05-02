@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Mail\InvoiceMail;
 use App\Models\Invoice;
 use App\Models\InvoiceItem;
 use Exception;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class InvoiceController extends Controller
 {
@@ -143,6 +145,9 @@ class InvoiceController extends Controller
                     'order_total' => $product['order_total']
                 ]);
             }
+
+            // Send the invoice to the recipient
+            Mail::to($invoice->recipient_email)->send(new InvoiceMail($invoice));
 
             DB::commit();
 

@@ -42,7 +42,10 @@
 
                             <div class="breadcrumb-main">
                                 <h4 class="text-capitalize breadcrumb-title">{{ $invoice->invoice_number }}</h4>
-                                
+                                <div class="action-btn">
+                                <a href="{{ route('management.invoice.create') }}" class="btn px-15 btn-primary">
+                                    <i class="las la-plus fs-16"></i>Generate New Invoice</a>
+                            </div>
                             </div>
 
                         </div>
@@ -56,7 +59,7 @@
                             <div id="invoice-body" class="payment-invoice__body">
                                 <div class="payment-invoice-address d-flex justify-content-sm-between">
                                     <div class="payment-invoice-logo">
-                                        <a href="index.html"><img class="svg dark" src="{{asset('assets/mgt/img/logo_dark.svg')}}" alt=""></a>
+                                        <a href="#"><img width="25%" class="svg dark" src="{{asset('assets/img/logo/logo.png')}}" alt=""></a>
                                     </div>
                                     <div class="payment-invoice-address__area">
                                         <address>SteerHubIT<br> info@steerhubit.com<br> +1 (848) 330-9298
