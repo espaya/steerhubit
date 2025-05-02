@@ -9,43 +9,48 @@
     <div style="max-width: 800px; margin: 20px auto; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
         <div style="padding: 30px;">
             <!-- Header -->
-            <div style="display: flex; justify-content: space-between; margin-bottom: 40px;">
-                <!-- Left-aligned Logo -->
-                <div style="text-align: left;">
-                    <a href="#" style="display: inline-block;">
-                        <img src="{{ env('APP_URL') }}/assets/img/logo/logo.png" 
-                            alt="Company Logo" 
-                            style="display: block; max-width: 150px; width: 25%; height: auto; border: 0;">
-                    </a>
-                </div>
-                
-                <!-- Right-aligned Address -->
-                <div style="text-align: right;">
-                    <address style="display: inline-block; text-align: right; font-style: normal; margin: 0; color: #666; line-height: 1.6;">
+            <!-- Logo and Address (Email-compatible table layout) -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 40px; border-collapse: collapse;">
+                <tr>
+                    <!-- Left-aligned Logo -->
+                    <td width="50%" align="left" valign="middle">
+                        <a target="_blank" href="https://steerhubit.com/">
+                            <img src="{{ $message->embed(public_path('assets/img/logo/logo.png')) }}" 
+                                alt="Company Logo" 
+                                style="max-width: 200px; height: auto; display: block;">
+                        </a>
+                    </td>
+
+                    <!-- Right-aligned Address -->
+                    <td width="50%" align="right" valign="middle" style="color: #666; font-style: normal; line-height: 1.6;">
                         SteerHubIT<br>
                         info@steerhubit.com<br>
                         +1 (848) 330-9298
-                    </address>
-                </div>
-            </div>
+                    </td>
+                </tr>
+            </table>
 
             <!-- Invoice Info -->
-            <div style="display: flex; justify-content: space-between; margin-bottom: 40px; padding: 20px 30px; background: #f9f9f9; border-radius: 6px;">
-                <!-- Left-aligned Invoice Info -->
-                <div style="text-align: left;">
-                    <h1 style="font-size: 28px; margin: 0 0 10px 0; color: #333; text-align: left;">Invoice</h1>
-                    <p style="margin: 5px 0; color: #666; text-align: left;">No: <span style="font-weight: bold;">{{ $invoice->invoice_number }}</span></p>
-                    <p style="margin: 5px 0; color: #666; text-align: left;">Date: <span style="font-weight: bold;">{{ $invoice->created_at->format('M d, Y') }}</span></p>
-                </div>
-                
-                <!-- Right-aligned Invoice To -->
-                <div style="text-align: right;">
-                    <p style="margin: 0 0 5px 0; color: #666; text-align: right;">Invoice To:</p>
-                    <p style="margin: 5px 0; font-weight: bold; text-align: right;">{{ $invoice->recipient_name }}</p>
-                    <p style="margin: 5px 0; color: #666; text-align: right;"><i>{{ $invoice->recipient_email }}</i></p>
-                    <p style="margin: 5px 0; color: #666; text-align: right;">{{ $invoice->recipient_phone }}</p>
-                </div>
-            </div>
+            <!-- Invoice Info (Email-friendly layout using tables) -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 40px; background: #f9f9f9; padding: 20px 30px; border-collapse: collapse;">
+                <tr>
+                    <!-- Left-aligned Invoice Info -->
+                    <td width="50%" align="left" valign="top" style="padding-right: 15px;">
+                        <h1 style="font-size: 28px; margin: 0 0 10px 0; color: #333;">Invoice</h1>
+                        <p style="margin: 5px 0; color: #666;">No: <strong>{{ $invoice->invoice_number }}</strong></p>
+                        <p style="margin: 5px 0; color: #666;">Date: <strong>{{ $invoice->created_at->format('M d, Y') }}</strong></p>
+                    </td>
+
+                    <!-- Right-aligned Invoice To -->
+                    <td width="50%" align="right" valign="top" style="padding-left: 15px;">
+                        <p style="margin: 0 0 5px 0; color: #666;">Invoice To:</p>
+                        <p style="margin: 5px 0; font-weight: bold;">{{ $invoice->recipient_name }}</p>
+                        <p style="margin: 5px 0; color: #666;"><i>{{ $invoice->recipient_email }}</i></p>
+                        <p style="margin: 5px 0; color: #666;">{{ $invoice->recipient_phone }}</p>
+                    </td>
+                </tr>
+            </table>
+
 
             <!-- Products Table -->
             <div style="margin-bottom: 40px;">
@@ -105,6 +110,7 @@
             <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #999; font-size: 13px;">
                 <p>Thank you for your business!</p>
                 <p>If you have any questions about this invoice, please contact our support team.</p>
+                <p><a href="mailto:info@steerhubit.com">info@steerhubit.com</a> | +1 (848) 330-9298</p>
             </div>
         </div>
     </div>
