@@ -122,9 +122,6 @@
                                 <li>
                                     <a href="{{ route('management.invoice.create') }}" class="">Generate New Invoice</a>
                                 </li>
-                                <li>
-                                    <a href="#" class="">Trash</a>
-                                </li>
                             </ul>
                         </li>
 
