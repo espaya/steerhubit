@@ -116,7 +116,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="userDatatable-inline-title">
-                                                        <a href="#" class="text-dark fw-500">
+                                                        <a href="{{ route('management.invoice.show', ['invoice_number' => $invoice->invoice_number]) }}" class="text-dark fw-500">
                                                             <h6>{{ $invoice->invoice_number }}</h6>
                                                         </a>
                                                     </div>
