@@ -24,23 +24,23 @@ class ManagementEmployersController extends Controller
             });
         }
 
-        $employees = $query->paginate($perPage);
-        $totalEmployees = User::where('role', 'Candidate')->count();
+        $employers = $query->paginate($perPage);
+        $totalEmployers = User::where('role', 'EMPLOYER')->count();
 
         $limits = [];
 
-        for ($i = 10; $i <= $totalEmployees; $i *= 2) 
+        for ($i = 10; $i <= $totalEmployers; $i *= 2) 
         {
             $limits[] = $i;
         }
 
-        // Ensure the last option is the total number of employees
-        if ($totalEmployees > end($limits)) 
+        // Ensure the last option is the total number of employers
+        if ($totalEmployers > end($limits)) 
         {
-            $limits[] = $totalEmployees;
+            $limits[] = $totalEmployers;
         }
 
-        return view('admin.employers', compact('employees', 'totalEmployees', 'limits'));
+        return view('admin.employers', compact('employers', 'totalEmployers', 'limits'));
     
     }
 }

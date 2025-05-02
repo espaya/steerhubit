@@ -42,8 +42,8 @@
                         <div class="breadcrumb-main user-member justify-content-sm-between ">
                             <div class=" d-flex flex-wrap justify-content-center breadcrumb-main__wrapper">
                                 <div class="d-flex align-items-center user-member__title justify-content-center mr-sm-25">
-                                    <h4 class="text-capitalize fw-500 breadcrumb-title">Employees</h4>
-                                    <span class="sub-title ml-sm-25 pl-sm-25">{{ $totalEmployees }}</span>
+                                    <h4 class="text-capitalize fw-500 breadcrumb-title">Employers</h4>
+                                    <span class="sub-title ml-sm-25 pl-sm-25">{{ $totalEmployers }}</span>
                                 </div>
 
                                 <form method="GET" enctype="multipart/form-data" action="{{ route('management.employers') }}" class="d-flex align-items-center user-member__form my-sm-0 my-2">
@@ -231,7 +231,7 @@
                                     </thead>
                                     <tbody>
 
-                                    @forelse($employees as $employee)
+                                    @forelse($employers as $employer)
 
                                         <tr>
                                             <td>
@@ -249,17 +249,17 @@
                                                     </div>
                                                     <div class="userDatatable-inline-title">
                                                         <a href="#" class="text-dark fw-500">
-                                                            <h6>{{ $employee->name}}</h6>
+                                                            <h6>{{ $employer->name}}</h6>
                                                         </a>
                                                         <p class="d-block mb-0">
-                                                            {{ strtolower($employee->role) }}
+                                                            {{ strtolower($employer->role) }}
                                                         </p>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    {{ strtolower($employee->email) }}
+                                                    {{ strtolower($employer->email) }}
                                                 </div>
                                             </td>
                                             <td>
@@ -269,19 +269,19 @@
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    {{ $employee->role }}
+                                                    {{ $employer->role }}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content">
-                                                    {{ \Carbon\Carbon::parse($employee->created_at)->format('F d, Y') }}
+                                                    {{ \Carbon\Carbon::parse($employer->created_at)->format('F d, Y') }}
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="userDatatable-content d-inline-block">
                                                     <div class="row">
                                                         <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">active</span>
-                                                        @if($employee && $employee->is_otp_verified)
+                                                        @if($employer && $employer->is_otp_verified)
                                                         <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">online</span>
                                                         @else 
                                                         <span class="bg-opacity-info  color-info rounded-pill userDatatable-content-status active">offline</span>
@@ -307,7 +307,7 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <div class="alert alert-info">No Employees Found</div>
+                                        <div class="alert alert-info">No Employers Found</div>
                                     @endforelse
 
                                     </tbody>
@@ -318,21 +318,21 @@
                             <nav class="atbd-page">
                                 <ul class="atbd-pagination d-flex">
                                     {{-- Previous Page Link --}}
-                                    @if ($employees->onFirstPage())
+                                    @if ($employers->onFirstPage())
                                         <li class="atbd-pagination__item disabled">
                                             <span class="atbd-pagination__link pagination-control"><span class="la la-angle-left"></span></span>
                                         </li>
                                     @else
                                         <li class="atbd-pagination__item">
-                                            <a href="{{ $employees->previousPageUrl() }}" class="atbd-pagination__link pagination-control">
+                                            <a href="{{ $employers->previousPageUrl() }}" class="atbd-pagination__link pagination-control">
                                                 <span class="la la-angle-left"></span>
                                             </a>
                                         </li>
                                     @endif
 
                                     {{-- Pagination Elements --}}
-                                    @foreach ($employees->getUrlRange(1, $employees->lastPage()) as $page => $url)
-                                        @if ($page == $employees->currentPage())
+                                    @foreach ($employers->getUrlRange(1, $employers->lastPage()) as $page => $url)
+                                        @if ($page == $employers->currentPage())
                                             <li class="atbd-pagination__item">
                                                 <a href="{{ $url }}" class="atbd-pagination__link active"><span class="page-number">{{ $page }}</span></a>
                                             </li>
@@ -344,9 +344,9 @@
                                     @endforeach
 
                                     {{-- Next Page Link --}}
-                                    @if ($employees->hasMorePages())
+                                    @if ($employers->hasMorePages())
                                         <li class="atbd-pagination__item">
-                                            <a href="{{ $employees->nextPageUrl() }}" class="atbd-pagination__link pagination-control">
+                                            <a href="{{ $employers->nextPageUrl() }}" class="atbd-pagination__link pagination-control">
                                                 <span class="la la-angle-right"></span>
                                             </a>
                                         </li>
