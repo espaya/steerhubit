@@ -109,6 +109,26 @@
                         </li>
 
                         
+                        <li class="has-child">
+                            <a href="#" class="{{ request()->routeIs('management.inovice') || request()->routeIs('management.invoice.create') ? 'active' : '' }}">
+                                <span data-feather="file-text" class="nav-icon"></span>
+                                <span class="menu-text">Invoice</span>
+                                <span class="toggle-icon"></span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{ route('management.invoice') }}" class="{{ request()->routeIs('management.inovice') ? 'active' : '' }}">All Invoices</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('management.invoice.create') }}" class="">Generate New Invoice</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="">Trash</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        
                     </ul>
                 </div>
             </div>

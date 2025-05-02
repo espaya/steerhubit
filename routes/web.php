@@ -16,6 +16,7 @@ use App\Http\Controllers\Employer\EmployerJobController;
 use App\Http\Controllers\Employer\EmployerProfileController;
 use App\Http\Controllers\JobDetailsController;
 use App\Http\Controllers\MailingListController;
+use App\Http\Controllers\Management\InvoiceController;
 use App\Http\Controllers\Management\ManagementBlockedUsers;
 use App\Http\Controllers\Management\ManagementBlogCategoryController;
 use App\Http\Controllers\Management\ManagementController;
@@ -307,16 +308,12 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
     ])->name('management.blog.store');
 
     Route::get('0246520325/management/comments', [ManagementCommentController::class, 'index'])->name('admin.comments');
-
-    Route::post('0246520325/management/comments/approve/{id}', [ManagementCommentController::class, 'approveComment'])->name('admin.comments.approve');
+    Route::post('0246520325/management/comments/approve/{id}', [ManagementCommentController::class, 'approveComment'])
+        ->name('admin.comments.approve');
     Route::get('0246520325/management/comments/search', [ManagementCommentController::class, 'index'])->name('comments.search');
 
 
-    Route::delete('0246520325/management/blog/delete/{id}', [
-        ManagementBlogController::class, 
-        'destroy'
-    ])->name('management.blog.destroy');
-
+    Route::delete('0246520325/management/blog/delete/{id}', [ManagementBlogController::class, 'destroy'])->name('management.blog.destroy');
     Route::get('0246520325/management/blog/category', [
         ManagementBlogCategoryController::class, 
         'index'
@@ -355,6 +352,13 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
     Route::get('0246520325/management/contacts/search', [ManagementContactController::class, 'index'])->name('management.contact.search');
         
     Route::delete('0246520325/management/contacts/delete/{id}', [ManagementContactController::class, 'destroy'])->name('management.contact.delete');
+
+    Route::get('/0246520325/management/invoice', [InvoiceController::class, 'index'])->name('management.invoice');
+    Route::get('/0246520325/management/invoice/search', [InvoiceController::class, 'index'])->name('management.invoice.search');
+    Route::get('/0246520325/management/invoice/create', [InvoiceController::class, 'create'])->name('management.invoice.create');
+    Route::post('/0246520325/management/invoice/store', [InvoiceController::class, 'store'])->name('management.invoice.store');
+    Route::get('/0246520325/management/invoice/{invoice_number}', [InvoiceController::class, 'show'])->name('management.invoice.show');
+    Route::delete('/0246520325/management/invoice/destroy/{id}', [InvoiceController::class, 'destroy'])->name('management.invoice.destroy');
 
 });
 
