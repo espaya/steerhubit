@@ -8,6 +8,7 @@ use App\Models\ApplicantShortlist;
 use App\Models\ApplyForJob;
 use App\Models\CandidateProfile;
 use App\Models\EmployerProfile;
+use App\Models\Job;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -49,10 +50,12 @@ class EmployerBrowseCandidateController extends Controller
     public function view($slug, $id)
     {
         $profile = CandidateProfile::where('userID', $id)->first();
+        $job = Job::where('slug', $slug)->first();
 
         return view('employer.employer-candidate-details', [
             'profile' => $profile, 
-            'slug' => $slug
+            'slug' => $slug,
+            'job' => $job
         ]);
     }
 

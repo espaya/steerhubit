@@ -219,40 +219,34 @@
                                         <h6 class="fw-semibold mb-20">Job Overview</h6>
                                         <div class="job__overview__content">
                                             <ul>
+                                            <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
+                                                    <span class="left-text"> <i class="rt-qualification"></i> Job Title</span>
+                                                    <span class="text">:  {{ $job->title }}</span>
+                                                </li>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                                     <span class="left-text"> <i class="rt-qualification"></i> Qualification</span>
-                                                    <span class="text">:  Bachelor Degree</span>
+                                                    <span class="text">:  {{ $job->qualification }}</span>
                                                 </li>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                                     <span class="left-text"> <i class="rt-experience"></i> Experience</span>
-                                                    <span class="text">:  2 Year</span>
+                                                    <span class="text">:  {{ $job->experience }} </span>
                                                 </li>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                                     <span class="left-text"> <i class="rt-price-tag"></i> Offered Salary</span>
-                                                    <span class="text">: $2000-$3000</span>
+                                                    <span class="text">: ${{ $job->pay }}</span>
                                                 </li>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                                     <span class="left-text"> <i class="rt-loading"></i> Job Deadline</span>
-                                                    <span class="text">: 01 July 2024</span>
+                                                    <span class="text">: {{\Carbon\Carbon::parse($job->deadline)->format('F j, Y')}}</span>
                                                 </li>
                                                 <li class="d-flex flex-wrap gap-3 gap-sm-0 align-items-center justify-content-between">
                                                     <span class="left-text"> <i class="fa-sharp fa-thin fa-location-dot"></i> Location</span>
-                                                    <span class="text">: New York, USA</span>
+                                                    <span class="text">: {{ $job->state . ', ' . $job->country }}</span>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                     
-                                    <div class="job__contact">
-                                        <h6 class="fw-semibold mb-20">Email This Applicant</h6>
-                                        <form action="#" class="d-flex flex-column gap-4">
-                                            <div class="search__item">
-                                                <textarea name="message" id="gmessage" placeholder="Message"></textarea>
-                                                <i class="fa-thin fa-comment-lines"></i>
-                                            </div>
-                                            <button type="submit" class="rts__btn fill__btn be-1 apply__btn w-100">Send a Message</button>
-                                        </form>
-                                    </div>
                             </div>
                             
                             </div>
