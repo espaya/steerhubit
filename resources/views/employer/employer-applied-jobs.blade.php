@@ -127,7 +127,7 @@
                                 </div>
                             </div>
                             <div class="action">
-                                <a href="{{ route('employee.view.applied.jobs', ['slug' => $job->slug]) }}">
+                                <a href="{{ route('employer.view.applied.jobs', ['slug' => $job->slug]) }}">
                                     @csrf
                                     <button class="action__btn">
                                         <svg width="22" height="16" viewbox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
