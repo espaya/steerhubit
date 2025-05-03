@@ -29,4 +29,9 @@ class Resume extends Model
 
         'userID'
     ];
+
+    public function profile()
+    {
+        return $this->hasMany(CandidateProfile::class, 'userID', 'userID');
+    }
 }

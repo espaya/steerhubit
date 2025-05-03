@@ -24,6 +24,11 @@ class CandidateProfile extends Model
         'userID'
     ];
 
+    public function resume()
+    {
+        return $this->belongsTo(Resume::class, 'userID', 'userID');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'userID');

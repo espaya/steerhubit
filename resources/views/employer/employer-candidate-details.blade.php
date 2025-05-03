@@ -86,7 +86,8 @@
                                         </div>
                                         <div class="breadcrumb__apply d-flex gap-3 max-content">
                                             <a onclick="return confirm('Are you sure you want shortlist this candidate for this job?');" href="#" class="rts__btn apply__btn no__fill__btn">Shortlist</a>
-                                            <a download="" href="#" class="rts__btn be-1 apply__btn fill__btn">Cv Download</a>
+                                            <a href="{{ asset('uploads/resumes/' . $profile->resume->file) }}" download="{{ $profile->fullname . '_resume' }}" class="rts__btn be-1 apply__btn fill__btn">Download Resume</a>
+
                                         </div>             
                                     </div>
                                     <div class="breadcrumb__area__shape d-flex gap-4 justify-content-end align-items-center">
