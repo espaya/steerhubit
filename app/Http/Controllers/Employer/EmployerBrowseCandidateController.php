@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ShortlistEmail;
 use App\Models\ApplicantShortlist;
 use App\Models\ApplyForJob;
 use App\Models\CandidateProfile;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class EmployerBrowseCandidateController extends Controller
 {
@@ -93,6 +95,10 @@ class EmployerBrowseCandidateController extends Controller
                 'slug' => $slug,
                 'shortlisted' => true
             ]);
+
+            // send email to candidate
+            $applicant = CandidateProfile::where('userID', $applicant_id)->first();
+            Mail::to($applicant->user->email)->send(new ShortlistEmail($applicant));
 
             DB::commit();
 
