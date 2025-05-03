@@ -129,28 +129,28 @@
                             <div class="row g-30">
                             <div class="col-lg-7 col-xl-8">
                                 <div class="job__overview no-border-bottom mb-30">
-                                    <h6 class="fw-semibold mb-30">Job Overview</h6>
+                                    <!-- <h6 class="fw-semibold mb-30">Job Overview</h6> -->
                                     <div class="job__overview__content candidate__info">
                                         <ul class="d-grid grid-style">
                                             <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
                                                 <div class="d-flex gap-3">
                                                     <span class="icon">
-                                                        <i class="rt-qualification"></i>
+                                                        <i class="rt-facebook"></i>
                                                     </span>
                                                     <div>
-                                                        <span class="left-text"> Qualification</span>
-                                                        <span class="text">Bachelor Degree</span>
+                                                        <span class="left-text"> Facebook</span>
+                                                        <span class="text"> <a target="_blank" href="{{ $profile->facebook }}">view</a> </span>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
                                                 <div class="d-flex gap-3">
                                                     <span class="icon">
-                                                        <i class="fa-light rt-experience"></i>
+                                                        <i class="fa-light rt-linkedin"></i>
                                                     </span>
                                                     <div>
-                                                        <span class="left-text"> Experience</span>
-                                                        <span class="text">2 Year</span>
+                                                        <span class="left-text"> LinkedIn</span>
+                                                        <span class="text"> <a target="_blank" href="{{ $profile->linkedin }}">View</a> </span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -158,45 +158,11 @@
                                             <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
                                                 <div class="d-flex gap-3">
                                                     <span class="icon">
-                                                        <i class="rt-experience"></i>
+                                                        <i class="rt-instagram"></i>
                                                     </span>
                                                     <div>
-                                                        <span class="left-text"> Offered Salary</span>
-                                                        <span class="text">$1000-$2000 M</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
-                                                <div class="d-flex gap-3">
-                                                    <span class="icon">
-                                                        <i class="fa-sharp fa-thin fa-location-dot"></i>
-                                                    </span>
-                                                    <div>
-                                                        <span class="left-text">Location</span>
-                                                        <span class="text">New Yourk, USA</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
-                                                <div class="d-flex gap-3">
-                                                    <span class="icon">
-                                                        <i class="rt-loading"></i>
-                                                    </span>
-                                                    <div>
-                                                        <span class="left-text"> Job Deadline</span>
-                                                        <span class="text">01 August 2024</span>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            
-                                            <li class="d-flex flex-column gap-3 gap-sm-0 align-items-center justify-content-between">
-                                                <div class="d-flex gap-3">
-                                                    <span class="icon">
-                                                        <i class="fa-light fa-user"></i>
-                                                    </span>
-                                                    <div>
-                                                        <span class="left-text"> Gender</span>
-                                                        <span class="text">Both</span>
+                                                        <span class="left-text"> Instagram</span>
+                                                        <span class="text"> <a target="_blank" href="{{ $profile->instagram }}">View</a> </span>
                                                     </div>
                                                 </div>
                                             </li>
@@ -206,25 +172,23 @@
                                     <div class="rts__job__details">
                                         <div id="description" class="mb-30">
                                             <h6 class="fw-semibold mb-20">About Candidate</h6>
-                                            <p>{{ $profile->description }}</p>
+                                            <p>{{ html_entity_decode($profile->description) }}</p>
                                         </div>
                                         <div id="responsibility" class="mb-30">
                                             <h6 class="fw-semibold mb-20">Education</h6>
                                             <ul class="timeline">
                                                 <li>
-                                                    <span class="timeline__title d-block">California Institute of Technology</span>
-                                                    <span class="timeline__subtitle d-block">Master of Science in Computer Science   (2014- 2015)</span>
-                                                    <p class="mt-2 fw-medium">CareerBuilder offers a complete career portal, helping job seekers find better career opportunities and bridge skill gaps through a partnership with Capella Learning Solutions.</p>
+                                                    <span class="timeline__title d-block">{{ $profile->resume->degree_institution_name }}</span>
+                                                    <span class="timeline__subtitle d-block"> {{ $profile->resume->degree_institution_location }}   ({{ \Carbon\Carbon::parse($profile->resume->degree_year_started)->format('Y') }} - {{ \Carbon\Carbon::parse($profile->resume->degree_year_completed)->format('Y') }}
+                                                    )</span>
                                                 </li>
                                                 <li>
-                                                    <span class="timeline__title d-block">University of California, Berkeley</span>
-                                                    <span class="timeline__subtitle d-block">B. Sc. in Computer Science and Engineering   (2010- 2014)</span>
-                                                    <p class="mt-2 fw-medium">CareerBuilder offers a complete career portal, helping job seekers find better career opportunities and bridge skill gaps through a partnership with Capella Learning Solutions.</p>
+                                                    <span class="timeline__title d-block"> {{ $profile->resume->cert_institution_name }} </span>
+                                                    <span class="timeline__subtitle d-block"> {{ $profile->resume->cert_institution_location }}   ({{ \Carbon\Carbon::parse($profile->resume->cert_year_started)->format('Y') }} - {{ \Carbon\Carbon::parse($profile->resume->cert_year_completed)->format('Y') }})</span>
                                                 </li>
                                                 <li>
-                                                    <span class="timeline__title d-block">University of California, Berkeley</span>
-                                                    <span class="timeline__subtitle d-block">B. Sc. in Computer Science and Engineering   (2010- 2014)</span>
-                                                    <p class="mt-2 fw-medium">CareerBuilder offers a complete career portal, helping job seekers find better career opportunities and bridge skill gaps through a partnership with Capella Learning Solutions.</p>
+                                                    <span class="timeline__title d-block"> {{ $profile->resume->high_school_name }} </span>
+                                                    <span class="timeline__subtitle d-block"> {{ $profile->resume->high_school_location }}   ({{ \Carbon\Carbon::parse($profile->resume->high_school_year_started)->format('Y') }} - {{ \Carbon\Carbon::parse($profile->resume->high_school_year_completed)->format('Y') }})</span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -239,38 +203,14 @@
                                             </ul>
                                         </div>  
                                         <div id="skill" class="mb-30">
-                                            <h6 class="fw-semibold mb-20">Skills and Experience</h6>
+                                            <h6 class="fw-semibold mb-20">Skills</h6>
                                             <div class="job__tags job__details__tags">
-                                                <a href="#" class="job__tag">Javascript</a>
-                                                <a href="#" class="job__tag">user interface</a>
-                                                <a href="#" class="job__tag">Problem Solving</a>
+                                                @foreach (explode(',', $profile->resume->skills) as $skill)
+                                                    <a href="#" class="job__tag">{{ trim($skill) }}</a>
+                                                @endforeach
+
                                             </div>
                                         </div>
-                                        <h6 class="fw-semibold text-capitalize mb-30 mt-30">See My Latest Project</h6>
-                                        <div class="row g-30 row-cols-lg-3 row-cols-md-2 row-col-xl-3 row-cols-1">
-                                            <div class="col">
-                                                <img class="rounded-2 d-shadow" src="assets/img/pages/p-1.webp" alt="">
-                                            </div>
-                                            <div class="col">
-                                                <img class="rounded-2 d-shadow" src="assets/img/pages/p-2.webp" alt="">
-                                            </div>
-                                            <div class="col">
-                                                <img class="rounded-2 d-shadow" src="assets/img/pages/p-3.webp" alt="">
-                                            </div>
-                                        </div>
-                                        <h6 class="fw-semibold text-capitalize mb-30 mt-30">Awward</h6>
-                                        <ul class="timeline">
-                                            <li>
-                                                <span class="timeline__title d-block">2015 IEEE CS TCSE Distinguished Education Award</span>
-                                                <span class="timeline__subtitle d-block">2015</span>
-                                                <p class="mt-2 fw-medium">In a world adorned with stars, where excellence glimmers like distant constellations, there exists a singular moment that transcends the ordinary, capturing the essence of brilliance in its purest form.</p>
-                                            </li>
-                                            <li>
-                                                <span class="timeline__title d-block">2024 IEEE CS TCSE Rising Star Award</span>
-                                                <span class="timeline__subtitle d-block">2014</span>
-                                                <p class="mt-2 fw-medium">In a world adorned with stars, where excellence glimmers like distant constellations, there exists a singular moment that transcends the ordinary, capturing the essence of brilliance in its purest form.</p>
-                                            </li>
-                                        </ul>
                                     </div>
                             </div>
                             
