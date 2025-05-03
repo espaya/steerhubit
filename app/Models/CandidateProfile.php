@@ -33,4 +33,9 @@ class CandidateProfile extends Model
     {
         return $this->belongsTo(User::class, 'userID');
     }
+
+    public function applicantShortlist()
+    {
+        return $this->belongsTo(ApplicantShortlist::class, 'userID', 'applicant_id');
+    }
 }

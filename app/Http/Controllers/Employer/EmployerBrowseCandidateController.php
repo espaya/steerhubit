@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplicantShortlist;
 use App\Models\ApplyForJob;
 use App\Models\CandidateProfile;
 use App\Models\EmployerProfile;
@@ -43,21 +44,62 @@ class EmployerBrowseCandidateController extends Controller
         return view('employer.employer-candidate-list', compact('candidates', 'totalApplicants'));
     }
    
-
     public function view($slug, $id)
     {
         $profile = CandidateProfile::where('userID', $id)->first();
 
-        return view('employer.employer-candidate-details', ['profile' => $profile]);
+        return view('employer.employer-candidate-details', [
+            'profile' => $profile, 
+            'slug' => $slug
+        ]);
     }
 
-    public function shortlistCandidate()
+    public function shortlistCandidate(Request $request)
     {
+        $user = Auth::user();
+
+        $request->validate([
+            'applicant_id' => ['required', 'integer'],
+            'slug' => ['required', 'string'],
+        ], [
+            'applicant_id.required' => 'Applicant id is missing',
+            'applicant_id.integer' => 'Applicant id is not in the right format',
+            'slug.required' => 'Job url is required',
+            'slug.string' => 'Job url is not in the right format'
+        ]);
+
+        $applicant_id = htmlspecialchars(trim($request->applicant_id), ENT_QUOTES, 'utf-8');
+        $slug = htmlspecialchars(trim($request->slug), ENT_QUOTES, 'utf-8');
+
         try 
         {
             DB::beginTransaction();
 
-            
+            $shortlisted = ApplicantShortlist::where('applicant_id', $applicant_id)
+                ->where('slug', $slug)
+                ->first();
+
+            if($shortlisted)
+            {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'This applicant is already shortlisted for this job'
+                ], 409);
+            }
+
+            ApplicantShortlist::create([
+                'applicant_id' => $applicant_id,
+                'employer_id' => $user->id,
+                'slug' => $slug,
+                'shortlisted' => true
+            ]);
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'This applicant shortlisted successfully',
+            ], 200);
 
         }
         catch(Exception $ex)

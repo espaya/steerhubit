@@ -9,6 +9,7 @@
     <meta name="keywords" content="Job, Resume, Employer, Agency">
     <link rel="canonical" href="https://html.themewant.com/jobpath">
     <meta name="robots" content="index, follow">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- for open graph social media -->
     <meta property="og:title" content="Your Ultimate Job HTML Template">
     <meta property="og:description" content="Your Ultimate Job HTML Template">
@@ -59,13 +60,18 @@
                     <!-- breadcrumb area -->
                     <div class="rts__section breadcrumb__background">
                         <div class="container">
+                            
                             <div class="row">
+                                <div id="messages"></div>
                                 <div class="col-lg-12 position-relative d-flex justify-content-between align-items-center">
                                     <div class="breadcrumb__area max-content breadcrumb__padding">
                                         <div class="rts__job__card__big bg-transparent p-0 position-relative z-1 flex-wrap justify-content-between d-flex gap-4 align-items-center">
+                                            
                                             <div class="d-flex gap-4 gap-md-5 align-items-center flex-md-row flex-column mx-auto mx-md-0">
+                                                
+
                                                 <div class="author__icon rounded-2">
-                                                    <img class="" src="{{ $profile->user->avatar ? asset('uploads/avatars/' . $profile->user->avatar) : asset('assets/img/author/1.svg') }}" alt="">
+                                                    <img class="" src="{{ $profile->user->avatar ? asset('uploads/avatars/' . $profile->user->avatar) : asset('assets/img/dashboard/profile.png') }}" alt="">
                                                 </div>
                                                 <div class="job__meta w-100 d-flex text-center text-md-start flex-column gap-2">
                                                     <div class="">
@@ -85,7 +91,16 @@
                                             </div>
                                         </div>
                                         <div class="breadcrumb__apply d-flex gap-3 max-content">
-                                            <a onclick="return confirm('Are you sure you want shortlist this candidate for this job?');" href="#" class="rts__btn apply__btn no__fill__btn">Shortlist</a>
+
+                                            @if(!empty($profile->applicantShortlist->shortlisted) && $profile->applicantShortlist->shortlisted ?? $profile->applicantShortlist->shortlisted)
+                                            <a href="#" class="rts__btn apply__btn no__fill__btn">Shortlisted</a>
+                                            @else 
+                                            <a id="shortlistBtn" href="#" class="rts__btn apply__btn no__fill__btn">Shortlist</a>
+                                            @endif
+
+                                            <p hidden id="applicant_id"> {{ $profile->user->id }} </p>
+                                            <p hidden id="slug"> {{ $slug }} </p>
+
                                             <a href="{{ asset('uploads/resumes/' . $profile->resume->file) }}" download="{{ $profile->fullname . '_resume' }}" class="rts__btn be-1 apply__btn fill__btn">Download Resume</a>
 
                                         </div>             
@@ -365,6 +380,7 @@
 <!-- all plugin js -->
 <script src="{{asset('assets/js/plugins.min.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
+<script src="{{ asset('assets/js/shortlist-candidate.js') }}"></script>
     
 </body>
 </html>

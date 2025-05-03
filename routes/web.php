@@ -135,6 +135,8 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
     Route::get('/employer-dashboard/applied-jobs/{slug}/{id}', [EmployerBrowseCandidateController::class, 'view'])
         ->name('employer.view.candidate');
 
+    Route::post('/employer-dashboard/applied-job/shortlist-candidate', [EmployerBrowseCandidateController::class, 'shortlistCandidate']);
+
 
     // Shortlist candidates
     Route::get('/employer-dashboard/candidate-shortlist', function () {
