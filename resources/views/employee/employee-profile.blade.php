@@ -131,7 +131,7 @@
                              <!-- editor area -->
                               <div class="rt-input-group">
                                 <label for="editor">Candidate Description</label>
-                               <textarea name="description" id="editor" class="form-control" placeholder="Enter Description" cols="10" rows="5">{{ $profile ? $profile->description : old('description') }}</textarea>
+                               <textarea name="description" id="editor" class="form-control" placeholder="Enter Description" cols="10" rows="5">{{ $profile ? html_entity_decode($profile->description) : old('description') }}</textarea>
                                @error('description')
                                     <small style="color: red;"> {{ $message }} </small>
                                 @enderror

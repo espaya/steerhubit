@@ -92,7 +92,7 @@ class CandidateProfileController extends Controller
             $postal_code = htmlspecialchars(trim($request->postal_code), ENT_QUOTES, 'UTF-8');
 
             // Check if user already exists
-            $profile = CandidateProfile::find($id);
+            $profile = CandidateProfile::where('userID', $id)->first();
 
             if($profile)
             {
