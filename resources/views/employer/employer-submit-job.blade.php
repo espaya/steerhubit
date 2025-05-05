@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <title>SteerHubIT - Submit Job</title>
+    <title>Submit Job - SteerHubIT</title>
     <!-- rt icons -->
     <link rel="stylesheet" href="{{asset('assets/fonts/icon/css/rt-icons.css')}}">
     <!-- fontawesome -->
