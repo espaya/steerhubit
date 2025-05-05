@@ -29,4 +29,9 @@ class ApplicantShortlist extends Model
     {
         return $this->belongsTo(Resume::class, 'applicant_id', 'userID');
     }
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class, 'slug', 'slug');
+    }
 }

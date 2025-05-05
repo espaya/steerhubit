@@ -28,7 +28,8 @@ class Job extends Model
         'status',
         'applicants',
         'userID',
-        'website'
+        'website',
+        'slug'
     ];
 
     public function user()
