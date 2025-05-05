@@ -64,20 +64,6 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="filter__job">
-                            <div class="nice-select filter__select">
-                                <span class="current">All Category</span>
-                                <ul class="list">
-                                    <li data-value="Nothing" data-display="All Category" class="option selected focus">All Category</li>
-                                    <li data-value="1" class="option">Dhaka</li>
-                                    <li data-value="2" class="option">Part time</li>
-                                    <li data-value="3" class="option">Full Time</li>
-                                    <li data-value="4" class="option">Government</li>
-                                    <li data-value="5" class="option">NGO</li>
-                                    <li data-value="6" class="option">Private</li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="applied__job__list">
