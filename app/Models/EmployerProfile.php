@@ -24,6 +24,7 @@ class EmployerProfile extends Model
         'employer_state',
         'employer_present_address',
         'employer_postal_code',
+        'userID'
 
     ];
 }

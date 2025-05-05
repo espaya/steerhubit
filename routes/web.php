@@ -117,6 +117,8 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
     Route::post('/employer-dashboard/company-profile/remove-company-avatar', [EmployerProfileController::class, 'removeAvatar'])
         ->name('remove.employer.profile');
 
+    Route::delete('/employer-dashboard/company-profile/delete-account', [EmployerProfileController::class, 'destroy']);
+
     Route::get('/employer-dashboard/my-job', [EmployerJobController::class, 'index'])->name('employer.job');
 
     Route::get('/employer-dashboard/my-job/submit', [EmployerJobController::class, 'add'])->name('employer.job.submit');

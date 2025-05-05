@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplicantShortlist;
+use App\Models\CompanyProfile;
 use App\Models\EmployerProfile;
+use App\Models\Job;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 
 class EmployerProfileController extends Controller
@@ -23,6 +27,65 @@ class EmployerProfileController extends Controller
         return view('employer.employer-company-profile', ['profile' => $profile]);
     }
 
+    public function destroy(Request $request)
+    {
+        $id = Auth::id();
+
+        $request->validate([
+            'currentPassword' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (!Hash::check($value, Auth::user()->password)) {
+                        $fail('Your current password is incorrect.');
+                    }
+                },
+            ]
+        ], [
+            'currentPassword' => 'Your current password is required'
+        ]);        
+
+        try 
+        {
+            $jobs = Job::where('userID', $id)->first();
+            if($jobs) 
+            {
+                $jobs->forceDelete();
+            }
+
+            $profile = EmployerProfile::where('userID', $id)->first();
+            if($profile) 
+            {
+                $profile->delete();
+            }
+
+            $applicant_shortlist = ApplicantShortlist::where('employer_id', $id)->first();
+            if($applicant_shortlist) 
+            {
+                $applicant_shortlist->delete();
+            }
+
+            $user = User::find($id);
+            if($user)
+            {
+                $user->forceDelete();
+            }
+
+            return response()->json([
+                'success' => true,
+                'redirect_url' => url('/')
+            ], 200);
+
+        }
+        catch(Exception $ex)
+        {
+            Log::error('An error occurred whilst deleting your account: ' . $ex->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred whilst deleting your account'
+            ], 500);
+        }
+
+    }
 
     public function removeAvatar(Request $request)
     {
@@ -64,8 +127,6 @@ class EmployerProfileController extends Controller
             ], 500);
         }
     }
-
-
 
     public function employerAvatarUpdate(Request $request)
     {
