@@ -15,10 +15,10 @@
                                  <a href="{{ url('/') }}" class="navigation__menu--item__link">Home</a>
                               </li>
                               <li class="navigation__menu--item">
-                                 <a href="#" class="navigation__menu--item__link">About</a>
+                                 <a href="{{ route('about') }}" class="navigation__menu--item__link">About</a>
                               </li>
                               <li class="navigation__menu--item">
-                                 <a href="#" class="navigation__menu--item__link">Browse Jobs</a>
+                                 <a href="{{ route('employer.job') }}" class="navigation__menu--item__link">Browse Jobs</a>
                               </li>
                               <li class="navigation__menu--item">
                                  <a href="{{ route('employer.browse.candidate') }}" class="navigation__menu--item__link">Browse Candidates</a>
