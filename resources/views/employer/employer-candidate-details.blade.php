@@ -110,10 +110,10 @@
                                         
                                         </div>
                                         <div class="shape__two common">
-                                            <img src="assets/img/breadcrumb/shape-2.svg" alt="">
+                                            <img src="{{asset('assets/img/breadcrumb/shape-2.svg')}}" alt="">
                                         </div>
                                         <div class="shape__three common">
-                                            <img src="assets/img/breadcrumb/shape-3.svg" alt="">
+                                            <img src="{{asset('assets/img/breadcrumb/shape-3.svg')}}" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -189,16 +189,6 @@
                                                 <li>
                                                     <span class="timeline__title d-block"> {{ $profile->resume->high_school_name }} </span>
                                                     <span class="timeline__subtitle d-block"> {{ $profile->resume->high_school_location }}   ({{ \Carbon\Carbon::parse($profile->resume->high_school_year_started)->format('Y') }} - {{ \Carbon\Carbon::parse($profile->resume->high_school_year_completed)->format('Y') }})</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div id="experience" class="mb-30">
-                                            <h6 class="fw-semibold mb-20 text-capitalize">experience</h6>
-                                            <ul class="timeline">
-                                                <li>
-                                                    <span class="timeline__title d-block">Software Engineer</span>
-                                                    <span class="timeline__subtitle d-block">Reactheme   (2016- Present)</span>
-                                                    <p class="mt-2 fw-medium">Software engineers apply engineering principles and knowledge of programming languages to build software solutions for end users.</p>
                                                 </li>
                                             </ul>
                                         </div>  

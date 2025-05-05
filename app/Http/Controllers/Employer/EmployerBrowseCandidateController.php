@@ -42,7 +42,7 @@ class EmployerBrowseCandidateController extends Controller
 
         $candidates = $query->paginate(10)->appends(['search' => $search]);
 
-        $totalApplicants = ApplyForJob::where('userID', Auth::id())->count(); 
+        $totalApplicants = CandidateProfile::count(); 
 
         return view('employer.employer-candidate-list', compact('candidates', 'totalApplicants'));
     }

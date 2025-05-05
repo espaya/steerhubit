@@ -62,13 +62,13 @@
                     <div class="candidate__filter">
                         <ul class="candidate__filter__shorting" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Total: 10</button>
+                              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Total: {{ $totalShortlist }}</button>
                             </li>
                             <li class="nav-item" role="presentation">
                             <div class="search__item">
                                 <div class="position-relative">
-                                    <form action="#">
-                                        <input type="text" id="search" placeholder="Search Candidate" autocomplete="off">
+                                    <form action="{{ route('employer.candidate.shortlist.search') }}" method="GET">
+                                        <input name="search" type="text" value="{{ request('search') }}" id="search" placeholder="Search Candidate" autocomplete="off">
                                         <i class="fa-light fa-magnifying-glass"></i>
                                     </form>
                                 </div>
@@ -81,26 +81,27 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                         <div class="short__list__candidate">
-                            <!-- single item -->
+
+                        @forelse($shortlists as $candidate)
+                            <!-- single item --> 
                             <div class="single__shortlist__item">
                                 <div class="author__info">
                                     <div class="author__meta">
                                         <div class="author__image">
-                                            <img src="{{asset('assets/img/author/1.svg')}}" alt="">
+                                            <img src="{{ $candidate->user->avatar ? asset('uploads/avatars/' . $candidate->user->avatar) : asset('assets/img/dashboard/profile.png')}}" alt="">
                                         </div>
                                         <div class="author__name">
-                                            <h6 class="fw-semibold mb-1">Mark Anthony</h6>
-                                            <p class="mb-0">UX Designer</p>
+                                            <h6 class="fw-semibold mb-1"><a href="{{ route('public.candidates.show', ['id' => $candidate->profile->userID]) }}"> {{ $candidate->profile->fullname }} </a></h6>
+                                            <p class="mb-0"> {{ $candidate->user->email }} </p>
                                         </div>
                                     </div>
                                     <div class="author__info__list">
-                                        <span><i class="fa-light fa-location-dot"></i> Newyork, USA</span>
-                                        <span><i class="fa-light fa-clock"></i> 1 Year Ago</span>
+                                        <span><i class="fa-light fa-location-dot"></i> {{ $candidate->profile->present_address . ', ' . $candidate->profile->state . ', ' . $candidate->profile->country . ' ' . $candidate->profile->postal_code }}</span>
                                     </div>
                                 </div>
         
                                 <div class="shortlist__action">
-                                    <button class="action__item__long">
+                                    <a href="{{ asset('uploads/resumes/' . $candidate->resume->file) }}" download class="action__item__long">
                                         <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_441_2522)">
                                             <path d="M14.5547 5.22949C14.7488 5.22949 14.9062 5.0721 14.9062 4.87793V1.05469C14.9062 0.473133 14.4331 0 13.8516 0H1.05469C0.473133 0 0 0.473133 0 1.05469V16.9453C0 17.5269 0.473133 18 1.05469 18H13.8516C14.4331 18 14.9062 17.5269 14.9062 16.9453V14.3553C14.9062 14.1611 14.7488 14.0037 14.5547 14.0037C14.3606 14.0037 14.2031 14.1611 14.2031 14.3553V16.9453C14.2031 17.1392 14.0454 17.2969 13.8516 17.2969H1.05469C0.860836 17.2969 0.703125 17.1392 0.703125 16.9453V1.05469C0.703125 0.860836 0.860836 0.703125 1.05469 0.703125H13.8516C14.0454 0.703125 14.2031 0.860836 14.2031 1.05469V4.87793C14.2031 5.0721 14.3606 5.22949 14.5547 5.22949Z" fill="#939393"></path>
@@ -121,19 +122,7 @@
                                             </defs>
                                             </svg>
                                         Download Cv                                    
-                                    </button>
-                                    <button class="action__item">
-                                        <span class="notification__item">10</span>
-                                        <svg width="18" height="18" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5.44444 5.70588H12.5556M5.44444 9.47059H10.7778M6.33333 14.1765H3.66667C2.95942 14.1765 2.28115 13.879 1.78105 13.3495C1.28095 12.82 1 12.1018 1 11.3529V3.82353C1 3.07468 1.28095 2.35651 1.78105 1.82699C2.28115 1.29748 2.95942 1 3.66667 1H14.3333C15.0406 1 15.7189 1.29748 16.219 1.82699C16.7191 2.35651 17 3.07468 17 3.82353V11.3529C17 12.1018 16.7191 12.82 16.219 13.3495C15.7189 13.879 15.0406 14.1765 14.3333 14.1765H11.6667L9 17L6.33333 14.1765Z" stroke="#939393" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                        </svg>
-                                    </button>
-                                    <button class="action__item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewbox="0 0 24 24">
-                                            <path d="M 20.292969 5.2929688 L 9 16.585938 L 4.7070312 12.292969 L 3.2929688 13.707031 L 9 19.414062 L 21.707031 6.7070312 L 20.292969 5.2929688 z" fill="#939393">
-                                            </path>
-                                        </svg>
-                                    </button>
+                                    </a>
                                     <button class="action__item">
                                         <svg width="20" height="22" viewbox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M8 4.25H12C12 3.71957 11.7893 3.21086 11.4142 2.83579C11.0391 2.46071 10.5304 2.25 10 2.25C9.46957 2.25 8.96086 2.46071 8.58579 2.83579C8.21071 3.21086 8 3.71957 8 4.25ZM6.5 4.25C6.5 3.79037 6.59053 3.33525 6.76642 2.91061C6.94231 2.48597 7.20012 2.10013 7.52513 1.77513C7.85013 1.45012 8.23597 1.19231 8.66061 1.01642C9.08525 0.84053 9.54037 0.75 10 0.75C10.4596 0.75 10.9148 0.84053 11.3394 1.01642C11.764 1.19231 12.1499 1.45012 12.4749 1.77513C12.7999 2.10013 13.0577 2.48597 13.2336 2.91061C13.4095 3.33525 13.5 3.79037 13.5 4.25H19.25C19.4489 4.25 19.6397 4.32902 19.7803 4.46967C19.921 4.61032 20 4.80109 20 5C20 5.19891 19.921 5.38968 19.7803 5.53033C19.6397 5.67098 19.4489 5.75 19.25 5.75H17.93L16.76 17.861C16.6702 18.789 16.238 19.6502 15.5477 20.2768C14.8573 20.9034 13.9583 21.2504 13.026 21.25H6.974C6.04186 21.2501 5.1431 20.903 4.45295 20.2765C3.7628 19.6499 3.33073 18.7888 3.241 17.861L2.07 5.75H0.75C0.551088 5.75 0.360322 5.67098 0.21967 5.53033C0.0790175 5.38968 0 5.19891 0 5C0 4.80109 0.0790175 4.61032 0.21967 4.46967C0.360322 4.32902 0.551088 4.25 0.75 4.25H6.5ZM8.5 9C8.5 8.80109 8.42098 8.61032 8.28033 8.46967C8.13968 8.32902 7.94891 8.25 7.75 8.25C7.55109 8.25 7.36032 8.32902 7.21967 8.46967C7.07902 8.61032 7 8.80109 7 9V16.5C7 16.6989 7.07902 16.8897 7.21967 17.0303C7.36032 17.171 7.55109 17.25 7.75 17.25C7.94891 17.25 8.13968 17.171 8.28033 17.0303C8.42098 16.8897 8.5 16.6989 8.5 16.5V9ZM12.25 8.25C12.4489 8.25 12.6397 8.32902 12.7803 8.46967C12.921 8.61032 13 8.80109 13 9V16.5C13 16.6989 12.921 16.8897 12.7803 17.0303C12.6397 17.171 12.4489 17.25 12.25 17.25C12.0511 17.25 11.8603 17.171 11.7197 17.0303C11.579 16.8897 11.5 16.6989 11.5 16.5V9C11.5 8.80109 11.579 8.61032 11.7197 8.46967C11.8603 8.32902 12.0511 8.25 12.25 8.25ZM4.734 17.717C4.78794 18.2736 5.04724 18.7903 5.46137 19.1661C5.87549 19.542 6.41475 19.7501 6.974 19.75H13.026C13.5853 19.7501 14.1245 19.542 14.5386 19.1661C14.9528 18.7903 15.2121 18.2736 15.266 17.717L16.424 5.75H3.576L4.734 17.717Z" fill="#FF5757"></path>
@@ -142,19 +131,39 @@
                                 </div>
                             </div>
                             <!-- single item end -->
-                            
-                            <!-- pagination -->
+                        @empty 
+                         <div class="alert alert-info">No Shortlisted Candidate(s)</div>
+                        @endforelse
+                        @if ($shortlists->hasPages())
                             <div class="rts__pagination d-block mx-auto pt-40 max-content">
                                 <ul class="d-flex gap-2">
-                                    <li><a href="#" class="inactive"><i class="rt-chevron-left"></i></a></li>
-                                    <li><a class="active" href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#"><i class="rt-chevron-right"></i></a></li>
+
+                                    {{-- Previous Page Link --}}
+                                    @if ($shortlists->onFirstPage())
+                                        <li><a class="inactive" href="#"><i class="rt-chevron-left"></i></a></li>
+                                    @else
+                                        <li><a href="{{ $shortlists->previousPageUrl() }}"><i class="rt-chevron-left"></i></a></li>
+                                    @endif
+
+                                    {{-- Pagination Elements --}}
+                                    @foreach ($shortlists->getUrlRange(1, $shortlists->lastPage()) as $page => $url)
+                                        @if ($page == $shortlists->currentPage())
+                                            <li><a class="active" href="#">{{ $page }}</a></li>
+                                        @else
+                                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                        @endif
+                                    @endforeach
+
+                                    {{-- Next Page Link --}}
+                                    @if ($shortlists->hasMorePages())
+                                        <li><a href="{{ $shortlists->nextPageUrl() }}"><i class="rt-chevron-right"></i></a></li>
+                                    @else
+                                        <li><a class="inactive" href="#"><i class="rt-chevron-right"></i></a></li>
+                                    @endif
+
                                 </ul>
                             </div>
-                            <!-- pagination end -->
-
+                        @endif
                         </div>
                     </div>
                     

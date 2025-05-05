@@ -14,4 +14,19 @@ class ApplicantShortlist extends Model
         'slug',
         'shortlisted'
     ];
+
+    public function profile()
+    {
+        return $this->belongsTo(CandidateProfile::class, 'applicant_id', 'userID');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'applicant_id', 'id');
+    }
+
+    public function resume()
+    {
+        return $this->belongsTo(Resume::class, 'applicant_id', 'userID');
+    }
 }

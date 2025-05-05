@@ -21,7 +21,7 @@
                                  <a href="#" class="navigation__menu--item__link">Browse Jobs</a>
                               </li>
                               <li class="navigation__menu--item">
-                                 <a href="#" class="navigation__menu--item__link">Browse Candidates</a>
+                                 <a href="{{ route('employer.browse.candidate') }}" class="navigation__menu--item__link">Browse Candidates</a>
                               </li>
                            </ul>
                         </nav>
