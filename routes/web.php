@@ -14,6 +14,7 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Employer\EmployerBrowseCandidateController;
 use App\Http\Controllers\Employer\EmployerCandidateShortlistController;
+use App\Http\Controllers\Employer\EmployerChangePasswordController;
 use App\Http\Controllers\Employer\EmployerJobController;
 use App\Http\Controllers\Employer\EmployerProfileController;
 use App\Http\Controllers\JobDetailsController;
@@ -161,9 +162,9 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
         return view('employer.employer-package');
     })->name('employer.package');
 
-    Route::get('/employer-dashboard/change-password', function () {
-        return view('employer.employer-change-password');
-    })->name('employer.change.password');
+    Route::get('/employer-dashboard/change-password', [EmployerChangePasswordController::class, 'index'])->name('employer.change.password');
+
+    Route::post('/employer-dashboard/change-password/update', [EmployerChangePasswordController::class, 'update']);
 
     Route::get('/employer-dashboard/delete-profile', function () {
         return view('employer.employer-delete-profile');
