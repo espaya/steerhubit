@@ -255,8 +255,8 @@
                               <img src="{{asset('assets/img/home-1/cat/2.svg')}}" alt="">
                            </div>
                            <div class="single__cat__link d-flex flex-column">
-                              <a href="job-list-1.html" aria-label="cat__label">LIcensed Practical Nurse (LPN)</a>
-                              <span>130+ Jobs</span>
+                              <a href="#" aria-label="cat__label">LIcensed Practical Nurse (LPN)</a>
+                              <!-- <span>130+ Jobs</span> -->
                            </div>
                         </div>
                      </div>
@@ -266,8 +266,8 @@
                               <img src="{{asset('assets/img/home-1/cat/3.svg')}}" alt="">
                            </div>
                            <div class="single__cat__link d-flex flex-column">
-                              <a href="job-list-1.html" aria-label="cat__label">Home Health Aide (HHA)</a>
-                              <span>130+ Jobs</span>
+                              <a href="#" aria-label="cat__label">Home Health Aide (HHA)</a>
+                              <!-- <span>130+ Jobs</span> -->
                            </div>
                         </div>
                      </div>
@@ -277,8 +277,8 @@
                               <img src="{{asset('assets/img/home-1/cat/4.svg')}}" alt="">
                            </div>
                            <div class="single__cat__link d-flex flex-column">
-                              <a href="job-list-1.html" aria-label="cat__label">Certified Nursing Assistant (CNA)</a>
-                              <span>130+ Jobs</span>
+                              <a href="#" aria-label="cat__label">Certified Nursing Assistant (CNA)</a>
+                              <!-- <span>130+ Jobs</span> -->
                            </div>
                         </div>
                      </div>
