@@ -15,7 +15,7 @@
                                  <a href="{{ url('/') }}" class="navigation__menu--item__link">Home</a>
                               </li>
                               <li class="navigation__menu--item">
-                                 <a href="#" class="navigation__menu--item__link">About</a>
+                                 <a href="{{ route('about') }}" class="navigation__menu--item__link">About</a>
                               </li>
                               <li class="navigation__menu--item">
                                  <a href="{{ route('jobs') }}" class="navigation__menu--item__link">Browse Jobs</a>
