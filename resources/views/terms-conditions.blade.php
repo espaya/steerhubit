@@ -20,15 +20,16 @@
     <meta name="twitter:title" content="Your Ultimate Job HTML Template">
     <meta name="twitter:description" content="Your Ultimate Job HTML Template">
     <!-- fabicon -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+      <meta name="login-route" content="{{ route('login') }}">
+      <meta name="register-url" content="{{ route('register') }}">
     <link rel="shortcut-icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
-
-
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <title>SteerHubIT - Terms & Conditions</title>
+    <title>Terms & Conditions - SteerHubIT</title>
     <!-- rt icons -->
     <link rel="stylesheet" href="assets/fonts/icon/css/rt-icons.css">
     <!-- fontawesome -->

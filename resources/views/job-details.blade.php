@@ -18,6 +18,8 @@
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:title" content="Your Ultimate Job HTML Template">
       <meta name="twitter:description" content="Your Ultimate Job HTML Template">
+      <meta name="login-route" content="{{ route('login') }}">
+      <meta name="register-url" content="{{ route('register') }}">
       <!-- fabicon -->
       <link rel="shortcut-icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.googleapis.com">

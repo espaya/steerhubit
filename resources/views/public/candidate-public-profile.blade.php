@@ -13,6 +13,11 @@
       <meta property="og:description" content="Your Ultimate Job HTML Template">
       <meta property="og:image" content="https://www.example.com/image.jpg">
       <meta property="og:url" content="https://html.themewant.com/jobpath/">
+
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+      <meta name="login-route" content="{{ route('login') }}">
+      <meta name="register-url" content="{{ route('register') }}">
+      
       <!-- for twitter sharing -->
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:title" content="Your Ultimate Job HTML Template">

@@ -22,13 +22,16 @@
     <!-- fabicon -->
     <link rel="shortcut-icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+      <meta name="login-route" content="{{ route('login') }}">
+      <meta name="register-url" content="{{ route('register') }}">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <title>SteerHubIT - Frequently Asked Questions</title>
+    <title>Frequently Asked Questions - SteerHubIT</title>
     <!-- rt icons -->
     <link rel="stylesheet" href="assets/fonts/icon/css/rt-icons.css">
     <!-- fontawesome -->

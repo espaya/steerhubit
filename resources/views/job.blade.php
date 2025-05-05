@@ -25,6 +25,8 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
       <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
       <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+      <meta name="login-route" content="{{ route('login') }}">
+      <meta name="register-url" content="{{ route('register') }}">
       <title>Job - SteerHubIT</title>
       <!-- rt icons -->
       <link rel="stylesheet" href="{{asset('assets/fonts/icon/css/rt-icons.css')}}">
