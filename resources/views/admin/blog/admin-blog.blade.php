@@ -43,7 +43,6 @@
                             <div class=" d-flex flex-wrap justify-content-center breadcrumb-main__wrapper">
                                 <div class="d-flex align-items-center user-member__title justify-content-center mr-sm-25">
                                     <h4 class="text-capitalize fw-500 breadcrumb-title">Blog</h4>
-                                    <span class="sub-title ml-sm-25 pl-sm-25">0 Post(s)</span>
                                 </div>
 
                             </div>
@@ -59,39 +58,13 @@
                     <div class="col-lg-12">
                         <div class="project-top-wrapper project-top-progress d-flex justify-content-between flex-wrap">
                             <div class="project-top-left d-flex flex-wrap justify-content-lg-between justify-content-center mt-n10">
-                                <div class="project-tap global-shadow order-lg-1 order-2 my-10">
-                                    <ul class="nav px-1" id="ap-tab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="ap-overview-tab" data-toggle="pill" href="#ap-overview" role="tab" aria-controls="ap-overview" aria-selected="true">all posts</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="timeline-tab" data-toggle="pill" href="#timeline" role="tab" aria-controls="timeline" aria-selected="false">draft</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="activity-tab" data-toggle="pill" href="#activity" role="tab" aria-controls="activity" aria-selected="false">comments</a>
-                                        </li>
-                                    </ul>
-                                </div>
                                 <form action="{{ route('management.blog') }}" method="GET" class="d-flex align-items-center user-member__form">
                                     <span data-feather="search"></span>
                                     <input class="form-control mr-sm-2 border-0 box-shadow-none" type="search" name="search" value="{{ request('search') }}" placeholder="Search by Title" aria-label="Search"
                                     >
                                 </form>
                             </div><!-- End: .project-top-left -->
-                            <div class="project-top-right d-flex flex-wrap">
-                                <div class="project-category">
-                                    <div class="d-flex align-items-center">
-                                        <p class="mb-0 mr-10 fs-14 color-light">sort by:</p>
-                                        <div class="project-category__select">
-                                            <select class="js-example-basic-single js-states form-control" id="event-category">
-                                                <option value="all" selected="">project category</option>
-                                                <option value="JAN">event</option>
-                                                <option value="FBR">Venues</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div><!-- End: .project-category -->
-                            </div><!-- End: .project-top-right -->
+                            
                         </div><!-- End: .project-top-wrapper -->
                     </div><!-- End: .col -->
                 </div>
