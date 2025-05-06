@@ -85,7 +85,19 @@
                                 </div>
 
                                 <div class="row g-3">
-                                    <div class="col-md-4">
+                                <div class="col-md-3">
+                                        <div class="rt-input-group">
+                                            <label for="ws">Cateogry</label>
+                                            <select name="category" id="category" class="form-select">
+                                                <option value="">Select</option>
+                                                <option {{ $job->category == 'Certified Nursing Assistant' ? 'selected' : '' }} value="Certified Nursing Assistant">Certified Nursing Assistant (CNA)</option>
+                                                <option {{ $job->category == 'Licensed Practical Nurse' ? 'selected' : '' }} value="Licensed Practical Nurse">Licensed Practical Nurse (LPN)</option>
+                                                <option {{ $job->category == 'Home Health Aide' ? 'selected' : '' }} value="Home Health Aide">Home Health Aide (HHA)</option>
+                                            </select>
+                                            <small style="color:red" id="error-category"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
                                         <div class="rt-input-group">
                                             <label for="ws">Working Schedule</label>
                                             <select name="working_schedule" id="working-schedule" class="form-select">
@@ -96,7 +108,7 @@
                                             <small style="color:red" id="error-working_schedule"></small>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="rt-input-group">
                                             <label for="wd">Working Day</label>
                                             <select name="working_day" id="wd" class="form-select">
@@ -108,7 +120,7 @@
                                             <small style="color:red" id="error-working_day"></small>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="rt-input-group">
                                             <label for="pay">Pay</label>
                                             <input value="{{ $job->pay }}" type="text" id="pay" name="pay" class="form-control" placeholder="Enter Pay" autocomplete="off">
@@ -254,7 +266,7 @@
     <div class="loader-section section-right"></div>
 </div>
 <!-- THEME PRELOADER END -->
-<button type="button" class="rts__back__top" id="rts-back-to-top">
+<button type="button" class="rts__back__top" id="rts-back-to-top"> 
     <i class="fas fa-arrow-up"></i>
 </button>
 <!-- all plugin js -->
