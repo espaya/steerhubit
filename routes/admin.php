@@ -27,60 +27,25 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-h
     Route::get('0246520325/management/jobs/search', [ManagementJobsController::class, 'index'])->name('management.jobs.search');
     Route::get('0246520325/management/jobs/add-new', [ManagementJobsController::class, 'add'])->name('management.add.new');
     Route::get('0246520325/management/jobs/add-new/store', [ManagementJobsController::class, 'store'])->name('management.add.new.store');
+    Route::post('0246520325/management/jobs/add-new/store', [ManagementJobsController::class, 'store'])->name('management.add.store');
 
-    Route::post('0246520325/management/jobs/add-new/store', [
-        ManagementJobsController::class, 
-        'store'
-    ])->name('management.add.store');
+    Route::get('0246520325/management/jobs/edit/{slug}', [ManagementJobsController::class, 'edit'])->name('management.job.edit');
+    Route::post('0246520325/management/jobs/update/{slug}', [ManagementJobsController::class, 'update'])->name('management.job.update');
 
-    Route::get('0246520325/management/jobs/applied-jobs', [
-        ManagementJobsController::class, 
-        'appliedJobs'
-    ])->name('management.applied.jobs');
-
-    Route::get('0246520325/management/jobs/pending-approval', [
-        ManagementJobsController::class, 
-        'pendingApproval'
-    ])->name('management.pending.jobs');
-
-    Route::get('0246520325/management/jobs/trashed-jobs', [
-        ManagementJobsController::class, 
-        'trashedJobs'
-    ])->name('management.trash.jobs');
-
-    Route::get('0246520325/management/jobs/soft-delete-job/{id}', [
-        ManagementJobsController::class, 
-        'destroy'
-    ])->name('management.job.soft.delete');
-
-    Route::delete('0246520325/management/jobs/{id}', [
-        ManagementJobsController::class, 
-        'forceDelete'
-    ])->name('management.job.delete');
-
-    Route::post('0246520325/management/jobs/approve-job/{id}', [
-        ManagementJobsController::class, 
-        'approveJob'
-    ])->name('management.job.approve');
-
-    Route::get('0246520325/management/settings', [
-        ManagementSettingsController::class, 
-        'index'
-    ])->name('management.settings');
-
-    Route::post('0246520325/management/settings/update-email-username', [
-        ManagementSettingsController::class, 
-        'updateUsernameEmail'
-    ]);
-    Route::post('0246520325/management/settings/update-password', [
-        ManagementSettingsController::class, 
-        'updatePassword'
-    ]); 
-
-    Route::post('0246520325/management/settings/update-admin-profile-picture', [
-        ManagementSettingsController::class, 
-        'updateAvatar'
-    ])->name('update.mgt.avatar'); 
+    Route::get('0246520325/management/jobs/applied-jobs', [ManagementJobsController::class, 'appliedJobs'])->name('management.applied.jobs');
+    Route::get('0246520325/management/jobs/pending-approval', [ManagementJobsController::class, 'pendingApproval'])
+        ->name('management.pending.jobs');
+    Route::get('0246520325/management/jobs/trashed-jobs', [ManagementJobsController::class, 'trashedJobs'])->name('management.trash.jobs');
+    Route::get('0246520325/management/jobs/soft-delete-job/{id}', [ManagementJobsController::class, 'destroy'])
+        ->name('management.job.soft.delete');
+    Route::delete('0246520325/management/jobs/{id}', [ManagementJobsController::class, 'forceDelete'])->name('management.job.delete');
+    Route::post('0246520325/management/jobs/approve-job/{id}', [ManagementJobsController::class, 'approveJob'])->name('management.job.approve');
+    
+    Route::get('0246520325/management/settings', [ManagementSettingsController::class, 'index'])->name('management.settings');
+    Route::post('0246520325/management/settings/update-email-username', [ManagementSettingsController::class, 'updateUsernameEmail']);
+    Route::post('0246520325/management/settings/update-password', [ManagementSettingsController::class, 'updatePassword']); 
+    Route::post('0246520325/management/settings/update-admin-profile-picture', [ManagementSettingsController::class, 'updateAvatar'])
+        ->name('update.mgt.avatar'); 
 
     Route::post('0246520325/management/settings/update-admin-banner-picture', [
         ManagementSettingsController::class, 

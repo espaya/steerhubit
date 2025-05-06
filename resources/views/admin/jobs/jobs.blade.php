@@ -7,8 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Jobs - SteerHubIT</title>
 
-    <link href="../../../../css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <!-- inject:css-->
 
     <link rel="stylesheet" href="{{asset('assets/mgt/css/plugin.min.css')}}">
@@ -43,12 +41,11 @@
                             <div class=" d-flex flex-wrap justify-content-center breadcrumb-main__wrapper">
                                 <div class="d-flex align-items-center user-member__title justify-content-center mr-sm-25">
                                     <h4 class="text-capitalize fw-500 breadcrumb-title">All Jobs</h4>
-                                    <!-- <span class="sub-title ml-sm-25 pl-sm-25">274 Users</span> -->
                                 </div>
 
                                 <form action="{{ route('management.jobs.search') }}" method="get" class="d-flex align-items-center user-member__form my-sm-0 my-2">
                                     <span data-feather="search"></span>
-                                    <input name="search" autocomplete="off" class="form-control mr-sm-2 border-0 box-shadow-none" type="search" placeholder="Search by Title" aria-label="Search">
+                                    <input name="search" value="{{ request('search') }}" autocomplete="off" class="form-control mr-sm-2 border-0 box-shadow-none" type="search" placeholder="Search by Title" aria-label="Search">
                                 </form>
 
                             </div>
@@ -190,6 +187,12 @@
                                             </td>
                                             <td>
                                                 <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
+                                                    @if($job->userID == Auth::user()->id)
+                                                    <li>
+                                                        <a title="view this job" href="{{ route('management.job.edit', ['slug' => $job->slug]) }}" class="view">
+                                                            <span data-feather="edit"></span></a>
+                                                    </li>
+                                                    @endif
                                                     <li>
                                                         <a target="_blank" title="view this job" href="{{ route('job.view', ['slug' => $job->slug]) }}" class="view">
                                                             <span data-feather="eye"></span></a>
