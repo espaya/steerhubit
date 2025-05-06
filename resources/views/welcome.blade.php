@@ -25,7 +25,6 @@
       <link rel="shortcut-icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-      <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
       <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
       <title>SteerHubIT - Building Connections</title>
       <!-- rt icons -->

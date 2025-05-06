@@ -11,8 +11,10 @@ $(document).ready(function() {
             email: $("#login-email").val(),
             password: $("#login-password").val(),
             remember: $("#remember").is(":checked") ? 1 : 0,
-            _token: $('meta[name="csrf-token"]').attr("content") // Fetch CSRF token
+            _token: $('meta[name="csrf-token"]').attr("content"), // Fetch CSRF token
+            recaptcha: $('#g-recaptcha-response').val() 
         };
+
 
         let loginUrl = $('meta[name="login-route"]').attr("content"); // Fetch login route
 
