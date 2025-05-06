@@ -132,12 +132,16 @@ class EmployerJobController extends Controller
             'video' => ['nullable',
                 'regex:/^(https?\:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w\-]{11}$/'
             ],
+            'category' => ['required', 'string', 'in:Certified Nursing Assistant,Licensed Practical Nurse,Home Health Aide'],
 
             'country' => ['required', 'string'],
             'state' => ['required', 'string'],
             'address' => ['required', 'string'],
             'postal_code' => ['required', 'string'],
         ], [
+            'category.required' => 'This field is required',
+            'category.string' => 'Invalid input',
+            'category.in' => 'Invalid category option',
             'title.required' => 'This field is required',
             'title.string' => 'Invalid input',
             'description.required' => 'This field is required',
@@ -195,6 +199,7 @@ class EmployerJobController extends Controller
             $postal_code = htmlspecialchars(trim($request->postal_code), ENT_QUOTES, 'utf-8');
             $userID = $user->id;
             $slug = $this->generateUniqueSlug($title);
+            $category = htmlspecialchars(trim($request->category));
 
             $job->title = $title;
             $job->description = $description;
@@ -211,6 +216,7 @@ class EmployerJobController extends Controller
             $job->postal_code = $postal_code;
             $job->userID = $userID;
             $job->slug = $slug;
+            $job->category = $category;
 
             $job->save();
 

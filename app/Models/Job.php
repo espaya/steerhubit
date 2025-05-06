@@ -29,7 +29,8 @@ class Job extends Model
         'applicants',
         'userID',
         'website',
-        'slug'
+        'slug',
+        'category'
     ];
 
     public function user()

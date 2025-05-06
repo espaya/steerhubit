@@ -85,7 +85,19 @@
                                 </div>
 
                                 <div class="row g-3">
-                                    <div class="col-md-4">
+                                <div class="col-md-3">
+                                        <div class="rt-input-group">
+                                            <label for="ws">Cateogry</label>
+                                            <select name="category" id="category" class="form-select">
+                                                <option value="">Select</option>
+                                                <option value="Certified Nursing Assistant">Certified Nursing Assistant (CNA)</option>
+                                                <option value="Licensed Practical Nurse">Licensed Practical Nurse (LPN)</option>
+                                                <option value="Home Health Aide">Home Health Aide (HHA)</option>
+                                            </select>
+                                            <small style="color:red" id="error-category"></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
                                         <div class="rt-input-group">
                                             <label for="ws">Working Schedule</label>
                                             <select name="working_schedule" id="working-schedule" class="form-select">
@@ -96,7 +108,7 @@
                                             <small style="color:red" id="error-working_schedule"></small>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="rt-input-group">
                                             <label for="wd">Working Day</label>
                                             <select name="working_day" id="wd" class="form-select">
@@ -108,7 +120,7 @@
                                             <small style="color:red" id="error-working_day"></small>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="rt-input-group">
                                             <label for="pay">Pay</label>
                                             <input type="text" id="pay" name="pay" class="form-control" placeholder="Enter Pay" autocomplete="off">

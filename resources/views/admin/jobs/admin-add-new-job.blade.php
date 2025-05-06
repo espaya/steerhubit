@@ -63,7 +63,17 @@
                                             <textarea id="description" name="description" rows="20"  style="height: 300px;" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="Enter Job Description"></textarea>
                                             <small style="color: red;" id="error-description"></small>
                                         </div>
-                                        <div class="col-md-4 mb-25">
+                                        <div class="col-md-3 mb-25">
+                                            <label for="">Category *</label>
+                                            <select id="working_schedule" name="category" class="form-control px-15"  data-select2-id="exampleFormControlSelect1" tabindex="-1" aria-hidden="true">
+                                                <option value="" >Select</option>
+                                                <option value="Certified Nursing Assistant">Certified Nursing Assistant (CNA)</option>
+                                                <option value="Licensed Practical Nurse">Licensed Practical Nurse (LPN)</option>
+                                                <option value="Home Health Aide">Home Health Aide (HHA)</option>
+                                            </select>
+                                            <small style="color: red;" id="error-category"></small>
+                                        </div>
+                                        <div class="col-md-3 mb-25">
                                             <label for="">Working Schedule *</label>
                                             <select id="working_schedule" name="working_schedule" class="form-control px-15"  data-select2-id="exampleFormControlSelect1" tabindex="-1" aria-hidden="true">
                                                 <option value="" >Select</option>
@@ -72,7 +82,7 @@
                                             </select>
                                             <small style="color: red;" id="error-working_schedule"></small>
                                         </div>
-                                        <div class="col-md-4 mb-25">
+                                        <div class="col-md-3 mb-25">
                                             <label for="">Working Day *</label>
                                             <select id="working_day" name="working_day" class="form-control px-15"  data-select2-id="exampleFormControlSelect1" tabindex="-1" aria-hidden="true">
                                                 <option value="" >Select</option>
@@ -81,7 +91,7 @@
                                             </select>
                                             <small style="color: red;" id="error-working_day"></small>
                                         </div>
-                                        <div class="col-md-4 mb-25">
+                                        <div class="col-md-3 mb-25">
                                             <label for="">Pay (USD)*</label>
                                             <input id="pay" name="pay" type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" placeholder="50.5" autocomplete="off">
                                             <small style="color: red;" id="error-pay"></small>

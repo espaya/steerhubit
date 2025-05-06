@@ -213,6 +213,8 @@ class ManagementJobsController extends Controller
                 'regex:/^(https?\:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w\-]{11}$/'
             ],
 
+            'category' => ['required', 'string', 'in:Home Health Aide,Licensed Practical Nurse,Certified Nursing Assistant'],
+
             'country' => ['required', 'string'],
             'state' => ['required', 'string'],
             'address' => ['required', 'string'],
@@ -220,6 +222,9 @@ class ManagementJobsController extends Controller
             'status' => ['required', 'string', 'in:PENDING,REJECTED,APPROVED'],
             'website' => ['required', 'regex:/^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/[^\s]*)?$/i']
         ], [
+            'category.required' => 'This field is required',
+            'category.string' => 'Invalid input',
+            'category.in' => 'Invalid category option',
             'title.required' => 'This field is required',
             'title.string' => 'Invalid input',
             'description.required' => 'This field is required',
