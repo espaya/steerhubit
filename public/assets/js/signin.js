@@ -30,7 +30,8 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.success) {
-                    console.log("Showing OTP Modal");
+
+                    $("#login-button").prop("disabled", false).text("Login");
                     
                     // Set flag in localStorage
                     localStorage.setItem("showOtpModal", "true");
