@@ -35,7 +35,17 @@
       <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}">
       <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
      
-
+    <style>
+        /* Modal styling for 429 error */
+        #rateLimitModal .modal-content {
+            border: none;
+            border-radius: 10px;
+        }
+        #rateLimitModal .modal-body {
+            text-align: center;
+            padding: 2rem;
+        }
+    </style>
 
 
       <style>
@@ -382,6 +392,7 @@
       </button>
       <!-- all plugin js -->
 
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
