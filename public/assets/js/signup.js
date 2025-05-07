@@ -17,7 +17,6 @@ $(document).ready(function() {
 
     // Check if OTP modal should be shown on page load
     if (localStorage.getItem("showOtpModal") === "true") {
-        console.log("Reopening OTP Modal after refresh");
         otpModal.show();
         preventNavigation();
         disableRightClick();

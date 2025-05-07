@@ -148,7 +148,7 @@ $(document).ready(function() {
             }
         }, 1000);
     }
-
+ 
     function preventNavigation() {
         history.pushState(null, null, location.href);
         window.onpopstate = function() {
