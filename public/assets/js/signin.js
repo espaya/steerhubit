@@ -62,18 +62,26 @@ $(document).ready(function() {
             error: function(xhr) {
                 $("#login-button").prop("disabled", false).text("Login");
                 
-                // Increment failed attempts
-                failedAttempts++;
-                localStorage.setItem('failedAttempts', failedAttempts);
-                
-                // Check if we've reached max attempts
-                if (failedAttempts >= MAX_ATTEMPTS) {
-                    handleRateLimit(60); // 60 second timeout
+                // Handle 429 errors first
+                if (xhr.status === 429) {
+                    const retryAfter = xhr.getResponseHeader('Retry-After') || 60;
+                    handleRateLimit(retryAfter);
                     return;
                 }
                 
+                // Only count non-429 errors
+                if (xhr.status !== 429) {
+                    failedAttempts++;
+                    localStorage.setItem('failedAttempts', failedAttempts);
+                    
+                    if (failedAttempts >= MAX_ATTEMPTS) {
+                        handleRateLimit(60);
+                        return;
+                    }
+                }
+                
                 handleLoginError(xhr);
-            }                        
+            }                       
         });
     });
 
@@ -91,7 +99,7 @@ $(document).ready(function() {
             if (errors.email) $("#login-error-email").text(errors.email[0]);
             if (errors.password) $("#login-error-password").text(errors.password[0]);
             if (errors.recaptcha) {
-                $("#login-error-g-recaptcha-response").text(errors.recaptcha[0]);
+                $("#login-error-recaptcha").text(errors.recaptcha[0]);
                 if (errors.recaptcha[0].toLowerCase().includes("expired")) {
                     $("#login-button").prop("disabled", false).text("Login");
                 }
