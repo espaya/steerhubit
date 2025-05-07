@@ -70,7 +70,7 @@ $(document).ready(function() {
             
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;
-                    
+            
                     if (errors.email) {
                         $("#login-error-email").text(errors.email[0]);
                     }
@@ -81,7 +81,6 @@ $(document).ready(function() {
             
                     if (errors.recaptcha) {
                         const recaptchaError = errors.recaptcha[0];
-            
                         $("#login-error-g-recaptcha-response").text(recaptchaError);
             
                         // Special handling for expired token
@@ -92,10 +91,12 @@ $(document).ready(function() {
                 } else if (xhr.status === 401) {
                     let errorMessage = xhr.responseJSON?.message || "There are errors in the form. Please try again.";
                     $("#login-error-message").html('<div class="alert alert-danger">' + errorMessage + '</div>');
+                } else if (xhr.status === 429) {
+                    window.location.href = "/429"; // Redirect to your custom Too Many Requests page
                 } else { 
                     $("#login-error-message").html('<div class="alert alert-danger">Invalid credentials</div>');
                 }
-            }            
+            }                        
         });
     });
 
