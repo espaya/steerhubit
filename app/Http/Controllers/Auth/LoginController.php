@@ -76,7 +76,7 @@ class LoginController extends Controller
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
-            'recaptcha' => ['required', 'captcha'], 
+            'g-recaptcha-response' => ['required', 'captcha'], 
         ], [
             'email.required' => 'This field is required',
             'email.email' => 'Invalid input',
@@ -84,8 +84,8 @@ class LoginController extends Controller
             'password.required' => 'This field is required',
             'password.string' => 'Invalid input',
             'password.min' => 'Input is too short',
-            'recaptcha.required' => 'This field is required',
-            'recaptcha.captcha' => 'Invalid input'
+            'g-recaptcha-response.required' => 'This field is required',
+            'g-recaptcha-response.captcha' => 'Invalid input'
         ]);
 
         if ($request->expectsJson()) 
