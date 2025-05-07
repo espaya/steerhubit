@@ -74,6 +74,9 @@ $(document).ready(function() {
                     if (errors.password) {
                         $("#login-error-password").text(errors.password[0]);
                     }
+                    if (errors.recaptcha) {
+                        $("#login-error-g-recaptcha-response").text(errors.recaptcha[0]);
+                    }
                 } else if (xhr.status === 401) {
                     let errorMessage = xhr.responseJSON?.message || "There are errors in the form. Please try again.";
                     $("#login-error-message").html('<div class="alert alert-danger">' + errorMessage + '</div>');

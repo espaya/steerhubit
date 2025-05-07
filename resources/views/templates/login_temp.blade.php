@@ -21,7 +21,7 @@
                               <input type="email" name="email" id="login-email" placeholder="Enter your email" autocomplete="off">
                               <i class="fa-light fa-user icon"></i>
                         </div>
-                        <span class="text-danger" id="login-error-email"></span>
+                        <small class="text-danger" id="login-error-email"></small>
                      </div>
 
                      <input type="hidden" id="timezone" name="timezone">
@@ -32,7 +32,7 @@
                               <input type="password" name="password" id="login-password" placeholder="Enter your password">
                               <i class="fa-light fa-lock icon"></i>
                         </div>
-                        <span class="text-danger" id="login-error-password"></span>
+                        <small class="text-danger" id="login-error-password"></small>
                      </div>
 
                      <div class="d-flex flex-wrap justify-content-between align-items-center fw-medium">
@@ -46,8 +46,9 @@
                      <div class="form-group my-3">
                         {!! NoCaptcha::renderJs() !!}
                         {!! NoCaptcha::display() !!}
+                     
+                        <small id="login-error-g-recaptcha-response" style="color: red !important;"></small>
                      </div> 
-                     <small id="login-error-g-recaptcha-response" style="color: red !important;"></small>
 
                      <div class="form-group my-3">
                         <button id="login-button" type="submit" class="rts__btn w-100 fill__btn">Login</button>
