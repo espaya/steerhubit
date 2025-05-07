@@ -67,25 +67,35 @@ $(document).ready(function() {
             },            
             error: function(xhr) {
                 $("#login-button").prop("disabled", false).text("Login");
+            
                 if (xhr.status === 422) {
                     let errors = xhr.responseJSON.errors;
+                    
                     if (errors.email) {
                         $("#login-error-email").text(errors.email[0]);
                     }
+            
                     if (errors.password) {
                         $("#login-error-password").text(errors.password[0]);
                     }
+            
                     if (errors.recaptcha) {
-                        $("#login-error-g-recaptcha-response").text(errors.recaptcha[0]);
+                        const recaptchaError = errors.recaptcha[0];
+            
+                        $("#login-error-g-recaptcha-response").text(recaptchaError);
+            
+                        // Special handling for expired token
+                        if (recaptchaError.toLowerCase().includes("expired")) {
+                            $("#login-button").prop("disabled", false).text("Login");
+                        }
                     }
                 } else if (xhr.status === 401) {
                     let errorMessage = xhr.responseJSON?.message || "There are errors in the form. Please try again.";
                     $("#login-error-message").html('<div class="alert alert-danger">' + errorMessage + '</div>');
-                }                
-                 else { 
+                } else { 
                     $("#login-error-message").html('<div class="alert alert-danger">Invalid credentials</div>');
                 }
-            }
+            }            
         });
     });
 
