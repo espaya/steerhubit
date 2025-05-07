@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let role = "Candidate"; // Default role
+    // let role = "Candidate"; // Default role
 
     // Toggle role selection inside the popup modal
     $(".tab__switch button").click(function() {
@@ -13,7 +13,7 @@ $(document).ready(function() {
 
     // Ensure role is updated before form submission
     $("form").submit(function(e) {
-        console.log("Final Submitted Role:", $("#role").val());
+        // console.log("Final Submitted Role:", $("#role").val());
     });
 
     // Register button inside the popup modal

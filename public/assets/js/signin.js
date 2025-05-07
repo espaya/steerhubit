@@ -81,7 +81,7 @@ $(document).ready(function() {
                     let errorMessage = xhr.responseJSON?.message || "There are errors in the form. Please try again.";
                     $("#login-error-message").html('<div class="alert alert-danger">' + errorMessage + '</div>');
                 }                
-                 else {
+                 else { 
                     $("#login-error-message").html('<div class="alert alert-danger">Invalid credentials</div>');
                 }
             }

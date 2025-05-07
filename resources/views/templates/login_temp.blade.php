@@ -45,7 +45,7 @@
 
                      <div class="form-group my-3">
                         {!! NoCaptcha::renderJs() !!}
-                        {!! NoCaptcha::display() !!}
+                        {!! NoCaptcha::display() !!} 
                      
                         <small id="login-error-g-recaptcha-response" style="color: red !important;"></small>
                      </div> 
