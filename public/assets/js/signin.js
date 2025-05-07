@@ -36,6 +36,8 @@ $(document).ready(function() {
             recaptcha: $('#g-recaptcha-response').val() 
         };
 
+        console.log(formData.recaptcha);
+
         let loginUrl = $('meta[name="login-route"]').attr("content");
 
         // Clear previous errors
