@@ -1,5 +1,6 @@
 $(document).ready(function() {
     // Initialize modals
+    // Initialize modals
     const rateLimitModal = new bootstrap.Modal(document.getElementById('rateLimitModal'));
     const otpModal = new bootstrap.Modal(document.getElementById('otpModal'));
     const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
@@ -29,12 +30,45 @@ $(document).ready(function() {
         $("#role").val($(this).attr("id") === "candidate-role" ? "Candidate" : "EMPLOYER");
     });
 
+    
+    // get recaptcha value
+    let recaptcha = grecaptcha.getResponse();
+
     // Register form submission
     $("#candidate-register-form").submit(function(e) {
         e.preventDefault();
         
         // Check if rate limited
         if (localStorage.getItem('registerRateLimitActive') === 'true') {
+            return;
+        }
+
+        // First validate form fields client-side
+        let isValid = true;
+        $(".error-message").text(""); // Clear previous errors
+        
+        // Example validation - expand with your actual rules
+        if ($("#email").val().trim() === "") {
+            $("#email-error").text("Email is required");
+            isValid = false;
+        }
+        
+        if ($("#spassword").val().length < 8) {
+            $("#spassword-error").text("Password must be at least 8 characters");
+            isValid = false;
+        }
+        
+        // Don't proceed if client-side validation fails
+        if (!isValid) {
+            // Only count as failed attempt if fields were filled but invalid
+            if ($("#email").val().trim() !== "" && $("#spassword").val().length > 0) {
+                failedAttempts++;
+                localStorage.setItem('failedRegisterAttempts', failedAttempts);
+                
+                if (failedAttempts >= MAX_ATTEMPTS) {
+                    handleRateLimit(60);
+                }
+            }
             return;
         }
 
@@ -45,9 +79,9 @@ $(document).ready(function() {
             password: $("#spassword").val(),
             password_confirmation: $("#password_confirmation").val(),
             role: $("#role").val(),
+            recaptcha: grecaptcha.getResponse(),
         };
 
-        $(".error-message").text(""); // Clear previous errors
         $("#register-button").prop("disabled", true).text("Registering...");
 
         $.ajax({
@@ -67,16 +101,24 @@ $(document).ready(function() {
             error: function(xhr) {
                 $("#register-button").prop("disabled", false).text("Register");
                 
-                // Increment failed attempts
-                failedAttempts++;
-                localStorage.setItem('failedRegisterAttempts', failedAttempts);
-                
-                // Check if we've reached max attempts
-                if (failedAttempts >= MAX_ATTEMPTS) {
-                    handleRateLimit(60); // 60 second timeout
+                // Handle server-side rate limits immediately
+                if (xhr.status === 429) {
+                    const retryAfter = xhr.getResponseHeader('Retry-After') || 60;
+                    handleRateLimit(retryAfter);
                     return;
                 }
                 
+                // Only count validation errors (422) as attempts
+                if (xhr.status === 422) {
+                    failedAttempts++;
+                    localStorage.setItem('failedRegisterAttempts', failedAttempts);
+                    
+                    if (failedAttempts >= MAX_ATTEMPTS) {
+                        handleRateLimit(60); // 1 minute timeout
+                    }
+                }
+                
+                // Show error messages
                 handleRegistrationError(xhr);
             }
         });
@@ -91,22 +133,30 @@ $(document).ready(function() {
     }
 
     function handleRegistrationError(xhr) {
-        let errorHtml = '<div class="alert alert-danger">';
+        // Clear all previous error messages first
+        $(".error-message").text("");
         
         if (xhr.status === 422 && xhr.responseJSON?.errors) {
             const errors = xhr.responseJSON.errors;
-            $.each(errors, function(field, messages) {
-                $(`#${field}-error`).text(messages[0]);
-            });
-            errorHtml += Object.values(errors).flat().join("<br>");
-        } else if (xhr.responseJSON?.message) {
-            errorHtml += xhr.responseJSON.message;
+            
+            // Display errors for each field
+            if (errors.email) {
+                $("#email-error").text(errors.email[0]).show();
+            }
+            if (errors.password) {
+                $("#spassword-error").text(errors.password[0]).show();
+            }
+            if (errors.name) {
+                $("#sname-error").text(errors.name[0]).show();
+            }
+            if (errors.password_confirmation) {
+                $("#password_confirmation-error").text(errors.password_confirmation[0]).show();
+            }
         } else {
-            errorHtml += 'Registration failed. Please try again.';
+            // Fallback for other errors
+            let errorMessage = xhr.responseJSON?.message || 'Registration failed. Please try again.';
+            $("#error-message").html('<div class="alert alert-danger">' + errorMessage + '</div>').show();
         }
-        
-        errorHtml += '</div>';
-        $("#error-message").html(errorHtml).fadeIn();
     }
 
     function handleRateLimit(retryAfter) {

@@ -84,8 +84,7 @@
                         {!! NoCaptcha::renderJs() !!}
                         {!! NoCaptcha::display() !!}
                      </div>
-                     <small id="g-recaptcha-response-error" style="color: red !important;"></small>
-
+                     <small id="login-error-recaptcha" class="text-danger"></small>
 
                      <div class="form-group my-3">
                         <button id="register-button" type="submit" class="rts__btn w-100 fill__btn">Register</button>
