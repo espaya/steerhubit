@@ -22,10 +22,10 @@
       <meta name="twitter:title" content="SteerHubIT">
       <meta name="twitter:description" content="Whether you're a healthcare professional seeking new opportunities or a healthcare organization looking for top talent, we're here to guide you through the process. Let's navigate the job market together.">
       <!-- fabicon -->
-      <link rel="shortcut-icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
+      <link rel="shortcut-icon" href="{{ asset('assets/img/favicon-16x16.png') }}" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-      <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="{{ asset('assets/img/favicon-16x16.png') }}" type="image/x-icon">
       <title>SteerHubIT - Building Connections</title>
       <!-- rt icons -->
       <link rel="stylesheet" href="{{asset('assets/fonts/icon/css/rt-icons.css')}}">

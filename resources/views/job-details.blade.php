@@ -21,11 +21,10 @@
       <meta name="login-route" content="{{ route('login') }}">
       <meta name="register-url" content="{{ route('register') }}">
       <!-- fabicon -->
-      <link rel="shortcut-icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
+      <link rel="shortcut-icon" href="{{ asset('assets/img/favicon-16x16.png') }}" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-      <link href="../../css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
-      <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+      <link rel="shortcut icon" href="{{ asset('assets/img/favicon-16x16.png') }}" type="image/x-icon">
       <title>{{ $job ? $job->title : '' }} - SteeHubIT</title>
       <!-- rt icons -->
       <link rel="stylesheet" href="{{asset('assets/fonts/icon/css/rt-icons.css')}}">
