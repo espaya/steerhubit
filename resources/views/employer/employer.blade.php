@@ -54,7 +54,7 @@
                     <div class="sidebar__action"><i class="fa-sharp fa-regular fa-bars"></i> Sidebar</div>
                 </div>
                 <!-- sidebar menu end -->
-                <div class="dash__overview">
+                <!-- <div class="dash__overview">
                     <h6 class="fw-medium mb-30">Applications Overview</h6>
                     <div class="overview__content">
                         <div class="single__overview">
@@ -119,11 +119,12 @@
                                 </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
+
                 <div class="chart__and__notification  gap-4 my-4">
                     
                     <!-- profile view -->
-                     <div class="profile__view bg-white">
+                     <!-- <div class="profile__view bg-white">
                         <div class="d-flex flex-wrap gap-3 align-items-center justify-content-between">
                             <h6 class="fw-medium mb-0">Profile View</h6>
                             <div class="profile__view__tab" role="tablist" id="nav-tab">
@@ -143,11 +144,11 @@
                                 <div id="spline__chart__candidate__yearly"></div>
                             </div>
                         </div>
-                     </div>
+                     </div> -->
                     <!-- profile view end -->
     
                     <!-- notification -->
-                    <div class="notification__area bg-white">
+                    <!-- <div class="notification__area bg-white">
                     <h6 class="fw-medium mb-20">Recent Notification</h6>
                     <div class="notification__list">
                         <div class="notification__item">
@@ -178,17 +179,17 @@
                             </div>
                         </div>
                     </div>
-                    </div>
+                    </div> -->
                     <!-- notification end -->
                 </div>
 
                 <!-- Applied Jobs -->
-                <div class="applied__jobs">
-                    <h6 class="fw-medium mb-30">Recent Applicants</h6>
-                    <div class="short__list__candidate">
+                <!-- <div class="applied__jobs"> -->
+                    <!-- <h6 class="fw-medium mb-30">Recent Applicants</h6> -->
+                    <!-- <div class="short__list__candidate"> -->
                     
                         <!-- single item -->
-                        <div class="single__shortlist__item">
+                        <!-- <div class="single__shortlist__item">
                             <div class="author__info">
                                 <div class="author__meta">
                                     <div class="author__image">
@@ -243,10 +244,10 @@
                                     </svg>
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- single item end -->
                         <!-- single item -->
-                        <div class="single__shortlist__item">
+                        <!-- <div class="single__shortlist__item">
                             <div class="author__info">
                                 <div class="author__meta">
                                     <div class="author__image">
@@ -302,10 +303,10 @@
                                     </svg>
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- single item end -->
                         <!-- single item -->
-                        <div class="single__shortlist__item">
+                        <!-- <div class="single__shortlist__item">
                             <div class="author__info">
                                 <div class="author__meta">
                                     <div class="author__image">
@@ -361,14 +362,14 @@
                                     </svg>
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- single item end -->
 
-                    </div>
-                </div>
+                    <!-- </div> -->
+                <!-- </div> -->
                 <!-- Applied Jobs end -->
             </div>
-            @include('employer/employer_temp/footer')
+            <!-- Footer goes here -->
         </div>
     </div>
     <!-- content area end -->
