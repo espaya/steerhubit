@@ -39,7 +39,7 @@ $(document).ready(function() {
             recaptcha: grecaptcha.getResponse(),
         };
 
-        console.log(formData.recaptcha);
+        console.log(recaptcha);
 
         let loginUrl = $('meta[name="login-route"]').attr("content");
 
@@ -67,34 +67,23 @@ $(document).ready(function() {
             error: function(xhr) {
                 $("#login-button").prop("disabled", false).text("Login");
                 
-                // Handle server-side rate limits immediately
+                // Clear previous errors
+                $("#login-error-email, #login-error-password, #login-error-recaptcha, #login-error-message").text("");
+            
+                // Handle server-side rate limits (this is now the ONLY rate limiting)
                 if (xhr.status === 429) {
                     const retryAfter = xhr.getResponseHeader('Retry-After') || 60;
                     handleRateLimit(retryAfter);
                     return;
                 }
             
-                // Clear previous errors
-                $("#login-error-email, #login-error-password, #login-error-recaptcha, #login-error-message").text("");
-            
                 if (xhr.status === 422) {
                     const errors = xhr.responseJSON.errors;
                     
-                    // Handle recaptcha error separately (doesn't count as attempt)
+                    // Handle recaptcha error
                     if (errors.recaptcha) {
                         $("#login-error-recaptcha").text(errors.recaptcha[0]);
-                        return; // Exit without counting as attempt
-                    }
-            
-                    // Count email/password validation errors
-                    if (errors.email || errors.password) {
-                        failedAttempts++;
-                        localStorage.setItem('failedAttempts', failedAttempts);
-                        
-                        if (failedAttempts >= MAX_ATTEMPTS) {
-                            handleRateLimit(60);
-                            return;
-                        }
+                        return;
                     }
             
                     // Show field-specific errors
@@ -102,19 +91,9 @@ $(document).ready(function() {
                     if (errors.password) $("#login-error-password").text(errors.password[0]);
                     
                 } else if (xhr.status === 401) {
-                    // Count invalid credential attempts
-                    failedAttempts++;
-                    localStorage.setItem('failedAttempts', failedAttempts);
-                    
-                    if (failedAttempts >= MAX_ATTEMPTS) {
-                        handleRateLimit(60);
-                        return;
-                    }
-                    
                     let errorMessage = xhr.responseJSON?.message || "Incorrect email or password.";
                     $("#login-error-message").html('<div class="alert alert-danger">' + errorMessage + '</div>');
                 } else {
-                    // Don't count other errors (500, etc.) as attempts
                     $("#login-error-message").html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');
                 }
             }

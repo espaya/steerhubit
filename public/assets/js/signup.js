@@ -101,21 +101,11 @@ $(document).ready(function() {
             error: function(xhr) {
                 $("#register-button").prop("disabled", false).text("Register");
                 
-                // Handle server-side rate limits immediately
+                // Handle server-side rate limits (only rate limiting now)
                 if (xhr.status === 429) {
                     const retryAfter = xhr.getResponseHeader('Retry-After') || 60;
                     handleRateLimit(retryAfter);
                     return;
-                }
-                
-                // Only count validation errors (422) as attempts
-                if (xhr.status === 422) {
-                    failedAttempts++;
-                    localStorage.setItem('failedRegisterAttempts', failedAttempts);
-                    
-                    if (failedAttempts >= MAX_ATTEMPTS) {
-                        handleRateLimit(60); // 1 minute timeout
-                    }
                 }
                 
                 // Show error messages
