@@ -22,7 +22,8 @@ $(document).ready(function() {
             email: $("#login-email").val(),
             password: $("#login-password").val(),
             remember: $("#remember").is(":checked") ? 1 : 0,
-            _token: $('meta[name="csrf-token"]').attr("content")
+            _token: $('meta[name="csrf-token"]').attr("content"),
+            recaptcha: null,
         };
 
         let loginUrl = $('meta[name="login-route"]').attr("content");
