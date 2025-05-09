@@ -34,7 +34,6 @@
       <!-- all plugin css -->
       <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}">
       <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
      
     <style>
@@ -356,10 +355,11 @@
       </button>
       <!-- all plugin js -->
 
+      
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <!-- jQuery AJAX -->
       <script src="{{ asset('assets/js/new-otp.js') }}"></script>
       <script src="{{ asset('assets/js/signup.js') }}"></script>
