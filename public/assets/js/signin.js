@@ -1,6 +1,9 @@
 $(document).ready(function() {
+
     // Initialize modals
-    const otpModal = new bootstrap.Modal(document.getElementById('otpModal'));
+    const otpModal = new bootstrap.Modal(document.getElementById('otpModal'), {
+        backdrop: 'static'
+    });
 
     // Check if OTP modal should be shown on page load
     if (localStorage.getItem("showOtpModal") === "true") {
