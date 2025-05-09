@@ -37,18 +37,19 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->renderable(function(HttpException $e, $request){
-            if ($e->getStatusCode() == 429) {
-                if ($request->expectsJson()) {
-                    return response()->json([
-                        'message' => 'Too Many Requests',
-                        'retry_after' => $e->getHeaders()['Retry-After'] ?? 60
-                    ], 429);
-                }
+
+            // if ($e->getStatusCode() == 429) {
+            //     if ($request->expectsJson()) {
+            //         return response()->json([
+            //             'message' => 'Too Many Requests',
+            //             'retry_after' => $e->getHeaders()['Retry-After'] ?? 60
+            //         ], 429);
+            //     }
                 
-                return response()->view('errors.429', [
-                    'retryAfter' => $e->getHeaders()['Retry-After'] ?? 60
-                ], 429);
-            }
+            //     return response()->view('errors.429', [
+            //         'retryAfter' => $e->getHeaders()['Retry-After'] ?? 60
+            //     ], 429);
+            // }
         
             if ($e->getStatusCode() == 404) {
                 return response()->view('errors.404', [], 404);

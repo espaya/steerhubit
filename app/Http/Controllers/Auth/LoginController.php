@@ -88,11 +88,7 @@ class LoginController extends Controller
             // 'recaptcha.captcha' => 'Invalid input'
         ]);
 
-        if ($request->expectsJson()) 
-        {
-            return response()->json(['message' => 'Too many requests. Please try again later.'], 429);
-        }        
-
+        
         try 
         {
             $credentials = $request->only('email', 'password');
