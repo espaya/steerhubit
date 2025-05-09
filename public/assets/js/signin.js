@@ -25,6 +25,12 @@ $(document).ready(function() {
     // get recaptcha value
     let recaptcha = grecaptcha.getResponse();
 
+      // Validate recaptcha first
+      if (!recaptchaResponse) {
+        $("#login-form-ajax").text("Please complete the reCAPTCHA");
+        return;
+    }
+
     // Login form submission
     $("#login-button").click(function(e) {
         e.preventDefault();
