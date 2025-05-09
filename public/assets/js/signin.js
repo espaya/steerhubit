@@ -13,7 +13,7 @@ $(document).ready(function() {
     $("#login-button").click(function(e) {
         e.preventDefault();
 
-        let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone; 
         let formData = {
             timezone: timezone,
             email: $("#login-email").val(),

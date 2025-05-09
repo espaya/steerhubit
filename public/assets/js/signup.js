@@ -45,7 +45,7 @@ $(document).ready(function() {
             email: $("#email").val(),
             password: $("#spassword").val(),
             password_confirmation: $("#password_confirmation").val(),
-            role: $("#role").val(),
+            role: $("#role").val(), 
         };
 
         $("#register-button").prop("disabled", true).text("Registering...");
