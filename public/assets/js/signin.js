@@ -20,20 +20,13 @@ $(document).ready(function() {
             email: $("#login-email").val(),
             password: $("#login-password").val(),
             remember: $("#remember").is(":checked") ? 1 : 0,
-            _token: $('meta[name="csrf-token"]').attr("content"),
-            recaptcha: grecaptcha.getResponse() // Make sure to include recaptcha
+            _token: $('meta[name="csrf-token"]').attr("content")
         };
 
         let loginUrl = $('meta[name="login-route"]').attr("content");
 
         // Clear previous errors
-        $("#login-form-ajax .text-danger").text("");
-
-        // Validate recaptcha
-        if (!formData.recaptcha) {
-            $("#login-error-recaptcha").text("Please complete the reCAPTCHA");
-            return;
-        }
+        $("#login-error-email, #login-error-password, #login-error-message").text("");
 
         $.ajax({
             url: loginUrl,
@@ -57,17 +50,10 @@ $(document).ready(function() {
                 $("#login-button").prop("disabled", false).text("Login");
                 
                 // Clear previous errors
-                $("#login-error-email, #login-error-password, #login-error-recaptcha, #login-error-message").text("");
+                $("#login-error-email, #login-error-password, #login-error-message").text("");
             
                 if (xhr.status === 422) {
                     const errors = xhr.responseJSON.errors;
-                    
-                    // Handle recaptcha error
-                    if (errors.recaptcha) {
-                        $("#login-error-recaptcha").text(errors.recaptcha[0]);
-                        grecaptcha.reset(); // Reset recaptcha widget
-                        return;
-                    }
             
                     // Show field-specific errors
                     if (errors.email) $("#login-error-email").text(errors.email[0]);
