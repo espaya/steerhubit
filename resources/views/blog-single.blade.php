@@ -203,6 +203,7 @@
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
       <script src="{{asset('assets/js/add-comment.js')}}"></script>
       <script src="{{asset('assets/js/reply-comment.js')}}"></script>
+      <script src="{{ asset('assets/js/send-reset-link.js')}}"></script>
       <script>
          $('#loginAgain').on('click', function () {
             $('#otpModal').modal('hide');

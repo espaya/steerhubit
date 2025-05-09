@@ -4,13 +4,13 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="mobile-web-app-capable" content="yes">
-      <meta name="description" content="Your Ultimate Job HTML Template">
-      <meta name="keywords" content="Job, Resume, Employer, Agency">
+      <meta name="description" content="Whether you're a healthcare professional seeking new opportunities or a healthcare organization looking for top talent, we're here to guide you through the process. Let's navigate the job market together.">
+      <meta name="keywords" content="Job, Resume, Employer, Agency, SteerHubIT">
       <link rel="canonical" href="https://steerhubit.com/">
       <meta name="robots" content="index, follow">
       <!-- for open graph social media -->
-      <meta property="og:title" content="Your Ultimate Job HTML Template">
-      <meta property="og:description" content="Your Ultimate Job HTML Template">
+      <meta property="og:title" content="SteerHubIT">
+      <meta property="og:description" content="Whether you're a healthcare professional seeking new opportunities or a healthcare organization looking for top talent, we're here to guide you through the process. Let's navigate the job market together.">
       <meta property="og:image" content="https://www.example.com/image.jpg">
       <meta property="og:url" content="https://steerhubit.com/">
       <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,8 +19,8 @@
 
       <!-- for twitter sharing -->
       <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:title" content="Your Ultimate Job HTML Template">
-      <meta name="twitter:description" content="Your Ultimate Job HTML Template">
+      <meta name="twitter:title" content="SteerHubIT">
+      <meta name="twitter:description" content="Whether you're a healthcare professional seeking new opportunities or a healthcare organization looking for top talent, we're here to guide you through the process. Let's navigate the job market together.">
       <!-- fabicon -->
       <link rel="shortcut-icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -402,6 +402,7 @@
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
       <script src="{{ asset('assets/js/signin.js') }}"></script>
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
+      <script src="{{ asset('assets/js/send-reset-link.js')}}"></script>
       <script>
          $('#loginAgain').on('click', function () {
             $('#otpModal').modal('hide');

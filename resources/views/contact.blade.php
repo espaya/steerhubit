@@ -250,6 +250,7 @@
       <script src="{{ asset('assets/js/signin.js') }}"></script>
       <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
       <script src="{{ asset('assets/js/contact.js')}}"></script>
+      <script src="{{ asset('assets/js/send-reset-link.js')}}"></script>
       <script>
          $('#loginAgain').on('click', function () {
             $('#otpModal').modal('hide');

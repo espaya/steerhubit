@@ -265,5 +265,6 @@
       <!-- all plugin js -->
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
+      <script src="{{ asset('assets/js/send-reset-link.js')}}"></script>
    </body>
 </html>
