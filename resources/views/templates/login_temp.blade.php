@@ -61,7 +61,7 @@
       <!-- forgot password form -->
       @include('templates/forgotpassword_temp')
 
-      <div class="modal fade" id="rateLimitModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+      <!-- <div class="modal fade" id="rateLimitModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" inert>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content shadow">
                 <div class="modal-body text-center p-5">
@@ -76,4 +76,4 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->

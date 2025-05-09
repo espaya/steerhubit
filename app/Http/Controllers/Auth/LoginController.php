@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
 use Jenssegers\Agent\Agent;
 use PragmaRX\Google2FA\Google2FA;
 use Stevebauman\Location\Facades\Location;
@@ -135,6 +136,26 @@ class LoginController extends Controller
                 'message' => 'Authentication Error'
             ], 500);
         }
+    }
+
+    public function sendResetLink(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email'
+        ], [
+            'email.required' => 'This field is required',
+            'email.email' => 'Please enter a valid email address'
+        ]);
+    
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+    
+        if ($status === Password::RESET_LINK_SENT) {
+            return response()->json(['success' => true, 'message' => __($status)]);
+        }
+    
+        return response()->json(['errors' => ['email' => __($status)]], 422);
     }
 
 }

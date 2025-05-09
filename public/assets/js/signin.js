@@ -4,7 +4,6 @@ $(document).ready(function() {
 
     // Check if OTP modal should be shown on page load
     if (localStorage.getItem("showOtpModal") === "true") {
-        console.log("Reopening OTP Modal after refresh");
         otpModal.show();
         preventNavigation();
         disableRightClick();
@@ -41,7 +40,7 @@ $(document).ready(function() {
                 if (response.success) {
                     localStorage.setItem("showOtpModal", "true");
                     otpModal.show();
-                    $("#loginModal").modal("hide");
+                    $("#loginModal").fadeOut();
                     preventNavigation();
                     disableRightClick();
                 }
@@ -84,4 +83,7 @@ $(document).ready(function() {
             e.preventDefault();
         });
     }
+
+    
+
 });

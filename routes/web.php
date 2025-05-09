@@ -10,6 +10,7 @@ use App\Http\Controllers\JobDetailsController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ResetPasswordController;
 
 
 Route::get('/', function () {
@@ -76,7 +77,12 @@ Route::get('/login', function(){ return view('welcome'); })->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('throttle:3,10');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::post('/reset-password/send-reset-link', [LoginController::class, 'sendResetLink']);
 
+// Show the password reset form
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
 
 require __DIR__.'/admin.php';
 require __DIR__.'/employee.php';

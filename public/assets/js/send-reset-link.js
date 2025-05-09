@@ -11,17 +11,17 @@ $(document).ready(function() {
             _token: $('meta[name="csrf-token"]').attr("content")
         };
 
-        // Validate email
-        if (!formData.email) {
-            $("#error-reset-email").text("Email is required");
-            return;
-        }
+        // // Validate email
+        // if (!formData.email) {
+        //     $("#error-reset-email").text("Email is required");
+        //     return;
+        // }
 
         // Disable button during request
         $(".rts__btn").prop("disabled", true).text("Processing...");
 
         $.ajax({
-            url: "/reset-password",
+            url: "/reset-password/send-reset-link",
             type: "POST",
             data: formData,
             success: function(response) {
@@ -38,6 +38,15 @@ $(document).ready(function() {
                     // Show success message with masked email
                     $("#messages").text("Password reset link has been sent to your email " + maskedEmail);
                     $("#fmail").val(""); // Clear email field
+                    $('#loginModal').blur(); // or however you hide it
+
+                    setTimeout(function(){
+                        $('#forgotModal').fadeOut();
+                        $('#resetModal').fadeIn();
+                    }, 3000);
+
+                    
+
                 }
             },
             error: function(xhr) {
@@ -45,9 +54,15 @@ $(document).ready(function() {
                 if (xhr.status === 422) {
                     const errors = xhr.responseJSON.errors;
                     if (errors.email) {
-                        $("#error-reset-email").text(errors.email[0]);
+                        const emailError = Array.isArray(errors.email) ? errors.email[0] : errors.email;
+                        $("#error-reset-email").text(emailError);
                     }
-                } else {
+                }                
+                 else if (xhr.status === 500) {
+                    const message = xhr.responseJSON?.message || "Internal server error.";
+                    $("#error-reset-email").text(message);
+                }                
+                 else {
                     $("#error-reset-email").text("Something went wrong. Please try again.");
                 }
             }
