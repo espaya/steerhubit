@@ -67,15 +67,42 @@ $(document).ready(function() {
             error: function(xhr) {
                 $("#login-button").prop("disabled", false).text("Login");
                 
-                // Handle 429 errors first
+                // Handle server-side rate limits immediately
                 if (xhr.status === 429) {
                     const retryAfter = xhr.getResponseHeader('Retry-After') || 60;
                     handleRateLimit(retryAfter);
                     return;
                 }
-                
-                // Only count non-429 errors
-                if (xhr.status !== 429) {
+            
+                // Clear previous errors
+                $("#login-error-email, #login-error-password, #login-error-recaptcha, #login-error-message").text("");
+            
+                if (xhr.status === 422) {
+                    const errors = xhr.responseJSON.errors;
+                    
+                    // Handle recaptcha error separately (doesn't count as attempt)
+                    if (errors.recaptcha) {
+                        $("#login-error-recaptcha").text(errors.recaptcha[0]);
+                        return; // Exit without counting as attempt
+                    }
+            
+                    // Count email/password validation errors
+                    if (errors.email || errors.password) {
+                        failedAttempts++;
+                        localStorage.setItem('failedAttempts', failedAttempts);
+                        
+                        if (failedAttempts >= MAX_ATTEMPTS) {
+                            handleRateLimit(60);
+                            return;
+                        }
+                    }
+            
+                    // Show field-specific errors
+                    if (errors.email) $("#login-error-email").text(errors.email[0]);
+                    if (errors.password) $("#login-error-password").text(errors.password[0]);
+                    
+                } else if (xhr.status === 401) {
+                    // Count invalid credential attempts
                     failedAttempts++;
                     localStorage.setItem('failedAttempts', failedAttempts);
                     
@@ -83,10 +110,15 @@ $(document).ready(function() {
                         handleRateLimit(60);
                         return;
                     }
+                    
+                    let errorMessage = xhr.responseJSON?.message || "Incorrect email or password.";
+                    $("#login-error-message").html('<div class="alert alert-danger">' + errorMessage + '</div>');
+                } else {
+                    // Don't count other errors (500, etc.) as attempts
+                    $("#login-error-message").html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');
                 }
-                
-                handleLoginError(xhr);
-            }                       
+            }
+                                   
         });
     });
 
