@@ -22,14 +22,6 @@ $(document).ready(function() {
         disableRightClick();
     }
 
-    // get recaptcha value
-    let recaptcha = grecaptcha.getResponse();
-
-      // Validate recaptcha first
-      if (!recaptchaResponse) {
-        $("#login-form-ajax").text("Please complete the reCAPTCHA");
-        return;
-    }
 
     // Login form submission
     $("#login-button").click(function(e) {
@@ -42,7 +34,6 @@ $(document).ready(function() {
             password: $("#login-password").val(),
             remember: $("#remember").is(":checked") ? 1 : 0,
             _token: $('meta[name="csrf-token"]').attr("content"),
-            recaptcha: recaptcha,
         };
 
         console.log(recaptcha);

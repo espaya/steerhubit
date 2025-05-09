@@ -31,9 +31,6 @@ $(document).ready(function() {
     });
 
     
-    // get recaptcha value
-    let recaptcha = grecaptcha.getResponse();
-
     // Register form submission
     $("#candidate-register-form").submit(function(e) {
         e.preventDefault();
@@ -79,7 +76,6 @@ $(document).ready(function() {
             password: $("#spassword").val(),
             password_confirmation: $("#password_confirmation").val(),
             role: $("#role").val(),
-            recaptcha: grecaptcha.getResponse(),
         };
 
         $("#register-button").prop("disabled", true).text("Registering...");
