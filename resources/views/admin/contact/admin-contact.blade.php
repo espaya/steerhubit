@@ -8,10 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Contacts - SteerHubIT</title>
 
-    <link href="../../../../css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- inject:css-->
-
     <link rel="stylesheet" href="{{asset('assets/mgt/css/plugin.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/mgt/style.css')}}">
