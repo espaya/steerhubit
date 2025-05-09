@@ -61,19 +61,3 @@
       <!-- forgot password form -->
       @include('templates/forgotpassword_temp')
 
-      <!-- <div class="modal fade" id="rateLimitModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" inert>
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content shadow">
-                <div class="modal-body text-center p-5">
-                    <h5 class="text-danger mb-4">⏱️ Too Many Requests</h5>
-                    <p class="lead">
-                        You've exceeded the maximum number of attempts.
-                        Please wait <span id="countdown">{{ isset($retryAfter) ? $retryAfter : '' }}</span> seconds.
-                    </p>
-                    <button id="reloadBtn" class="btn btn-primary mt-3 d-none">
-                        ← Continue
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div> -->
