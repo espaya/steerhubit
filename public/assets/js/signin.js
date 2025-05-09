@@ -23,7 +23,6 @@ $(document).ready(function() {
             password: $("#login-password").val(),
             remember: $("#remember").is(":checked") ? 1 : 0,
             _token: $('meta[name="csrf-token"]').attr("content"),
-            recaptcha: null,
         };
 
         let loginUrl = $('meta[name="login-route"]').attr("content");
