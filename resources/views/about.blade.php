@@ -11,12 +11,12 @@
       <!-- for open graph social media -->
       <meta property="og:title" content="About us">
       <meta property="og:description" content="Transforming healthcare one placement at a time, by providing personalized staffing solutions, promoting diversity and inclusion, and empowering healthcare professionals to deliver exceptional patient care.">
-      <meta property="og:image" content="https://www.example.com/image.jpg">
+      <meta property="og:image" content="{{ asset('assets/img/favicon-16x16.png') }}">
       <meta property="og:url" content="{{ route('about') }}">
       <!-- for twitter sharing -->
       <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:title" content="Your Ultimate Job HTML Template">
-      <meta name="twitter:description" content="Your Ultimate Job HTML Template">
+      <meta name="twitter:title" content="About Us - SteerHubIT">
+      <meta name="twitter:description" content="Transforming healthcare one placement at a time, by providing personalized staffing solutions, promoting diversity and inclusion, and empowering healthcare professionals to deliver exceptional patient care.">
       <!-- fabicon -->
       <link rel="shortcut-icon" href="{{ asset('assets/img/favicon-16x16.png') }}" type="image/x-icon">
       <link rel="preconnect" href="https://fonts.googleapis.com">
