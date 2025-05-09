@@ -11,7 +11,7 @@
       <!-- for open graph social media -->
       <meta property="og:title" content="SteerHubIT">
       <meta property="og:description" content="Whether you're a healthcare professional seeking new opportunities or a healthcare organization looking for top talent, we're here to guide you through the process. Let's navigate the job market together.">
-      <meta property="og:image" content="https://www.example.com/image.jpg">
+      <meta property="og:image" content="{{ asset('assets/img/favicon-16x16.png') }}">
       <meta property="og:url" content="https://steerhubit.com/">
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <meta name="login-route" content="{{ route('login') }}">
