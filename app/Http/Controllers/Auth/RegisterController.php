@@ -26,6 +26,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
     /**
      * Validate user input.
      */
@@ -145,6 +150,7 @@ class RegisterController extends Controller
 
             return response()->json([
                 'success' => true,
+                 'redirect' => route('verify-otp') // Redirect to OTP verification page
             ], 200);
         }
         catch(Exception $ex)

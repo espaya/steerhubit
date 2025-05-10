@@ -47,6 +47,9 @@
                             <a href="{{ route('login') }}" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs"> 
                                 <i class="rt-login"></i>Sign In
                             </a>
+                            <a href="{{ route('showRegistrationForm') }}" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs"> 
+                               <i class="fa-light fa-user-plus"></i> Register
+                            </a>
                             @endif
 
                             @if(Auth::user() && Auth::user()->role == 'EMPLOYER')

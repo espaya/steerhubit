@@ -8,13 +8,12 @@ use App\Http\Middleware\EmployerMiddleware;
 use App\Http\Middleware\EnsureOtpVerification;
 use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Auth\Middleware\Authenticate;
-use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Session\Middleware\StartSession;
 use Symfony\Component\HttpKernel\Exception\HttpException;
- 
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -36,24 +35,27 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->renderable(function(HttpException $e, $request){
+        $exceptions->renderable(function (HttpException $e, $request) {
+            $status = $e->getStatusCode();
 
-            // if ($e->getStatusCode() == 429) {
-            //     if ($request->expectsJson()) {
-            //         return response()->json([
-            //             'message' => 'Too Many Requests',
-            //             'retry_after' => $e->getHeaders()['Retry-After'] ?? 60
-            //         ], 429);
-            //     }
-                
-            //     return response()->view('errors.429', [
-            //         'retryAfter' => $e->getHeaders()['Retry-After'] ?? 60
-            //     ], 429);
-            // }
-        
-            if ($e->getStatusCode() == 404) {
-                return response()->view('errors.404', [], 404);
+            if ($status === 429) {
+                $retryAfter = $e->getHeaders()['Retry-After'] ?? 60;
+
+                if ($request->expectsJson()) {
+                    return response()->json([
+                        'message' => 'Too Many Requests',
+                        'retry_after' => $retryAfter
+                    ], 429);
+                }
+
+                return response()->view('errors.429', [
+                    'retryAfter' => $retryAfter
+                ], 429);
             }
 
+            if ($status === 404) {
+                return response()->view('errors.404', [], 404);
+            }
         });
-    })->create();
+    })
+    ->create();

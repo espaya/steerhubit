@@ -1,64 +1,42 @@
 $(document).ready(function() {
-    // Initialize modals
-    const otpModal = new bootstrap.Modal(document.getElementById('otpModal'));
-    const signupModal = new bootstrap.Modal(document.getElementById('signupModal'));
-
-    // Check if OTP modal should be shown on page load
-    if (localStorage.getItem("showOtpModal") === "true") {
-        otpModal.show();
-        preventNavigation();
-        disableRightClick();
-    }
-
     // Role selection
     $(".tab__switch button").click(function() {
         $(".tab__switch button").removeClass("active");
         $(this).addClass("active");
-        $("#role").val($(this).attr("id") === "candidate-role" ? "Candidate" : "EMPLOYER");
+        const role = $(this).attr("id") === "candidate-role" ? "Candidate" : "Employer";
+        $("#role").val(role);
     });
 
     // Register form submission
     $("#candidate-register-form").submit(function(e) {
         e.preventDefault();
 
-        // First validate form fields client-side
-        let isValid = true;
-        $(".error-message").text(""); // Clear previous errors
-        
-        // Example validation - expand with your actual rules
-        if ($("#email").val().trim() === "") {
-            $("#email-error").text("Email is required");
-            isValid = false;
-        }
-        
-        if ($("#spassword").val().length < 8) {
-            $("#spassword-error").text("Password must be at least 8 characters");
-            isValid = false;
-        }
-        
-        // Don't proceed if client-side validation fails
-        if (!isValid) return;
+        // Clear previous errors
+        $(".error-message").text("");
+        $("#error-message").hide();
 
-        let formData = {
+        const formData = {
             _token: $('meta[name="csrf-token"]').attr("content"),
             name: $("#sname").val(),
             email: $("#email").val(),
             password: $("#spassword").val(),
             password_confirmation: $("#password_confirmation").val(),
-            role: $("#role").val(), 
+            role: $("#role").val()
         };
 
         $("#register-button").prop("disabled", true).text("Registering...");
 
         $.ajax({
             url: "/register-new-account",
-            type: "POST",
+            method: "POST",
             data: formData,
             success: function(response) {
                 $("#register-button").prop("disabled", false).text("Register");
-                
+
                 if (response.success) {
-                    handleSuccessfulRegistration();
+                    window.location.href = response.redirect;
+                } else {
+                    $("#error-message").text("Registration failed. Please try again.").removeClass("d-none");
                 }
             },
             error: function(xhr) {
@@ -68,54 +46,29 @@ $(document).ready(function() {
         });
     });
 
-    function handleSuccessfulRegistration() {
-        localStorage.setItem("showOtpModal", "true");
-        otpModal.show();
-        signupModal.hide();
-        preventNavigation();
-        disableRightClick();
-    }
 
     function handleRegistrationError(xhr) {
-        // Clear all previous error messages first
-        $(".error-message").text("");
-        
         if (xhr.status === 422 && xhr.responseJSON?.errors) {
             const errors = xhr.responseJSON.errors;
-            
-            // Display errors for each field
+
+            if (errors.name) {
+                $("#name-error").text(errors.name[0]);
+            }
             if (errors.email) {
-                $("#email-error").text(errors.email[0]).show();
+                $("#email-error").text(errors.email[0]);
             }
             if (errors.password) {
-                $("#spassword-error").text(errors.password[0]).show();
-            }
-            if (errors.name) {
-                $("#sname-error").text(errors.name[0]).show();
+                $("#password-error").text(errors.password[0]);
             }
             if (errors.password_confirmation) {
-                $("#password_confirmation-error").text(errors.password_confirmation[0]).show();
+                $("#password_confirmation-error").text(errors.password_confirmation[0]);
             }
-        } else {
-            // Fallback for other errors
-            let errorMessage = xhr.responseJSON?.message || 'Registration failed. Please try again.';
-            $("#error-message").html('<div class="alert alert-danger">' + errorMessage + '</div>').show();
+        } else if(xhr.status === 429) {
+            window.location.href = '/429';
         }
-    }
-
-    function preventNavigation() {
-        history.pushState(null, null, location.href);
-        window.onpopstate = function() {
-            history.pushState(null, null, location.href);
-        };
-        setInterval(function() {
-            history.pushState(null, null, location.href);
-        }, 500);
-    }
-
-    function disableRightClick() {
-        $(document).on("contextmenu", function(e) {
-            e.preventDefault();
-        });
+        else {
+            const fallbackMessage = xhr.responseJSON?.message || "Something went wrong.";
+            $("#error-message").removeClass("d-none").text(fallbackMessage);
+        }
     }
 });

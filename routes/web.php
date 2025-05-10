@@ -11,7 +11,7 @@ use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResetPasswordController;
-
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,7 +53,7 @@ Route::get('/choose-subscription-plan', function(){
     return view('choose-subscription');
 })->name('choose.subscription');
     
-Route::post('/register-new-account', [RegisterController::class, 'register'])->name('register')->middleware('throttle:3,10');
+
 Route::post('/subscribe-to-our-mailing-list', [MailingListController::class, 'subscribe'])->name('subscribe.mailing.list');
 
 Route::get('/candidates/{id}', [CandidatesPublicController::class, 'show'])->name('public.candidates.show');
@@ -81,10 +81,10 @@ Route::group(['middleware' =>['auth', 'auth.redirect', 'prevent-back-history', '
 
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/sign-in', function(){ return view('auth.login'); })->name('login');
-    Route::post('/sign-in', [LoginController::class, 'login'])->name('login')->middleware('throttle:3,10');
+    Route::post('/sign-in', [LoginController::class, 'login'])->name('login')->middleware('throttle:10,1');
+    Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('showRegistrationForm');    
+    Route::post('/register-new-account', [RegisterController::class, 'register'])->name('register')->middleware('throttle:10,1');
 });
-
-
 
 Route::post('/reset-password/send-reset-link', [LoginController::class, 'sendResetLink']);
 
@@ -92,6 +92,10 @@ Route::post('/reset-password/send-reset-link', [LoginController::class, 'sendRes
 Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
+
+Route::get('/429', function(){
+    throw new HttpException(429, 'Too Many Requests', null, ['Retry-After' => 60]);
+});
 
 require __DIR__.'/admin.php';
 require __DIR__.'/employee.php';

@@ -60,7 +60,10 @@ $(document).ready(function() {
                 } else if (xhr.status === 401) {
                     let errorMessage = xhr.responseJSON?.message || "Incorrect email or password.";
                     $("#login-error-message").html('<div class="alert alert-danger">' + errorMessage + '</div>');
-                } else {
+                } else if(xhr.status === 429) {
+                    window.location.href = '/429'
+                }
+                 else {
                     $("#login-error-message").html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');
                 }
             }                       
