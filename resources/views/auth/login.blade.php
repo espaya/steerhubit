@@ -99,7 +99,7 @@
                         </div>
                         <div class="d-flex flex-wrap justify-content-between align-items-center fw-medium">
                         <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="remember" id="remember">
+                              <input value="1" class="form-check-input" type="checkbox" name="remember" id="remember">
                               <label class="form-check-label" for="remember">Remember me</label>
                         </div>
                         <a href="#" class="forgot__password text-para" data-bs-toggle="modal" data-bs-target="#forgotModal">Forgot Password?</a>

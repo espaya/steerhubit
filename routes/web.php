@@ -71,10 +71,8 @@ Route::group(['middleware' =>['auth', 'auth.redirect', 'prevent-back-history', '
     Route::get('/jobs', [JobDetailsController::class, 'index'])->name('jobs');
     Route::get('/jobs/{slug}', [JobDetailsController::class, 'show'])->name('job.view');
     Route::post('/candidate-dashboard/applied-job/apply/{id}', [JobDetailsController::class, 'apply']);
-   
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
-
- Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // Auth::routes(); 
@@ -89,8 +87,8 @@ Route::group(['middleware' => ['guest']], function(){
 Route::post('/reset-password/send-reset-link', [LoginController::class, 'sendResetLink']);
 
 // Show the password reset form
-Route::get('/reset-password/{token}', function ($token) {
-    return view('auth.reset-password', ['token' => $token]);
+Route::get('/reset-password', function () {
+    return view('auth.passwords.reset');
 })->middleware('guest')->name('password.reset');
 
 Route::get('/429', function(){
