@@ -119,7 +119,7 @@ class LoginController extends Controller
                 // Redirect to OTP verification page
                 return response()->json([
                     'success' => true,
-                    // 'redirect' => route('verify-otp') // Redirect to OTP verification page
+                    'redirect' => route('verify-otp') // Redirect to OTP verification page
                 ], 200);
             }
 

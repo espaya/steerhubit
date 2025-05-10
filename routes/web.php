@@ -60,6 +60,7 @@ Route::get('/candidates/{id}', [CandidatesPublicController::class, 'show'])->nam
 
 
 Route::middleware('otp.verify')->group(function () {
+    Route::get('/verify-otp', [OtpController::class, 'showOtpVerificationForm'])->name('verify-otp');
     Route::post('/verify-otp/submit', [OtpController::class, 'verifyOtp'])->name('verify-otp.submit');
 });
 
@@ -70,12 +71,20 @@ Route::group(['middleware' =>['auth', 'auth.redirect', 'prevent-back-history', '
     Route::get('/jobs', [JobDetailsController::class, 'index'])->name('jobs');
     Route::get('/jobs/{slug}', [JobDetailsController::class, 'show'])->name('job.view');
     Route::post('/candidate-dashboard/applied-job/apply/{id}', [JobDetailsController::class, 'apply']);
+   
 });
 
+ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
 // Auth::routes(); 
-Route::get('/login', function(){ return view('welcome'); })->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('throttle:3,10');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['guest']], function(){
+    Route::get('/sign-in', function(){ return view('auth.login'); })->name('login');
+    Route::post('/sign-in', [LoginController::class, 'login'])->name('login')->middleware('throttle:3,10');
+});
+
+
 
 Route::post('/reset-password/send-reset-link', [LoginController::class, 'sendResetLink']);
 

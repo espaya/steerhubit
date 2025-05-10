@@ -44,7 +44,9 @@
                                 </a>
                                 @endif
                             @else
-                            <a href="#" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs" aria-label="Login Button" data-bs-toggle="modal" data-bs-target="#loginModal"> <i class="rt-login"></i>Sign In</a>
+                            <a href="{{ route('login') }}" class="small__btn d-none d-sm-flex no__fill__btn border-6 font-xs"> 
+                                <i class="rt-login"></i>Sign In
+                            </a>
                             @endif
 
                             @if(Auth::user() && Auth::user()->role == 'EMPLOYER')

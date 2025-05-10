@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
     // Initialize modals
-    const otpModal = new bootstrap.Modal(document.getElementById('otpModal'), {
-        backdrop: 'static'
-    });
+    // const otpModal = new bootstrap.Modal(document.getElementById('otpModal'), {
+    //     backdrop: 'static'
+    // });
 
     // Check if OTP modal should be shown on page load
     if (localStorage.getItem("showOtpModal") === "true") {
@@ -41,11 +41,7 @@ $(document).ready(function() {
                 $("#login-button").prop("disabled", false).text("Login");
                 
                 if (response.success) {
-                    localStorage.setItem("showOtpModal", "true");
-                    otpModal.show();
-                    $("#loginModal").fadeOut();
-                    preventNavigation();
-                    disableRightClick();
+                    window.location.href = response.redirect;
                 }
             },            
             error: function(xhr) {

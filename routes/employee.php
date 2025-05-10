@@ -13,7 +13,7 @@ use App\Http\Controllers\Candidate\CandidateResumeController;
 /*
 * Employee Middleware
 */
-Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-back-history', 'otp.verified']], function () {
+Route::group(['middleware' => ['auth', 'auth.redirect', 'candidate', 'prevent-back-history']], function () {
 
     Route::get('/candidate-dashboard', [CandidateDashboardController::class, 'index'])->name('employee');
 
