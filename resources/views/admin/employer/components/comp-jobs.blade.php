@@ -2,7 +2,7 @@
     <!-- Product Table -->
     <div class="card mt-25 mb-40">
         <div class="card-header  px-md-25 px-3">
-            <h6>Recent Product(s)</h6>
+            <h6>Recent Job(s)</h6>
         </div>
 
         <div class="col-lg-12">

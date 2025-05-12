@@ -56,6 +56,7 @@ class ManagementEmployersController extends Controller
         {
             $employer = EmployerProfile::where('userID', $user->id)->first();
             $jobs = Job::where('userID', $user->id)->limit(5)->get();
+            $allJobs = Job::where('userID', $user->id)->paginate(10);
             $shortlists = ApplicantShortlist::where('employer_id', $user->id)->first();
 
             $countJobs = Job::where('userID', $user->id)->count();
@@ -69,7 +70,8 @@ class ManagementEmployersController extends Controller
                 'shortlists' => $shortlists,
                 'countJobs' => $countJobs,
                 'countApplicants' => $countApplicants,
-                'countShortlists' => $countShortlists
+                'countShortlists' => $countShortlists,
+                'allJobs' => $allJobs
             ]);
         }
         
