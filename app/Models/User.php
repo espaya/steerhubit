@@ -36,6 +36,7 @@ class User extends Authenticatable
         return $this->belongsTo(CandidateProfile::class, 'id', 'userID');
     }
 
+
     /**
      * The attributes that should be hidden for serialization.
      *

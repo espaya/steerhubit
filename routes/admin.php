@@ -20,7 +20,10 @@ use App\Http\Controllers\Management\ManagementSubscribersController;
 Route::group(['middleware' => ['auth', 'auth.redirect', 'admin', 'prevent-back-history', 'otp.verified']], function(){
     // Management route
     Route::get('/0246520325/management', [ManagementController::class, 'index'])->name('management');
+
     Route::get('0246520325/management/employers', [ManagementEmployersController::class, 'index'])->name('management.employers');
+    Route::get('0246520325/management/employers/{username}', [ManagementEmployersController::class, 'show'])->name('management.employer.view');
+
     Route::get('0246520325/management/candidates', [ManagementEmployeesController::class, 'index'])->name('management.employees');
     Route::get('0246520325/management/blocked-users', [ManagementBlockedUsers::class, 'index'])->name('management.blocked.users');
     Route::get('0246520325/management/jobs', [ManagementJobsController::class, 'index'])->name('management.jobs');

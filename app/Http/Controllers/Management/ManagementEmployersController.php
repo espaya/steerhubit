@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplicantShortlist;
+use App\Models\EmployerProfile;
+use App\Models\Job;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ManagementEmployersController extends Controller
 {
@@ -42,5 +46,27 @@ class ManagementEmployersController extends Controller
 
         return view('admin.employers', compact('employers', 'totalEmployers', 'limits'));
     
+    }
+
+    public function show($username)
+    {
+        $user = User::where('name', $username)->first();
+
+        if($user)
+        {
+            $employer = EmployerProfile::where('userID', $user->id)->first();
+            $jobs = Job::where('userID', $user->id)->limit(5)->get();
+            $shortlists = ApplicantShortlist::where('employer_id', $user)->first();
+
+            return view('admin.employer.admin-view-employer', [
+                'employer' => $employer,
+                'user' => $user,
+                'jobs' => $jobs,
+                'shortlists' => $shortlists
+            ]);
+        }
+        
+        return redirect()->back()->with(['error' => 'User not found']);
+        
     }
 }
