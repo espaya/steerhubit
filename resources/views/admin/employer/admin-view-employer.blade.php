@@ -220,7 +220,7 @@
                                                     <div>
 
                                                         <div class="overview-content">
-                                                            <h1> {{ (int)$countApplicants }} </h1>
+                                                            <h1> {{ $countApplicants ? (int)$countApplicants : '0' }} </h1>
                                                             <p>Applicants</p>
                                                             <div class="ap-po-details-time">
                                                                 <span class="color-danger"><i class="las la-arrow-down"></i>
