@@ -55,8 +55,8 @@ class ManagementEmployersController extends Controller
         if($user)
         {
             $employer = EmployerProfile::where('userID', $user->id)->first();
-            $jobs = Job::where('userID', $user->id)->limit(5)->get();
-            $allJobs = Job::where('userID', $user->id)->paginate(10);
+            $jobs = Job::where('userID', $user->id)->orderBy('id', 'DESC')->limit(5)->get();
+            $allJobs = Job::where('userID', $user->id)->orderBy('id', 'DESC')->paginate(10);
             $shortlists = ApplicantShortlist::where('employer_id', $user->id)->first();
 
             $countJobs = Job::where('userID', $user->id)->count();
