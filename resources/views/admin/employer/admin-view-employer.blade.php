@@ -6,15 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> {{ $employer ? $employer->employer_name : $user->name }} - SteerHubIT</title>
-
-    <!-- inject:css-->
-
     <link rel="stylesheet" href="{{asset('assets/mgt/css/plugin.min.css')}}">
-
     <link rel="stylesheet" href="{{asset('assets/mgt/style.css')}}">
-
-    <!-- endinject -->
-
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
 </head>
 
@@ -140,9 +133,6 @@
                         <div class="col">
                             <!-- Tab Menu -->
                             <div class="ap-tab ap-tab-header">
-                                <div class="ap-tab-header__img">
-                                    <img src="{{ asset('assets/mgt/img/ap-header.png')}}" alt="ap-header" class="img-fluid w-100">
-                                </div>
                                 <div class="ap-tab-wrapper">
                                     <ul class="nav px-25 ap-tab-main" id="ap-tab" role="tablist">
                                         <li class="nav-item">
@@ -167,12 +157,8 @@
                                                 <div class="ap-po-details radius-xl bg-white d-flex justify-content-between">
                                                     <div>
 
-
-
-
-
                                                         <div class="overview-content">
-                                                            <h1>3,257</h1>
+                                                            <h1> {{ $countJobs }} </h1>
                                                             <p>Jobs</p>
                                                             <div class="ap-po-details-time">
                                                                 <span class="color-success"><i class="las la-arrow-up"></i>
@@ -186,11 +172,9 @@
                                                         <div class="overview-single__chart d-md-flex align-items-end">
                                                             <div class="parentContainer">
 
-
                                                                 <div>
                                                                     <canvas id="mychart8"></canvas>
                                                                 </div>
-
 
                                                             </div>
                                                         </div>
@@ -203,12 +187,8 @@
                                                 <div class="ap-po-details radius-xl bg-white d-flex justify-content-between">
                                                     <div>
 
-
-
-
-
                                                         <div class="overview-content">
-                                                            <h1>$72,572</h1>
+                                                            <h1> {{ $countShortlists }} </h1>
                                                             <p>Applied Jobs</p>
                                                             <div class="ap-po-details-time">
                                                                 <span class="color-success"><i class="las la-arrow-up"></i>
@@ -239,12 +219,8 @@
                                                 <div class="ap-po-details radius-xl bg-white d-flex justify-content-between">
                                                     <div>
 
-
-
-
-
                                                         <div class="overview-content">
-                                                            <h1>1,274</h1>
+                                                            <h1> {{ $countApplicants }} </h1>
                                                             <p>Applicants</p>
                                                             <div class="ap-po-details-time">
                                                                 <span class="color-danger"><i class="las la-arrow-down"></i>

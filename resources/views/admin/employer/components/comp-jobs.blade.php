@@ -56,50 +56,41 @@
                                         </div>
                                         <div class="userDatatable-inline-title">
                                             <a href="#" class="text-dark fw-500">
-                                                <h6>Kellie Marquot</h6>
+                                                <h6> {{ $job->address }} </h6>
                                             </a>
                                             <p class="d-block mb-0">
-                                                San Francisco, CA
+                                                {{ $job->state . ', ' . $job->country . ', ' . $job->postal_code }}
                                             </p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="userDatatable-content">
-                                        john-keller@gmail.com
+                                        {{ $job->title }}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="userDatatable-content">
-                                        $20.9
+                                        ${{ $job->pay }}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="userDatatable-content">
-                                        January 20, 2020
+                                        {{ \Carbon\Carbon::parse($job->created_at)->format('F j, Y') }}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="userDatatable-content d-inline-block">
-                                        <span class="bg-opacity-success  color-success rounded-pill userDatatable-content-status active">active</span>
+                                        <span class="{{ $job->status == 'APPROVED' ? 'bg-opacity-success  color-success' : 'bg-opacity-warning  color-warning' }} rounded-pill userDatatable-content-status active">{{ $job->status }}</span>
                                     </div>
                                 </td>
                                 <td>
                                     <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
                                         <li>
-                                            <a href="#" class="view">
+                                            <a href="{{ route('job.view', ['slug' => $job->slug]) }}" class="view">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
                                                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                                     <circle cx="12" cy="12" r="3"></circle>
-                                                </svg></a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="remove">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
                                                 </svg></a>
                                         </li>
                                     </ul>
