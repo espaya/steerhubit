@@ -106,7 +106,7 @@
                                 </td>
                             </tr>
                         @empty 
-                        <p class="alert alert-info"></p>
+                        <p class="alert alert-info">No job(s) found</p>
                         @endforelse
                         </tbody>
                     </table>
