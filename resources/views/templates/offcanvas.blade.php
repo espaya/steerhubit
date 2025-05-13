@@ -18,7 +18,7 @@
                @else 
                <a href="{{ route('login') }}" class="small__btn no__fill__btn border-6 font-xs" aria-label="Login Button"> 
                   <i class="rt-login"></i>Sign In</a>
-               <a href="{{ route('showRegistrationForm') }}" class="small__btn d-xl-flex fill__btn border-6 font-xs" aria-label="Job Posting Button"><i class="fa-light fa-user-plus">Register</a>
+               <a href="{{ route('showRegistrationForm') }}" class="small__btn d-xl-flex fill__btn border-6 font-xs" aria-label="Job Posting Button"><i class="fa-light fa-user-plus"></i> Register</a>
                @endif
             </div>
          </div>
