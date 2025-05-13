@@ -252,7 +252,6 @@
          </div>
       </div>
       <!-- app center end -->
-      @include('templates/login_temp')
       
       @include('templates/footer')
       @include('templates/offcanvas')

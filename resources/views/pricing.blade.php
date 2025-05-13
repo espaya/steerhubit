@@ -186,7 +186,6 @@
     </section>
     <!-- faq section end -->
 
-    @include('templates/login_temp')
   
     @include('templates/footer')
     @include('templates/offcanvas')

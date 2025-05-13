@@ -139,7 +139,6 @@
          </div>
       </div>
       
-      @include('templates/login_temp')
       
       @include('templates/footer')
       @include('templates/offcanvas')

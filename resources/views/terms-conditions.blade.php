@@ -179,7 +179,6 @@
 
     @include('templates/footer')
 
-    @include('templates/login_temp')
     @include('templates/offcanvas')
         <!-- OTP Modal -->
         <div class="modal similar__modal fade " id="otpModal">

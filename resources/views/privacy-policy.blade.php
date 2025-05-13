@@ -155,7 +155,6 @@
         </div>
      </div>
     <!-- tos end -->
-    @include('templates/login_temp')
   
     @include('templates/footer')
     @include('templates/offcanvas')

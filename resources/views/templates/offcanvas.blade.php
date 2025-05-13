@@ -16,8 +16,9 @@
                @elseif(Auth::check() && Auth::user()->role == 'Candidate')
                <a href="{{ route('employee') }}" class="small__btn no__fill__btn border-6 font-xs"> <i class="rt-login"></i>Welcome, {{ Auth::user()->name }}</a>
                @else 
-               <a href="#" class="small__btn no__fill__btn border-6 font-xs" aria-label="Login Button" data-bs-toggle="modal" data-bs-target="#loginModal"> <i class="rt-login"></i>Sign In</a>
-               <a href="#" class="small__btn d-xl-flex fill__btn border-6 font-xs" aria-label="Job Posting Button">Add Job</a>
+               <a href="{{ route('login') }}" class="small__btn no__fill__btn border-6 font-xs" aria-label="Login Button"> 
+                  <i class="rt-login"></i>Sign In</a>
+               <a href="{{ route('showRegistrationForm') }}" class="small__btn d-xl-flex fill__btn border-6 font-xs" aria-label="Job Posting Button"><i class="fa-light fa-user-plus">Register</a>
                @endif
             </div>
          </div>
