@@ -83,7 +83,7 @@
                <span class="h4 fw-normal"><strong class="fw-bold">Sign in to your</strong> account</span>
                <div class="job__contact is__contact mt-30">
                   <div id="login-error-message"></div>
-                  <form action="#" class="d-flex flex-column gap-4">
+                  <form action="#" method="POST" class="d-flex flex-column gap-4">
                      <div class="search__item">
                         <label for="name" class="mb-4 font-20 fw-medium text-dark text-capitalize">Email</label>
                         <div class="position-relative">
@@ -112,6 +112,10 @@
                         Sign In
                      </button>
                   </form>
+                  <div class="d-block has__line text-center">
+                     <p>Or</p>
+                  </div>
+                  <span class="d-block text-center fw-medium">Don't nave an account? <a href="{{ route('showRegistrationForm') }}" class="text-primary">Register</a> </span>
                </div>
             </div>
             <div class="col-lg-6 ps-5">
@@ -151,12 +155,6 @@
    <script src="{{ asset('assets/js/signin.js') }}"></script>
    <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
    <script src="{{ asset('assets/js/send-reset-link.js')}}"></script>
-   <script>
-      $('#loginAgain').on('click', function() {
-         $('#otpModal').modal('hide');
-         $('#loginModal').modal('show');
-      });
-   </script>
 
 </body>
 
