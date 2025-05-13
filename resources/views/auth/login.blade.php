@@ -84,6 +84,7 @@
                <div class="job__contact is__contact mt-30">
                   <div id="login-error-message"></div>
                   <form action="#" method="POST" class="d-flex flex-column gap-4">
+                     @csrf
                      <div class="search__item">
                         <label for="name" class="mb-4 font-20 fw-medium text-dark text-capitalize">Email</label>
                         <div class="position-relative">
