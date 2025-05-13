@@ -5,7 +5,7 @@ $(document).ready(function() {
         $(this).addClass("active");
         const role = $(this).attr("id") === "candidate-role" ? "Candidate" : "Employer";
         $("#role").val(role);
-    });
+    }); 
 
     // Register form submission
     $("#candidate-register-form").submit(function(e) {
