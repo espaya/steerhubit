@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
-<meta charset="UTF-8">
+
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="description" content="Your Ultimate Job HTML Template">
@@ -23,8 +23,8 @@
     <link rel="shortcut-icon" href="{{ asset('assets/img/favicon-16x16.png') }}" type="image/x-icon">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-      <meta name="login-route" content="{{ route('login') }}">
-      <meta name="register-url" content="{{ route('register') }}">
+    <meta name="login-route" content="{{ route('login') }}">
+    <meta name="register-url" content="{{ route('register') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -39,40 +39,41 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
 </head>
+
 <body>
 
     <!-- header area -->
-     @include('templates/header')
-<!-- header area end -->
+    @include('templates/header')
+    <!-- header area end -->
     <!-- breadcrumb area -->
     <div class="rts__section breadcrumb__background">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 position-relative d-flex justify-content-between align-items-center">
-                <div class="breadcrumb__area max-content breadcrumb__padding z-2">
-                    <h1 class="breadcrumb-title h3 mb-3">Blog </h1>
-                    <nav>
-                        <ul class="breadcrumb m-0 lh-1">
-                          <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Blog</li>
-                        </ul>
-                    </nav>                  
-                </div>
-                <div class="breadcrumb__area__shape d-flex gap-4 justify-content-end align-items-center">
-                    <div class="shape__one common">
-                        <img src="assets/img/breadcrumb/shape-1.svg" alt="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 position-relative d-flex justify-content-between align-items-center">
+                    <div class="breadcrumb__area max-content breadcrumb__padding z-2">
+                        <h1 class="breadcrumb-title h3 mb-3">Blog </h1>
+                        <nav>
+                            <ul class="breadcrumb m-0 lh-1">
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                            </ul>
+                        </nav>
                     </div>
-                    <div class="shape__two common">
-                        <img src="assets/img/breadcrumb/shape-2.svg" alt="">
-                    </div>
-                    <div class="shape__three common">
-                        <img src="{{asset('assets/img/breadcrumb/shape-3.svg')}}" alt="">
+                    <div class="breadcrumb__area__shape d-flex gap-4 justify-content-end align-items-center">
+                        <div class="shape__one common">
+                            <img src="assets/img/breadcrumb/shape-1.svg" alt="">
+                        </div>
+                        <div class="shape__two common">
+                            <img src="assets/img/breadcrumb/shape-2.svg" alt="">
+                        </div>
+                        <div class="shape__three common">
+                            <img src="{{asset('assets/img/breadcrumb/shape-3.svg')}}" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
     <!-- breadcrumb area end -->
 
     <div class="rts__section section__padding">
@@ -84,7 +85,7 @@
                 <div class="col-lg-7 col-xl-8">
                     <div class="row g-30">
                         <!-- single blog -->
-                         @forelse($posts as $post)
+                        @forelse($posts as $post)
                         <div class="col-xl-6 col-lg-12">
                             <div class="rts__single__blog">
                                 <a href="{{ route('blog.view.single', ['slug' => $post->slug]) }}" class="blog__img">
@@ -102,35 +103,35 @@
                                 </div>
                             </div>
                         </div>
-                        @empty 
-                            <div class="alert alert-info" >No post found</div>
+                        @empty
+                        <div class="alert alert-info">No post found</div>
                         <!-- single blog end -->
-                         @endforelse
+                        @endforelse
                     </div>
                     <div class="rts__pagination mx-auto pt-60 max-content">
                         <ul class="d-flex gap-2">
                             {{-- Previous page link --}}
                             <li>
                                 @if($posts->onFirstPage())
-                                    <a href="#" class="inactive"><i class="rt-chevron-left"></i></a>
+                                <a href="#" class="inactive"><i class="rt-chevron-left"></i></a>
                                 @else
-                                    <a href="{{ $posts->previousPageUrl() }}" class="active"><i class="rt-chevron-left"></i></a>
+                                <a href="{{ $posts->previousPageUrl() }}" class="active"><i class="rt-chevron-left"></i></a>
                                 @endif
                             </li>
 
                             {{-- Loop through the pages --}}
                             @foreach(range(1, $posts->lastPage()) as $page)
-                                <li>
-                                    <a href="{{ $posts->url($page) }}" class="{{ $page == $posts->currentPage() ? 'active' : '' }}">{{ $page }}</a>
-                                </li>
+                            <li>
+                                <a href="{{ $posts->url($page) }}" class="{{ $page == $posts->currentPage() ? 'active' : '' }}">{{ $page }}</a>
+                            </li>
                             @endforeach
 
                             {{-- Next page link --}}
                             <li>
                                 @if($posts->hasMorePages())
-                                    <a href="{{ $posts->nextPageUrl() }}" class="active"><i class="rt-chevron-right"></i></a>
+                                <a href="{{ $posts->nextPageUrl() }}" class="active"><i class="rt-chevron-right"></i></a>
                                 @else
-                                    <a href="#" class="inactive"><i class="rt-chevron-right"></i></a>
+                                <a href="#" class="inactive"><i class="rt-chevron-right"></i></a>
                                 @endif
                             </li>
                         </ul>
@@ -141,60 +142,31 @@
         </div>
     </div>
 
-  
+
     @include('templates/footer')
 
     @include('templates/offcanvas')
 
 
 
-        <!-- OTP Modal -->
-        <div class="modal similar__modal fade " id="otpModal">
-         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-               <div class="max-content similar__form form__padding">
-                  <div id="otp-error-message"></div>                  
-                  <div class="tab-content" id="">
-                  </div>
-                  <form id="otp-form-ajax" action="{{ route('verify-otp.submit') }}" method="post" class="d-flex flex-column gap-3">
-                     @csrf
-                     <div class="form-group">
-                     <label for="otp" class="fw-medium text-dark mb-3 text-center d-block">Please enter the OTP code sent to your email</label>
-                        <div class="position-relative">
-                              <input type="text" name="otp" id="login-otp" autocomplete="off">
-                        </div>
-                        <span class="text-danger" id="login-error-otp"></span>
-                     </div>
 
-                     <input type="hidden" id="timezone" name="timezone">
-
-                     <div class="form-group my-3">
-                        <button id="otp-button" type="submit" class="rts__btn w-100 fill__btn">Submit</button>
-                     </div>
-                  </form>
-                  <span class="d-block text-center fw-medium"><a href="#" id="sendNewOtp" class="text-primary">Request new code</a><small>or <a id="loginAgain" href="#">Login Again</a></small></span>
-               </div>
-            </div>
-         </div>
-      </div>
-
-<!-- THEME PRELOADER START -->
-<div class="loader-wrapper">
-    <div class="loader">
+    <!-- THEME PRELOADER START -->
+    <div class="loader-wrapper">
+        <div class="loader">
+        </div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
     </div>
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
-</div>
-<!-- THEME PRELOADER END -->
-<button type="button" class="rts__back__top" id="rts-back-to-top">
-    <i class="fas fa-arrow-up"></i>
-</button>
-<!-- all plugin js -->
-<script src="{{asset('assets/js/plugins.min.js')}}"></script>
-      <script src="{{asset('assets/js/main.js')}}"></script>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script src="{{ asset('assets/js/new-otp.js') }}"></script>
-      <!-- jQuery AJAX -->
-      <script src="{{ asset('assets/js/subscribe.js') }}"></script>
+    <!-- THEME PRELOADER END -->
+    <button type="button" class="rts__back__top" id="rts-back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <!-- all plugin js -->
+    <script src="{{asset('assets/js/plugins.min.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery AJAX -->
+    <script src="{{ asset('assets/js/subscribe.js') }}"></script>
 </body>
+
 </html>
