@@ -159,20 +159,9 @@
       <script src="{{asset('assets/js/main.js')}}"></script>
       
       
-      <script src="{{ asset('assets/js/new-otp.js') }}"></script>
-      <script src="{{ asset('assets/js/signup.js') }}"></script>
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
-      <script src="{{ asset('assets/js/signin.js') }}"></script>
-      <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
       <script src="{{asset('assets/js/add-comment.js')}}"></script>
       <script src="{{asset('assets/js/reply-comment.js')}}"></script>
-      <script src="{{ asset('assets/js/send-reset-link.js')}}"></script>
-      <script>
-         $('#loginAgain').on('click', function () {
-            $('#otpModal').modal('hide');
-            $('#loginModal').modal('show');
-         });
-      </script>
       <script>
          $(document).on('click', '.comment-reply-link', function(e) {
             e.preventDefault();

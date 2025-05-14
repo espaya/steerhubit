@@ -374,21 +374,12 @@
       <i class="fas fa-arrow-up"></i>
       </button>
       <!-- all plugin js -->
+       <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="{{asset('assets/js/plugins.min.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
       <script src="{{asset('assets/js/apply-job.js')}}"></script>
-
-      <script src="{{ asset('assets/js/new-otp.js') }}"></script>
-      <script src="{{ asset('assets/js/signup.js') }}"></script>
       <script src="{{ asset('assets/js/subscribe.js') }}"></script>
-      <script src="{{ asset('assets/js/signin.js') }}"></script>
-      <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
-      <script src="{{ asset('assets/js/send-reset-link.js')}}"></script>
-      <script>
-         $('#loginAgain').on('click', function () {
-            $('#otpModal').modal('hide');
-            $('#loginModal').modal('show');
-         });
-      </script>
+
    </body>
 </html>

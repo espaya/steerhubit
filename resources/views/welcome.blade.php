@@ -358,22 +358,11 @@
 
 
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
    <script src="{{asset('assets/js/plugins.min.js')}}"></script>
    <script src="{{asset('assets/js/main.js')}}"></script>
    <!-- jQuery AJAX -->
-   <script src="{{ asset('assets/js/new-otp.js') }}"></script>
-   <script src="{{ asset('assets/js/signup.js') }}"></script>
    <script src="{{ asset('assets/js/subscribe.js') }}"></script>
-   <script src="{{ asset('assets/js/signin.js') }}"></script>
-   <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
-   <script src="{{ asset('assets/js/send-reset-link.js')}}"></script>
-   <script>
-      $('#loginAgain').on('click', function() {
-         $('#otpModal').modal('hide');
-         $('#loginModal').modal('show');
-      });
-   </script>
 </body>
 
 </html>

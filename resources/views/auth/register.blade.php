@@ -173,6 +173,8 @@
    <button type="button" class="rts__back__top" id="rts-back-to-top">
       <i class="fas fa-arrow-up"></i>
    </button>
+   <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <!-- all plugin js -->
    <script src="{{asset('assets/js/plugins.min.js')}}"></script>
    <script src="{{asset('assets/js/main.js')}}"></script>
