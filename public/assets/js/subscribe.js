@@ -27,4 +27,11 @@
                 }
             });
         });
+
+        // Patch to avoid reading 'backdrop' if Bootstrap is missing
+        if (typeof bootstrap === 'undefined') {
+            window.bootstrap = {}; // Prevents some plugins from failing
+        }
+
+
     });
