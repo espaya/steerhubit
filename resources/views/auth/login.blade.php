@@ -38,6 +38,41 @@
    <!-- all plugin css -->
    <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}">
    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+   <style>
+      /* Lock icon on the left inside input */
+      /* .input-icon-leading {
+                           position: absolute;
+                           top: 50%;
+                           left: 10px;
+                           transform: translateY(-50%);
+                           color: #666;
+                           font-size: 18px;
+                           pointer-events: none;
+                        } */
+
+      /* Eye icon container positioned relative */
+      .icons {
+         position: absolute;
+         top: 50%;
+         right: 50px;
+         transform: translateY(-50%);
+         cursor: pointer;
+         color: #666;
+         font-size: 18px;
+         user-select: none;
+         z-index: 2;
+         /* keep it above input text */
+      }
+
+      /* Hide lock icon on small devices (optional) */
+      @media (max-width: 480px) {
+         .input-icon-leading {
+            display: none;
+         }
+      }
+   </style>
+
 </head>
 
 <body>
@@ -94,14 +129,20 @@
                         <small class="text-danger" id="login-error-email"></small>
                      </div>
                      <input type="hidden" id="timezone" name="timezone">
+
                      <div class="search__item">
-                        <label for="cemail" class="mb-4 font-20 fw-medium text-dark text-capitalize">Password</label>
-                        <div class="position-relative">
+                        <label for="login-password" class="mb-4 font-20 fw-medium text-dark text-capitalize">Password</label>
+                        <div class="password-input-container">
                            <input name="password" type="password" id="login-password" placeholder="Enter your password" autocomplete="off">
-                           <i class="fa-light fa-lock icon"></i>
+                           <i class="fa-light fa-lock input-icon"></i>
+                           <div class="icons">
+                              <i class="fa-light fa-eye-slash input-icon input-icon-trailing" id="toggle-password"></i>
+                           </div>
                         </div>
                         <small class="text-danger" id="login-error-password"></small>
                      </div>
+
+
                      <div class="d-flex flex-wrap justify-content-between align-items-center fw-medium">
                         <div class="form-check">
                            <input value="1" class="form-check-input" type="checkbox" name="remember" id="remember">
@@ -147,8 +188,8 @@
       <i class="fas fa-arrow-up"></i>
    </button>
    <!-- all plugin js -->
-    <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <!-- jQuery -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="{{asset('assets/js/plugins.min.js')}}"></script>
    <script src="{{asset('assets/js/main.js')}}"></script>
 
@@ -158,6 +199,23 @@
    <script src="{{ asset('assets/js/signin.js') }}"></script>
    <script src="{{ asset('assets/js/otp-verification.js')}}"></script>
    <script src="{{ asset('assets/js/send-reset-link.js')}}"></script>
+
+   <script>
+      $(document).ready(function() {
+         $('#toggle-password').on('click', function() {
+            const passwordInput = $('#login-password');
+            const icon = $(this);
+
+            // Toggle input type
+            const isPassword = passwordInput.attr('type') === 'password';
+            passwordInput.attr('type', isPassword ? 'text' : 'password');
+
+            // Toggle eye icon class
+            icon.toggleClass('fa-eye-slash fa-eye');
+         });
+      });
+   </script>
+
 
 </body>
 

@@ -34,6 +34,41 @@
    <!-- all plugin css -->
    <link rel="stylesheet" href="{{asset('assets/css/plugins.min.css')}}">
    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+
+   <style>
+      /* Lock icon on the left inside input */
+      /* .input-icon-leading {
+                           position: absolute;
+                           top: 50%;
+                           left: 10px;
+                           transform: translateY(-50%);
+                           color: #666;
+                           font-size: 18px;
+                           pointer-events: none;
+                        } */
+
+      /* Eye icon container positioned relative */
+      .icons {
+         position: absolute;
+         top: 5%;
+         right: 50px;
+         transform: translateY(-50%);
+         cursor: pointer;
+         color: #666;
+         font-size: 18px;
+         user-select: none;
+         z-index: 2;
+         /* keep it above input text */
+      }
+
+      /* Hide lock icon on small devices (optional) */
+      @media (max-width: 480px) {
+         .input-icon-leading {
+            display: none;
+         }
+      }
+   </style>
+
 </head>
 
 <body>
@@ -126,6 +161,9 @@
                         <div class="position-relative">
                            <input value="{{ old('password') }}" name="password" type="password" id="spassword" placeholder="Enter your password" autocomplete="off">
                            <i class="fa-light fa-lock icon"></i>
+                           <div class="icons">
+                              <i class="fa-light fa-eye-slash input-icon input-icon-trailing" id="toggle-password"></i>
+                           </div>
                         </div>
                         <small class="text-danger error-message" id="password-error"></small> <!-- Error Message -->
                      </div>
@@ -135,6 +173,9 @@
                         <div class="position-relative">
                            <input value="{{ old('password_confirmation') }}" name="password_confirmation" type="password" id="password_confirmation" placeholder="Repeat your password" autocomplete="off">
                            <i class="fa-light fa-lock icon"></i>
+                           <div class="icons">
+                              <i class="fa-light fa-eye-slash input-icon input-icon-trailing" id="toggle-password2"></i>
+                           </div>
                         </div>
                         <small class="text-danger error-message" id="password_confirmation-error"></small> <!-- Error Message -->
                      </div>
@@ -174,12 +215,38 @@
       <i class="fas fa-arrow-up"></i>
    </button>
    <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <!-- all plugin js -->
    <script src="{{asset('assets/js/plugins.min.js')}}"></script>
    <script src="{{asset('assets/js/main.js')}}"></script>
    <script src="{{ asset('assets/js/signup.js') }}"></script>
    <script src="{{ asset('assets/js/subscribe.js') }}"></script>
+   <script>
+      $(document).ready(function() {
+         $('#toggle-password').on('click', function() {
+            const passwordInput = $('#spassword');
+            const icon = $(this);
+
+            // Toggle input type
+            const isPassword = passwordInput.attr('type') === 'password';
+            passwordInput.attr('type', isPassword ? 'text' : 'password');
+
+            // Toggle eye icon class
+            icon.toggleClass('fa-eye-slash fa-eye');
+         });
+         $('#toggle-password2').on('click', function() {
+            const passwordInput = $('#password_confirmation');
+            const icon = $(this);
+
+            // Toggle input type
+            const isPassword = passwordInput.attr('type') === 'password';
+            passwordInput.attr('type', isPassword ? 'text' : 'password');
+
+            // Toggle eye icon class
+            icon.toggleClass('fa-eye-slash fa-eye');
+         });
+      });
+   </script>
 </body>
 
 </html>
