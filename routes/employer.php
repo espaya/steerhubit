@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Employer\EmployerBrowseCandidateController;
 use App\Http\Controllers\Employer\EmployerCandidateShortlistController;
 use App\Http\Controllers\Employer\EmployerChangePasswordController;
+use App\Http\Controllers\Employer\EmployerDashboardController;
 use App\Http\Controllers\Employer\EmployerJobController;
 use App\Http\Controllers\Employer\EmployerProfileController;
 
@@ -15,9 +16,7 @@ Route::group(['middleware' => ['auth', 'auth.redirect', 'employer', 'prevent-bac
      * Employer Middleware Protected Routes
      * 
      ****/
-    Route::get('/employer-dashboard', function () {
-        return view('employer.employer');
-    })->name('employer.dashboard');
+    Route::get('/employer-dashboard', [EmployerDashboardController::class, 'index'])->name('employer.dashboard');
 
     Route::get('/employer-dashboard/company-profile', [EmployerProfileController::class, 'index'])->name('employer.profile');
 
