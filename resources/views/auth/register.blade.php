@@ -36,17 +36,6 @@
    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
 
    <style>
-      /* Lock icon on the left inside input */
-      /* .input-icon-leading {
-                           position: absolute;
-                           top: 50%;
-                           left: 10px;
-                           transform: translateY(-50%);
-                           color: #666;
-                           font-size: 18px;
-                           pointer-events: none;
-                        } */
-
       /* Eye icon container positioned relative */
       .icons {
          position: absolute;
