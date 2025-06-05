@@ -26,6 +26,11 @@
                         // If there's an error, show the error message
                         $('#form-success').removeClass('d-none').text(response.message);
                     }
+
+                    setTimeout(() => {
+                        $('#form-success').hide();
+                    }, 3000);
+
                 },
                 error: function(xhr) {
                     // Handle validation errors (422)

@@ -11,11 +11,10 @@ use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\WelcomeController;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('/about-us', function(){
     return view('about');

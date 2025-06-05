@@ -132,13 +132,13 @@
                   </figure>
                   <div class="banner__image__shape">
                      <div class="facebook">
-                        <a target="_blank" href="https://web.facebook.com/SteerHubIT"><i class="fab fa-facebook"></i></a>
+                        <a target="_blank" href="{{ $socials && $socials[0]->facebook ? $socials[0]->facebook : '#' }}"><i class="fab fa-facebook"></i></a>
                      </div>
                      <div class="twitter">
-                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a target="_blank" href="{{ $socials && $socials[0]->twitter ? $socials[0]->twitter : '#' }}"><i class="fab fa-twitter"></i></a>
                      </div>
                      <div class="linkedin">
-                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a target="_blank" href="{{ $socials && $socials[0]->linkedin ? $socials[0]->linkedin : '#' }}"><i class="fab fa-linkedin-in"></i></a>
                      </div>
                   </div>
                </div>
