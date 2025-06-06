@@ -83,7 +83,7 @@
                         </svg>
                      </div>
                      <div class="content">
-                        <h5 class="lh-sm">{{ $views }}</h5>
+                        <h5 class="lh-sm">{{ $views ? $views : '0' }}</h5>
                         <p class="font-20">Views</p>
                      </div>
                   </div>
