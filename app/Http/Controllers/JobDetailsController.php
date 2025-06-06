@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ApplyForJob;
 use App\Models\EmployerProfile;
 use App\Models\Job;
+use App\Models\JobViews;
 use App\Models\User;
 use Carbon\Carbon;
 use Exception;
@@ -25,12 +26,12 @@ class JobDetailsController extends Controller
 
         // Fetch all job applied by the currently authenticated user
         $appliedJobs = ApplyForJob::where('applicant_id', Auth::user()->id)
-            ->whereIn('job_id', $jobs->pluck('id')->toArray()) 
+            ->whereIn('job_id', $jobs->pluck('id')->toArray())
             ->get()
-            ->pluck('job_id'); 
+            ->pluck('job_id');
 
         // Get employer avatars along with their user IDs
-        $employer_avatar = User::whereIn('id', $jobs->pluck('userID')->toArray())->get(['id', 'avatar']); 
+        $employer_avatar = User::whereIn('id', $jobs->pluck('userID')->toArray())->get(['id', 'avatar']);
 
         // Pass jobs and applied job IDs to the view
         return view('job', [
@@ -45,8 +46,7 @@ class JobDetailsController extends Controller
     {
         $job = Job::where('slug', $slug)->first();
 
-        if(!$job)
-        {
+        if (!$job) {
             return view('errors.404');
         }
 
@@ -60,8 +60,30 @@ class JobDetailsController extends Controller
         // Get the employer avatar for a single job
         $employer_avatar = User::where('id', $job->userID)->first('avatar');
 
+        // increase job views count
+        try {
+            DB::beginTransaction();
+            $views = JobViews::where('job_id', $job->id)->first();
+
+            if ($views) {
+                $views->views++;
+                $views->save();
+            } else {
+                $addView = new JobViews();
+                $addView->views++;
+                $addView->job_id = $job->id;
+                $addView->userID = $job->userID;
+                $addView->save();
+            }
+
+            DB::commit();
+        } catch (Exception $ex) {
+            DB::rollback();
+            Log::error('An error occured whilst add job view:' . $ex->getMessage());
+        }
+
         return view('job-details', [
-            'job' => $job, 
+            'job' => $job,
             'employer_website' => $employer_website,
             'relatedJob' => $relatedJob,
             'employer_avatar' => $employer_avatar
@@ -70,17 +92,15 @@ class JobDetailsController extends Controller
 
     public function apply($id)
     {
-        $user = Auth::user(); 
+        $user = Auth::user();
 
-        try 
-        {
+        try {
             DB::beginTransaction();
 
             // Check if applicant is same as employer
             $isEmployer = User::where('id', $user->id)->where('role', 'EMPLOYER')->value('id');
 
-            if($isEmployer)
-            {
+            if ($isEmployer) {
                 return response()->json([
                     'success' => false,
                     'message' => 'You cannot apply to this job',
@@ -91,9 +111,8 @@ class JobDetailsController extends Controller
             $isApplied = ApplyForJob::where('applicant_id', $user->id)
                 ->where('job_id', $id)
                 ->first();
-            
-            if($isApplied)
-            {
+
+            if ($isApplied) {
                 return response()->json([
                     'success' => false,
                     'message' => 'You have already applied to this job'
@@ -101,10 +120,9 @@ class JobDetailsController extends Controller
             }
 
             // Check if applicant is steerhubit management
-            if($user->role == 'admin')
-            {
+            if ($user->role == 'admin') {
                 return response()->json([
-                    'success' => false, 
+                    'success' => false,
                     'message' => 'You cannot apply to this job'
                 ], 403);
             }
@@ -112,8 +130,7 @@ class JobDetailsController extends Controller
             // Check deadline
             $job_dealine = Job::where('id', $id)->value('deadline');
 
-            if(Carbon::parse($job_dealine)->isPast())
-            {
+            if (Carbon::parse($job_dealine)->isPast()) {
                 return response()->json([
                     'success' => false,
                     'Application deadline has past'
@@ -131,7 +148,7 @@ class JobDetailsController extends Controller
 
             // increase applicants column in jobs
             $job = Job::find($id);
-            $job->applicants++; 
+            $job->applicants++;
             $job->save();
 
             DB::commit();
@@ -140,9 +157,7 @@ class JobDetailsController extends Controller
                 'success' => true,
                 'message' => 'You have successfully applied for this job'
             ], 200); // OK
-        }
-        catch(Exception $ex)
-        {
+        } catch (Exception $ex) {
             DB::rollBack();
             Log::error('Error applying for job: ' . $ex);
             return response()->json([
@@ -151,5 +166,4 @@ class JobDetailsController extends Controller
             ], 500); // Internal Server Error
         }
     }
-
 }
