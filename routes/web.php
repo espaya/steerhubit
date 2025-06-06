@@ -73,9 +73,6 @@ Route::group(['middleware' =>['auth', 'auth.redirect', 'prevent-back-history', '
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-
-// Auth::routes(); 
-
 Route::group(['middleware' => ['guest']], function(){
     Route::get('/sign-in', function(){ return view('auth.login'); })->name('login');
     Route::post('/sign-in', [LoginController::class, 'login'])->name('login')->middleware('throttle:10,1');
