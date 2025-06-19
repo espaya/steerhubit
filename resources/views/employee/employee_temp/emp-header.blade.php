@@ -153,8 +153,6 @@
                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                  </form>
-
-                                 <li><a class="dropdown-item" href="candidate-deleteprofile.html">Delete Account</a></li>
                               </ul>
                            </div>
                         </div>
