@@ -137,7 +137,7 @@
                            <input value="1" class="form-check-input" type="checkbox" name="remember" id="remember">
                            <label class="form-check-label" for="remember">Remember me</label>
                         </div>
-                        <a href="#" class="forgot__password text-para" data-bs-toggle="modal" data-bs-target="#forgotModal">Forgot Password?</a>
+                        <a href="{{ route('forgot.password') }}" class="forgot__password text-para">Forgot Password?</a>
                      </div>
                      <button id="login-button" type="submit" class="rts__btn fill__btn be-1 w-100 rounded-1 apply__btn">
                         Sign In

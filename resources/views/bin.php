@@ -1,88 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Input with Eye Icon</title>
-    <!-- FontAwesome 6 CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-yH+kXdKNxXQZ0tq5V3CYYpkOa5az+pomCdGaq5eBNz+ROmQkLZxFb794x0UQVbz20ZnFTjatQZn1wNvp+0u8BA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background: #f9f9f9;
-        }
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Reset Password') }}</div>
 
-        .search__item {
-            max-width: 400px;
-            margin: 0 auto;
-        }
+                <div class="card-body">
+                    <form method="POST" action="{{ route('password.update') }}">
+                        @csrf
 
-        label {
-            display: block;
-            margin-bottom: 0.75rem;
-            font-size: 20px;
-            font-weight: 600;
-            color: #222;
-            text-transform: capitalize;
-        }
+                        <input type="hidden" name="token" value="{{ $token }}">
 
-        .password-input-container {
-            position: relative;
-        }
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 40px;
-            /* space for leading and trailing icons */
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            outline: none;
-        }
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
-        /* Leading icon - lock on left */
-        .input-icon-leading {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #888;
-            pointer-events: none;
-            font-size: 18px;
-        }
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
-        /* Trailing icon - eye on right */
-        .input-icon-trailing {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #888;
-            cursor: pointer;
-            font-size: 18px;
-            user-select: none;
-        }
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
-        .text-danger {
-            color: #d93025;
-            margin-top: 4px;
-            font-size: 14px;
-        }
-    </style>
-</head>
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-<body>
-    <div class="search__item">
-        <label for="login-password" class="mb-4 font-20 fw-medium text-dark text-capitalize">Password</label>
-        <div class="password-input-container">
-            <input name="password" type="password" id="login-password" placeholder="Enter your password" autocomplete="off">
-            <i class="fa-light fa-lock input-icon input-icon-leading"></i>
-            <i class="fa-light fa-eye input-icon input-icon-trailing"></i>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Reset Password') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <small class="text-danger" id="login-error-password"></small>
     </div>
-</body>
-
-</html>
+</div>
+@endsection

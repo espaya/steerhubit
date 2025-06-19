@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CandidatesPublicController;
 use App\Http\Controllers\CommentsController;
@@ -10,7 +12,6 @@ use App\Http\Controllers\JobDetailsController;
 use App\Http\Controllers\MailingListController;
 use App\Http\Controllers\OtpController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\WelcomeController;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -83,9 +84,14 @@ Route::group(['middleware' => ['guest']], function(){
 Route::post('/reset-password/send-reset-link', [LoginController::class, 'sendResetLink']);
 
 // Show the password reset form
-Route::get('/reset-password', function () {
-    return view('auth.passwords.reset');
-})->middleware('guest')->name('password.reset');
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->middleware('guest')->name('forgot.password');
+
+Route::post('/send-reset-link', [ForgotPasswordController::class, 'sendResetLinkEmail'])->middleware('guest')->name('password.email');
+
+Route::get('/reset-password', [ResetPasswordController::class, 'showResetForm'])->middleware('guest')->name('password.reset');
+Route::post('/update-password', [ResetPasswordController::class, 'reset'])->middleware('guest')->name('password.update');
+
+// Route::get('/pass');
 
 Route::get('/429', function(){
     throw new HttpException(429, 'Too Many Requests', null, ['Retry-After' => 60]);
